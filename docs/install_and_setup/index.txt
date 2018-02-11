@@ -1,0 +1,14 @@
+########################
+  Installation & Setup
+########################
+
+.. toctree::
+   :maxdepth: 2
+
+   getting_started
+   firsttime
+   apache
+   whitelist
+   updating
+   contribute
+   

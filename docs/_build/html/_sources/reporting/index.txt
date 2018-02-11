@@ -1,0 +1,10 @@
+############
+  Reporting
+############
+
+.. toctree::
+   :maxdepth: 2
+
+   logging
+
+

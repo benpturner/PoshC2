@@ -1,0 +1,38 @@
+#########################
+  Executable Persistence
+#########################
+Mitre ATT&CK - `Start Folder <https://attack.mitre.org/wiki/Technique/T1060>`_
+
+**Requires: Normal User**
+
+This persistence leverages a technique recorded in the following technet blog post. It uses the Startup folder to host a file that calls "Rundll32" in combination with "shell32.dll" to launce a seperate application or dll. This persistence is considered slightly more stealthy than other traditional mechanisms, however it does require the user to drop an executable to disk but then Timestomps the file to 01/03/2008 to create an element of history. 
+
+`https://blogs.technet.microsoft.com/motiba/2017/11/04/chasing-adversaries-with-autoruns-evading-techniques-and-countermeasures/ <https://blogs.technet.microsoft.com/motiba/2017/11/04/chasing-adversaries-with-autoruns-evading-techniques-and-countermeasures/>`_
+
+***********************
+InstallEXE-Persistence
+***********************
+To add this persistence use the following command::
+
+	InstallEXE-Persistence
+
+Drops one file to the users %TEMP% directory called "Winlogon.exe" which is the dropper, of which is timestomps to "01/03/2008 12:12 pm"::
+
+	$ENV:TEMP\Winlogon.exe
+ 
+Then creates a shortcut (lnk) in the users "Startup" directory called "Winlogon.lnk" containing the following command::
+
+	$ENV:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\WinLogon.lnk
+	rundll32.exe shell32.dll,ShellExec_RunDLL %temp%\winlogon.exe
+
+***********************
+RemoveEXE-Persistence
+***********************
+To remove this persistence use the following command::
+
+	RemoveEXE-Persistence
+
+Removes both files from disk with validation of removal::
+
+	$ENV:TEMP\Winlogon.exe
+	$ENV:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\WinLogon.lnk

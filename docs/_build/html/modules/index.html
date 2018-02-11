@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modules &mdash; PoshC2 Framework  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
+        <link rel="next" title="Brute-AD" href="mods.html"/>
+        <link rel="prev" title="Service Level Persistence" href="../persistence/persistence5.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PoshC2 Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../execution/index.html">Execution / Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Implant / Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../persistence/index.html">Persistence</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html">Brute-AD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#brute-locadmin">Brute-LocAdmin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#cve-2016-9192">CVE-2016-9192</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#decrypt-rdcman">Decrypt-RDCMan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#dump-ntds">Dump-NTDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-creditcarddata">Get-CreditCardData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-firewallrules">Get-FirewallRules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-idletime">Get-IdleTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-locadm">Get-LocAdm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-passnotexp">Get-PassNotExp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-passpol">Get-PassPol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-recentfiles">Get-RecentFiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-serviceperms">Get-ServicePerms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-userinfo">Get-UserInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#get-wlanpass">Get-WLANPass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#inject-shellcode">Inject-Shellcode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#invoke-arpscan">Invoke-Arpscan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#invoke-hostscan">Invoke-Hostscan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#invoke-pipekat">Invoke-Pipekat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#invoke-winrmsession">Invoke-WinRMSession</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#invoke-wmichecker">Invoke-WMIChecker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#invoke-wmicommand">Invoke-WMICommand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#namedpipe">NamedPipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#namedpipedaisy">NamedPipeDaisy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#namedpipeproxy">NamedPipeProxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#portscanner">PortScanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#sharpsocks">SharpSocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#test-adcredential">Test-ADCredential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#service-perms">Service-Perms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#zippy">Zippy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#external-modules">External Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-modules">External Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lateral_movement/index.html">Lateral Movement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reporting/index.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PoshC2 Framework</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Modules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/modules/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mods.html">Brute-AD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#description">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#examples">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#brute-locadmin">Brute-LocAdmin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id1">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id2">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id3">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#cve-2016-9192">CVE-2016-9192</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id4">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id5">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id6">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#decrypt-rdcman">Decrypt-RDCMan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id7">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id8">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id9">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#dump-ntds">Dump-NTDS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id10">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id11">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id12">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-creditcarddata">Get-CreditCardData</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id13">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id14">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id15">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-firewallrules">Get-FirewallRules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id16">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id17">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id18">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-idletime">Get-IdleTime</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id19">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id20">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id21">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-locadm">Get-LocAdm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id22">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id23">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id24">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-passnotexp">Get-PassNotExp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id25">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id26">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id27">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-passpol">Get-PassPol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id28">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id29">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id30">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-recentfiles">Get-RecentFiles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id31">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id32">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id33">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-serviceperms">Get-ServicePerms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id34">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id35">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id36">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-userinfo">Get-UserInfo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id37">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id38">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#get-wlanpass">Get-WLANPass</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id39">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id40">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id41">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#inject-shellcode">Inject-Shellcode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id42">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id43">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id44">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#invoke-arpscan">Invoke-Arpscan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id45">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id46">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id47">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#invoke-hostscan">Invoke-Hostscan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id48">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id49">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id50">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#invoke-pipekat">Invoke-Pipekat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id51">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id52">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id53">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#invoke-winrmsession">Invoke-WinRMSession</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id54">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id55">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id56">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#invoke-wmichecker">Invoke-WMIChecker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id57">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id58">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id59">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#invoke-wmicommand">Invoke-WMICommand</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id60">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id61">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id62">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#namedpipe">NamedPipe</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id63">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id64">DESCRIPTION</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#namedpipedaisy">NamedPipeDaisy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id65">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id66">DESCRIPTION</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#namedpipeproxy">NamedPipeProxy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id67">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id68">DESCRIPTION</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#portscanner">PortScanner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id69">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id70">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id71">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#sharpsocks">SharpSocks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id72">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id73">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id74">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#test-adcredential">Test-ADCredential</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id75">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id76">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id77">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#service-perms">Service-Perms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id78">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id79">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id80">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#zippy">Zippy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id81">SYNOPSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id82">DESCRIPTION</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mods.html#id83">EXAMPLES</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mods.html#external-modules">External Modules</a></li>
+</ul>
+</div>
+<div class="section" id="external-modules">
+<h2>External Modules<a class="headerlink" href="#external-modules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/BloodHoundAD/Bloodhound/wiki">BloodHound.ps1</a></li>
+<li><a class="reference external" href="https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Bypass-UAC/Bypass-UAC.ps1">Bypass-UAC.ps1</a></li>
+<li><a class="reference external" href="https://github.com/monoxgas/sRDI">ConvertTo-Shellcode.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-GPPAutologon.ps1">Get-GPPAutologon.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1">Get-GPPPassword.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-Keystrokes.ps1">Get-Keystrokes.ps1</a></li>
+<li><a class="reference external" href="https://gallery.technet.microsoft.com/scriptcenter/PowerShell-script-to-list-0955fe87">Get-MSHotFixes.ps1</a></li>
+<li><a class="reference external" href="http://threatexpress.com/2017/05/invoke-hostenum/">HostEnum.ps1</a></li>
+<li><a class="reference external" href="https://github.com/Kevin-Robertson/Inveigh/blob/master/Scripts/Inveigh-Relay.ps1">Inveigh-Relay.ps1</a></li>
+<li><a class="reference external" href="https://github.com/Kevin-Robertson/Inveigh/blob/master/Scripts/Inveigh.ps1">Inveigh.ps1</a></li>
+<li><a class="reference external" href="https://github.com/EmpireProject/Empire/blob/master/data/module_source/credentials/Invoke-DCSync.ps1">Invoke-DCSync.ps1</a></li>
+<li><a class="reference external" href="https://github.com/enigma0x3/Misc-PowerShell-Stuff/blob/master/Invoke-EventVwrBypass.ps1">Invoke-EventVwrBypass.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-Mimikatz.ps1">Invoke-Mimikatz.ps1</a></li>
+<li><a class="reference external" href="https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-MS16-032.ps1">Invoke-MS16-032.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/Invoke-Portscan.ps1">Invoke-Portscan.ps1</a></li>
+<li><a class="reference external" href="https://github.com/EmpireProject/Empire/blob/master/data/module_source/credentials/Invoke-PowerDump.ps1">Invoke-PowerDump.ps1</a></li>
+<li><a class="reference external" href="https://github.com/Kevin-Robertson/Invoke-TheHash">Invoke-PsExec.ps1</a></li>
+<li><a class="reference external" href="https://github.com/EmpireProject/Empire/blob/master/data/module_source/management/Invoke-PSInject.ps1">Invoke-PSInject.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1">Invoke-ReflectivePEInjection.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/Invoke-ReverseDnsLookup.ps1">Invoke-ReverseDnsLookup.ps1</a></li>
+<li><a class="reference external" href="https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1">Invoke-RunAs.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-Shellcode.ps1">Invoke-Shellcode.ps1</a></li>
+<li><a class="reference external" href="https://github.com/Kevin-Robertson/Invoke-TheHash">Invoke-SMBExec.ps1</a></li>
+<li><a class="reference external" href="https://github.com/Kevin-Robertson">Invoke-Sniffer.ps1</a></li>
+<li><a class="reference external" href="https://www.powershellgallery.com/packages/PSCommonSql/1.0.1/Content/Invoke-SqlQuery.ps1">Invoke-SqlQuery.ps1</a></li>
+<li><a class="reference external" href="https://github.com/Kevin-Robertson/Tater">Invoke-Tater.ps1</a></li>
+<li><a class="reference external" href="https://github.com/Kevin-Robertson/Invoke-TheHash">Invoke-TheHash.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-TokenManipulation.ps1">Invoke-TokenManipulation.ps1</a></li>
+<li><a class="reference external" href="https://github.com/Kevin-Robertson/Invoke-TheHash">Invoke-WMIExec.ps1</a></li>
+<li><a class="reference external" href="https://github.com/EmpireProject/Empire/blob/master/data/module_source/privesc/Invoke-WScriptBypassUAC.ps1">Invoke-WScriptBypassUAC.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Out-Minidump.ps1">Out-Minidump.ps1</a></li>
+<li><a class="reference external" href="https://github.com/HarmJ0y/PowerUp/blob/master/PowerUp.ps1">PowerUp.ps1</a></li>
+<li><a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1">PowerView.ps1</a></li>
+<li><a class="reference external" href="https://gallery.technet.microsoft.com/Adjusting-Token-Privileges-9b6724fc">Set-LHSTokenPrivilege.ps1</a></li>
+<li><a class="reference external" href="https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1">Sherlock.ps1</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mods.html" class="btn btn-neutral float-right" title="Brute-AD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../persistence/persistence5.html" class="btn btn-neutral" title="Service Level Persistence" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Nettitude.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

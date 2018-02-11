@@ -1,0 +1,13 @@
+###################
+  First Time Use
+###################
+
+Once you have PoshC2 installed, first try using this on a local network before running directly on the Internet. 
+
+Go through this video to ensure you have it up and running. 
+
+.. embed:: https://www.youtube.com/watch?v=wVHvdUVFQnM
+
+FAQ's
+
+Gotcha's

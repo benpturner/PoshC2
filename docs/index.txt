@@ -1,0 +1,63 @@
+############
+  Overview 
+############
+PoshC2 is a proxy aware C2 framework written completely in PowerShell to aid penetration testers with red teaming, post-exploitation and lateral movement. The tools and modules were developed off the back of our successful PowerShell sessions and payload types for the Metasploit Framework. PowerShell was chosen as the base language as it provides all of the functionality and rich features required without needing to introduce multiple languages to the framework.
+
+Requires only Powershell v2 on the client.
+
+`https://github.com/nettitude/PoshC2/ <https://github.com/nettitude/PoshC2/>`_
+
+
+##################
+  Getting Started 
+##################
+PoshC2 can be installed on almost any operating system post Windows XP, for example Windows 7, Windows 8, Windows 10, Server 2008, 2012, 2016. 
+
+Personally, I'd recommend Windows 10 which come with Powershell v5 by default. If you are using Windows Defender or any other host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its sub directories where you will use PoshC2. To install PoshC2, we have generated a simple one liner that can be called from either Powershell or Command prompt. 
+
+To install from **Command prompt** run the following::
+
+	powershell -exec bypass -c "IEX (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1')"
+
+To install from **Powershell** run the following command::
+
+	IEX (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1')		
+
+##################
+  Keep In Touch 
+##################
+
+Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_
+
+Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel		)
+
+Find us on Email - labs@nettitude.com
+
+##################
+Key Contribtutors  
+##################
+* Ben Turner - `@benpturner <https://twitter.com/benpturner>`_
+* Rob Maslen - `@rbmaslen <https://twitter.com/rbmaslen>`_
+* Doug McLeod - `@b4ggio_su <https://twitter.com/b4ggio_su>`_
+* Rich Hicks - `@scriptmonkey_ <https://twitter.com/scriptmonkey_>`_
+* Dave Hardy - `@DaveHardy20 <https://twitter.com/DaveHardy20>`_
+
+.. toctree::
+   :maxdepth: 2
+
+   install_and_setup/index
+   execution/index
+   core/index
+   persistence/index
+   modules/index
+   lateral_movement/index
+   reporting/index
+   license/index
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

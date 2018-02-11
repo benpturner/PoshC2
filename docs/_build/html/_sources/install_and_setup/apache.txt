@@ -1,0 +1,62 @@
+#########################
+  Apache Rewrite Rules
+#########################
+
+When running PoshC2 over the Internet its best practise to use a C2 Proxy server usually in the shape of a small VPS from any provider. This is so that you can hide behind a webserver when the Blue Team are investigating a suspected breach but also to remove the need for your Windows host to be fully connected to the Internet. Using Apache Rewrite rules we can redirect traffic that is intended for the C2 server but also retain a fully functional web server on the same host that does not hit our Rewrite Rules. 
+
+To do this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN. Another alternative would be to use a Windows Cloud server to host all the intrastructe with a perimeter firewall.  
+
+* `https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/ <https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/>`_
+
+Once you've setup the external infrastrucutre you will need to configure Apache to rewrite your C2 traffic back to the PoshC2 instance. This is a default C2 server instance but when you setup your server inside the folder will be an Apache2.conf file with all the corresponding rewrite rules ready for installation. Please take that file but install similarly to below. You will need to enable some modules on Apache before running the server::
+
+	apt-get install Apache2
+	a2enmod ssl 
+	a2enmod rewrite 
+	a2enmod proxy
+	a2enmod proxy_http
+	a2enmod headers
+
+Then load the following rules within your apache configuration file for each virtual host::
+
+	<VirtualHost *:80>
+		RewriteEngine On
+		RewriteRule ^/images/static/content/(.*) http://<IP ADDRESS>/images/static/content/$1 [NC,P,L]
+		RewriteRule ^/news/(.*) http://<IP ADDRESS>/news/$1 [NC,P,L]
+		RewriteRule ^/webapp/static/(.*) http://<IP ADDRESS>/webapp/static/$1 [NC,P,L]
+		RewriteRule ^/images/prints/(.*) http://<IP ADDRESS>/images/prints/$1 [NC,P,L]
+		RewriteRule ^/wordpress/site/(.*) http://<IP ADDRESS>/wordpress/site/$1 [NC,P,L]
+		RewriteRule ^/true/images/77/(.*) http://<IP ADDRESS>/true/images/77/$1 [NC,P,L]
+		RewriteRule ^/holdings/office/images/(.*) http://<IP ADDRESS>/holdings/office/images/$1 [NC,P,L]
+		RewriteRule ^/steam(.*) http://<IP ADDRESS>/steam/$1 [NC,P,L]
+		ServerAdmin webmaster@localhost
+		DocumentRoot /var/www/html
+		ErrorLog ${APACHE_LOG_DIR}/error.log
+		CustomLog ${APACHE_LOG_DIR}/access.log combined
+	</VirtualHost>
+	
+	<IfModule mod_ssl.c>
+		<VirtualHost _default_:443>
+			RewriteEngine On
+			SSLProxyEngine On
+			SSLProxyCheckPeerCN Off
+			SSLProxyVerify none
+			SSLProxyCheckPeerName off
+			SSLProxyCheckPeerExpire off
+			RewriteRule ^/images/static/content/(.*) https://<IP ADDRESS>/images/static/content/$1 [NC,P,L]
+			RewriteRule ^/news/(.*) https://<IP ADDRESS>/news/$1 [NC,P,L]
+			RewriteRule ^/webapp/static/(.*) https://<IP ADDRESS>/webapp/static/$1 [NC,P,L]
+			RewriteRule ^/images/prints/(.*) https://<IP ADDRESS>/images/prints/$1 [NC,P,L]
+			RewriteRule ^/wordpress/site/(.*) https://<IP ADDRESS>/wordpress/site/$1 [NC,P,L]
+			RewriteRule ^/true/images/77/(.*) https://<IP ADDRESS>/true/images/77/$1 [NC,P,L]
+			RewriteRule ^/holdings/office/images/(.*) https://<IP ADDRESS>/holdings/office/images/$1 [NC,P,L]
+			RewriteRule ^/steam(.*) https://<IP ADDRESS>/steam/$1 [NC,P,L]
+			ServerAdmin webmaster@localhost
+			DocumentRoot /var/www/html
+			ErrorLog ${APACHE_LOG_DIR}/error.log
+			CustomLog ${APACHE_LOG_DIR}/access.log combined
+			SSLEngine on
+			SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem
+			SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+		</VirtualHost>
+	</IfModule>

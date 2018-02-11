@@ -1,0 +1,47 @@
+###########
+  Modules
+###########
+
+.. toctree::
+   :maxdepth: 2
+
+   mods
+
+********************
+External Modules
+********************
+* `BloodHound.ps1 <https://github.com/BloodHoundAD/Bloodhound/wiki>`_
+* `Bypass-UAC.ps1 <https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Bypass-UAC/Bypass-UAC.ps1>`_
+* `ConvertTo-Shellcode.ps1 <https://github.com/monoxgas/sRDI>`_
+* `Get-GPPAutologon.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-GPPAutologon.ps1>`_
+* `Get-GPPPassword.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1>`_
+* `Get-Keystrokes.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-Keystrokes.ps1>`_
+* `Get-MSHotFixes.ps1 <https://gallery.technet.microsoft.com/scriptcenter/PowerShell-script-to-list-0955fe87>`_
+* `HostEnum.ps1 <http://threatexpress.com/2017/05/invoke-hostenum/>`_
+* `Inveigh-Relay.ps1 <https://github.com/Kevin-Robertson/Inveigh/blob/master/Scripts/Inveigh-Relay.ps1>`_
+* `Inveigh.ps1 <https://github.com/Kevin-Robertson/Inveigh/blob/master/Scripts/Inveigh.ps1>`_
+* `Invoke-DCSync.ps1 <https://github.com/EmpireProject/Empire/blob/master/data/module_source/credentials/Invoke-DCSync.ps1>`_
+* `Invoke-EventVwrBypass.ps1 <https://github.com/enigma0x3/Misc-PowerShell-Stuff/blob/master/Invoke-EventVwrBypass.ps1>`_
+* `Invoke-Mimikatz.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-Mimikatz.ps1>`_
+* `Invoke-MS16-032.ps1 <https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-MS16-032.ps1>`_
+* `Invoke-Portscan.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/Invoke-Portscan.ps1>`_
+* `Invoke-PowerDump.ps1 <https://github.com/EmpireProject/Empire/blob/master/data/module_source/credentials/Invoke-PowerDump.ps1>`_
+* `Invoke-PsExec.ps1 <https://github.com/Kevin-Robertson/Invoke-TheHash>`_
+* `Invoke-PSInject.ps1 <https://github.com/EmpireProject/Empire/blob/master/data/module_source/management/Invoke-PSInject.ps1>`_
+* `Invoke-ReflectivePEInjection.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1>`_
+* `Invoke-ReverseDnsLookup.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/Invoke-ReverseDnsLookup.ps1>`_
+* `Invoke-RunAs.ps1 <https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1>`_
+* `Invoke-Shellcode.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-Shellcode.ps1>`_
+* `Invoke-SMBExec.ps1 <https://github.com/Kevin-Robertson/Invoke-TheHash>`_
+* `Invoke-Sniffer.ps1 <https://github.com/Kevin-Robertson>`_
+* `Invoke-SqlQuery.ps1 <https://www.powershellgallery.com/packages/PSCommonSql/1.0.1/Content/Invoke-SqlQuery.ps1>`_
+* `Invoke-Tater.ps1 <https://github.com/Kevin-Robertson/Tater>`_
+* `Invoke-TheHash.ps1 <https://github.com/Kevin-Robertson/Invoke-TheHash>`_
+* `Invoke-TokenManipulation.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-TokenManipulation.ps1>`_
+* `Invoke-WMIExec.ps1 <https://github.com/Kevin-Robertson/Invoke-TheHash>`_
+* `Invoke-WScriptBypassUAC.ps1 <https://github.com/EmpireProject/Empire/blob/master/data/module_source/privesc/Invoke-WScriptBypassUAC.ps1>`_
+* `Out-Minidump.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Out-Minidump.ps1>`_
+* `PowerUp.ps1 <https://github.com/HarmJ0y/PowerUp/blob/master/PowerUp.ps1>`_
+* `PowerView.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1>`_
+* `Set-LHSTokenPrivilege.ps1 <https://gallery.technet.microsoft.com/Adjusting-Token-Privileges-9b6724fc>`_
+* `Sherlock.ps1 <https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1>`_

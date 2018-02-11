@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Startup Lnk File &mdash; PoshC2 Framework  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
+        <link rel="up" title="Persistence" href="index.html"/>
+        <link rel="next" title="Executable Persistence" href="persistence4.html"/>
+        <link rel="prev" title="Scheduled Task" href="persistence2.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PoshC2 Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../execution/index.html">Execution / Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Implant / Features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Persistence</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="persistence1.html">Registry Run Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence2.html">Scheduled Task</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Startup Lnk File</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-persistence-3">Install-Persistence 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-persistence-3">Remove-Persistence 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="persistence4.html">Executable Persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence5.html">Service Level Persistence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lateral_movement/index.html">Lateral Movement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reporting/index.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PoshC2 Framework</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Persistence</a> &raquo;</li>
+        
+      <li>Startup Lnk File</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/persistence/persistence3.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="startup-lnk-file">
+<h1>Startup Lnk File<a class="headerlink" href="#startup-lnk-file" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1053">Start Folder</a></p>
+<p><strong>Requires: Normal User</strong></p>
+<p>This persistence mechanism creates a shortcut (lnk) within the users startup folder that then launches the content of the dropper from a designated registry key.</p>
+<div class="section" id="install-persistence-3">
+<h2>Install-Persistence 3<a class="headerlink" href="#install-persistence-3" title="Permalink to this headline">¶</a></h2>
+<p>To add this persistence use the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Install</span><span class="o">-</span><span class="n">Persistence</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Adds one registry key to store the dropper:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Wallpaper666</span> <span class="o">-</span> <span class="n">HKCU</span>\<span class="n">Software</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">currentversion</span>\<span class="n">themes</span>\
+</pre></div>
+</div>
+<p>Drops a file to disk in the users “Startup” directory called “IEUpdate.lnk”:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;$ENV:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\IEUpdate.lnk&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="remove-persistence-3">
+<h2>Remove-Persistence 3<a class="headerlink" href="#remove-persistence-3" title="Permalink to this headline">¶</a></h2>
+<p>To remove this persistence use the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Remove</span><span class="o">-</span><span class="n">Persistence</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Removes registry key with validation of removal:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Wallpaper666</span> <span class="o">-</span> <span class="n">HKCU</span>\<span class="n">Software</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">currentversion</span>\<span class="n">themes</span>\
+</pre></div>
+</div>
+<p>Runs schtasks.exe to delete the scheduled task:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Remove</span><span class="o">-</span><span class="n">Item</span> <span class="s2">&quot;$env:APPDATA\Microsoft\Windows\StartMenu\Programs\Startup\IEUpdate.lnk&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="persistence4.html" class="btn btn-neutral float-right" title="Executable Persistence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="persistence2.html" class="btn btn-neutral" title="Scheduled Task" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Nettitude.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

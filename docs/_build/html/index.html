@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview &mdash; PoshC2 Framework  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="PoshC2 Framework  documentation" href="#"/>
+        <link rel="next" title="Installation &amp; Setup" href="install_and_setup/index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> PoshC2 Framework
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install_and_setup/index.html">Installation &amp; Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="execution/index.html">Execution / Payloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core/index.html">Core Implant / Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="persistence/index.html">Persistence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lateral_movement/index.html">Lateral Movement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reporting/index.html">Reporting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license/index.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">PoshC2 Framework</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Overview</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>PoshC2 is a proxy aware C2 framework written completely in PowerShell to aid penetration testers with red teaming, post-exploitation and lateral movement. The tools and modules were developed off the back of our successful PowerShell sessions and payload types for the Metasploit Framework. PowerShell was chosen as the base language as it provides all of the functionality and rich features required without needing to introduce multiple languages to the framework.</p>
+<p>Requires only Powershell v2 on the client.</p>
+<p><a class="reference external" href="https://github.com/nettitude/PoshC2/">https://github.com/nettitude/PoshC2/</a></p>
+</div>
+<div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>PoshC2 can be installed on almost any operating system post Windows XP, for example Windows 7, Windows 8, Windows 10, Server 2008, 2012, 2016.</p>
+<p>Personally, I’d recommend Windows 10 which come with Powershell v5 by default. If you are using Windows Defender or any other host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its sub directories where you will use PoshC2. To install PoshC2, we have generated a simple one liner that can be called from either Powershell or Command prompt.</p>
+<p>To install from <strong>Command prompt</strong> run the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">powershell</span> <span class="o">-</span><span class="n">exec</span> <span class="n">bypass</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;IEX (New-Object System.Net.WebClient).DownloadString(&#39;https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1&#39;)&quot;</span>
+</pre></div>
+</div>
+<p>To install from <strong>Powershell</strong> run the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">IEX</span> <span class="p">(</span><span class="n">New</span><span class="o">-</span><span class="n">Object</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">WebClient</span><span class="p">)</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="keep-in-touch">
+<h1>Keep In Touch<a class="headerlink" href="#keep-in-touch" title="Permalink to this headline">¶</a></h1>
+<p>Find us on Twitter - <a class="reference external" href="https://twitter.com/Nettitude_Labs">&#64;Nettitude_Labs</a></p>
+<p>Find us on Slack - <a class="reference external" href="https://poshc2.slack.com">poshc2.slack.com</a> (Send email to labs below to be added to slack channel                )</p>
+<p>Find us on Email - <a class="reference external" href="mailto:labs&#37;&#52;&#48;nettitude&#46;com">labs<span>&#64;</span>nettitude<span>&#46;</span>com</a></p>
+</div>
+<div class="section" id="key-contribtutors">
+<h1>Key Contribtutors<a class="headerlink" href="#key-contribtutors" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Ben Turner - <a class="reference external" href="https://twitter.com/benpturner">&#64;benpturner</a></li>
+<li>Rob Maslen - <a class="reference external" href="https://twitter.com/rbmaslen">&#64;rbmaslen</a></li>
+<li>Doug McLeod - <a class="reference external" href="https://twitter.com/b4ggio_su">&#64;b4ggio_su</a></li>
+<li>Rich Hicks - <a class="reference external" href="https://twitter.com/scriptmonkey_">&#64;scriptmonkey_</a></li>
+<li>Dave Hardy - <a class="reference external" href="https://twitter.com/DaveHardy20">&#64;DaveHardy20</a></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install_and_setup/index.html">Installation &amp; Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install_and_setup/getting_started.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_and_setup/firsttime.html">First Time Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_and_setup/apache.html">Apache Rewrite Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_and_setup/whitelist.html">Apache Whitelist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_and_setup/updating.html">Updating PoshC2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_and_setup/contribute.html">Contribute</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="execution/index.html">Execution / Payloads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="execution/bat.html">Bat File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/exe.html">Stand Alone Executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/serviceexe.html">Service Executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/lnk.html">LNK File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/hta.html">HTA File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/macro.html">Macro Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/ms16-051.html">MS16-051 HTML File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/java.html">Java Applet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/dll.html">Reflective Dll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/shellcode.html">Shellcode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/poshjs.html">PoshJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/sctfiles.html">SCT Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="execution/proxy.html">CreateProxyPaylods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core/index.html">Core Implant / Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core/filemanagement.html">Download-File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core/filemanagement.html#download-files">Download-Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core/filemanagement.html#upload-file">Upload-File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core/filemanagement.html#web-upload-file">Web-Upload-File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="persistence/index.html">Persistence</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="persistence/persistence1.html">Registry Run Key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence/persistence2.html">Scheduled Task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence/persistence3.html">Startup Lnk File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence/persistence4.html">Executable Persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="persistence/persistence5.html">Service Level Persistence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html">Brute-AD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#brute-locadmin">Brute-LocAdmin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#cve-2016-9192">CVE-2016-9192</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#decrypt-rdcman">Decrypt-RDCMan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#dump-ntds">Dump-NTDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-creditcarddata">Get-CreditCardData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-firewallrules">Get-FirewallRules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-idletime">Get-IdleTime</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-locadm">Get-LocAdm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-passnotexp">Get-PassNotExp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-passpol">Get-PassPol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-recentfiles">Get-RecentFiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-serviceperms">Get-ServicePerms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-userinfo">Get-UserInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#get-wlanpass">Get-WLANPass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#inject-shellcode">Inject-Shellcode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#invoke-arpscan">Invoke-Arpscan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#invoke-hostscan">Invoke-Hostscan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#invoke-pipekat">Invoke-Pipekat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#invoke-winrmsession">Invoke-WinRMSession</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#invoke-wmichecker">Invoke-WMIChecker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#invoke-wmicommand">Invoke-WMICommand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#namedpipe">NamedPipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#namedpipedaisy">NamedPipeDaisy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#namedpipeproxy">NamedPipeProxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#portscanner">PortScanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#sharpsocks">SharpSocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#test-adcredential">Test-ADCredential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#service-perms">Service-Perms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#zippy">Zippy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/mods.html#external-modules">External Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/index.html#external-modules">External Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lateral_movement/index.html">Lateral Movement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lateral_movement/psexec.html">PSEXEC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lateral_movement/wmi.html">WMI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lateral_movement/dcom.html">DCOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lateral_movement/winrm.html">WinRM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lateral_movement/sharpsocks.html">SharpSocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lateral_movement/rdp.html">RDP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reporting/index.html">Reporting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reporting/logging.html">Output-to-html</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license/index.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license/BSD-3-Clause.html">BSD 3-Clause License</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install_and_setup/index.html" class="btn btn-neutral float-right" title="Installation &amp; Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Nettitude.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

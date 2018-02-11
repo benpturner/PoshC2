@@ -1,0 +1,25 @@
+#####################
+  Apache Whitelist
+#####################
+When performing a Red Team engagement, your C2 infrastructure should be sufficiently locked down and should only allow implants from the correct IP address range of the Customer, also known as Whitelisting. 
+
+To add whitelisting on the C2 Proxy, create a file with all the IP addresses that are known to be the client. There is a slight nuance with Apache as you have to add the list like this (/etc/apache/whitelist)::
+
+	10.0.0.1 –
+	10.0.0.2 –
+
+This little Python script will help you convert the IP whitelist into the correct format for Apache::
+
+	#!/usr/bin/python
+	from netaddr import IPNetwork
+	import sys
+
+	for ip in IPNetwork("10.10.0.0/21"):
+		print '%s -' % ip
+
+Once you have the whitelist, you can use a function in the rewrite rules called RewriteMap to add the IP address list, to then use in the rewrite conditions. Here is a simple Rewrite Rule which will take the list above – if this is not found it will not process the rewrite rule. You have to do this for each rewrite rule you want for each URL. In this case we are applying to the /images/static/content/ path as this is where the implant gets the stager, but if you customize the PoshC2 URLs then this may be different::
+
+	RewriteMap IP txt:/etc/apache2/whitelist
+	Define PoshC2 1.2.3.4
+	RewriteCond ${IP:%{REMOTE_ADDR}|NOT-FOUND} !NOT-FOUND
+	RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]	

@@ -1,0 +1,20 @@
+########################
+  Execution / Payloads
+########################
+
+.. toctree::
+   :maxdepth: 2
+
+   bat
+   exe
+   serviceexe
+   lnk
+   hta
+   macro
+   ms16-051
+   java
+   dll
+   shellcode
+   poshjs
+   sctfiles
+   proxy
