@@ -2,6 +2,8 @@
   Lateral Movement
 ####################
 
+All lateral movement options have three distinct options, Normal, Proxy and Daisy. The following description will discuss when you will need to use either of the options during a Red Team. 
+
 .. toctree::
    :maxdepth: 2
 
@@ -13,3 +15,14 @@
    rdp
 
 
+**********
+  Normal
+**********
+
+**********
+  Proxy 
+**********
+
+**********
+  Daisy 
+**********

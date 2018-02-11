@@ -38,7 +38,7 @@
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
         <link rel="up" title="Execution / Payloads" href="index.html"/>
         <link rel="next" title="Stand Alone Executable" href="exe.html"/>
-        <link rel="prev" title="Execution / Payloads" href="index.html"/> 
+        <link rel="prev" title="Core Dropper" href="core.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -90,6 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Bat File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
@@ -178,6 +179,11 @@
             
   <div class="section" id="bat-file">
 <h1>Bat File<a class="headerlink" href="#bat-file" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1086">Powershell</a></p>
+<p>This is essentially a powershell one liner ran from a Windows Batch file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">powershell</span> <span class="o">-</span><span class="n">exec</span> <span class="n">bypass</span> <span class="o">-</span><span class="n">Noninteractive</span> <span class="o">-</span><span class="n">windowstyle</span> <span class="n">hidden</span> <span class="o">-</span><span class="n">e</span> <span class="o">&lt;</span><span class="n">base64</span> <span class="n">encoded</span> <span class="n">command</span> <span class="n">of</span> <span class="n">core</span> <span class="n">dropper</span><span class="o">&gt;</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -193,7 +199,7 @@
         <a href="exe.html" class="btn btn-neutral float-right" title="Stand Alone Executable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Execution / Payloads" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="core.html" class="btn btn-neutral" title="Core Dropper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

