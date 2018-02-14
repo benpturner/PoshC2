@@ -1,3 +1,37 @@
 ############
  Shellcode
 ############
+PoshC2 converts the reflective DLL into Shellcode via @monoxgas's sRDI PowerShell module. This module converts Reflective DLLs into position independent shellcode.
+
+https://github.com/monoxgas/sRDI
+
+The Reflective DLL and new Shellcode has enabled PoshC2 to be more flexible in its execution and deployment. Many other tools will allow for a reflective DLL or shellcode to be loaded. Take for example, the MS17-010 eternal blue exploit written in Powershell. This exploit takes shellcode as a parameter to execute if the host is successfully exploited; having Shellcode as a payload format allows this to be possible.
+
+Also for migration, we now use either the reflective DLL or the Shellcode to squirt the implant into another process. When first starting PoshC2 it will create both the reflective DLL's as shown below.
+
+**Loads PoshC2 using CLR v2.0.50727:**
+
+* Posh_v2_x64.dll
+* Posh_v2_x86.dll
+
+**Loads PoshC2 using CLR v4.0.30319:**
+
+* Posh_x64.dll
+* Posh_x86.dll
+
+This then uses the ``ConvertTo-Shellcode`` function to generate shellcode based off these files:
+
+**Loads PoshC2 using CLR v2.0.50727:**
+
+* Posh_v2-shellcode_x64.bin
+* Posh_v2-shellcode_x86.bin
+
+**Loads PoshC2 using CLR v4.0.30319:**
+
+* Posh-shellcode_x64.bin
+* Posh-shellcode_x86.bin
+
+To test these out, they can be called via the new ``Inject-Shellcode`` script or by using ``migrate`` in the implant window:
+
+Inject-Shellcode -Shellcode (Get-Content Posh-Shellcode_x64.bin -Encoding Byte)
+Inject-Shellcode -Shellcode (Get-Content Posh-Shellcode_x86.bin -Encoding Byte)

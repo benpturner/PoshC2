@@ -2,9 +2,7 @@
 Lateral Movement
 ################
 
-Introduction
-################
-Lateral movement is the process of moving between machines on a target network, this is performed after the initial entry has succeeded. These all require that credentials are obtained before they are able to be executed. Methods for this can range from key-logging to the 'Cred Popper' and Mimkatz. The available methods that are currently built into Posh C2 are
+Lateral movement is the process of moving between machines on a target network, this is performed after the initial entry has succeeded. These all require that credentials are obtained before they are able to be executed. Methods for this can range from key-logging to the 'Cred Popper' and Mimkatz. The available methods that are currently built into Posh C2 are as follows:
 
 .. toctree::
    :maxdepth: 1

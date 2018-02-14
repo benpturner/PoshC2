@@ -38,7 +38,7 @@
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
         <link rel="up" title="Execution / Payloads" href="index.html"/>
         <link rel="next" title="PoshJS" href="poshjs.html"/>
-        <link rel="prev" title="Reflective Dll" href="dll.html"/> 
+        <link rel="prev" title="Reflective DLL" href="dll.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -99,11 +99,14 @@
 <li class="toctree-l2"><a class="reference internal" href="macro.html">Macro Documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ms16-051.html">MS16-051 HTML File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="java.html">Java Applet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dll.html">Reflective Dll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dll.html">Reflective DLL</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Shellcode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="poshjs.html">PoshJS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sctfiles.html">SCT Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="proxy.html">CreateProxyPaylods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="regsvr32.html">RegSvr32</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cscript.html">Cscript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mshta.html">Mshta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="certutil.html">Certutil</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../core/index.html">Core Implant / Features</a></li>
@@ -179,6 +182,34 @@
             
   <div class="section" id="shellcode">
 <h1>Shellcode<a class="headerlink" href="#shellcode" title="Permalink to this headline">¶</a></h1>
+<p>PoshC2 converts the reflective DLL into Shellcode via &#64;monoxgas’s sRDI PowerShell module. This module converts Reflective DLLs into position independent shellcode.</p>
+<p><a class="reference external" href="https://github.com/monoxgas/sRDI">https://github.com/monoxgas/sRDI</a></p>
+<p>The Reflective DLL and new Shellcode has enabled PoshC2 to be more flexible in its execution and deployment. Many other tools will allow for a reflective DLL or shellcode to be loaded. Take for example, the MS17-010 eternal blue exploit written in Powershell. This exploit takes shellcode as a parameter to execute if the host is successfully exploited; having Shellcode as a payload format allows this to be possible.</p>
+<p>Also for migration, we now use either the reflective DLL or the Shellcode to squirt the implant into another process. When first starting PoshC2 it will create both the reflective DLL’s as shown below.</p>
+<p><strong>Loads PoshC2 using CLR v2.0.50727:</strong></p>
+<ul class="simple">
+<li>Posh_v2_x64.dll</li>
+<li>Posh_v2_x86.dll</li>
+</ul>
+<p><strong>Loads PoshC2 using CLR v4.0.30319:</strong></p>
+<ul class="simple">
+<li>Posh_x64.dll</li>
+<li>Posh_x86.dll</li>
+</ul>
+<p>This then uses the <code class="docutils literal"><span class="pre">ConvertTo-Shellcode</span></code> function to generate shellcode based off these files:</p>
+<p><strong>Loads PoshC2 using CLR v2.0.50727:</strong></p>
+<ul class="simple">
+<li>Posh_v2-shellcode_x64.bin</li>
+<li>Posh_v2-shellcode_x86.bin</li>
+</ul>
+<p><strong>Loads PoshC2 using CLR v4.0.30319:</strong></p>
+<ul class="simple">
+<li>Posh-shellcode_x64.bin</li>
+<li>Posh-shellcode_x86.bin</li>
+</ul>
+<p>To test these out, they can be called via the new <code class="docutils literal"><span class="pre">Inject-Shellcode</span></code> script or by using <code class="docutils literal"><span class="pre">migrate</span></code> in the implant window:</p>
+<p>Inject-Shellcode -Shellcode (Get-Content Posh-Shellcode_x64.bin -Encoding Byte)
+Inject-Shellcode -Shellcode (Get-Content Posh-Shellcode_x86.bin -Encoding Byte)</p>
 </div>
 
 
@@ -194,7 +225,7 @@
         <a href="poshjs.html" class="btn btn-neutral float-right" title="PoshJS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dll.html" class="btn btn-neutral" title="Reflective Dll" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dll.html" class="btn btn-neutral" title="Reflective DLL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

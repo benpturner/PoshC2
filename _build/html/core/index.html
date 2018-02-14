@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
         <link rel="next" title="Persistence" href="../persistence/index.html"/>
-        <link rel="prev" title="CreateProxyPaylods" href="../execution/proxy.html"/> 
+        <link rel="prev" title="Certutil" href="../execution/certutil.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -291,10 +291,16 @@
 <div class="section" id="hide-implant">
 <h2>Hide-Implant<a class="headerlink" href="#hide-implant" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">Hide-Implant</span></code> command is a partner to the above, Kill-Implant command. The reason for this command is the situation may arise where an implant may become disconnected or stale and there is no way to interact with it or to kill it. This command simply removes it from the list of implants to avoid possible confusion.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Hide</span><span class="o">-</span><span class="n">Implant</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="unhide-implant">
 <h2>Unhide-Implant<a class="headerlink" href="#unhide-implant" title="Permalink to this headline">¶</a></h2>
 <p>This does the reverse of the Hide-Implant, it re-adds any hidden implants into the active implant list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Unhide</span><span class="o">-</span><span class="n">Implant</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="listmodules">
 <h2>ListModules<a class="headerlink" href="#listmodules" title="Permalink to this headline">¶</a></h2>
@@ -383,8 +389,7 @@
 <li><strong>-proxypassword</strong> pass</li>
 <li><strong>-localhost</strong></li>
 </ul>
-<iframe width="480" height="270" src="https://www.youtube.com/embed/QzXnM7Vefzc?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><p>By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed.</p>
-</div>
+<iframe width="480" height="270" src="https://www.youtube.com/embed/QzXnM7Vefzc?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 <div class="section" id="get-proxy">
 <h2>Get-Proxy<a class="headerlink" href="#get-proxy" title="Permalink to this headline">¶</a></h2>
 <p>Here we provide a command that simply reports the IP address (if any) of the proxy server that the host implant is running on. This command gets the value from the user registry hive, <code class="docutils literal"><span class="pre">HKCU\Software\Microsoft\Windows\CurrentVersion\Internet</span> <span class="pre">Settings</span></code></p>
@@ -431,22 +436,28 @@
 <div class="section" id="get-pid">
 <h2>Get-Pid<a class="headerlink" href="#get-pid" title="Permalink to this headline">¶</a></h2>
 <p>Returns the process ID of the implant from the database. This command does not go to the implant to retrieve this information:</p>
-<blockquote>
-<div>Get-Pid</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Pid</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="get-system">
 <h2>Get-System<a class="headerlink" href="#get-system" title="Permalink to this headline">¶</a></h2>
-<p>This is not an privilege escalation checking function, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user.</p>
+<p>This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="get-system-withproxy">
 <h2>Get-System-WithProxy<a class="headerlink" href="#get-system-withproxy" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span>
+<p>This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. This takes the “proxypayload” that will have been generated using CreateProxyPayload rather than a direct connection.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span><span class="o">-</span><span class="n">WithProxy</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-system-withdaisy">
 <h2>Get-System-WithDaisy<a class="headerlink" href="#get-system-withdaisy" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span>
+<p>This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. This takes the “daisypayload” that will have been generated using Invoke-DaisyChain rather than a direct connection.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span><span class="o">-</span><span class="n">WithDaisy</span>
 </pre></div>
 </div>
 </div>
@@ -459,7 +470,7 @@
 </div>
 <div class="section" id="posh-delete">
 <h2>Posh-Delete<a class="headerlink" href="#posh-delete" title="Permalink to this headline">¶</a></h2>
-<p>This function createt a block of bytes in memory full of random content and overwrites the file with this before removing from disk. This option will help prevent forensic investigations against files that have been dropped to disk during the engagement, therefore is more OpSec aware. Please be aware this may take time on larger files.</p>
+<p>This function creates a block of bytes in memory full of random content and overwrites the file with this before removing from disk. This option will help prevent forensic investigations against files that have been dropped to disk during the engagement, therefore is more OpSec aware. Please be aware this may take time on larger files.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Posh</span><span class="o">-</span><span class="n">Delete</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">svc</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
@@ -515,46 +526,52 @@
 </div>
 <div class="section" id="cred-popper">
 <h2>Cred-Popper<a class="headerlink" href="#cred-popper" title="Permalink to this headline">¶</a></h2>
+<p>This uses the Powershell to launch a Windows login prompt that pre-populates the users username and domain and asks that “Outlook” requires their credentials. This can be edited but it does not allow this on the command line. This then returns the entered credentials via the C2 channel.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Cred</span><span class="o">-</span><span class="n">Popper</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-clipboard">
 <h2>Get-Clipboard<a class="headerlink" href="#get-clipboard" title="Permalink to this headline">¶</a></h2>
+<p>This uses “windows.forms.clipboard” to retrieve whatever value is in the clipboard, this could be used to capture passwords that have been copied and pasted.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Clipboard</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-allfirewallrules">
 <h2>Get-AllFirewallRules<a class="headerlink" href="#get-allfirewallrules" title="Permalink to this headline">¶</a></h2>
+<p>Using the COM object “HNetCfg.FwPolicy2” this retrieves the rules and dumps the information to CSV is supplied as a parameter. If no parameter is supplied it will show the results on screen.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">AllFirewallRules</span> <span class="n">C</span><span class="p">:</span>\<span class="n">temp</span>\<span class="n">rules</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-allservices">
 <h2>Get-AllServices<a class="headerlink" href="#get-allservices" title="Permalink to this headline">¶</a></h2>
+<p>Using native Powershell this iteritively searches through “HKLM:SystemCurrentControlSetservices” to pull out the ImagePath and Description fields for all Windows services.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">AllServices</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="socksproxy-sharpsocks">
 <h2>SocksProxy / SharpSocks<a class="headerlink" href="#socksproxy-sharpsocks" title="Permalink to this headline">¶</a></h2>
+<p>One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the machine at the end of it. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. This includes being able to RDP to another machine or even to browse the corporate intranet.</p>
+<p>SOCKS support is built into most modern browsers and cURL. However, to use tools like rdesktop or nmap, proxychains on Linux can be used to tunnel the traffic. In order to simulate ProxyChains when using Windows, software such as ProxyCap (<a class="reference external" href="http://www.proxycap.com/">http://www.proxycap.com/</a>) can be used.</p>
+<p>Previously, if a SOCKS was required then another implant, such as Meterpreter, would have to be deployed in order to provide the ability to tunnel TCP traffic into the internal network. We arrived at the decision that deploying a full implant just for SOCKS support is overkill and while e.g. Meterpreter is very good, it is also can be noisy and is not an appropriate representation of most sophisticated threat actors TTPs. Since PoshC2 is our publicly available C2, we wanted to add this ability for the wider world too, just like we have in our internal tooling.</p>
+<p>To deploy SharpSocks use the following command within PoshC2. This also has its own stand-alone module but has been integrated into PoshC2 to work seamlessly. Ensure you have fully configured your C2 proxy to forward traffic back to this host.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SharpSocks</span> <span class="o">-</span><span class="n">Uri</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">c2</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">9090</span> <span class="o">-</span><span class="n">Beacon</span> <span class="mi">2000</span> <span class="o">-</span><span class="n">Insecure</span>
 </pre></div>
 </div>
-</div>
+<iframe width="480" height="270" src="https://www.youtube.com/embed/-p_hAgmM90k?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 <div class="section" id="get-keystrokes">
 <h2>Get-Keystrokes<a class="headerlink" href="#get-keystrokes" title="Permalink to this headline">¶</a></h2>
-<p>Although this is an external module created in PowerShellMafia, we have changed the function to be in memory and not touch disk. <a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-Keystrokes.ps1">Get-Keystrokes.ps1</a></p>
+<p>Although this is an external module initially created in PowerShellMafia, we have changed the function to be in memory and not touch disk. <a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-Keystrokes.ps1">Get-Keystrokes.ps1</a></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Keystrokes</span>
 </pre></div>
 </div>
-<p>By default the keylogger will run for 60 minutes and to obtain the output you must run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
+<p>By default the keylogger will run for 60 minutes and to obtain the keylog output you must run:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">KeystrokesData</span>
 </pre></div>
 </div>
-<blockquote>
-<div>Get-KeystrokesData.</div></blockquote>
 </div>
 </div>
 
@@ -571,7 +588,7 @@
         <a href="../persistence/index.html" class="btn btn-neutral float-right" title="Persistence" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../execution/proxy.html" class="btn btn-neutral" title="CreateProxyPaylods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../execution/certutil.html" class="btn btn-neutral" title="Certutil" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

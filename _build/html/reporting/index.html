@@ -36,7 +36,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
-        <link rel="next" title="Output-to-html" href="logging.html"/>
+        <link rel="next" title="License" href="../license/index.html"/>
         <link rel="prev" title="RDP" href="../lateral_movement/rdp.html"/> 
 
   
@@ -94,7 +94,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lateral_movement/index.html">Lateral Movement</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Reporting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="logging.html">Output-to-html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implanttasks">ImplantTasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implants">Implants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#c2server">C2Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creds">Creds</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../license/index.html">License</a></li>
@@ -163,12 +166,32 @@
             
   <div class="section" id="reporting">
 <h1>Reporting<a class="headerlink" href="#reporting" title="Permalink to this headline">¶</a></h1>
-<p>Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to a central sqlite database. It is always worth noting that PoshC2’s timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly otherwise all log entries time sync will be out when performing log analysis or the debrief.</p>
-<p>Prior to execution, it is highly recommended that all C2 infrastructure is tied to the same time source/time-zone, and select an appropriate NTP server of choice.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="logging.html">Output-to-html</a></li>
+<p>Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2’s timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly otherwise all log entries time sync will be out when performing log analysis or the debrief.</p>
+<p>By default, PoshC2 records every command and all output from each implant that is used and logs this information to the internal SQLite database, complete with a timestamp from the system you’re currently running the server from.</p>
+<p>To output the reports from PoshC2 run the <code class="docutils literal"><span class="pre">Output-to-html</span></code> command and this should deliver four HTML reports:</p>
+<ul class="simple">
+<li>C2Server.html</li>
+<li>Implants.html</li>
+<li>ImplantTasks.html</li>
+<li>Creds.html</li>
 </ul>
+<p>Here is an example of the output generated, these files can be easily changed to suit your needs and can be edited to fit into any certain format / style with some CSS foo.</p>
+<div class="section" id="implanttasks">
+<h2>ImplantTasks<a class="headerlink" href="#implanttasks" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/tasksreport.png"><img alt="../_images/tasksreport.png" src="../_images/tasksreport.png" style="width: 800pt;" /></a>
+</div>
+<div class="section" id="implants">
+<h2>Implants<a class="headerlink" href="#implants" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/implantsreport.png"><img alt="../_images/implantsreport.png" src="../_images/implantsreport.png" style="width: 800pt;" /></a>
+</div>
+<div class="section" id="c2server">
+<h2>C2Server<a class="headerlink" href="#c2server" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/c2.png"><img alt="../_images/c2.png" src="../_images/c2.png" style="width: 800pt;" /></a>
+</div>
+<div class="section" id="creds">
+<h2>Creds<a class="headerlink" href="#creds" title="Permalink to this headline">¶</a></h2>
+<p>The “Creds” addition to the reporting element is from the creds credential store. This will by default be produced when enforcing the <code class="docutils literal"><span class="pre">Output-to-html</span></code> function in PoshC2. One feature that will be implemented shortly is ensuring that passwords are obscured in the initial output using CSS, so you can provide this to a client after the engagement and they would have a full, obscured list of credentials they need to reset during their post engagement activities.</p>
+<a class="reference internal image-reference" href="../_images/creds.png"><img alt="../_images/creds.png" src="../_images/creds.png" style="width: 280pt;" /></a>
 </div>
 </div>
 
@@ -182,7 +205,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="logging.html" class="btn btn-neutral float-right" title="Output-to-html" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../license/index.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../lateral_movement/rdp.html" class="btn btn-neutral" title="RDP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

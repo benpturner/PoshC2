@@ -1,4 +1,54 @@
 #################
-  Reflective Dll
+  Reflective DLL
 #################
 
+The C++ Reflective DLL utilises the same concept from the unmanaged PowerShell code by `@tifkin_ <https://twitter.com/@tifkin_>`_ .
+
+https://github.com/leechristensen/UnmanagedPowerShell
+
+We have created a .NET binary that is loaded by creating an instance of the CLR (v2.0.50727 or v4.0.30319) in runtime and patching the implant over the top when creating a new payload. This is done by creating a blank variable in the C++ code and overwriting the code where 8000 A’s exist. Once compiled we find the location of this code and add the offset to the PatchDLL function as shown below.
+
+.. code-block:: powershell
+	
+	if ($Arch -eq 'x86') {
+	    $dllOffset = 0x00012F80
+	}
+	 
+	if ($Arch -eq 'x64') {
+	    $dllOffset = 0x00017300
+	}
+
+
+The Reflective DLL can then be loaded multiple ways:
+
+RunDLL32
+#################
+The export methods that have been created for these DLLs are ``VoidFunc`` and ``VoidFunc2``. The reason there is two exports is so that it can load a different version of the CLR depending on the enviroment and whether you are tring to downgrade to bypass Powershell logging or any other constraints. 
+
+Loads PoshC2 using CLR v4.0.30319:
+
+* ``rundll32.exe Posh_x64.dll,VoidFunc``
+
+Loads PoshC2 using CLR v2.0.50727:
+
+* ``rundll32.exe Posh_x64.dll,VoidFunc2``
+
+
+Invoke-ReflectivePEInjection
+##################################
+Alternatively you could use a module that loads the PE via ``Invoke-ReflectivePEInjection``:
+
+https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1
+
+.. code-block:: powershell
+	
+	Invoke-ReflectivePEInjection -PEBytes ($PEBytes = [IO.File]::ReadAllBytes('Posh_x64.dll'))
+
+
+ReflectiveDLL and Shellcode that loads CLR v2.0.50727 - DLL Export (VoidFunc2)
+x86 DLL Written to: C:\Users\admin\Desktop\PoshC2-2018-14-02-1456\payloads\Posh_v2_x86.dll
+x64 DLL Written to: C:\Users\admin\Desktop\PoshC2-2018-14-02-1456\payloads\Posh_v2_x64.dll
+
+ReflectiveDLL and Shellcode that loads CLR v4.0.30319 - DLL Export (VoidFunc)
+x86 DLL Written to: C:\Users\admin\Desktop\PoshC2-2018-14-02-1456\payloads\Posh_x86.dll
+x64 DLL Written to: C:\Users\admin\Desktop\PoshC2-2018-14-02-1456\payloads\Posh_x64.dll

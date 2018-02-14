@@ -2,10 +2,10 @@
   Updating PoshC2
 ###################
 
-Run the shortcut inside your PoshC2 folder called "Update-PoshC2.lnk"
+Run the shortcut inside your PoshC2 folder called ``Update-PoshC2.lnk``
 
-This code will download the latest "master.zip" from the PoshC2 archive on github::
+This code will download the latest "master.zip" from the PoshC2 archive on github:
 
-	$downloadpath = "https://github.com/nettitude/PoshC2/archive/master.zip"
+* https://github.com/nettitude/PoshC2/archive/master.zip
 
 Once downloaded, it will overwrite the files under your PoshC2 directory to replace with the latest version. 	

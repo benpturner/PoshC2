@@ -1,0 +1,40 @@
+##################
+Post-Implant Help
+##################
+The help is split out into two main components, "Pre-Implant Help" and "Post-Implant Help". This is basically depending on when you type help, will depend on the help that is provided. 
+
+To obtain the help in either sections type ``Help`` or ``?``.
+
+The "Post-Implant" help aims to help when issuing commands against the implants. The help has been split out in the following items. 
+
+.. code-block:: python
+
+	help
+
+* Implant Features
+* Privilege Escalation
+* File Management
+* Persistence
+* Network Tasks / Lateral Movement
+* Active Directory Enumeration
+* Domain Trusts
+* Domain / Network Tasks
+* Lateral Movement
+* Credentials / Tokens / Local Hashes (Must be SYSTEM)
+* Credentials / Domain Controller Hashes
+* Useful Modules
+* Implant Handler
+
+To split up the output, we have enabled the user to type help 1-9
+
+.. code-block:: python
+
+	help 1-9
+
+Module Help
+###############
+Either look up the help online, using the provided documentation on readthedocs, or alternatively load the module and then use the inbuilt Powershell help for that module::
+	
+	LoadModule Invoke-Mimikatz.ps1
+	Get-Help Invoke-Mimikatz
+

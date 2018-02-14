@@ -43,6 +43,10 @@ Key Contribtutors / Authors / Testers
 * Phil Lynch - `@plynch98 <https://twitter.com/plynch98>`_
 * Dave Hardy - `@davehardy20 <https://twitter.com/davehardy20>`_
 
+######
+Index
+######
+
 .. toctree::
    :maxdepth: 1
 

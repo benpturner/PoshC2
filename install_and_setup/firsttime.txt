@@ -6,8 +6,6 @@ PoshC2 ships as a self-contained folder with the relevant components and subsequ
 
 Ensure you have all the relevant components and make sure Anti-Virus hasn't quarantined any files before starting the server.
 
-GOTCHAS, highlighting stops the program in powershell
-
 Installation Folder
 *********************
 .. image:: ./folder.png
@@ -23,7 +21,6 @@ To start the C2 Server run the link below, this will ask for elevation as it ope
 
 .. image:: ./server.png
     :width: 600pt
-
 
 Implant Handler
 ********************

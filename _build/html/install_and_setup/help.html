@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>PoshC2 Help &mdash; PoshC2 Framework  documentation</title>
+  <title>Pre-Implant Help &mdash; PoshC2 Framework  documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
         <link rel="up" title="Installation &amp; Setup" href="index.html"/>
-        <link rel="next" title="Apache Rewrite Rules" href="apache.html"/>
+        <link rel="next" title="Post-Implant Help" href="help2.html"/>
         <link rel="prev" title="Updating PoshC2" href="updating.html"/> 
 
   
@@ -92,15 +92,31 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="firsttime.html">First Time Use</a></li>
 <li class="toctree-l2"><a class="reference internal" href="updating.html">Updating PoshC2</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">PoshC2 Help</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pre-implant-help">Pre-Implant Help</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pre-Implant Help</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#main-menu">Main Menu</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#auto-runs">Auto-Runs:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#server-commands">Server Commands:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#post-implant-help">Post-Implant Help</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-help">Module Help</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-runs">Auto-Runs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#automigrate-frompowershell-am">AutoMigrate-FromPowershell (AM)</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#server-commands">Server Commands:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#show-serverinfo">Show-ServerInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#history">History</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-to-html">Output-To-HTML</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-clockworksmsapikey-df2">Set-ClockworkSMSApiKey df2—-</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-clockworksmsnumber-44789">Set-ClockworkSMSNumber 44789—-</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-defaultbeacon-60">Set-DefaultBeacon 60</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#listmodules">ListModules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pwnself-p">PwnSelf / P</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creds">Creds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Output-To-HTML</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#createproxypayload">CreateProxyPayload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#createnewpayload">CreateNewPayload</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="help2.html">Post-Implant Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domfronting.html">Domain Fronting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="apache.html">Apache Rewrite Rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whitelist.html">Apache Whitelist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contribute.html">Contribute</a></li>
@@ -159,7 +175,7 @@
         
           <li><a href="index.html">Installation &amp; Setup</a> &raquo;</li>
         
-      <li>PoshC2 Help</li>
+      <li>Pre-Implant Help</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,13 +194,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="poshc2-help">
-<h1>PoshC2 Help<a class="headerlink" href="#poshc2-help" title="Permalink to this headline">¶</a></h1>
-<p>The Help is split out into two main elements, “Pre-Implant Help” and “Post-Implant Help”. This is basically depending on when you type help, will depend on the help that is provided.</p>
+  <div class="section" id="pre-implant-help">
+<h1>Pre-Implant Help<a class="headerlink" href="#pre-implant-help" title="Permalink to this headline">¶</a></h1>
+<p>The help is split out into two main components, “Pre-Implant Help” and “Post-Implant Help”. This is basically depending on when you type help, will depend on the help that is provided.</p>
 <p>To obtain the help in either sections type <code class="docutils literal"><span class="pre">Help</span></code> or <code class="docutils literal"><span class="pre">?</span></code>.</p>
-<div class="section" id="pre-implant-help">
-<h2>Pre-Implant Help<a class="headerlink" href="#pre-implant-help" title="Permalink to this headline">¶</a></h2>
-</div>
+<p>The “Pre-Implant” help menu allows you to configure various auto-runs, double check the server configuration and make and significant changes to the C2 server. It also allows you to test your configuration by issuing PwnSelf to obtain an implant.</p>
+<p>Other settings that can be altered are C2 default beacon time, Clockwork SMS API key and mobile number for text message alerts of new implants.</p>
 <div class="section" id="main-menu">
 <h2>Main Menu<a class="headerlink" href="#main-menu" title="Permalink to this headline">¶</a></h2>
 <p>Use Implant by &lt;id&gt;, e.g. 1
@@ -192,36 +207,90 @@ Use Multiple Implants by &lt;id&gt;,&lt;id&gt;,&lt;id&gt;, e.g. 1,2,5
 Use ALL Implants by ALL</p>
 </div>
 <div class="section" id="auto-runs">
-<h2>Auto-Runs:<a class="headerlink" href="#auto-runs" title="Permalink to this headline">¶</a></h2>
-<p>Add-autorun &lt;task&gt;
-List-autorun (Alias: L)
-Del-autorun &lt;taskID&gt;
-Nuke-autorun
-Automigrate-FromPowershell (Alias: AM)</p>
+<h2>Auto-Runs<a class="headerlink" href="#auto-runs" title="Permalink to this headline">¶</a></h2>
+<p>We have now implemented the concept of Auto-Runs. This allows the user of PoshC2 to automate various tasks when an implant first comes in. A few use cases of this could be:</p>
+<p>auto migrate from PowerShell
+capturing a screenshot for situational awareness
+install persistence
+Essentially, any command that can be issued within PoshC2 can be turned into an Auto-Run.</p>
+<p>This menu can be found on the pre-implant help menu. An example of this menu has been shown below:</p>
+<div class="section" id="automigrate-frompowershell-am">
+<h3>AutoMigrate-FromPowershell (AM)<a class="headerlink" href="#automigrate-frompowershell-am" title="Permalink to this headline">¶</a></h3>
+<p>The auto migrate from PowerShell feature has been added and by default will start another process in “netsh.exe” unless otherwise stated by the <code class="docutils literal"><span class="pre">-newprocess</span></code> parameter. This utilises unmanaged PowerShell via the C++ Reflective DLL.</p>
+</div>
 </div>
 <div class="section" id="server-commands">
 <h2>Server Commands:<a class="headerlink" href="#server-commands" title="Permalink to this headline">¶</a></h2>
-<p>Show-ServerInfo
-History
-Output-To-HTML
-Set-ClockworkSMSApiKey df2—-
-Set-ClockworkSMSNumber 44789—-
-Set-DefaultBeacon 60
-ListModules
-PwnSelf (Alias: P)
-Creds -Action &lt;dump/add/del/search&gt; -Username &lt;username&gt; -password/-hash
-CreateNewPayload -hostname <a class="reference external" href="https://hostname.com">https://hostname.com</a> -domainfrontheader &lt;url&gt;
-CreateProxyPayload -user &lt;domuser&gt; -pass &lt;pass&gt; -proxyurl &lt;<a class="reference external" href="http://10.0.0.1:8080">http://10.0.0.1:8080</a>&gt;</p>
+<div class="section" id="show-serverinfo">
+<h3>Show-ServerInfo<a class="headerlink" href="#show-serverinfo" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="post-implant-help">
-<h2>Post-Implant Help<a class="headerlink" href="#post-implant-help" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="history">
+<h3>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="module-help">
-<h2>Module Help<a class="headerlink" href="#module-help" title="Permalink to this headline">¶</a></h2>
-<p>Either look up the help online, using the provided documentation on readthedocs, or alternatively load the module and then use the inbuilt Powershell help for that module:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">LoadModule</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Mimikatz</span><span class="o">.</span><span class="n">ps1</span>
-<span class="n">Get</span><span class="o">-</span><span class="n">Help</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">imikatz</span>
+<div class="section" id="output-to-html">
+<h3>Output-To-HTML<a class="headerlink" href="#output-to-html" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="set-clockworksmsapikey-df2">
+<h3>Set-ClockworkSMSApiKey df2—-<a class="headerlink" href="#set-clockworksmsapikey-df2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="set-clockworksmsnumber-44789">
+<h3>Set-ClockworkSMSNumber 44789—-<a class="headerlink" href="#set-clockworksmsnumber-44789" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="set-defaultbeacon-60">
+<h3>Set-DefaultBeacon 60<a class="headerlink" href="#set-defaultbeacon-60" title="Permalink to this headline">¶</a></h3>
+<p>Set-DefaultBeacon 60</p>
+</div>
+<div class="section" id="listmodules">
+<h3>ListModules<a class="headerlink" href="#listmodules" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">ListModules</span></code> command allows the user to view the Powershell modules that reside in the modules folder, within the PoshC2 folder tree. We have provided quiet a few Powershell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of PoshC2 is the ability for the user to create their own Powershell modules and use them within PoshC2. Simply copy the modules you want into the modules folder and you’ll be able to load them into a running implant with the ‘LoadModule’ command, which is discussed further in this documentation.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ListModules</span>
 </pre></div>
+</div>
+</div>
+<div class="section" id="pwnself-p">
+<h3>PwnSelf / P<a class="headerlink" href="#pwnself-p" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">PwnSelf</span></code> command or aliased to <code class="docutils literal"><span class="pre">P</span></code> will just execute the default batch file that is created to test comms.</p>
+</div>
+<div class="section" id="creds">
+<h3>Creds<a class="headerlink" href="#creds" title="Permalink to this headline">¶</a></h3>
+<p>Creds -Action &lt;dump/add/del/search&gt; -Username &lt;username&gt; -password/-hash</p>
+</div>
+<div class="section" id="id1">
+<h3>Output-To-HTML<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>With this command we have a simple but very detailed report of the executed commands and output for each individual implant. The reports are generated per implant.</p>
+</div>
+<div class="section" id="createproxypayload">
+<h3>CreateProxyPayload<a class="headerlink" href="#createproxypayload" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">CreateProxyPayload</span></code> command was created to allow an implant to traverse an authenticated proxy when the implant is running under the SYSTEM account. Under normal circumstances the SYSTEM account shouldn’t be authenticated on a domain level proxy server and pass through, so we created the CreateProxyPayload command to allow the attacker to provide a set of valid proxy credentials within the proxyurl and thus allows an implant to traverse any authenticated proxy server. We would use this technique when attempting lateral movement as well as privilege escalation techniques.</p>
+<p>By default, this will create a new Bat file, standalone executable, service executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">CreateProxyPayload</span> <span class="o">-</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">dom</span>\<span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="k">pass</span> <span class="o">&lt;</span><span class="k">pass</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">proxyurl</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><strong>-proxyurl</strong> <a class="reference external" href="http://10.0.0.1:8080">http://10.0.0.1:8080</a></li>
+</ul>
+<p><strong>Optional Parameters:</strong></p>
+<ul class="simple">
+<li><strong>-user</strong> domtest</li>
+<li><strong>-pass</strong> pass</li>
+</ul>
+</div>
+<div class="section" id="createnewpayload">
+<h3>CreateNewPayload<a class="headerlink" href="#createnewpayload" title="Permalink to this headline">¶</a></h3>
+<p>This <code class="docutils literal"><span class="pre">CreateNewPayload</span></code> payload generates a number of new payloads that are setup to beacon to a different location. This is for when you are trying to remove attribution on various assets and you want some beaconing to different locations but to end up at the same PoshC2 instance. You would need to configure your C2 proxy servers to all come back to the same host.</p>
+<p>By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">CreateNewPayload</span> <span class="o">-</span><span class="n">hostname</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">hostname</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">domainfrontheader</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><strong>-hostname</strong> <a class="reference external" href="https://www.c2.com">https://www.c2.com</a></li>
+</ul>
+<p><strong>Optional Parameters:</strong></p>
+<ul class="simple">
+<li><strong>-domainfrontheader</strong> blah.cloudfront.com</li>
+</ul>
 </div>
 </div>
 </div>
@@ -236,7 +305,7 @@ CreateProxyPayload -user &lt;domuser&gt; -pass &lt;pass&gt; -proxyurl &lt;<a cla
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="apache.html" class="btn btn-neutral float-right" title="Apache Rewrite Rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="help2.html" class="btn btn-neutral float-right" title="Post-Implant Help" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="updating.html" class="btn btn-neutral" title="Updating PoshC2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
