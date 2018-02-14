@@ -1,28 +1,40 @@
-####################
-  Lateral Movement
-####################
+################
+Lateral Movement
+################
 
-All lateral movement options have three distinct options, Normal, Proxy and Daisy. The following description will discuss when you will need to use either of the options during a Red Team. 
+-----------------
+Introduction
+-----------------
+
+Lateral movement is the process of moving between machines on a target network, this is performed after the intial entry has succeeded. These all require that credentials are obtained before they are able to be executed. Methods for this can range from keylogging to the 'Cred Popper' and Mimkatz. The available methods that are currently built into Posh C2 are
 
 .. toctree::
    :maxdepth: 2
-
    psexec
    wmi
    dcom
    winrm
    sharpsocks
    rdp
+   
+-----------------
+Communication Method
+-----------------
+For the majority of these methods provide the option to select the method of communicating back with the C2 server :
 
+- **Normal**
+The implant will attempt to connect straight back to the C2 Server via the default method. 
 
-**********
-  Normal
-**********
+- **Proxy**
+This configures the implant to connect back to the C2 Server through a proxy that the details are supplied for. Consider a network that requires the use of an outbound proxy, you have come across highly privileged credentials that enable you to laterally move but they have no rights to exit the network via the proxy. If you also happen to be in possesion of creds which do have proxy rights then the this stage can be configured to use the credentials to perform the movement then the others to use the proxy to communicate back with the C2 Server.
 
-**********
-  Proxy 
-**********
+- **Daisy Chaining**
+Initially a valid implant is configured to load the daisy chaining module. Once this this has been performed any further implant that loads on a targeted host will communicate back to the C2 Server via the configured module instead of via a direct connection or a proxy server. This gives implants the ability for other internal hosts to connect through it like a proxy. The term daisy chain sprung to mind when visualising this type of implant and lateral movement.
 
-**********
-  Daisy 
-**********
+.. image:: https://labs.nettitude.com/wp-content/uploads/2016/12/4-PoshC2-daisy-chaining.png
+    :width: 200px
+    :align: center
+    :height: 200px
+    :alt: Posh C2 Daisy Chain Module
+    :border: solid 1px #8ec216
+
