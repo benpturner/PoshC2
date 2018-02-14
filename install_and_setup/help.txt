@@ -1,0 +1,50 @@
+##################
+  PoshC2 Help
+##################
+
+The Help is split out into two main elements, "Pre-Implant Help" and "Post-Implant Help". This is basically depending on when you type help, will depend on the help that is provided. 
+
+To obtain the help in either sections type ``Help`` or ``?``.
+
+Pre-Implant Help
+####################
+
+Main Menu
+###############
+Use Implant by <id>, e.g. 1
+Use Multiple Implants by <id>,<id>,<id>, e.g. 1,2,5
+Use ALL Implants by ALL
+
+Auto-Runs:
+####################
+Add-autorun <task>
+List-autorun (Alias: L)
+Del-autorun <taskID>
+Nuke-autorun
+Automigrate-FromPowershell (Alias: AM)
+
+Server Commands:
+####################
+Show-ServerInfo
+History
+Output-To-HTML
+Set-ClockworkSMSApiKey df2----
+Set-ClockworkSMSNumber 44789----
+Set-DefaultBeacon 60
+ListModules
+PwnSelf (Alias: P)
+Creds -Action <dump/add/del/search> -Username <username> -password/-hash
+CreateNewPayload -hostname https://hostname.com -domainfrontheader <url>
+CreateProxyPayload -user <dom\user> -pass <pass> -proxyurl <http://10.0.0.1:8080>
+
+
+
+Post-Implant Help
+####################
+
+Module Help
+###############
+Either look up the help online, using the provided documentation on readthedocs, or alternatively load the module and then use the inbuilt Powershell help for that module::
+	
+	LoadModule Invoke-Mimikatz.ps1
+	Get-Help Invoke-imikatz

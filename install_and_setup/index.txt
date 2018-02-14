@@ -8,6 +8,7 @@
    getting_started
    firsttime
    updating
+   help
    apache
    whitelist
    contribute

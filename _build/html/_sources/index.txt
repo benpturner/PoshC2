@@ -44,7 +44,7 @@ Key Contribtutors / Authors / Testers
 * Dave Hardy - `@davehardy20 <https://twitter.com/davehardy20>`_
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    install_and_setup/index
    execution/index
@@ -55,10 +55,3 @@ Key Contribtutors / Authors / Testers
    reporting/index
    license/index
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

@@ -24,6 +24,10 @@ EXAMPLES
 
 .. code-block:: powershell
 
+	Inject-Shellcode -File (In poshC2 this automatically opens a window to where you can select shellcode to be injected)
+
+.. code-block:: powershell
+
 	Inject-Shellcode -x86 -Shellcode (GC "C:\Temp\Shellcode.bin" -Encoding byte) -ProcID 5634
 
 .. code-block:: powershell

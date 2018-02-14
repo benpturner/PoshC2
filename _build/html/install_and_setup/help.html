@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Apache Whitelist &mdash; PoshC2 Framework  documentation</title>
+  <title>PoshC2 Help &mdash; PoshC2 Framework  documentation</title>
   
 
   
@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
         <link rel="up" title="Installation &amp; Setup" href="index.html"/>
-        <link rel="next" title="Contribute" href="contribute.html"/>
-        <link rel="prev" title="Apache Rewrite Rules" href="apache.html"/> 
+        <link rel="next" title="Apache Rewrite Rules" href="apache.html"/>
+        <link rel="prev" title="Updating PoshC2" href="updating.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -92,9 +92,17 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="firsttime.html">First Time Use</a></li>
 <li class="toctree-l2"><a class="reference internal" href="updating.html">Updating PoshC2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="help.html">PoshC2 Help</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PoshC2 Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pre-implant-help">Pre-Implant Help</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#main-menu">Main Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-runs">Auto-Runs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#server-commands">Server Commands:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-implant-help">Post-Implant Help</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-help">Module Help</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="apache.html">Apache Rewrite Rules</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Apache Whitelist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="whitelist.html">Apache Whitelist</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 </li>
@@ -151,13 +159,13 @@
         
           <li><a href="index.html">Installation &amp; Setup</a> &raquo;</li>
         
-      <li>Apache Whitelist</li>
+      <li>PoshC2 Help</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/install_and_setup/whitelist.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/install_and_setup/help.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -170,29 +178,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="apache-whitelist">
-<h1>Apache Whitelist<a class="headerlink" href="#apache-whitelist" title="Permalink to this headline">¶</a></h1>
-<p>When performing a Red Team engagement, your C2 infrastructure should be sufficiently locked down and should only allow implants from the correct IP address range of the Customer, also known as Whitelisting.</p>
-<p>To add whitelisting on the C2 Proxy, create a file with all the IP addresses that are known to be the client. There is a slight nuance with Apache as you have to add the list like this (/etc/apache/whitelist):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>10.0.0.1 –
-10.0.0.2 –
+  <div class="section" id="poshc2-help">
+<h1>PoshC2 Help<a class="headerlink" href="#poshc2-help" title="Permalink to this headline">¶</a></h1>
+<p>The Help is split out into two main elements, “Pre-Implant Help” and “Post-Implant Help”. This is basically depending on when you type help, will depend on the help that is provided.</p>
+<p>To obtain the help in either sections type <code class="docutils literal"><span class="pre">Help</span></code> or <code class="docutils literal"><span class="pre">?</span></code>.</p>
+<div class="section" id="pre-implant-help">
+<h2>Pre-Implant Help<a class="headerlink" href="#pre-implant-help" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="main-menu">
+<h2>Main Menu<a class="headerlink" href="#main-menu" title="Permalink to this headline">¶</a></h2>
+<p>Use Implant by &lt;id&gt;, e.g. 1
+Use Multiple Implants by &lt;id&gt;,&lt;id&gt;,&lt;id&gt;, e.g. 1,2,5
+Use ALL Implants by ALL</p>
+</div>
+<div class="section" id="auto-runs">
+<h2>Auto-Runs:<a class="headerlink" href="#auto-runs" title="Permalink to this headline">¶</a></h2>
+<p>Add-autorun &lt;task&gt;
+List-autorun (Alias: L)
+Del-autorun &lt;taskID&gt;
+Nuke-autorun
+Automigrate-FromPowershell (Alias: AM)</p>
+</div>
+<div class="section" id="server-commands">
+<h2>Server Commands:<a class="headerlink" href="#server-commands" title="Permalink to this headline">¶</a></h2>
+<p>Show-ServerInfo
+History
+Output-To-HTML
+Set-ClockworkSMSApiKey df2—-
+Set-ClockworkSMSNumber 44789—-
+Set-DefaultBeacon 60
+ListModules
+PwnSelf (Alias: P)
+Creds -Action &lt;dump/add/del/search&gt; -Username &lt;username&gt; -password/-hash
+CreateNewPayload -hostname <a class="reference external" href="https://hostname.com">https://hostname.com</a> -domainfrontheader &lt;url&gt;
+CreateProxyPayload -user &lt;domuser&gt; -pass &lt;pass&gt; -proxyurl &lt;<a class="reference external" href="http://10.0.0.1:8080">http://10.0.0.1:8080</a>&gt;</p>
+</div>
+<div class="section" id="post-implant-help">
+<h2>Post-Implant Help<a class="headerlink" href="#post-implant-help" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-help">
+<h2>Module Help<a class="headerlink" href="#module-help" title="Permalink to this headline">¶</a></h2>
+<p>Either look up the help online, using the provided documentation on readthedocs, or alternatively load the module and then use the inbuilt Powershell help for that module:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">LoadModule</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Mimikatz</span><span class="o">.</span><span class="n">ps1</span>
+<span class="n">Get</span><span class="o">-</span><span class="n">Help</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">imikatz</span>
 </pre></div>
 </div>
-<p>This little Python script will help you convert the IP whitelist into the correct format for Apache:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
-<span class="kn">from</span> <span class="nn">netaddr</span> <span class="k">import</span> <span class="n">IPNetwork</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">IPNetwork</span><span class="p">(</span><span class="s2">&quot;10.10.0.0/21&quot;</span><span class="p">):</span>
-        <span class="nb">print</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> -&#39;</span> <span class="o">%</span> <span class="n">ip</span>
-</pre></div>
-</div>
-<p>Once you have the whitelist, you can use a function in the rewrite rules called RewriteMap to add the IP address list, to then use in the rewrite conditions. Here is a simple Rewrite Rule which will take the list above – if this is not found it will not process the rewrite rule. You have to do this for each rewrite rule you want for each URL. In this case we are applying to the /images/static/content/ path as this is where the implant gets the stager, but if you customize the PoshC2 URLs then this may be different:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>RewriteMap IP txt:/etc/apache2/whitelist
-Define PoshC2 1.2.3.4
-RewriteCond ${IP:%{REMOTE_ADDR}|NOT-FOUND} !NOT-FOUND
-RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]
-</pre></div>
 </div>
 </div>
 
@@ -206,10 +236,10 @@ RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="contribute.html" class="btn btn-neutral float-right" title="Contribute" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="apache.html" class="btn btn-neutral float-right" title="Apache Rewrite Rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="apache.html" class="btn btn-neutral" title="Apache Rewrite Rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="updating.html" class="btn btn-neutral" title="Updating PoshC2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
