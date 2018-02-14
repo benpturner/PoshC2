@@ -1,6 +1,7 @@
 ########################
   Execution / Payloads
 ########################
+PoshC2 creates a selection of payloads to be used for Red Teaming or internal Penetration Testing. The following list covers in detail all payloads:
 
 .. toctree::
    :maxdepth: 2

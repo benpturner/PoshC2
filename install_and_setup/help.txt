@@ -21,17 +21,51 @@ Auto-Runs
 ###############
 We have now implemented the concept of Auto-Runs. This allows the user of PoshC2 to automate various tasks when an implant first comes in. A few use cases of this could be:
 
-auto migrate from PowerShell
-capturing a screenshot for situational awareness
-install persistence
-Essentially, any command that can be issued within PoshC2 can be turned into an Auto-Run.
+* auto migrate from PowerShell
+* capturing a screenshot for situational awareness
+* install persistence
 
-This menu can be found on the pre-implant help menu. An example of this menu has been shown below:
+Essentially, any command that can be issued within PoshC2 can be turned into an Auto-Run.
 
 AutoMigrate-FromPowershell (AM)
 *********************************
 The auto migrate from PowerShell feature has been added and by default will start another process in "netsh.exe" unless otherwise stated by the ``-newprocess`` parameter. This utilises unmanaged PowerShell via the C++ Reflective DLL.
 
+.. code-block:: python
+
+	Automigrate-FromPowershell (Alias: AM)
+
+Add-autorun
+***************
+To add a custom autorun use the following command:
+
+.. code-block:: python
+
+	Add-autorun <task>
+
+List-autorun
+***************
+To list the current autorun use the following command:
+
+.. code-block:: python
+
+	List-autorun (Alias: L)
+
+Del-autorun
+***************
+To delete a custom autorun use the following command:
+
+.. code-block:: python
+
+	Del-autorun <taskID>
+
+Nuke-autorun
+***************
+To nuke all custom autoruns use the following command:
+
+.. code-block:: python
+
+	Nuke-autorun
 
 
 Server Commands:
@@ -45,16 +79,39 @@ History
 
 Output-To-HTML
 *****************
+Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2's timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly otherwise all log entries time sync will be out when performing log analysis or the debrief. 
 
-Set-ClockworkSMSApiKey df2----
-**********************************
+By default, PoshC2 records every command and all output from each implant that is used and logs this information to the internal SQLite database, complete with a timestamp from the system you're currently running the server from. 
 
-Set-ClockworkSMSNumber 44789----
-**********************************
+To output the reports from PoshC2 run the ``Output-to-html`` command and this should deliver four HTML reports: 
+
+* C2Server.html
+* Implants.html
+* ImplantTasks.html
+* Creds.html
+
+For more information see reporting in the documentation. 
+
+Set-ClockworkSMSApiKey
+************************
+
+.. code-block:: python
+
+	Set-ClockworkSMSApiKey df2----
+
+Set-ClockworkSMSNumber
+************************
+
+.. code-block:: python
+
+	Set-ClockworkSMSNumber 44789----
 
 Set-DefaultBeacon 60
 **************************
-Set-DefaultBeacon 60
+
+.. code-block:: python
+
+	Set-DefaultBeacon 60
 
 
 
