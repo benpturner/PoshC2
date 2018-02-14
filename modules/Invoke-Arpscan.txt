@@ -1,0 +1,31 @@
+##################
+Invoke-Arpscan
+##################
+*********
+SYNOPSIS
+*********
+Powershell ArpScanner module.
+
+* Ben Turner @benpturner 
+* Rob Maslen @rbmaslen 
+
+************
+DESCRIPTION
+************
+Powershell ArpScanner using C# AssemblyLoad. This uses [DllImport("iphlpapi.dll", ExactSpelling=true)] to Export 'SendARP'
+
+By default it will loop through all interfaces and perform an arpscan of the local network based on the IP Address and Subnet mask provided by the network adaptor. 
+
+The C# Code has been included but for OpSec purposes it uses AssemblyLoad and not AddType.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Invoke-Arpscan
+
+.. code-block:: powershell
+
+	Invoke-Arpscan -IPCidr 10.0.0.1/24
+

@@ -1,0 +1,22 @@
+################
+Service-Perms
+################
+*********
+SYNOPSIS
+*********
+Service Permissions Checker, outputs an HTML file in the same directory as executed. 
+
+* Ben Turner @benpturner 
+
+************
+DESCRIPTION
+************
+Service Permissions Checker, outputs an HTML file in the same directory as executed. 
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Get-ServicePerms
+	

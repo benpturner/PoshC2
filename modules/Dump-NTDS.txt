@@ -1,0 +1,21 @@
+#############
+Dump-NTDS
+#############
+*********
+SYNOPSIS
+*********
+Dumps the active directory dit using ntdsutil.
+
+* Ben Turner @benpturner 
+
+************
+DESCRIPTION
+************
+Dumps the active directory dit using ntdsutil.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Dump-NTDS -EmptyFolder "C:\Temp\NTDS\"

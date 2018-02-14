@@ -1,0 +1,22 @@
+###################
+Get-CreditCardData
+###################
+*********
+SYNOPSIS
+*********
+Searches recursively through the provided path searching for valid credit card numbers.
+
+* Ben Turner @benpturner 
+
+************
+DESCRIPTION
+************
+Large files are read in chunks so as to not exhaust system resources.
+
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Get-CreditCardData -Path "C:\Backup\"

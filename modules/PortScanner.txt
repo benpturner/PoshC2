@@ -1,0 +1,39 @@
+#############
+PortScanner
+#############
+*********
+SYNOPSIS
+*********
+QuickPortScan / EgressBuster written in C#.
+
+* Rob Maslen @rbmaslen 
+
+************
+DESCRIPTION
+************
+QuickPortScan / EgressBuster written in C#.
+
+*********
+EXAMPLES
+*********
+
+.. code-block:: powershell
+
+	PortScan -IPaddress <IPaddress> -Ports <Ports> -maxQueriesPS <maxQueriesPS> -Delay <Delay>
+
+.. code-block:: powershell
+
+	PortScan -IPaddress 127.0.0.1 -Ports 1-65535 -maxQueriesPS 10000
+
+.. code-block:: powershell
+
+	PortScan -IPaddress 192.168.1.0/24 -Ports 1-65535 -maxQueriesPS 10000
+
+.. code-block:: powershell
+
+	PortScan -IPaddress 192.168.1.1-50 -Ports "80,443,55" -maxQueriesPS 10000
+
+.. code-block:: powershell
+
+	PortScan -IPaddress 192.168.1.1-50 -Ports "80,443,55" -maxQueriesPS 1 -Delay 1
+	

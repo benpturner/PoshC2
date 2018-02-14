@@ -4,7 +4,7 @@
 
 When running PoshC2 over the Internet its best practise to use a C2 Proxy server usually in the shape of a small VPS from any provider. This is so that you can hide behind a webserver when the Blue Team are investigating a suspected breach but also to remove the need for your Windows host to be fully connected to the Internet. Using Apache Rewrite rules we can redirect traffic that is intended for the C2 server but also retain a fully functional web server on the same host that does not hit our Rewrite Rules. 
 
-To do this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN. Another alternative would be to use a Windows Cloud server to host all the intrastructe with a perimeter firewall.  
+To do this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN. Another alternative would be to use a Windows Cloud server to host all the infrastructure with a perimeter firewall.  
 
 * `https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/ <https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/>`_
 
@@ -17,7 +17,7 @@ Once you've setup the external infrastrucutre you will need to configure Apache 
 	a2enmod proxy_http
 	a2enmod headers
 
-Then load the following rules within your apache configuration file for each virtual host::
+Then load the following rules within your Apache configuration file for each virtual host::
 
 	<VirtualHost *:80>
 		RewriteEngine On

@@ -1,0 +1,22 @@
+################
+Get-PassNotExp
+################
+*********
+SYNOPSIS
+*********
+Identify accounts with passwords set not to expire
+
+* Dave Hardy - @DaveHardy20
+
+************
+DESCRIPTION
+************
+Searches Active Directory for user accounts the have the flag set to allow the password never to expire
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Pass-NotExp
+

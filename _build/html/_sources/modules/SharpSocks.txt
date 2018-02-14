@@ -1,0 +1,26 @@
+#############
+SharpSocks
+#############
+*********
+SYNOPSIS
+*********
+Socks Proxy written in C# for .NET v4.
+
+* Rob Maslen @rbmaslen 
+
+************
+DESCRIPTION
+************
+Socks Proxy written in C# for .NET v4.
+
+Tunnellable HTTP/HTTPS socks4a proxy written in C# and deployable via PowerShell
+
+`https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks <https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks/>`_
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	SharpSocks -Uri "http://www.c2.com:9090" -Beacon 2000 -Insecure
+		

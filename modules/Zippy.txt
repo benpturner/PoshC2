@@ -1,0 +1,24 @@
+#######
+Zippy
+#######
+*********
+SYNOPSIS
+*********
+Using Powershell v3 this Expands and Creates new Zip Files.
+
+************
+DESCRIPTION
+************
+Using Powershell v3 this Expands and Creates new Zip Files.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	New-ZipFile
+
+.. code-block:: powershell
+
+	Expand-ZipFile
+

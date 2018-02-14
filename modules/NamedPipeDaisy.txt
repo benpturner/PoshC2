@@ -1,0 +1,15 @@
+################
+NamedPipeDaisy
+################
+*********
+SYNOPSIS
+*********
+Module used in PoshC2 to create a named pipe used in DaisyChaining. 
+
+* Ben Turner @benpturner 
+
+************
+DESCRIPTION
+************
+Module used in PoshC2 to create a named pipe used in DaisyChaining.
+	

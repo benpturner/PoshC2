@@ -1,0 +1,15 @@
+#############
+NamedPipe
+#############
+*********
+SYNOPSIS
+*********
+Module used in PoshC2 to create a named pipe. 
+
+* Ben Turner @benpturner 
+
+************
+DESCRIPTION
+************
+Module used in PoshC2 to create a named pipe. 
+	

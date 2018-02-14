@@ -1,0 +1,22 @@
+################
+Decrypt-RDCMan
+################
+*********
+SYNOPSIS
+*********
+This script should be able to decrpt all passwords stored in the RDCMan config file.
+
+* Ben Turner @benpturner 
+* Rich Hicks @scriptmonkey_
+
+************
+DESCRIPTION
+************
+This script should be able to decrpt all passwords stored in the RDCMan config file.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Decrypt-RDCMan -FilePath

@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
         <link rel="up" title="Installation &amp; Setup" href="index.html"/>
-        <link rel="next" title="Apache Rewrite Rules" href="apache.html"/>
+        <link rel="next" title="Updating PoshC2" href="updating.html"/>
         <link rel="prev" title="Getting Started" href="getting_started.html"/> 
 
   
@@ -90,10 +90,18 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation &amp; Setup</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">First Time Use</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">First Time Use</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-folder">Installation Folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c2-server">C2 Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implant-handler">Implant Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#team-viewer">Team Viewer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#project-folder">Project Folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quickedit-mode">QuickEdit Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="updating.html">Updating PoshC2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="apache.html">Apache Rewrite Rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whitelist.html">Apache Whitelist</a></li>
-<li class="toctree-l2"><a class="reference internal" href="updating.html">Updating PoshC2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 </li>
@@ -171,10 +179,43 @@
             
   <div class="section" id="first-time-use">
 <h1>First Time Use<a class="headerlink" href="#first-time-use" title="Permalink to this headline">¶</a></h1>
-<p>Once you have PoshC2 installed, first try using this on a local network before running directly on the Internet.</p>
-<p>Go through this video to ensure you have it up and running.</p>
-<iframe width="480" height="270" src="https://www.youtube.com/embed/wVHvdUVFQnM?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><p>FAQ’s</p>
-<p>Gotcha’s</p>
+<p>PoshC2 ships as a self-contained folder with the relevant components and subsequent shortcuts to start the server and implant-handler. The C2 server is the Powershell webserver component, whereas the implant-handler is where you can interact with your implants.</p>
+<p>Ensure you have all the relevant components and make sure Anti-Virus hasn’t quarantined any files before starting the server.</p>
+<p>GOTCHAS, highlighting stops the program in powershell</p>
+<div class="section" id="installation-folder">
+<h2>Installation Folder<a class="headerlink" href="#installation-folder" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/folder.png"><img alt="../_images/folder.png" src="../_images/folder.png" style="width: 600pt;" /></a>
+</div>
+<div class="section" id="c2-server">
+<h2>C2 Server<a class="headerlink" href="#c2-server" title="Permalink to this headline">¶</a></h2>
+<p>To start the C2 Server run the link below, this will ask for elevation as it opens an HTTP or HTTPS port when the server starts. Once the server opens, it will ask a series of questions that can either be left as default of changed depending on your risk appetite.</p>
+<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Start-C2</span><span class="n">-Server</span><span class="p">.</span><span class="n">lnk</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/server.png"><img alt="../_images/server.png" src="../_images/server.png" style="width: 600pt;" /></a>
+</div>
+<div class="section" id="implant-handler">
+<h2>Implant Handler<a class="headerlink" href="#implant-handler" title="Permalink to this headline">¶</a></h2>
+<p>The implant-handler auto-starts when running the C2 server, however, in the new project folder there will be a shortcut..</p>
+<a class="reference internal image-reference" href="../_images/ih.png"><img alt="../_images/ih.png" src="../_images/ih.png" style="width: 600pt;" /></a>
+</div>
+<div class="section" id="team-viewer">
+<h2>Team Viewer<a class="headerlink" href="#team-viewer" title="Permalink to this headline">¶</a></h2>
+<p>The Team Viewer window is for when you are using a central server to host the C2 Server and would like more than one user to connect to the database and interact with clients. Usually the best way to achieve this is to map the project folder to a share and then pass this to the Team Viewer window when first opened.</p>
+</div>
+<div class="section" id="project-folder">
+<h2>Project Folder<a class="headerlink" href="#project-folder" title="Permalink to this headline">¶</a></h2>
+<p>Each project creates a unique folder to store all data and downloads specific to that engagement, including unique encryption keys. This means if you have shellcode pre-configured for one project, this will not connect to another project as the encryption keys will not match, so something to be aware of. This is an in-built safety net to ensure someone else cannot just accept your connections from any PoshC2 dropper if they were able to replicate the backend for any reason.</p>
+<a class="reference internal image-reference" href="../_images/folder.png"><img alt="../_images/folder.png" src="../_images/folder.png" style="width: 600pt;" /></a>
+</div>
+<div class="section" id="quickedit-mode">
+<h2>QuickEdit Mode<a class="headerlink" href="#quickedit-mode" title="Permalink to this headline">¶</a></h2>
+<p>In Powershell the option “QuickEdit” is on by default, however this comes with advantages and disadvantages to the end user. For example, if a user highlights the C2 Server window to copy and paste output it will automatically stop execution by default. This will in turn stop all hosts beaconing and therefore to defer a user from accidentally highlighting the server window untick the following setting on your Powershell default properties bar or run a simple registry change to disable this feature by default. It is worth noting you can still copy and paste the output by right-click and select “mark” similarly to how you would on a command prompt window:</p>
+<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Set-ItemProperty</span> <span class="s2">&quot;HKCU:Console&quot;</span> <span class="n">QuickEdit</span> <span class="n">0</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/editmode.png"><img alt="../_images/editmode.png" src="../_images/editmode.png" style="width: 300pt;" /></a>
+</div>
 </div>
 
 
@@ -187,7 +228,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="apache.html" class="btn btn-neutral float-right" title="Apache Rewrite Rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="updating.html" class="btn btn-neutral float-right" title="Updating PoshC2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="getting_started.html" class="btn btn-neutral" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

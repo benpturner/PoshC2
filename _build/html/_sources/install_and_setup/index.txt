@@ -7,8 +7,8 @@
 
    getting_started
    firsttime
+   updating
    apache
    whitelist
-   updating
    contribute
    

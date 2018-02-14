@@ -2,4 +2,11 @@
   Output-to-html
 ##################
 
+To generate the HTML output 
 
+.. code-block:: powershell
+
+	Output-to-html
+
+PoshC2 will then
+Created four reports in C:\Users\admin\Desktop\PoshC2-2018-14-02-0837\reports\*

@@ -5,7 +5,7 @@ Mitre ATT&CK - `Start Folder <https://attack.mitre.org/wiki/Technique/T1060>`_
 
 **Requires: Normal User**
 
-This persistence leverages a technique recorded in the following technet blog post. It uses the Startup folder to host a file that calls "Rundll32" in combination with "shell32.dll" to launce a seperate application or dll. This persistence is considered slightly more stealthy than other traditional mechanisms, however it does require the user to drop an executable to disk but then Timestomps the file to 01/03/2008 to create an element of history. 
+This persistence leverage's a technique recorded in the following technet blog post. It uses the Startup folder to host a file that calls "Rundll32" in combination with "shell32.dll" to launch a separate application or dll. This persistence is considered slightly more stealthy than other traditional mechanisms, however it does require the user to drop an executable to disk but then timestomps the file to 01/03/2008 to create an element of history. 
 
 `https://blogs.technet.microsoft.com/motiba/2017/11/04/chasing-adversaries-with-autoruns-evading-techniques-and-countermeasures/ <https://blogs.technet.microsoft.com/motiba/2017/11/04/chasing-adversaries-with-autoruns-evading-techniques-and-countermeasures/>`_
 

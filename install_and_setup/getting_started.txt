@@ -3,15 +3,25 @@
 ###################
 PoshC2 can be installed on almost any operating system post Windows XP, for example Windows 7, Windows 8, Windows 10, Server 2008, 2012, 2016. 
 
-Personally, I'd recommend Windows 10 which come with Powershell v5 by default. If you are using Windows Defender or any other host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its sub directories where you will use PoshC2. To install PoshC2, we have generated a simple one liner that can be called from either Powershell or Command prompt.
+Personally, I'd recommend Windows 10 which comes with Powershell v5 by default. If you are using Windows Defender or any other on-host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its sub directories. To install PoshC2, we have generated a simple one liner that can be called from either Powershell or Command prompt.
 
 To install from **Command prompt** run the following::
 
 	powershell -exec bypass -c "IEX (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1')"
 
+Screenshot of successful install using **Command prompt**:
+
+.. image:: ./cmd.png
+    :width: 600pt
+
 To install from **Powershell** run the following command::
 
 	IEX (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1')		
+
+Screenshot of successful install using **Powershell**:
+
+.. image:: ./ps2.png
+    :width: 600pt
 
 **Create Firewall Rules**
 

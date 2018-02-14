@@ -1,0 +1,22 @@
+#############
+Get-LocAdm
+#############
+*********
+SYNOPSIS
+*********
+Returns members of the Local Admins group from Active Directory.
+
+* Dave Hardy - @DaveHardy20
+
+************
+DESCRIPTION
+************
+Retrieves all computers from Active Direcrory and searches and returns the members of the Local Admins group.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Get-LocAdm
+

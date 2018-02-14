@@ -1,0 +1,36 @@
+###################
+Inject-Shellcode
+###################
+*********
+SYNOPSIS
+*********
+Powershell module to inject shellcode using CreateRemoteThread and falls back to using RtlCreateUserThread.
+
+* Ben Turner @benpturner 
+
+************
+DESCRIPTION
+************
+Powershell module to inject shellcode using CreateRemoteThread and falls back to using RtlCreateUserThread.
+
+Injects shellcode into x86 or x64 bit processes. Tested on Windowns 7 32 bit, Windows 7 64 bit and Windows 10 64bit.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Inject-Shellcode -x86 -Shellcode (GC "C:\Temp\Shellcode.bin" -Encoding byte)
+
+.. code-block:: powershell
+
+	Inject-Shellcode -x86 -Shellcode (GC "C:\Temp\Shellcode.bin" -Encoding byte) -ProcID 5634
+
+.. code-block:: powershell
+
+	Inject-Shellcode -x86 -Shellcode (GC "C:\Temp\Shellcode.bin" -Encoding byte) -ProcessPath "C:\Windows\System32\notepad.exe"
+
+.. code-block:: powershell
+
+	Inject-Shellcode -Shellcode (GC "C:\Temp\Shellcode.bin" -Encoding byte) -ProcessName notepad.exe
+

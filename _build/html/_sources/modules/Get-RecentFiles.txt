@@ -1,0 +1,22 @@
+################
+Get-RecentFiles
+################
+*********
+SYNOPSIS
+*********
+Retrives the recent files that have been used by the user.
+
+* Dave Hardy - @DaveHardy20
+
+************
+DESCRIPTION
+************
+Retrives the recent files that have been used by the user.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Get-RecentFiles
+

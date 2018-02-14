@@ -1,0 +1,19 @@
+###################
+Get-FirewallRules
+###################
+*********
+SYNOPSIS
+*********
+Returns all firewall rules
+
+************
+DESCRIPTION
+************
+Returns all firewall rules
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Get-FirewallRule -Enabled $true | sort direction,applicationName,name

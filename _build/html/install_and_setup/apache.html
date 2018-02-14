@@ -38,7 +38,7 @@
     <link rel="top" title="PoshC2 Framework  documentation" href="../index.html"/>
         <link rel="up" title="Installation &amp; Setup" href="index.html"/>
         <link rel="next" title="Apache Whitelist" href="whitelist.html"/>
-        <link rel="prev" title="First Time Use" href="firsttime.html"/> 
+        <link rel="prev" title="Updating PoshC2" href="updating.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -91,9 +91,9 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation &amp; Setup</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="firsttime.html">First Time Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="updating.html">Updating PoshC2</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Apache Rewrite Rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="whitelist.html">Apache Whitelist</a></li>
-<li class="toctree-l2"><a class="reference internal" href="updating.html">Updating PoshC2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contribute.html">Contribute</a></li>
 </ul>
 </li>
@@ -172,7 +172,7 @@
   <div class="section" id="apache-rewrite-rules">
 <h1>Apache Rewrite Rules<a class="headerlink" href="#apache-rewrite-rules" title="Permalink to this headline">¶</a></h1>
 <p>When running PoshC2 over the Internet its best practise to use a C2 Proxy server usually in the shape of a small VPS from any provider. This is so that you can hide behind a webserver when the Blue Team are investigating a suspected breach but also to remove the need for your Windows host to be fully connected to the Internet. Using Apache Rewrite rules we can redirect traffic that is intended for the C2 server but also retain a fully functional web server on the same host that does not hit our Rewrite Rules.</p>
-<p>To do this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN. Another alternative would be to use a Windows Cloud server to host all the intrastructe with a perimeter firewall.</p>
+<p>To do this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN. Another alternative would be to use a Windows Cloud server to host all the infrastructure with a perimeter firewall.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/">https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/</a></li>
 </ul>
@@ -185,7 +185,7 @@
 <span class="n">a2enmod</span> <span class="n">headers</span>
 </pre></div>
 </div>
-<p>Then load the following rules within your apache configuration file for each virtual host:</p>
+<p>Then load the following rules within your Apache configuration file for each virtual host:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>&lt;VirtualHost *:80&gt;
         RewriteEngine On
         RewriteRule ^/images/static/content/(.*) http://&lt;IP ADDRESS&gt;/images/static/content/$1 [NC,P,L]
@@ -244,7 +244,7 @@
         <a href="whitelist.html" class="btn btn-neutral float-right" title="Apache Whitelist" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="firsttime.html" class="btn btn-neutral" title="First Time Use" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="updating.html" class="btn btn-neutral" title="Updating PoshC2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

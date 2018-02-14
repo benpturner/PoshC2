@@ -2,12 +2,56 @@
   First Time Use
 ###################
 
-Once you have PoshC2 installed, first try using this on a local network before running directly on the Internet. 
+PoshC2 ships as a self-contained folder with the relevant components and subsequent shortcuts to start the server and implant-handler. The C2 server is the Powershell webserver component, whereas the implant-handler is where you can interact with your implants.  
 
-Go through this video to ensure you have it up and running. 
+Ensure you have all the relevant components and make sure Anti-Virus hasn't quarantined any files before starting the server.
 
-.. embed:: https://www.youtube.com/watch?v=wVHvdUVFQnM
+GOTCHAS, highlighting stops the program in powershell
 
-FAQ's
+Installation Folder
+*********************
+.. image:: ./folder.png
+    :width: 600pt
 
-Gotcha's
+C2 Server
+************
+To start the C2 Server run the link below, this will ask for elevation as it opens an HTTP or HTTPS port when the server starts. Once the server opens, it will ask a series of questions that can either be left as default of changed depending on your risk appetite. 
+
+.. code-block:: powershell
+
+	Start-C2-Server.lnk
+
+.. image:: ./server.png
+    :width: 600pt
+
+
+Implant Handler
+********************
+The implant-handler auto-starts when running the C2 server, however, in the new project folder there will be a shortcut..
+
+.. image:: ./ih.png
+    :width: 600pt
+
+
+Team Viewer
+************
+The Team Viewer window is for when you are using a central server to host the C2 Server and would like more than one user to connect to the database and interact with clients. Usually the best way to achieve this is to map the project folder to a share and then pass this to the Team Viewer window when first opened. 
+
+Project Folder
+*****************
+Each project creates a unique folder to store all data and downloads specific to that engagement, including unique encryption keys. This means if you have shellcode pre-configured for one project, this will not connect to another project as the encryption keys will not match, so something to be aware of. This is an in-built safety net to ensure someone else cannot just accept your connections from any PoshC2 dropper if they were able to replicate the backend for any reason. 
+
+.. image:: ./folder.png
+    :width: 600pt
+
+
+QuickEdit Mode
+*****************
+In Powershell the option "QuickEdit" is on by default, however this comes with advantages and disadvantages to the end user. For example, if a user highlights the C2 Server window to copy and paste output it will automatically stop execution by default. This will in turn stop all hosts beaconing and therefore to defer a user from accidentally highlighting the server window untick the following setting on your Powershell default properties bar or run a simple registry change to disable this feature by default. It is worth noting you can still copy and paste the output by right-click and select "mark" similarly to how you would on a command prompt window:
+
+.. code-block:: powershell
+
+	Set-ItemProperty "HKCU:Console" QuickEdit 0 
+
+.. image:: ./editmode.png
+    :width: 300pt

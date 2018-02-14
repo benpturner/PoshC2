@@ -33,14 +33,15 @@ Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to
 
 Find us on Email - labs@nettitude.com
 
-##################
-Key Contribtutors  
-##################
+########################################
+Key Contribtutors / Authors / Testers
+########################################
 * Ben Turner - `@benpturner <https://twitter.com/benpturner>`_
 * Rob Maslen - `@rbmaslen <https://twitter.com/rbmaslen>`_
 * Doug McLeod - `@b4ggio_su <https://twitter.com/b4ggio_su>`_
 * Rich Hicks - `@scriptmonkey_ <https://twitter.com/scriptmonkey_>`_
-* Dave Hardy - `@DaveHardy20 <https://twitter.com/DaveHardy20>`_
+* Phil Lynch - `@plynch98 <https://twitter.com/plynch98>`_
+* Dave Hardy - `@davehardy20 <https://twitter.com/davehardy20>`_
 
 .. toctree::
    :maxdepth: 2

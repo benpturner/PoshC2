@@ -1,0 +1,20 @@
+#############
+Get-WLANPass
+#############
+*********
+SYNOPSIS
+*********
+Retrives password from stored wlan profiles.
+
+************
+DESCRIPTION
+************
+Retrives password from stored wlan profiles.
+
+*********
+EXAMPLES
+*********
+.. code-block:: powershell
+
+	Get-WLANPass
+

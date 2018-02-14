@@ -163,6 +163,8 @@
             
   <div class="section" id="reporting">
 <h1>Reporting<a class="headerlink" href="#reporting" title="Permalink to this headline">¶</a></h1>
+<p>Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to a central sqlite database. It is always worth noting that PoshC2’s timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly otherwise all log entries time sync will be out when performing log analysis or the debrief.</p>
+<p>Prior to execution, it is highly recommended that all C2 infrastructure is tied to the same time source/time-zone, and select an appropriate NTP server of choice.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="logging.html">Output-to-html</a></li>
