@@ -1,5 +1,43 @@
-#################
+#########
   WinRM
-#################
+#########
+Mitre ATT&CK - `WinRM <https://attack.mitre.org/wiki/Technique/T1028>`_
 
+-----------------
+Introduction
+-----------------
+Windows Remote Management (WinRM) is the Microsoft implementation of WS-Management Protocol, a standard Simple Object Access Protocol (SOAP)-based, firewall-friendly protocol that allows hardware and operating systems, from different vendors, to interoperate - `Microsoft <https://msdn.microsoft.com/en-us/library/aa384426(v=vs.85).aspx>`_. 
 
+Note, with WinRM its not only the service that needs to be enabled on the otherside but also needs to be permitted outbound from the originating client/implant. This is not not enabled by default and on Windows 7 WinRM would require enabling for outbound and inbound sessions. You need elevated privileges (SYSTEM) for this to be enabled. WinRM appears to be enabled by default on Windows Server 2012 and above but must be enabled on the client sending the commands first.
+
+No limit on characters via PS-Session, 8k limit on WMI and PSexec.
+
+**Default Ports**
+
+* TCP/5985 = HTTP
+* TCP/5986 = HTTPS
+
+PoshC2 have created keys functions in the implant-core to allow you to enable this easily for outbound comms. 
+
+.. code-block:: python
+
+	EnableWinRM
+	DisableWinRM
+
+-----------------
+Syntax
+-----------------
+
+**WinRM session direct to another client within the same implant. Note this does not create a new implant in PoshC2**
+
+.. code-block:: powershell
+
+	Invoke-WinRMSession -IPAddress <ip> -user <dom\user> -pass <pass>
+
+-----------------
+Parameters
+-----------------
+
+- **-IPAddress** the IP of the machine to be targeted 
+- **-User** Domain \ Username format required
+- **-Pass** Password 

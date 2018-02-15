@@ -1,6 +1,10 @@
 ##########
 Certutil 
 ##########
+Mitre ATT&CK - `Software <https://attack.mitre.org/wiki/Software/S0160>`_
+
+Mitre ATT&CK - `Deobfuscate/Decode Files or Information <https://attack.mitre.org/wiki/Technique/T1140>`_
+
 Certutil.exe is a command line utility that is installed as part of Certificate Services and is default on most Windows installations. 
 
 SubTee (Casey Smith) discovered that it was possible to misuse this utility to download arbitrary files from the Internet. This utility has some benefits over other downloading tools as its a trusted binary, proxy aware and supports HTTPS.  

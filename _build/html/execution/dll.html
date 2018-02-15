@@ -100,7 +100,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ms16-051.html">MS16-051 HTML File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="java.html">Java Applet</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Reflective DLL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#rundll32">RunDLL32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">RunDLL32</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#invoke-reflectivepeinjection">Invoke-ReflectivePEInjection</a></li>
 </ul>
 </li>
@@ -186,6 +186,8 @@
             
   <div class="section" id="reflective-dll">
 <h1>Reflective DLL<a class="headerlink" href="#reflective-dll" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1055">Process Injection</a></p>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1085">Rundll32</a></p>
 <p>The C++ Reflective DLL utilises the same concept from the unmanaged PowerShell code by <a class="reference external" href="https://twitter.com/&#64;tifkin_">&#64;tifkin_</a> .</p>
 <p><a class="reference external" href="https://github.com/leechristensen/UnmanagedPowerShell">https://github.com/leechristensen/UnmanagedPowerShell</a></p>
 <p>We have created a .NET binary that is loaded by creating an instance of the CLR (v2.0.50727 or v4.0.30319) in runtime and patching the implant over the top when creating a new payload. This is done by creating a blank variable in the C++ code and overwriting the code where 8000 A’s exist. Once compiled we find the location of this code and add the offset to the PatchDLL function as shown below.</p>
@@ -199,8 +201,8 @@
 </pre></div>
 </div>
 <p>The Reflective DLL can then be loaded multiple ways:</p>
-<div class="section" id="rundll32">
-<h2>RunDLL32<a class="headerlink" href="#rundll32" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>RunDLL32<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The export methods that have been created for these DLLs are <code class="docutils literal"><span class="pre">VoidFunc</span></code> and <code class="docutils literal"><span class="pre">VoidFunc2</span></code>. The reason there is two exports is so that it can load a different version of the CLR depending on the enviroment and whether you are tring to downgrade to bypass Powershell logging or any other constraints.</p>
 <p>Loads PoshC2 using CLR v4.0.30319:</p>
 <ul class="simple">

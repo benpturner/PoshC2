@@ -182,6 +182,7 @@
             
   <div class="section" id="shellcode">
 <h1>Shellcode<a class="headerlink" href="#shellcode" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1055">Process Injection</a></p>
 <p>PoshC2 converts the reflective DLL into Shellcode via &#64;monoxgas’s sRDI PowerShell module. This module converts Reflective DLLs into position independent shellcode.</p>
 <p><a class="reference external" href="https://github.com/monoxgas/sRDI">https://github.com/monoxgas/sRDI</a></p>
 <p>The Reflective DLL and new Shellcode has enabled PoshC2 to be more flexible in its execution and deployment. Many other tools will allow for a reflective DLL or shellcode to be loaded. Take for example, the MS17-010 eternal blue exploit written in Powershell. This exploit takes shellcode as a parameter to execute if the host is successfully exploited; having Shellcode as a payload format allows this to be possible.</p>

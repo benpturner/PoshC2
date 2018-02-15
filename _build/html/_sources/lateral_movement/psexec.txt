@@ -1,7 +1,9 @@
-
 #################
   PSEXEC
 #################
+Mitre ATT&CK - `Service Execution <https://attack.mitre.org/wiki/Technique/T1035>`_
+
+Mitre ATT&CK - `Windows Admin Shares <https://attack.mitre.org/wiki/Technique/T1077>`_
 
 -----------------
 Introduction

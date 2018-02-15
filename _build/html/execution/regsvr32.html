@@ -183,6 +183,7 @@
   <div class="section" id="regsvr32">
 <h1>RegSvr32<a class="headerlink" href="#regsvr32" title="Permalink to this headline">¶</a></h1>
 <p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1117">Regsvr32</a></p>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1086">Powershell</a></p>
 <p>Regsvr32 is a command line utility that is used to register/unregister .dll files into the registry.</p>
 <p>SubTee (Casey Smith) discovered that it was possible to bypass AppLocker script rules by calling the regsrv32 to execute a command or arbitrary code through the use of .sct files. This form of execution has some benefits as its a trusted binary, proxy aware and supports HTTPS.</p>
 <p>PoshC2 creates SCT files that can be used with this execution method, note this should be monitored as a form of execution.</p>

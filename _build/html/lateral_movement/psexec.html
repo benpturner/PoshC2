@@ -104,7 +104,6 @@
 <li class="toctree-l2"><a class="reference internal" href="dcom.html">DCOM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="winrm.html">WinRM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sharpsocks.html">SharpSocks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rdp.html">RDP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#communication-methods">Communication Methods</a></li>
 </ul>
 </li>
@@ -177,6 +176,8 @@
             
   <div class="section" id="psexec">
 <h1>PSEXEC<a class="headerlink" href="#psexec" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1035">Service Execution</a></p>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1077">Windows Admin Shares</a></p>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>PSExec was first developed by Mark Russinovich as part of Sysinternals Suite of tools. When run it connects to the target system over SMB in order to use a hidden share called ADMIN$. This share is mapped to the Windows directory and PSExec is able to copy a service binary over. It is then able to communicate with the Service Controller of the target system using SMB in order to start the start that has been dropped. Needless to say this requires a high level of privilege and has been around for approx 20 years so many AV engines look for this behaviour. The PoshC2 version uses the <a class="reference external" href="https://github.com/Kevin-Robertson/Invoke-TheHash">Invoke theHash</a>  library from <a class="reference external" href="https://twitter.com/kevin_robertson">Kevin Robertson</a> developer of Inveigh.</p>

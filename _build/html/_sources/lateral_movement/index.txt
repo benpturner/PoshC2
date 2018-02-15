@@ -4,6 +4,7 @@ Lateral Movement
 
 Lateral movement is the process of moving between machines on a target network, this is performed after the initial entry has succeeded. These all require that credentials are obtained before they are able to be executed. Methods for this can range from key-logging to the 'Cred Popper' and Mimkatz. The available methods that are currently built into Posh C2 are as follows:
 
+
 .. toctree::
    :maxdepth: 1
 
@@ -12,8 +13,9 @@ Lateral movement is the process of moving between machines on a target network, 
    dcom
    winrm
    sharpsocks
-   rdp
-   
+
+.. image:: ./lat.png
+    :width: 800pt   
 
 Communication Methods
 ######################
@@ -36,3 +38,4 @@ Initially a valid implant is configured to load the daisy chaining module. Once 
     :align: center
     :height: 200px
     :alt: Posh C2 Daisy Chain Module
+

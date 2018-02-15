@@ -1,6 +1,9 @@
 #################
   Reflective DLL
 #################
+Mitre ATT&CK - `Process Injection <https://attack.mitre.org/wiki/Technique/T1055>`_
+
+Mitre ATT&CK - `Rundll32 <https://attack.mitre.org/wiki/Technique/T1085>`_
 
 The C++ Reflective DLL utilises the same concept from the unmanaged PowerShell code by `@tifkin_ <https://twitter.com/@tifkin_>`_ .
 
