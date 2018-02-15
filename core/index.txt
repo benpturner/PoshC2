@@ -8,7 +8,7 @@ The Implant-Handler window will not refresh the implant check-in times automatic
 
 	PS 1>
 
-If you want to select more than one implant, you can provide a comma seperated list ``1,2,3,4``::
+If you want to select more than one implant, you can provide a comma separated list ``1,2,3,4``::
 
 	PS 1,2,3>
 

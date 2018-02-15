@@ -112,7 +112,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#listmodules">ListModules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pwnself-p">PwnSelf / P</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#creds">Creds</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Output-To-HTML</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#createproxypayload">CreateProxyPayload</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#createnewpayload">CreateNewPayload</a></li>
 </ul>
@@ -206,9 +205,18 @@
 <p>Other settings that can be altered are C2 default beacon time, Clockwork SMS API key and mobile number for text message alerts of new implants.</p>
 <div class="section" id="main-menu">
 <h2>Main Menu<a class="headerlink" href="#main-menu" title="Permalink to this headline">¶</a></h2>
-<p>Use Implant by &lt;id&gt;, e.g. 1
-Use Multiple Implants by &lt;id&gt;,&lt;id&gt;,&lt;id&gt;, e.g. 1,2,5
-Use ALL Implants by ALL</p>
+<p>The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows <code class="docutils literal"><span class="pre">1</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>If you want to select more than one implant, you can provide a comma separated list <code class="docutils literal"><span class="pre">1,2,3,4</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Finally, you can select ALL implants by typing <code class="docutils literal"><span class="pre">ALL</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">ALL</span><span class="o">&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="auto-runs">
 <h2>Auto-Runs<a class="headerlink" href="#auto-runs" title="Permalink to this headline">¶</a></h2>
@@ -259,9 +267,32 @@ Use ALL Implants by ALL</p>
 <h2>Server Commands:<a class="headerlink" href="#server-commands" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="show-serverinfo">
 <h3>Show-ServerInfo<a class="headerlink" href="#show-serverinfo" title="Permalink to this headline">¶</a></h3>
+<p>This <code class="docutils literal"><span class="pre">Show-ServerInfo</span></code> command prints out the current C2 configuration, including the following items:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Show</span><span class="o">-</span><span class="n">ServerInfo</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Hostname</li>
+<li>ServerPort</li>
+<li>EncKey</li>
+<li>DefaultSleep</li>
+<li>KillDate</li>
+<li>HTTPResponse</li>
+<li>FolderPath</li>
+<li>QuickCommand</li>
+<li>Sounds</li>
+<li>URLS</li>
+<li>SocksURLS</li>
+<li>Insecure</li>
+<li>UserAgent</li>
+</ul>
 </div>
 <div class="section" id="history">
 <h3>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
+<p>This lists all previous commands entered into the Implant-Handler.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">History</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="output-to-html">
 <h3>Output-To-HTML<a class="headerlink" href="#output-to-html" title="Permalink to this headline">¶</a></h3>
@@ -278,18 +309,21 @@ Use ALL Implants by ALL</p>
 </div>
 <div class="section" id="set-clockworksmsapikey">
 <h3>Set-ClockworkSMSApiKey<a class="headerlink" href="#set-clockworksmsapikey" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ClockworkSMSApiKey</span> <span class="n">df2</span><span class="o">----</span>
+<p>If you forgot to set up SMS with <a class="reference external" href="https://www.clockworksms.com">ClockworkSMS</a>, then you can sign up and configure the API key here. This will then send a text message when a new implant arrives.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ClockworkSMSApiKey</span> <span class="n">df2pwOdLAmdmmdd0d2kKDlOwDD</span><span class="o">=</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="set-clockworksmsnumber">
 <h3>Set-ClockworkSMSNumber<a class="headerlink" href="#set-clockworksmsnumber" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ClockworkSMSNumber</span> <span class="mi">44789</span><span class="o">----</span>
+<p>If you are using <a class="reference external" href="https://www.clockworksms.com">ClockworkSMS</a>, you can change the SMS number that is used when a new implant arrives.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ClockworkSMSNumber</span> <span class="mi">447877000000</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="set-defaultbeacon-60">
 <h3>Set-DefaultBeacon 60<a class="headerlink" href="#set-defaultbeacon-60" title="Permalink to this headline">¶</a></h3>
+<p>The default beacon time for the initial implants, this is measured in seconds. Note, the server will need to be restarted for this change to take affect.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">DefaultBeacon</span> <span class="mi">60</span>
 </pre></div>
 </div>
@@ -307,11 +341,20 @@ Use ALL Implants by ALL</p>
 </div>
 <div class="section" id="creds">
 <h3>Creds<a class="headerlink" href="#creds" title="Permalink to this headline">¶</a></h3>
-<p>Creds -Action &lt;dump/add/del/search&gt; -Username &lt;username&gt; -password/-hash</p>
+<p>The creds function is a completely separate table within the database that is used to manage credentials throughout the engagement. The idea of this table was to correlate all compromised credentials so that you can supply this information to the client at the end of the engagement. This will allow the client to reset all compromised accounts.</p>
+<p>Credentials will not automatically be added to the table, however, this is something we are looking into for future improvements. Additionally, it would be good to use credentials from the database in various commands, such as lateral movement and runas.</p>
+<p>To add/delete credentials in the database use the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">add</span><span class="o">/</span><span class="n">delete</span> <span class="o">-</span><span class="n">Username</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">password</span><span class="o">/-</span><span class="nb">hash</span>
+</pre></div>
 </div>
-<div class="section" id="id1">
-<h3>Output-To-HTML<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>With this command we have a simple but very detailed report of the executed commands and output for each individual implant. The reports are generated per implant.</p>
+<p>To search for credentials</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">search</span> <span class="o">-</span><span class="n">username</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>To dump all credentials in the database use the dump action:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">dump</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="createproxypayload">
 <h3>CreateProxyPayload<a class="headerlink" href="#createproxypayload" title="Permalink to this headline">¶</a></h3>

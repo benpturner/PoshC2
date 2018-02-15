@@ -12,10 +12,17 @@ Other settings that can be altered are C2 default beacon time, Clockwork SMS API
 
 Main Menu
 ###############
-Use Implant by <id>, e.g. 1
-Use Multiple Implants by <id>,<id>,<id>, e.g. 1,2,5
-Use ALL Implants by ALL
+The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows ``1``::
 
+	PS 1>
+
+If you want to select more than one implant, you can provide a comma separated list ``1,2,3,4``::
+
+	PS 1,2,3>
+
+Finally, you can select ALL implants by typing ``ALL``::
+
+	PS ALL>
 
 Auto-Runs
 ###############
@@ -70,12 +77,35 @@ To nuke all custom autoruns use the following command:
 
 Server Commands:
 ####################
-
 Show-ServerInfo
 *****************
+This ``Show-ServerInfo`` command prints out the current C2 configuration, including the following items:
+
+.. code-block:: python
+
+	Show-ServerInfo
+
+* Hostname
+* ServerPort
+* EncKey
+* DefaultSleep
+* KillDate
+* HTTPResponse
+* FolderPath
+* QuickCommand
+* Sounds
+* URLS
+* SocksURLS
+* Insecure
+* UserAgent
 
 History
 *****************
+This lists all previous commands entered into the Implant-Handler.
+
+.. code-block:: python
+
+	History
 
 Output-To-HTML
 *****************
@@ -94,26 +124,27 @@ For more information see reporting in the documentation.
 
 Set-ClockworkSMSApiKey
 ************************
+If you forgot to set up SMS with `ClockworkSMS <https://www.clockworksms.com>`_, then you can sign up and configure the API key here. This will then send a text message when a new implant arrives. 
 
 .. code-block:: python
 
-	Set-ClockworkSMSApiKey df2----
+	Set-ClockworkSMSApiKey df2pwOdLAmdmmdd0d2kKDlOwDD=
 
 Set-ClockworkSMSNumber
 ************************
+If you are using `ClockworkSMS <https://www.clockworksms.com>`_, you can change the SMS number that is used when a new implant arrives. 
 
 .. code-block:: python
 
-	Set-ClockworkSMSNumber 44789----
+	Set-ClockworkSMSNumber 447877000000
 
 Set-DefaultBeacon 60
 **************************
+The default beacon time for the initial implants, this is measured in seconds. Note, the server will need to be restarted for this change to take affect. 
 
 .. code-block:: python
 
 	Set-DefaultBeacon 60
-
-
 
 ListModules
 **************
@@ -129,12 +160,27 @@ The ``PwnSelf`` command or aliased to ``P`` will just execute the default batch 
 
 Creds
 ********
-Creds -Action <dump/add/del/search> -Username <username> -password/-hash
+The creds function is a completely separate table within the database that is used to manage credentials throughout the engagement. The idea of this table was to correlate all compromised credentials so that you can supply this information to the client at the end of the engagement. This will allow the client to reset all compromised accounts. 
 
-Output-To-HTML
-*****************
-With this command we have a simple but very detailed report of the executed commands and output for each individual implant. The reports are generated per implant.
+Credentials will not automatically be added to the table, however, this is something we are looking into for future improvements. Additionally, it would be good to use credentials from the database in various commands, such as lateral movement and runas. 
 
+To add/delete credentials in the database use the following command:
+
+.. code-block:: python
+
+	Creds -Action add/delete -Username <username> -password/-hash
+
+To search for credentials 
+
+.. code-block:: python
+
+	Creds -Action search -username test
+
+To dump all credentials in the database use the dump action:
+
+.. code-block:: python
+
+	Creds -Action dump
 
 CreateProxyPayload
 ************************

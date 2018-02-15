@@ -7,10 +7,6 @@ To obtain the help in either sections type ``Help`` or ``?``.
 
 The "Post-Implant" help aims to help when issuing commands against the implants. The help has been split out in the following items. 
 
-.. code-block:: python
-
-	help
-
 * Implant Features
 * Privilege Escalation
 * File Management
@@ -25,7 +21,11 @@ The "Post-Implant" help aims to help when issuing commands against the implants.
 * Useful Modules
 * Implant Handler
 
-To split up the output, we have enabled the user to type help 1-9
+To split up the output, we have enabled the user to type help with a numeric value of 1-9
+
+.. code-block:: python
+
+	help 1
 
 .. code-block:: python
 
@@ -33,7 +33,7 @@ To split up the output, we have enabled the user to type help 1-9
 
 Module Help
 ###############
-Either look up the help online, using the provided documentation on readthedocs, or alternatively load the module and then use the inbuilt Powershell help for that module::
+For help on the individual modules in PoshC2, either look up the help online using the provided documentation on readthedocs, or alternatively load the module and then use the inbuilt Powershell help for that module::
 	
 	LoadModule Invoke-Mimikatz.ps1
 	Get-Help Invoke-Mimikatz
