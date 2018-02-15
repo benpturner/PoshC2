@@ -435,6 +435,16 @@ By default the keylogger will run for 60 minutes and to obtain the keylog output
 
  	Get-KeystrokesData
 
+Invoke-Runas
+#################
+The `Invoke-Runas` function was modified from the original work by `FuzzySecurity <https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1>`_ to work with PoshC2 and to create a primary token whether you run this from a user level perspective or SYSTEM. 
 
+This module has also been modified to not touch disk when executing. The options are shown below but payload types are disccused in more detail under lateral movement. 
+
+.. code-block:: python
+
+ 	Invoke-RunasPayload -User <user> -Password '<pass>' -Domain <dom>
+	Invoke-RunasProxyPayload -User <user> -Password '<pass>' -Domain <dom>
+	Invoke-RunasDaisyPayload -User <user> -Password '<pass>' -Domain <dom>
 
 

@@ -131,6 +131,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#get-allservices">Get-AllServices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#socksproxy-sharpsocks">SocksProxy / SharpSocks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#get-keystrokes">Get-Keystrokes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#invoke-runas">Invoke-Runas</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../persistence/index.html">Persistence</a></li>
@@ -570,6 +571,16 @@
 </div>
 <p>By default the keylogger will run for 60 minutes and to obtain the keylog output you must run:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">KeystrokesData</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="invoke-runas">
+<h2>Invoke-Runas<a class="headerlink" href="#invoke-runas" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>Invoke-Runas</cite> function was modified from the original work by <a class="reference external" href="https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1">FuzzySecurity</a> to work with PoshC2 and to create a primary token whether you run this from a user level perspective or SYSTEM.</p>
+<p>This module has also been modified to not touch disk when executing. The options are shown below but payload types are disccused in more detail under lateral movement.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Invoke</span><span class="o">-</span><span class="n">RunasPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
+<span class="n">Invoke</span><span class="o">-</span><span class="n">RunasProxyPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
+<span class="n">Invoke</span><span class="o">-</span><span class="n">RunasDaisyPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
