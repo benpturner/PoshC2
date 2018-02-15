@@ -211,23 +211,23 @@
 <div class="section" id="description">
 <h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>Powershell module to inject shellcode using CreateRemoteThread and falls back to using RtlCreateUserThread.</p>
-<p>Injects shellcode into x86 or x64 bit processes. Tested on Windowns 7 32 bit, Windows 7 64 bit and Windows 10 64bit.</p>
+<p>Injects shellcode into x86 or x64 bit processes. Tested on Windows 7 32 bit, Windows 7 64 bit and Windows 10 64 bit.</p>
 </div>
 <div class="section" id="examples">
 <h2>EXAMPLES<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="n">-x86</span> <span class="n">-Shellcode</span> <span class="p">(</span><span class="n">GC</span> <span class="s2">&quot;C:\Temp\Shellcode.bin&quot;</span> <span class="n">-Encoding</span> <span class="n">byte</span><span class="p">)</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="n">-x86</span> <span class="n">-Shellcode</span> <span class="p">(</span><span class="n">GC</span> <span class="s2">&quot;C:\Temp\Shellcode.bin&quot;</span> <span class="n">-Encoding</span> <span class="n">byte</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="o">-File</span> <span class="p">(</span><span class="k">In</span> <span class="n">poshC2</span> <span class="n">this</span> <span class="n">automatically</span> <span class="n">opens</span> <span class="n">a</span> <span class="n">window</span> <span class="n">to</span> <span class="n">where</span> <span class="n">you</span> <span class="n">can</span> <span class="n">select</span> <span class="n">shellcode</span> <span class="n">to</span> <span class="n">be</span> <span class="n">injected</span><span class="p">)</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="o">-File</span> <span class="p">(</span><span class="k">In</span> <span class="n">poshC2</span> <span class="n">this</span> <span class="n">automatically</span> <span class="n">opens</span> <span class="n">a</span> <span class="n">window</span> <span class="n">to</span> <span class="n">where</span> <span class="n">you</span> <span class="n">can</span> <span class="n">select</span> <span class="n">shellcode</span> <span class="n">to</span> <span class="n">be</span> <span class="n">injected</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="n">-x86</span> <span class="n">-Shellcode</span> <span class="p">(</span><span class="n">GC</span> <span class="s2">&quot;C:\Temp\Shellcode.bin&quot;</span> <span class="n">-Encoding</span> <span class="n">byte</span><span class="p">)</span> <span class="n">-ProcID</span> <span class="n">5634</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="n">-x86</span> <span class="n">-Shellcode</span> <span class="p">(</span><span class="n">GC</span> <span class="s2">&quot;C:\Temp\Shellcode.bin&quot;</span> <span class="n">-Encoding</span> <span class="n">byte</span><span class="p">)</span> <span class="n">-ProcID</span> <span class="n">5634</span>
 </pre></div>
 </div>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="n">-x86</span> <span class="n">-Shellcode</span> <span class="p">(</span><span class="n">GC</span> <span class="s2">&quot;C:\Temp\Shellcode.bin&quot;</span> <span class="n">-Encoding</span> <span class="n">byte</span><span class="p">)</span> <span class="n">-ProcessPath</span> <span class="s2">&quot;C:\Windows\System32\notepad.exe&quot;</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="n">-x86</span> <span class="n">-Shellcode</span> <span class="p">(</span><span class="n">GC</span> <span class="s2">&quot;C:\Temp\Shellcode.bin&quot;</span> <span class="n">-Encoding</span> <span class="n">byte</span><span class="p">)</span> <span class="n">-ProcessPath</span> <span class="s2">&quot;C:\Windows\System32\notepad.exe&quot;</span>
 </pre></div>
 </div>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="n">-Shellcode</span> <span class="p">(</span><span class="n">GC</span> <span class="s2">&quot;C:\Temp\Shellcode.bin&quot;</span> <span class="n">-Encoding</span> <span class="n">byte</span><span class="p">)</span> <span class="n">-ProcessName</span> <span class="n">notepad</span><span class="p">.</span><span class="n">exe</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">Inject-Shellcode</span> <span class="n">-Shellcode</span> <span class="p">(</span><span class="n">GC</span> <span class="s2">&quot;C:\Temp\Shellcode.bin&quot;</span> <span class="n">-Encoding</span> <span class="n">byte</span><span class="p">)</span> <span class="n">-ProcessName</span> <span class="n">notepad</span><span class="p">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 </div>

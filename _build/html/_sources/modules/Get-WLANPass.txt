@@ -4,12 +4,12 @@ Get-WLANPass
 *********
 SYNOPSIS
 *********
-Retrives password from stored wlan profiles.
+Retrieves password from stored wireless profiles.
 
 ************
 DESCRIPTION
 ************
-Retrives password from stored wlan profiles.
+Retrieves password from stored wireless profiles.
 
 *********
 EXAMPLES

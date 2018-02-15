@@ -8,16 +8,16 @@ Introduction
 -----------------
 Windows Remote Management (WinRM) is the Microsoft implementation of WS-Management Protocol, a standard Simple Object Access Protocol (SOAP)-based, firewall-friendly protocol that allows hardware and operating systems, from different vendors, to interoperate - `Microsoft <https://msdn.microsoft.com/en-us/library/aa384426(v=vs.85).aspx>`_. 
 
-Note, with WinRM its not only the service that needs to be enabled on the otherside but also needs to be permitted outbound from the originating client/implant. This is not not enabled by default and on Windows 7 WinRM would require enabling for outbound and inbound sessions. You need elevated privileges (SYSTEM) for this to be enabled. WinRM appears to be enabled by default on Windows Server 2012 and above but must be enabled on the client sending the commands first.
+Note, with WinRM its not only the service that needs to be enabled on the other side but also needs to be permitted outbound from the originating client/implant. This is not not enabled by default and on Windows 7 WinRM would require enabling for outbound and inbound sessions. You need elevated privileges (SYSTEM) for this to be enabled. WinRM appears to be enabled by default on Windows Server 2012 and above but must be enabled on the client sending the commands first.
 
-No limit on characters via PS-Session, 8k limit on WMI and PSexec.
+WinRM does not suffer the same limitations on max number of characters as PS-Session, 8k limit on WMI and PSexec.
 
 **Default Ports**
 
 * TCP/5985 = HTTP
 * TCP/5986 = HTTPS
 
-PoshC2 have created keys functions in the implant-core to allow you to enable this easily for outbound comms. 
+PoshC2 have created key functions in the implant-core to allow you to enable this easily for outbound comms. 
 
 .. code-block:: python
 

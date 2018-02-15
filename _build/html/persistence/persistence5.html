@@ -181,11 +181,11 @@
 <div class="section" id="install-servicelevel-persistence">
 <h2>Install-ServiceLevel-Persistence<a class="headerlink" href="#install-servicelevel-persistence" title="Permalink to this headline">¶</a></h2>
 <p>To add this persistence use the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Install</span><span class="o">-</span><span class="n">ServiceLevel</span><span class="o">-</span><span class="n">Persistence</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Install</span><span class="o">-</span><span class="n">ServiceLevel</span><span class="o">-</span><span class="n">Persistence</span>
 </pre></div>
 </div>
 <p>Installs a new service called “CPUpdater” using “sc.exe” to run the dropper:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">exe</span> <span class="n">create</span> <span class="n">CPUpdater</span> <span class="n">binpath</span><span class="o">=</span> <span class="s1">&#39;cmd /c &quot;$payload&quot; Displayname= CheckpointServiceUpdater start= auto</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">exe</span> <span class="n">create</span> <span class="n">CPUpdater</span> <span class="n">binpath</span><span class="o">=</span> <span class="s1">&#39;cmd /c &quot;$payload&quot; Displayname= CheckpointServiceUpdater start= auto</span>
 </pre></div>
 </div>
 </div>
@@ -193,18 +193,18 @@
 <h2>Install-ServiceLevel-PersistenceWithProxy<a class="headerlink" href="#install-servicelevel-persistencewithproxy" title="Permalink to this headline">¶</a></h2>
 <p>This will do the same as above but use the Proxy Aware dropper that will be created by using “CreateProxyPayload”.</p>
 <p>To add this persistence use the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Install</span><span class="o">-</span><span class="n">ServiceLevel</span><span class="o">-</span><span class="n">PersistenceWithProxy</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Install</span><span class="o">-</span><span class="n">ServiceLevel</span><span class="o">-</span><span class="n">PersistenceWithProxy</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="remove-servicelevel-persistence">
 <h2>Remove-ServiceLevel-Persistence<a class="headerlink" href="#remove-servicelevel-persistence" title="Permalink to this headline">¶</a></h2>
 <p>To remove this persistence use the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Remove</span><span class="o">-</span><span class="n">ServiceLevel</span><span class="o">-</span><span class="n">Persistence</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Remove</span><span class="o">-</span><span class="n">ServiceLevel</span><span class="o">-</span><span class="n">Persistence</span>
 </pre></div>
 </div>
 <p>Removes the service using “sc.exe”:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">exe</span> <span class="n">delete</span> <span class="n">CPUpdater</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">exe</span> <span class="n">delete</span> <span class="n">CPUpdater</span>
 </pre></div>
 </div>
 </div>

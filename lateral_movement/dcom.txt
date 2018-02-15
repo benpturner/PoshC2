@@ -6,7 +6,7 @@ Mitre ATT&CK - `DCOM <https://attack.mitre.org/wiki/Technique/T1175>`_
 -----------------
 Introduction
 -----------------
-DCOM (Distributed Component Object Model) is a framework used by Windows to allow COM components to work over the network. `Enigma0x3 <https://twitter.com/enigma0x3>`_ (Matt Nelson) recently discovered it was possible to misuse this functionality to execute commands using the "MMC20.Application" COM object. PoshC2 utilises this function to run commands remotely under the user that is logged in currently. This method does not take parameters as it uses integrated windows authentication (Kerberos), to remotely administer the command. This means you need the implant running has a primary token that can be passed as the authentication mechanism. The `Invoke-Runas` function will provide you with an implant with a primary token. 
+DCOM (Distributed Component Object Model) is a framework used by Windows to allow COM components to work over the network. `Enigma0x3 <https://twitter.com/enigma0x3>`_ (Matt Nelson) recently discovered it was possible to misuse this functionality to execute commands using the "MMC20.Application" COM object. PoshC2 utilises this function to run commands remotely under the user that is logged in. This method does not take parameters as it uses integrated windows authentication (Kerberos), to remotely administer the command. This means you need to make sure the implant is running with a primary token that can be passed as the authentication mechanism. The `Invoke-Runas` function will provide you with an implant with a primary token. 
 
 For more information on DCOM, see Matt Nelson's full write-up below:
 

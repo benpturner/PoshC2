@@ -13,7 +13,7 @@ DESCRIPTION
 ************
 Powershell module to inject shellcode using CreateRemoteThread and falls back to using RtlCreateUserThread.
 
-Injects shellcode into x86 or x64 bit processes. Tested on Windowns 7 32 bit, Windows 7 64 bit and Windows 10 64bit.
+Injects shellcode into x86 or x64 bit processes. Tested on Windows 7 32 bit, Windows 7 64 bit and Windows 10 64 bit.
 
 *********
 EXAMPLES

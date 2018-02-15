@@ -181,15 +181,15 @@
 <div class="section" id="installexe-persistence">
 <h2>InstallEXE-Persistence<a class="headerlink" href="#installexe-persistence" title="Permalink to this headline">¶</a></h2>
 <p>To add this persistence use the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">InstallEXE</span><span class="o">-</span><span class="n">Persistence</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">InstallEXE</span><span class="o">-</span><span class="n">Persistence</span>
 </pre></div>
 </div>
 <p>Drops one file to the users %TEMP% directory called “Winlogon.exe” which is the dropper, of which is timestomps to “01/03/2008 12:12 pm”:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ENV:TEMP\Winlogon.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ENV:TEMP\Winlogon.exe
 </pre></div>
 </div>
 <p>Then creates a shortcut (lnk) in the users “Startup” directory called “Winlogon.lnk” containing the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ENV:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\WinLogon.lnk
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ENV:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\WinLogon.lnk
 rundll32.exe shell32.dll,ShellExec_RunDLL %temp%\winlogon.exe
 </pre></div>
 </div>
@@ -197,11 +197,11 @@ rundll32.exe shell32.dll,ShellExec_RunDLL %temp%\winlogon.exe
 <div class="section" id="removeexe-persistence">
 <h2>RemoveEXE-Persistence<a class="headerlink" href="#removeexe-persistence" title="Permalink to this headline">¶</a></h2>
 <p>To remove this persistence use the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">RemoveEXE</span><span class="o">-</span><span class="n">Persistence</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RemoveEXE</span><span class="o">-</span><span class="n">Persistence</span>
 </pre></div>
 </div>
 <p>Removes both files from disk with validation of removal:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ENV:TEMP\Winlogon.exe
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ENV:TEMP\Winlogon.exe
 $ENV:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\WinLogon.lnk
 </pre></div>
 </div>

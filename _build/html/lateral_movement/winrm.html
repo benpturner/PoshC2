@@ -180,15 +180,15 @@
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Windows Remote Management (WinRM) is the Microsoft implementation of WS-Management Protocol, a standard Simple Object Access Protocol (SOAP)-based, firewall-friendly protocol that allows hardware and operating systems, from different vendors, to interoperate - <a class="reference external" href="https://msdn.microsoft.com/en-us/library/aa384426(v=vs.85).aspx">Microsoft</a>.</p>
-<p>Note, with WinRM its not only the service that needs to be enabled on the otherside but also needs to be permitted outbound from the originating client/implant. This is not not enabled by default and on Windows 7 WinRM would require enabling for outbound and inbound sessions. You need elevated privileges (SYSTEM) for this to be enabled. WinRM appears to be enabled by default on Windows Server 2012 and above but must be enabled on the client sending the commands first.</p>
-<p>No limit on characters via PS-Session, 8k limit on WMI and PSexec.</p>
+<p>Note, with WinRM its not only the service that needs to be enabled on the other side but also needs to be permitted outbound from the originating client/implant. This is not not enabled by default and on Windows 7 WinRM would require enabling for outbound and inbound sessions. You need elevated privileges (SYSTEM) for this to be enabled. WinRM appears to be enabled by default on Windows Server 2012 and above but must be enabled on the client sending the commands first.</p>
+<p>WinRM does not suffer the same limitations on max number of characters as PS-Session, 8k limit on WMI and PSexec.</p>
 <p><strong>Default Ports</strong></p>
 <ul class="simple">
 <li>TCP/5985 = HTTP</li>
 <li>TCP/5986 = HTTPS</li>
 </ul>
-<p>PoshC2 have created keys functions in the implant-core to allow you to enable this easily for outbound comms.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">EnableWinRM</span>
+<p>PoshC2 have created key functions in the implant-core to allow you to enable this easily for outbound comms.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EnableWinRM</span>
 <span class="n">DisableWinRM</span>
 </pre></div>
 </div>
@@ -196,7 +196,7 @@
 <div class="section" id="syntax">
 <h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
 <p><strong>WinRM session direct to another client within the same implant. Note this does not create a new implant in PoshC2</strong></p>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Invoke-WinRMSession</span> <span class="n">-IPAddress</span> <span class="p">&lt;</span><span class="n">ip</span><span class="p">&gt;</span> <span class="n">-user</span> <span class="p">&lt;</span><span class="n">dom</span><span class="p">\</span><span class="n">user</span><span class="p">&gt;</span> <span class="n">-pass</span> <span class="p">&lt;</span><span class="n">pass</span><span class="p">&gt;</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Invoke-WinRMSession</span> <span class="n">-IPAddress</span> <span class="p">&lt;</span><span class="n">ip</span><span class="p">&gt;</span> <span class="n">-user</span> <span class="p">&lt;</span><span class="n">dom</span><span class="p">\</span><span class="n">user</span><span class="p">&gt;</span> <span class="n">-pass</span> <span class="p">&lt;</span><span class="n">pass</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>

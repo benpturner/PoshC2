@@ -1,7 +1,7 @@
 ####################
  MS16-051 HTML File
 ####################
-After the Internet Explorer bug was released (MS16-051), this was incorporated into PoshC2 as a potential exploit that could be used to obtain C2 communications via an embedded link. This update was critical and found exploitable in Internet Explorer 9, 10, 11. This code is was released in 2016 and is high unlikely to be sucessful in a phishing campaign today. Nevertheless, the code is still within PoshC2::
+After the Internet Explorer bug was released (MS16-051), this was incorporated into PoshC2 as a potential exploit that could be used to obtain C2 communications via an embedded link. This update was critical and found exploitable in Internet Explorer 9, 10, 11. This code is was released in 2016 and is high unlikely to be successful in a phishing campaign today. Nevertheless, the code is still within PoshC2::
 
 	<html>
 	<head>

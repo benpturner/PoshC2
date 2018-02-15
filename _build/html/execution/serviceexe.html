@@ -183,12 +183,12 @@
   <div class="section" id="service-executable">
 <h1>Service Executable<a class="headerlink" href="#service-executable" title="Permalink to this headline">¶</a></h1>
 <p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1050">New Service</a></p>
-<p>The following C# code creates the service executable used in PoshC2, where escalation of privileges via service abuse is possble. The code essentially creates a new Powershell Runspace using the System.Management.Automation.dll (v2.0.50727) that is supplied with the project. This executable is not signed and cannot be called directly, must be installed and run via the Windows Service Control Manager. To add a service on the command line use the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">exe</span> <span class="n">create</span> <span class="n">CPUpdater</span> <span class="n">binpath</span><span class="o">=</span> <span class="s1">&#39;C:\Temp\PoshService.exe&quot; Displayname= CheckpointServiceUpdater start= auto</span>
+<p>The following C# code creates the service executable used in PoshC2, where escalation of privileges via service abuse is possible. The code creates a new Powershell Runspace using the System.Management.Automation.dll (v2.0.50727) that is supplied with the project. This executable is not signed and cannot be called directly, instead it must be installed and run via the Windows Service Control Manager. To add a service on the command line use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">exe</span> <span class="n">create</span> <span class="n">CPUpdater</span> <span class="n">binpath</span><span class="o">=</span> <span class="s1">&#39;C:\Temp\PoshService.exe&quot; Displayname= CheckpointServiceUpdater start= auto</span>
 </pre></div>
 </div>
 <p>C# Code:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="p">;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">ServiceProcess</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">ObjectModel</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Management</span><span class="o">.</span><span class="n">Automation</span><span class="p">;</span>

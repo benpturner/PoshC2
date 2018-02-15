@@ -174,13 +174,13 @@
             
   <div class="section" id="apache-rewrite-rules">
 <h1>Apache Rewrite Rules<a class="headerlink" href="#apache-rewrite-rules" title="Permalink to this headline">¶</a></h1>
-<p>When running PoshC2 over the Internet its best practise to use a C2 Proxy server usually in the shape of a small VPS from any provider. This is so that you can hide behind a webserver when the Blue Team are investigating a suspected breach but also to remove the need for your Windows host to be fully connected to the Internet. Using Apache Rewrite rules we can redirect traffic that is intended for the C2 server but also retain a fully functional web server on the same host that does not hit our Rewrite Rules.</p>
-<p>To do this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN. Another alternative would be to use a Windows Cloud server to host all the infrastructure with a perimeter firewall.</p>
+<p>When running PoshC2 over the Internet its best practice to use a C2 Proxy server, usually in the shape of a small VPS from any provider. This is so that you can hide behind a web server when the Blue Team are investigating a suspected breach but also to remove the need for your Windows host to be fully connected to the Internet. Using Apache Rewrite rules we can redirect traffic that is intended for the C2 server but also retain a fully functional web site on the same host that does not hit our Rewrite Rules.</p>
+<p>To help with this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN. Another alternative would be to use a Windows Cloud server to host all the infrastructure with a perimeter firewall.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/">https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/</a></li>
 </ul>
-<p>Once you’ve setup the external infrastrucutre you will need to configure Apache to rewrite your C2 traffic back to the PoshC2 instance. This is a default C2 server instance but when you setup your server inside the folder will be an Apache2.conf file with all the corresponding rewrite rules ready for installation. Please take that file but install similarly to below. You will need to enable some modules on Apache before running the server:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">Apache2</span>
+<p>Once you’ve setup the external infrastructure you will need to configure Apache to rewrite your C2 traffic back to the PoshC2 instance. Thee example below details a default C2 server instance. However, when you setup your PoshC2 instance, PoshC2 will generate you a unique Apache2.conf file including any customization options selected. You will need to enable some modules on Apache before running the server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">Apache2</span>
 <span class="n">a2enmod</span> <span class="n">ssl</span>
 <span class="n">a2enmod</span> <span class="n">rewrite</span>
 <span class="n">a2enmod</span> <span class="n">proxy</span>
@@ -188,8 +188,8 @@
 <span class="n">a2enmod</span> <span class="n">headers</span>
 </pre></div>
 </div>
-<p>Then load the following rules within your Apache configuration file for each virtual host:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;VirtualHost *:80&gt;
+<p>Then load the following rules (or your custom rules) within your Apache configuration file for each virtual host:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;VirtualHost *:80&gt;
         RewriteEngine On
         RewriteRule ^/images/static/content/(.*) http://&lt;IP ADDRESS&gt;/images/static/content/$1 [NC,P,L]
         RewriteRule ^/news/(.*) http://&lt;IP ADDRESS&gt;/news/$1 [NC,P,L]

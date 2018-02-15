@@ -4,14 +4,14 @@ Get-LocAdm
 *********
 SYNOPSIS
 *********
-Returns members of the Local Admins group from Active Directory.
+Returns members of the Local Administrators group from Active Directory.
 
 * Dave Hardy - @DaveHardy20
 
 ************
 DESCRIPTION
 ************
-Retrieves all computers from Active Direcrory and searches and returns the members of the Local Admins group.
+Retrieves all computers from Active Directory and searches and returns the members of the Local Admins group.
 
 *********
 EXAMPLES

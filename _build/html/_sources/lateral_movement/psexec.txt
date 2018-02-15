@@ -8,7 +8,7 @@ Mitre ATT&CK - `Windows Admin Shares <https://attack.mitre.org/wiki/Technique/T1
 -----------------
 Introduction
 -----------------
-PSExec was first developed by Mark Russinovich as part of Sysinternals Suite of tools. When run it connects to the target system over SMB in order to use a hidden share called ADMIN$. This share is mapped to the Windows directory and PSExec is able to copy a service binary over. It is then able to communicate with the Service Controller of the target system using SMB in order to start the start that has been dropped. Needless to say this requires a high level of privilege and has been around for approx 20 years so many AV engines look for this behaviour. The PoshC2 version uses the `Invoke theHash <https://github.com/Kevin-Robertson/Invoke-TheHash>`_  library from `Kevin Robertson <https://twitter.com/kevin_robertson>`_ developer of Inveigh. 
+PSExec was first developed by Mark Russinovich as part of Sysinternals Suite of tools. When run it connects to the target system over SMB in order to use a hidden share called ADMIN$. This share is mapped to the Windows directory and PSExec is able to copy a service binary over. It is then able to communicate with the Service Controller of the target system using SMB in order to start the implant that has been dropped. Needless to say this requires a high level of privilege and has been around for approx 20 years so many AV engines look for this behaviour. The PoshC2 version uses the `Invoke the Hash <https://github.com/Kevin-Robertson/Invoke-TheHash>`_  library from `Kevin Robertson <https://twitter.com/kevin_robertson>`_ developer of Inveigh. 
 
 -----------------
 Syntax

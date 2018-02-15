@@ -4,7 +4,7 @@ Decrypt-RDCMan
 *********
 SYNOPSIS
 *********
-This script should be able to decrpt all passwords stored in the RDCMan config file.
+This script should be able to decrypt all passwords stored in the RDCMan config file.
 
 * Ben Turner @benpturner 
 * Rich Hicks @scriptmonkey_
@@ -12,7 +12,7 @@ This script should be able to decrpt all passwords stored in the RDCMan config f
 ************
 DESCRIPTION
 ************
-This script should be able to decrpt all passwords stored in the RDCMan config file.
+This script should be able to decrypt all passwords stored in the RDCMan config file.
 
 *********
 EXAMPLES

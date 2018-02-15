@@ -7,9 +7,9 @@ Mitre ATT&CK - `Deobfuscate/Decode Files or Information <https://attack.mitre.or
 
 Certutil.exe is a command line utility that is installed as part of Certificate Services and is default on most Windows installations. 
 
-SubTee (Casey Smith) discovered that it was possible to misuse this utility to download arbitrary files from the Internet. This utility has some benefits over other downloading tools as its a trusted binary, proxy aware and supports HTTPS.  
+SubTee (Casey Smith) discovered that it was possible to misuse this utility to download arbitrary files from the Internet. This utility has some benefits over other downloading tools as its a trusted binary, proxy aware and supports HTTPS. However it does stand out an IoC due to its own User Agent being quite unique.  
 
-Certutil do not work with untrusted SSL certificates if using over HTTPS:
+Certutil does not work with untrusted SSL certificates if used over HTTPS:
 
 .. code-block:: python
 

@@ -9,7 +9,7 @@ WMI Command over Windows RPC Ports (TCP 135) - @benpturner
 ************
 DESCRIPTION
 ************
-WMI Tool written to search for files younger than a month on network shares. This also searches is the current logged in user is part of the Local Administrators group. All communications is done over Windows RPC Ports (TCP 135)
+WMI Tool written to search for files younger than a month on network shares. This also searches if the current logged in user is part of the Local Administrators group. All communications is done over Windows RPC Ports (TCP 135)
 
 *********
 EXAMPLES

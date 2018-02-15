@@ -200,27 +200,27 @@
   <div class="section" id="pre-implant-help">
 <h1>Pre-Implant Help<a class="headerlink" href="#pre-implant-help" title="Permalink to this headline">¶</a></h1>
 <p>The help is split out into two main components, “Pre-Implant Help” and “Post-Implant Help”. This is basically depending on when you type help, will depend on the help that is provided.</p>
-<p>To obtain the help in either sections type <code class="docutils literal"><span class="pre">Help</span></code> or <code class="docutils literal"><span class="pre">?</span></code>.</p>
+<p>To obtain the help in either sections type <code class="docutils literal notranslate"><span class="pre">Help</span></code> or <code class="docutils literal notranslate"><span class="pre">?</span></code>.</p>
 <p>The “Pre-Implant” help menu allows you to configure various auto-runs, double check the server configuration and make and significant changes to the C2 server. It also allows you to test your configuration by issuing PwnSelf to obtain an implant.</p>
 <p>Other settings that can be altered are C2 default beacon time, Clockwork SMS API key and mobile number for text message alerts of new implants.</p>
 <div class="section" id="main-menu">
 <h2>Main Menu<a class="headerlink" href="#main-menu" title="Permalink to this headline">¶</a></h2>
-<p>The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows <code class="docutils literal"><span class="pre">1</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="o">&gt;</span>
+<p>The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows <code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>If you want to select more than one implant, you can provide a comma separated list <code class="docutils literal"><span class="pre">1,2,3,4</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span>
+<p>If you want to select more than one implant, you can provide a comma separated list <code class="docutils literal notranslate"><span class="pre">1,2,3,4</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Finally, you can select ALL implants by typing <code class="docutils literal"><span class="pre">ALL</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">ALL</span><span class="o">&gt;</span>
+<p>Finally, you can select ALL implants by typing <code class="docutils literal notranslate"><span class="pre">ALL</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">ALL</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="auto-runs">
 <h2>Auto-Runs<a class="headerlink" href="#auto-runs" title="Permalink to this headline">¶</a></h2>
-<p>We have now implemented the concept of Auto-Runs. This allows the user of PoshC2 to automate various tasks when an implant first comes in. A few use cases of this could be:</p>
+<p>We have now implemented the concept of Auto-Runs. This allows the user of PoshC2 to automate various tasks when an implant first comes in. Auto-runs impact all new implants and can be added and deleted at any time. A few use cases of this could be:</p>
 <ul class="simple">
 <li>auto migrate from PowerShell</li>
 <li>capturing a screenshot for situational awareness</li>
@@ -229,36 +229,36 @@
 <p>Essentially, any command that can be issued within PoshC2 can be turned into an Auto-Run.</p>
 <div class="section" id="automigrate-frompowershell-am">
 <h3>AutoMigrate-FromPowershell (AM)<a class="headerlink" href="#automigrate-frompowershell-am" title="Permalink to this headline">¶</a></h3>
-<p>The auto migrate from PowerShell feature has been added and by default will start another process in “netsh.exe” unless otherwise stated by the <code class="docutils literal"><span class="pre">-newprocess</span></code> parameter. This utilises unmanaged PowerShell via the C++ Reflective DLL.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Automigrate</span><span class="o">-</span><span class="n">FromPowershell</span> <span class="p">(</span><span class="n">Alias</span><span class="p">:</span> <span class="n">AM</span><span class="p">)</span>
+<p>The auto migrate from PowerShell feature has been added and by default will start another process in “netsh.exe” unless otherwise stated by the <code class="docutils literal notranslate"><span class="pre">-newprocess</span></code> parameter. This utilises unmanaged PowerShell via the C++ Reflective DLL.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Automigrate</span><span class="o">-</span><span class="n">FromPowershell</span> <span class="p">(</span><span class="n">Alias</span><span class="p">:</span> <span class="n">AM</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="add-autorun">
 <h3>Add-autorun<a class="headerlink" href="#add-autorun" title="Permalink to this headline">¶</a></h3>
 <p>To add a custom autorun use the following command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Add</span><span class="o">-</span><span class="n">autorun</span> <span class="o">&lt;</span><span class="n">task</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Add</span><span class="o">-</span><span class="n">autorun</span> <span class="o">&lt;</span><span class="n">task</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="list-autorun">
 <h3>List-autorun<a class="headerlink" href="#list-autorun" title="Permalink to this headline">¶</a></h3>
-<p>To list the current autorun use the following command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">List</span><span class="o">-</span><span class="n">autorun</span> <span class="p">(</span><span class="n">Alias</span><span class="p">:</span> <span class="n">L</span><span class="p">)</span>
+<p>To list the current autorun’s configured for all implants use the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">List</span><span class="o">-</span><span class="n">autorun</span> <span class="p">(</span><span class="n">Alias</span><span class="p">:</span> <span class="n">L</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="del-autorun">
 <h3>Del-autorun<a class="headerlink" href="#del-autorun" title="Permalink to this headline">¶</a></h3>
-<p>To delete a custom autorun use the following command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Del</span><span class="o">-</span><span class="n">autorun</span> <span class="o">&lt;</span><span class="n">taskID</span><span class="o">&gt;</span>
+<p>To delete a custom autorun, you can specify the taskID of the auto-run to be removed. This is limited to one at a time. use the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Del</span><span class="o">-</span><span class="n">autorun</span> <span class="o">&lt;</span><span class="n">taskID</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="nuke-autorun">
 <h3>Nuke-autorun<a class="headerlink" href="#nuke-autorun" title="Permalink to this headline">¶</a></h3>
-<p>To nuke all custom autoruns use the following command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Nuke</span><span class="o">-</span><span class="n">autorun</span>
+<p>Nuke all autoruns, removes all autoruns from the database. To nuke all custom autoruns use the following command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Nuke</span><span class="o">-</span><span class="n">autorun</span>
 </pre></div>
 </div>
 </div>
@@ -267,8 +267,8 @@
 <h2>Server Commands:<a class="headerlink" href="#server-commands" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="show-serverinfo">
 <h3>Show-ServerInfo<a class="headerlink" href="#show-serverinfo" title="Permalink to this headline">¶</a></h3>
-<p>This <code class="docutils literal"><span class="pre">Show-ServerInfo</span></code> command prints out the current C2 configuration, including the following items:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Show</span><span class="o">-</span><span class="n">ServerInfo</span>
+<p>This <code class="docutils literal notranslate"><span class="pre">Show-ServerInfo</span></code> command prints out the current C2 configuration, including the following items:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Show</span><span class="o">-</span><span class="n">ServerInfo</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -290,15 +290,15 @@
 <div class="section" id="history">
 <h3>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h3>
 <p>This lists all previous commands entered into the Implant-Handler.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">History</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">History</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="output-to-html">
 <h3>Output-To-HTML<a class="headerlink" href="#output-to-html" title="Permalink to this headline">¶</a></h3>
-<p>Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2’s timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly otherwise all log entries time sync will be out when performing log analysis or the debrief.</p>
+<p>Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2’s timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your adjust the time-zone accordingly to maintain correctly formated log entries.</p>
 <p>By default, PoshC2 records every command and all output from each implant that is used and logs this information to the internal SQLite database, complete with a timestamp from the system you’re currently running the server from.</p>
-<p>To output the reports from PoshC2 run the <code class="docutils literal"><span class="pre">Output-to-html</span></code> command and this should deliver four HTML reports:</p>
+<p>To output the reports from PoshC2 run the <code class="docutils literal notranslate"><span class="pre">Output-to-html</span></code> command and this should deliver four HTML reports:</p>
 <ul class="simple">
 <li>C2Server.html</li>
 <li>Implants.html</li>
@@ -310,57 +310,57 @@
 <div class="section" id="set-clockworksmsapikey">
 <h3>Set-ClockworkSMSApiKey<a class="headerlink" href="#set-clockworksmsapikey" title="Permalink to this headline">¶</a></h3>
 <p>If you forgot to set up SMS with <a class="reference external" href="https://www.clockworksms.com">ClockworkSMS</a>, then you can sign up and configure the API key here. This will then send a text message when a new implant arrives.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ClockworkSMSApiKey</span> <span class="n">df2pwOdLAmdmmdd0d2kKDlOwDD</span><span class="o">=</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ClockworkSMSApiKey</span> <span class="n">df2pwOdLAmdmmdd0d2kKDlOwDD</span><span class="o">=</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="set-clockworksmsnumber">
 <h3>Set-ClockworkSMSNumber<a class="headerlink" href="#set-clockworksmsnumber" title="Permalink to this headline">¶</a></h3>
 <p>If you are using <a class="reference external" href="https://www.clockworksms.com">ClockworkSMS</a>, you can change the SMS number that is used when a new implant arrives.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ClockworkSMSNumber</span> <span class="mi">447877000000</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">ClockworkSMSNumber</span> <span class="mi">447877000000</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="set-defaultbeacon-60">
 <h3>Set-DefaultBeacon 60<a class="headerlink" href="#set-defaultbeacon-60" title="Permalink to this headline">¶</a></h3>
 <p>The default beacon time for the initial implants, this is measured in seconds. Note, the server will need to be restarted for this change to take affect.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">DefaultBeacon</span> <span class="mi">60</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">-</span><span class="n">DefaultBeacon</span> <span class="mi">60</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="listmodules">
 <h3>ListModules<a class="headerlink" href="#listmodules" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">ListModules</span></code> command allows the user to view the Powershell modules that reside in the modules folder, within the PoshC2 folder tree. We have provided quiet a few Powershell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of PoshC2 is the ability for the user to create their own Powershell modules and use them within PoshC2. Simply copy the modules you want into the modules folder and you’ll be able to load them into a running implant with the ‘LoadModule’ command, which is discussed further in this documentation.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ListModules</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">ListModules</span></code> command allows the user to view the Powershell modules that reside in the modules folder, within the PoshC2 folder tree. We have provided quiet a few Powershell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of PoshC2 is the ability for the user to create their own Powershell modules and use them within PoshC2. Simply copy the modules you want into the modules folder and you’ll be able to load them into a running implant with the ‘LoadModule’ command, which is discussed further in this documentation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ListModules</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="pwnself-p">
 <h3>PwnSelf / P<a class="headerlink" href="#pwnself-p" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">PwnSelf</span></code> command or aliased to <code class="docutils literal"><span class="pre">P</span></code> will just execute the default batch file that is created to test comms.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PwnSelf</span></code> command or aliased to <code class="docutils literal notranslate"><span class="pre">P</span></code> will just execute the default batch file that is created to test comms.</p>
 </div>
 <div class="section" id="creds">
 <h3>Creds<a class="headerlink" href="#creds" title="Permalink to this headline">¶</a></h3>
 <p>The creds function is a completely separate table within the database that is used to manage credentials throughout the engagement. The idea of this table was to correlate all compromised credentials so that you can supply this information to the client at the end of the engagement. This will allow the client to reset all compromised accounts.</p>
 <p>Credentials will not automatically be added to the table, however, this is something we are looking into for future improvements. Additionally, it would be good to use credentials from the database in various commands, such as lateral movement and runas.</p>
 <p>To add/delete credentials in the database use the following command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">add</span><span class="o">/</span><span class="n">delete</span> <span class="o">-</span><span class="n">Username</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">password</span><span class="o">/-</span><span class="nb">hash</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">add</span><span class="o">/</span><span class="n">delete</span> <span class="o">-</span><span class="n">Username</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">password</span><span class="o">/-</span><span class="nb">hash</span>
 </pre></div>
 </div>
 <p>To search for credentials</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">search</span> <span class="o">-</span><span class="n">username</span> <span class="n">test</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">search</span> <span class="o">-</span><span class="n">username</span> <span class="n">test</span>
 </pre></div>
 </div>
 <p>To dump all credentials in the database use the dump action:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">dump</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Creds</span> <span class="o">-</span><span class="n">Action</span> <span class="n">dump</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="createproxypayload">
 <h3>CreateProxyPayload<a class="headerlink" href="#createproxypayload" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">CreateProxyPayload</span></code> command was created to allow an implant to traverse an authenticated proxy when the implant is running under the SYSTEM account. Under normal circumstances the SYSTEM account shouldn’t be authenticated on a domain level proxy server and pass through, so we created the CreateProxyPayload command to allow the attacker to provide a set of valid proxy credentials within the proxyurl and thus allows an implant to traverse any authenticated proxy server. We would use this technique when attempting lateral movement as well as privilege escalation techniques.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CreateProxyPayload</span></code> command was created to allow an implant to traverse an authenticated proxy when the implant is running under the SYSTEM account. Under normal circumstances the SYSTEM account shouldn’t be authenticated on a domain level proxy server and pass through, so we created the CreateProxyPayload command to allow the attacker to provide a set of valid proxy credentials within the proxyurl and thus allows an implant to traverse any authenticated proxy server. We would use this technique when attempting lateral movement as well as privilege escalation techniques.</p>
 <p>By default, this will create a new Bat file, standalone executable, service executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">CreateProxyPayload</span> <span class="o">-</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">dom</span>\<span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="k">pass</span> <span class="o">&lt;</span><span class="k">pass</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">proxyurl</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CreateProxyPayload</span> <span class="o">-</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">dom</span>\<span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="k">pass</span> <span class="o">&lt;</span><span class="k">pass</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">proxyurl</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><strong>Parameters:</strong></p>
@@ -375,9 +375,9 @@
 </div>
 <div class="section" id="createnewpayload">
 <h3>CreateNewPayload<a class="headerlink" href="#createnewpayload" title="Permalink to this headline">¶</a></h3>
-<p>This <code class="docutils literal"><span class="pre">CreateNewPayload</span></code> payload generates a number of new payloads that are setup to beacon to a different location. This is for when you are trying to remove attribution on various assets and you want some beaconing to different locations but to end up at the same PoshC2 instance. You would need to configure your C2 proxy servers to all come back to the same host.</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">CreateNewPayload</span></code> payload generates a number of new payloads that are setup to beacon to a different URL. This is used when you are trying to remove attribution on various assets and you want some beaconing to different URL’s while still ending up at the same PoshC2 instance. You would need to configure your C2 proxy servers to come back to the same host.</p>
 <p>By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">CreateNewPayload</span> <span class="o">-</span><span class="n">hostname</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">hostname</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">domainfrontheader</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CreateNewPayload</span> <span class="o">-</span><span class="n">hostname</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">hostname</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">domainfrontheader</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><strong>Parameters:</strong></p>

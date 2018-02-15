@@ -7,9 +7,9 @@ Mitre ATT&CK - `Powershell <https://attack.mitre.org/wiki/Technique/T1086>`_
 
 Cscript.exe is a command line version of the Windows Script Host that provides command line options for setting script properties.
 
-SubTee (Casey Smith) discovered that it was possible to misuse this utility in combination with ``C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs`` to get code execution from a remote webserver. This utility has some benefits over other tools as its a trusted binary, proxy aware and supports HTTPS.  
+SubTee (Casey Smith) discovered that it was possible to misuse this utility in combination with ``C:\Windows\System32\Printing_Admin_Scripts\en-US\pubprn.vbs`` to get code execution from a remote web server. This utility has some benefits over other tools as its a trusted binary, proxy aware and supports HTTPS.  
 
-Cscript do not work with untrusted SSL certificates if using over HTTPS:
+Cscript does not work with untrusted SSL certificates if used over HTTPS:
 
 .. code-block:: python
 

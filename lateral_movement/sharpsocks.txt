@@ -7,13 +7,13 @@ Mitre ATT&CK - `Standard Application Layer Protocol <https://attack.mitre.org/wi
 Introduction
 -----------------
 
-One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the machine at the end of it. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. This includes being able to RDP to another machine or even to browse the corporate intranet.
+One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the target environments end. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. This includes being able to RDP to another machine or even to browse the corporate Intranet.
 
 `https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks <https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks/>`_
 
 SOCKS support is built into most modern browsers and cURL. However, to use tools like rdesktop or nmap, proxychains on Linux can be used to tunnel the traffic. In order to simulate ProxyChains when using Windows, software such as ProxyCap (http://www.proxycap.com/) can be used.
 
-Previously, if a SOCKS was required then another implant, such as Meterpreter, would have to be deployed in order to provide the ability to tunnel TCP traffic into the internal network. We arrived at the decision that deploying a full implant just for SOCKS support is overkill and while e.g. Meterpreter is very good, it is also can be noisy and is not an appropriate representation of most sophisticated threat actors TTPs. Since PoshC2 is our publicly available C2, we wanted to add this ability for the wider world too, just like we have in our internal tooling.
+Previously, if SOCKS was required then another implant, such as Meterpreter, would have to be deployed in order to provide the ability to tunnel TCP traffic into the internal network. We arrived at the decision that deploying a full implant just for SOCKS support is overkill and while e.g. Meterpreter is very good, it can also can be noisy and is not an appropriate representation of most sophisticated threat actors TTPs. Since PoshC2 is our publicly available C2, we wanted to add this ability for the wider world too, just like we have in our internal tooling.
 
 To deploy SharpSocks use the following command within PoshC2. This also has its own stand-alone module but has been integrated into PoshC2 to work seamlessly. Ensure you have fully configured your C2 proxy to forward traffic back to this host. 
 

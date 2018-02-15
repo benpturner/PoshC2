@@ -7,9 +7,9 @@ Mitre ATT&CK - `InstallUtil <https://attack.mitre.org/wiki/Technique/T1118>`_
 
 Mitre ATT&CK - `RegAsm <https://attack.mitre.org/wiki/Technique/T1121>`_
 
-The following C# code creates the stand alone executable used in PoshC2. The code essentially creates a new Powershell Runspace using the System.Management.Automation.dll (v2.0.50727) that is supplied with the project. This executable is not signed.
+The following C# code creates the stand alone executable used in PoshC2. The code essentially creates a new Powershell Runspace using the System.Management.Automation.dll (v2.0.50727) that is supplied with the project. The generated executables are not signed.
 
-This can be called directly::
+The executable has been generated to be called in many ways, firstly, directly::
 
 	.\Posh.exe
 

@@ -9,7 +9,7 @@ The C++ Reflective DLL utilises the same concept from the unmanaged PowerShell c
 
 https://github.com/leechristensen/UnmanagedPowerShell
 
-We have created a .NET binary that is loaded by creating an instance of the CLR (v2.0.50727 or v4.0.30319) in runtime and patching the implant over the top when creating a new payload. This is done by creating a blank variable in the C++ code and overwriting the code where 8000 A’s exist. Once compiled we find the location of this code and add the offset to the PatchDLL function as shown below.
+We have created a .NET binary that is loaded by creating an instance of the CLR (v2.0.50727 or v4.0.30319) in runtime and then dynamically patching the implant, when creating a new payload. This is done by creating a blank variable in the C++ code and overwriting the code where 8000 A’s exist. Once compiled we find the location of this code and add the offset to the PatchDLL function as shown below.
 
 .. code-block:: powershell
 	
@@ -22,11 +22,11 @@ We have created a .NET binary that is loaded by creating an instance of the CLR 
 	}
 
 
-The Reflective DLL can then be loaded multiple ways:
+The Reflective DLL can then be loaded in multiple ways:
 
 RunDLL32
 #################
-The export methods that have been created for these DLLs are ``VoidFunc`` and ``VoidFunc2``. The reason there is two exports is so that it can load a different version of the CLR depending on the enviroment and whether you are tring to downgrade to bypass Powershell logging or any other constraints. 
+The export methods that have been created for these DLLs are ``VoidFunc`` and ``VoidFunc2``. The reason for two exports is to differentiate versions of the CLR depending on the environment. It also helps if you are are trying to downgrade the version of Powershell to bypass logging or any other constraints.
 
 Loads PoshC2 using CLR v4.0.30319:
 
@@ -43,7 +43,7 @@ Alternatively you could use a module that loads the PE via ``Invoke-ReflectivePE
 
 https://github.com/PowerShellMafia/PowerSploit/blob/master/CodeExecution/Invoke-ReflectivePEInjection.ps1
 
-.. code-block:: powershell
+.. code-block:: Powershell
 	
 	Invoke-ReflectivePEInjection -PEBytes ($PEBytes = [IO.File]::ReadAllBytes('Posh_x64.dll'))
 

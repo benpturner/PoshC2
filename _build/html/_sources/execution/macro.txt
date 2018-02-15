@@ -3,9 +3,9 @@
 ##################
 Mitre ATT&CK - `Powershell <https://attack.mitre.org/wiki/Technique/T1086>`_
 
-Office documents have been weaponised over the years utilising macros. PoshC2 creates a custom macro and embeds this into a Word Document, Excel Workbook and Powerpoint File. The VBScript called "powershell.exe" but slightly obfuscates the code to try and evade Anti-Virus scanners searching for the literal string "powershell.exe".
+Office documents have been weaponised over the years utilising macros. PoshC2 creates a custom macro and embeds this into a Word Document, Excel Workbook and Powerpoint File. The VBScript called "Powershell.exe" but slightly obfuscates the code to try and evade Anti-Virus scanners searching for the literal string "Powershell.exe".
 
-The macro is set to run on opening each document using "AutoRuns", so when the document is opened, depending on the Macro settings on the target machine, the system will either automatically execute powershell or the user will have to accept the macro warning. 
+The macro is set to run on opening each document using "AutoRuns", so when the document is opened, depending on the Macro settings on the target machine, the system will either automatically execute Powershell or the user will have to accept the macro warning. 
 
 The Macro code is shown below::
 

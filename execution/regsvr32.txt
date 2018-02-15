@@ -5,7 +5,7 @@ Mitre ATT&CK - `Regsvr32 <https://attack.mitre.org/wiki/Technique/T1117>`_
 
 Mitre ATT&CK - `Powershell <https://attack.mitre.org/wiki/Technique/T1086>`_
 
-Regsvr32 is a command line utility that is used to register/unregister .dll files into the registry. 
+Regsvr32 is a command line utility that is used to register/unregister .dll files in the registry. 
 
 SubTee (Casey Smith) discovered that it was possible to bypass AppLocker script rules by calling the regsrv32 to execute a command or arbitrary code through the use of .sct files. This form of execution has some benefits as its a trusted binary, proxy aware and supports HTTPS. 
 

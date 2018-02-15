@@ -26,7 +26,7 @@ Finally, you can select ALL implants by typing ``ALL``::
 
 Auto-Runs
 ###############
-We have now implemented the concept of Auto-Runs. This allows the user of PoshC2 to automate various tasks when an implant first comes in. A few use cases of this could be:
+We have now implemented the concept of Auto-Runs. This allows the user of PoshC2 to automate various tasks when an implant first comes in. Auto-runs impact all new implants and can be added and deleted at any time. A few use cases of this could be:
 
 * auto migrate from PowerShell
 * capturing a screenshot for situational awareness
@@ -52,7 +52,7 @@ To add a custom autorun use the following command:
 
 List-autorun
 ***************
-To list the current autorun use the following command:
+To list the current autorun's configured for all implants use the following command:
 
 .. code-block:: python
 
@@ -60,7 +60,7 @@ To list the current autorun use the following command:
 
 Del-autorun
 ***************
-To delete a custom autorun use the following command:
+To delete a custom autorun, you can specify the taskID of the auto-run to be removed. This is limited to one at a time. use the following command:
 
 .. code-block:: python
 
@@ -68,7 +68,7 @@ To delete a custom autorun use the following command:
 
 Nuke-autorun
 ***************
-To nuke all custom autoruns use the following command:
+Nuke all autoruns, removes all autoruns from the database. To nuke all custom autoruns use the following command:
 
 .. code-block:: python
 
@@ -109,7 +109,7 @@ This lists all previous commands entered into the Implant-Handler.
 
 Output-To-HTML
 *****************
-Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2's timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly otherwise all log entries time sync will be out when performing log analysis or the debrief. 
+Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2's timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your adjust the time-zone accordingly to maintain correctly formated log entries.
 
 By default, PoshC2 records every command and all output from each implant that is used and logs this information to the internal SQLite database, complete with a timestamp from the system you're currently running the server from. 
 
@@ -203,7 +203,7 @@ By default, this will create a new Bat file, standalone executable, service exec
 
 CreateNewPayload
 ************************
-This ``CreateNewPayload`` payload generates a number of new payloads that are setup to beacon to a different location. This is for when you are trying to remove attribution on various assets and you want some beaconing to different locations but to end up at the same PoshC2 instance. You would need to configure your C2 proxy servers to all come back to the same host. 
+This ``CreateNewPayload`` payload generates a number of new payloads that are setup to beacon to a different URL. This is used when you are trying to remove attribution on various assets and you want some beaconing to different URL's while still ending up at the same PoshC2 instance. You would need to configure your C2 proxy servers to come back to the same host. 
 
 By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed. 
 

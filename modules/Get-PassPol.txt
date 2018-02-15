@@ -4,14 +4,14 @@ Get-PassPol
 *********
 SYNOPSIS
 *********
-Retrives the default active directory password policy.
+Retrieves the default active directory password policy.
 
 * Dave Hardy - @DaveHardy20
 
 ************
 DESCRIPTION
 ************
-Retrives the default active directory password policy.
+Retrieves the default active directory password policy.
 
 *********
 EXAMPLES

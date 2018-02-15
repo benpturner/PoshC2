@@ -212,15 +212,15 @@
 <div class="section" id="description">
 <h2>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>Powershell ArpScanner using C# AssemblyLoad. This uses [DllImport(“iphlpapi.dll”, ExactSpelling=true)] to Export ‘SendARP’</p>
-<p>By default it will loop through all interfaces and perform an arpscan of the local network based on the IP Address and Subnet mask provided by the network adaptor.</p>
+<p>By default it will loop through all interfaces and perform an arpscan of the local network based on the IP Address and Subnet mask provided by the network adapter.</p>
 <p>The C# Code has been included but for OpSec purposes it uses AssemblyLoad and not AddType.</p>
 </div>
 <div class="section" id="examples">
 <h2>EXAMPLES<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Invoke-Arpscan</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Invoke-Arpscan</span>
 </pre></div>
 </div>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="nb">Invoke-Arpscan</span> <span class="n">-IPCidr</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">/</span><span class="n">24</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Invoke-Arpscan</span> <span class="n">-IPCidr</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">1</span><span class="p">/</span><span class="n">24</span>
 </pre></div>
 </div>
 </div>

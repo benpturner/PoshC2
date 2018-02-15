@@ -185,7 +185,7 @@
 <p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1055">Process Injection</a></p>
 <p>PoshC2 converts the reflective DLL into Shellcode via &#64;monoxgas’s sRDI PowerShell module. This module converts Reflective DLLs into position independent shellcode.</p>
 <p><a class="reference external" href="https://github.com/monoxgas/sRDI">https://github.com/monoxgas/sRDI</a></p>
-<p>The Reflective DLL and new Shellcode has enabled PoshC2 to be more flexible in its execution and deployment. Many other tools will allow for a reflective DLL or shellcode to be loaded. Take for example, the MS17-010 eternal blue exploit written in Powershell. This exploit takes shellcode as a parameter to execute if the host is successfully exploited; having Shellcode as a payload format allows this to be possible.</p>
+<p>The Reflective DLL and new Shellcode has enabled PoshC2 to be more flexible in its execution and deployment. Many other tools will allow for a reflective DLL or Shellcode to be loaded. Take for example, the MS17-010 eternal blue exploit written in Powershell. This exploit takes Shellcode as a parameter to execute if the host is successfully exploited; having Shellcode as a payload format allows this to be possible.</p>
 <p>Also for migration, we now use either the reflective DLL or the Shellcode to squirt the implant into another process. When first starting PoshC2 it will create both the reflective DLL’s as shown below.</p>
 <p><strong>Loads PoshC2 using CLR v2.0.50727:</strong></p>
 <ul class="simple">
@@ -197,7 +197,7 @@
 <li>Posh_x64.dll</li>
 <li>Posh_x86.dll</li>
 </ul>
-<p>This then uses the <code class="docutils literal"><span class="pre">ConvertTo-Shellcode</span></code> function to generate shellcode based off these files:</p>
+<p>This then uses the <code class="docutils literal notranslate"><span class="pre">ConvertTo-Shellcode</span></code> function to generate shellcode based off these files:</p>
 <p><strong>Loads PoshC2 using CLR v2.0.50727:</strong></p>
 <ul class="simple">
 <li>Posh_v2-shellcode_x64.bin</li>
@@ -208,7 +208,7 @@
 <li>Posh-shellcode_x64.bin</li>
 <li>Posh-shellcode_x86.bin</li>
 </ul>
-<p>To test these out, they can be called via the new <code class="docutils literal"><span class="pre">Inject-Shellcode</span></code> script or by using <code class="docutils literal"><span class="pre">migrate</span></code> in the implant window:</p>
+<p>To test these out, they can be called via the new <code class="docutils literal notranslate"><span class="pre">Inject-Shellcode</span></code> script or by using <code class="docutils literal notranslate"><span class="pre">migrate</span></code> in the implant window:</p>
 <p>Inject-Shellcode -Shellcode (Get-Content Posh-Shellcode_x64.bin -Encoding Byte)
 Inject-Shellcode -Shellcode (Get-Content Posh-Shellcode_x86.bin -Encoding Byte)</p>
 </div>

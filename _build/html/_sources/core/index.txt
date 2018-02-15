@@ -55,7 +55,7 @@ Alternatively, if you want to inject separate shellcode, or different architectu
 
 Inject-Shellcode
 ####################
-This is also a key module but can be run from the core implant and can be supplied with a file containing shellcode. This is the underlining module that is called from the migrate command above, but instead if you run the ``-file`` parameter it will popup an explorer window for you to provide custom shellcode to the implant. 
+This is also a key module but can be run from the core implant and can be supplied with a file containing shellcode. This is the underlining module that is called from the migrate command above, but instead if you run the ``-file`` parameter it will pop-up an explorer window for you to provide custom shellcode to the implant. 
 
 .. code-block:: python
 
@@ -343,7 +343,7 @@ This function disables RDP via the registry and removes or disables the firewall
 
 TimeStomp 
 ###########
-Timestomping has been around for many years and is an effective way of evading detection when an investigation has been started against the target. If an analyst is looking into newly created files or checking files in startup locations that have been written to for many years, this is a great deterrent. 
+Time stomping has been around for many years and is an effective way of evading detection when an investigation has been started against the target. If an analyst is looking into newly created files or checking files in startup locations that have been written to for many years, this is a great deterrent. 
 
 .. code-block:: python
 
@@ -399,7 +399,7 @@ Using the COM object "HNetCfg.FwPolicy2" this retrieves the rules and dumps the 
 
 Get-AllServices
 #########################
-Using native Powershell this iteritively searches through "HKLM:\System\CurrentControlSet\services" to pull out the ImagePath and Description fields for all Windows services. 
+Using native Powershell this iteratively searches through "HKLM:\System\CurrentControlSet\services" to pull out the ImagePath and Description fields for all Windows services. 
 
 .. code-block:: python
 
@@ -439,7 +439,7 @@ Invoke-Runas
 #################
 The `Invoke-Runas` function was modified from the original work by `FuzzySecurity <https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1>`_ to work with PoshC2 and to create a primary token whether you run this from a user level perspective or SYSTEM. 
 
-This module has also been modified to not touch disk when executing. The options are shown below but payload types are disccused in more detail under lateral movement. This feature will allow you to impersonate another user and obtain a secondary implant as that user. 
+This module has also been modified to not touch disk when executing. The options are shown below but payload types are discussed in more detail under lateral movement. This feature will allow you to impersonate another user and obtain a secondary implant as that user. 
 
 If running as Standard user - Args MAX Length is 1024 characters, leverages the following API call:
 
