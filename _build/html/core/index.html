@@ -577,7 +577,15 @@
 <div class="section" id="invoke-runas">
 <h2>Invoke-Runas<a class="headerlink" href="#invoke-runas" title="Permalink to this headline">¶</a></h2>
 <p>The <cite>Invoke-Runas</cite> function was modified from the original work by <a class="reference external" href="https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1">FuzzySecurity</a> to work with PoshC2 and to create a primary token whether you run this from a user level perspective or SYSTEM.</p>
-<p>This module has also been modified to not touch disk when executing. The options are shown below but payload types are disccused in more detail under lateral movement.</p>
+<p>This module has also been modified to not touch disk when executing. The options are shown below but payload types are disccused in more detail under lateral movement. This feature will allow you to impersonate another user and obtain a secondary implant as that user.</p>
+<p>If running as Standard user - Args MAX Length is 1024 characters, leverages the following API call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">Advapi32</span><span class="p">::</span><span class="n">CreateProcessWithLogonW</span>
+</pre></div>
+</div>
+<p>If running as SYSTEM user - Args MAX Length is 32k characters, leverages the following API call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Advapi32</span><span class="p">::</span><span class="n">LogonUser</span><span class="p">,</span> <span class="n">Advapi32</span><span class="p">::</span><span class="n">DuplicateTokenEx</span><span class="p">,</span> <span class="n">CreateProcessAsUser</span>
+</pre></div>
+</div>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">Invoke</span><span class="o">-</span><span class="n">RunasPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
 <span class="n">Invoke</span><span class="o">-</span><span class="n">RunasProxyPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>
 <span class="n">Invoke</span><span class="o">-</span><span class="n">RunasDaisyPayload</span> <span class="o">-</span><span class="n">User</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">Password</span> <span class="s1">&#39;&lt;pass&gt;&#39;</span> <span class="o">-</span><span class="n">Domain</span> <span class="o">&lt;</span><span class="n">dom</span><span class="o">&gt;</span>

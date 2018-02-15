@@ -439,7 +439,19 @@ Invoke-Runas
 #################
 The `Invoke-Runas` function was modified from the original work by `FuzzySecurity <https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1>`_ to work with PoshC2 and to create a primary token whether you run this from a user level perspective or SYSTEM. 
 
-This module has also been modified to not touch disk when executing. The options are shown below but payload types are disccused in more detail under lateral movement. 
+This module has also been modified to not touch disk when executing. The options are shown below but payload types are disccused in more detail under lateral movement. This feature will allow you to impersonate another user and obtain a secondary implant as that user. 
+
+If running as Standard user - Args MAX Length is 1024 characters, leverages the following API call:
+
+.. code-block:: python
+
+	using Advapi32::CreateProcessWithLogonW
+
+If running as SYSTEM user - Args MAX Length is 32k characters, leverages the following API call:
+
+.. code-block:: python
+
+	Advapi32::LogonUser, Advapi32::DuplicateTokenEx, CreateProcessAsUser 
 
 .. code-block:: python
 
