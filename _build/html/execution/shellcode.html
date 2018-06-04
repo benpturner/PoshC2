@@ -197,7 +197,7 @@
 <li>Posh_x64.dll</li>
 <li>Posh_x86.dll</li>
 </ul>
-<p>This then uses the <code class="docutils literal notranslate"><span class="pre">ConvertTo-Shellcode</span></code> function to generate shellcode based off these files:</p>
+<p>This then uses the <code class="docutils literal"><span class="pre">ConvertTo-Shellcode</span></code> function to generate shellcode based off these files:</p>
 <p><strong>Loads PoshC2 using CLR v2.0.50727:</strong></p>
 <ul class="simple">
 <li>Posh_v2-shellcode_x64.bin</li>
@@ -208,7 +208,7 @@
 <li>Posh-shellcode_x64.bin</li>
 <li>Posh-shellcode_x86.bin</li>
 </ul>
-<p>To test these out, they can be called via the new <code class="docutils literal notranslate"><span class="pre">Inject-Shellcode</span></code> script or by using <code class="docutils literal notranslate"><span class="pre">migrate</span></code> in the implant window:</p>
+<p>To test these out, they can be called via the new <code class="docutils literal"><span class="pre">Inject-Shellcode</span></code> script or by using <code class="docutils literal"><span class="pre">migrate</span></code> in the implant window:</p>
 <p>Inject-Shellcode -Shellcode (Get-Content Posh-Shellcode_x64.bin -Encoding Byte)
 Inject-Shellcode -Shellcode (Get-Content Posh-Shellcode_x86.bin -Encoding Byte)</p>
 </div>

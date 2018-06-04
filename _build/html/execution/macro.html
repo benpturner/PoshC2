@@ -186,7 +186,7 @@
 <p>Office documents have been weaponised over the years utilising macros. PoshC2 creates a custom macro and embeds this into a Word Document, Excel Workbook and Powerpoint File. The VBScript called “Powershell.exe” but slightly obfuscates the code to try and evade Anti-Virus scanners searching for the literal string “Powershell.exe”.</p>
 <p>The macro is set to run on opening each document using “AutoRuns”, so when the document is opened, depending on the Macro settings on the target machine, the system will either automatically execute Powershell or the user will have to accept the macro warning.</p>
 <p>The Macro code is shown below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sub</span> <span class="n">Auto_Open</span><span class="p">()</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Sub</span> <span class="n">Auto_Open</span><span class="p">()</span>
 <span class="n">UpdateMacro</span>
 <span class="n">End</span> <span class="n">Sub</span>
 

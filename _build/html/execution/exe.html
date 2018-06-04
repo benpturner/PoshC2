@@ -187,19 +187,19 @@
 <p>Mitre ATT&amp;CK - <a class="reference external" href="https://attack.mitre.org/wiki/Technique/T1121">RegAsm</a></p>
 <p>The following C# code creates the stand alone executable used in PoshC2. The code essentially creates a new Powershell Runspace using the System.Management.Automation.dll (v2.0.50727) that is supplied with the project. The generated executables are not signed.</p>
 <p>The executable has been generated to be called in many ways, firstly, directly:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">.</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Or called using InstallUtil:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">Microsoft</span><span class="o">.</span><span class="n">NET</span>\<span class="n">Framework</span>\<span class="n">v4</span><span class="o">.</span><span class="mf">0.30319</span>\<span class="n">InstallUtil</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">logfile</span><span class="o">=</span> <span class="o">/</span><span class="n">LogToConsole</span><span class="o">=</span><span class="n">false</span> <span class="o">/</span><span class="n">U</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">Microsoft</span><span class="o">.</span><span class="n">NET</span>\<span class="n">Framework</span>\<span class="n">v4</span><span class="o">.</span><span class="mf">0.30319</span>\<span class="n">InstallUtil</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">logfile</span><span class="o">=</span> <span class="o">/</span><span class="n">LogToConsole</span><span class="o">=</span><span class="n">false</span> <span class="o">/</span><span class="n">U</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>Or called using RegAsm:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">Microsoft</span><span class="o">.</span><span class="n">NET</span>\<span class="n">Framework</span>\<span class="n">v4</span><span class="o">.</span><span class="mf">0.30319</span>\<span class="n">regasm</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">U</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">Microsoft</span><span class="o">.</span><span class="n">NET</span>\<span class="n">Framework</span>\<span class="n">v4</span><span class="o">.</span><span class="mf">0.30319</span>\<span class="n">regasm</span><span class="o">.</span><span class="n">exe</span> <span class="o">/</span><span class="n">U</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Temp</span>\<span class="n">Posh</span><span class="o">.</span><span class="n">exe</span>
 </pre></div>
 </div>
 <p>C# Code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="p">;</span>
 <span class="n">using</span> <span class="n">System</span><span class="o">.</span><span class="n">Reflection</span><span class="p">;</span>

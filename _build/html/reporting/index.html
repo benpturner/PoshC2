@@ -168,7 +168,7 @@
 <h1>Reporting<a class="headerlink" href="#reporting" title="Permalink to this headline">¶</a></h1>
 <p>Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2’s timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly otherwise all log entries time sync will be out when performing log analysis or the debrief.</p>
 <p>By default, PoshC2 records every command and all output from each implant that is used and logs this information to the internal SQLite database, complete with a time stamp from the system you’re currently running the server from.</p>
-<p>To output the reports from PoshC2 run the <code class="docutils literal notranslate"><span class="pre">Output-to-html</span></code> command and this should deliver four HTML reports:</p>
+<p>To output the reports from PoshC2 run the <code class="docutils literal"><span class="pre">Output-to-html</span></code> command and this should deliver four HTML reports:</p>
 <ul class="simple">
 <li>C2Server.html</li>
 <li>Implants.html</li>
@@ -190,7 +190,7 @@
 </div>
 <div class="section" id="creds">
 <h2>Creds<a class="headerlink" href="#creds" title="Permalink to this headline">¶</a></h2>
-<p>The “Creds” addition to the reporting element is from the creds credential store. This will by default be produced when enforcing the <code class="docutils literal notranslate"><span class="pre">Output-to-html</span></code> function in PoshC2. One feature that will be implemented shortly is ensuring that passwords are obscured in the initial output using CSS, so you can provide this to a client after the engagement and they would have a full, obscured list of credentials they need to reset during their post engagement activities.</p>
+<p>The “Creds” addition to the reporting element is from the creds credential store. This will by default be produced when enforcing the <code class="docutils literal"><span class="pre">Output-to-html</span></code> function in PoshC2. One feature that will be implemented shortly is ensuring that passwords are obscured in the initial output using CSS, so you can provide this to a client after the engagement and they would have a full, obscured list of credentials they need to reset during their post engagement activities.</p>
 <a class="reference internal image-reference" href="../_images/creds.png"><img alt="../_images/creds.png" src="../_images/creds.png" style="width: 280pt;" /></a>
 </div>
 </div>
