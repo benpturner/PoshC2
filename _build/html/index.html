@@ -161,12 +161,20 @@
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>PoshC2 is a proxy aware C2 framework written completely in PowerShell to aid penetration testers with red teaming, post-exploitation and lateral movement. The tools and modules were developed off the back of our successful PowerShell sessions and payload types for the Metasploit Framework. PowerShell was chosen as the base language as it provides all of the functionality and rich features required without needing to introduce multiple languages to the framework.</p>
 <p>Requires only Powershell v2 on the client.</p>
+<p>Windows:</p>
 <p><a class="reference external" href="https://github.com/nettitude/PoshC2/">https://github.com/nettitude/PoshC2/</a></p>
+<p>Linux:</p>
+<p><a class="reference external" href="https://github.com/nettitude/PyshC2/">https://github.com/nettitude/PyshC2/</a></p>
 </div>
 <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <p>PoshC2 can be installed on almost any operating system post Windows XP, for example Windows 7, Windows 8, Windows 10, Server 2008, 2012, 2016.</p>
-<p>Personally, I’d recommend Windows 10 which come with Powershell v5 by default. If you are using Windows Defender or any other host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its sub directories where you will use PoshC2. To install PoshC2, we have generated a simple one liner that can be called from either Powershell or Command prompt.</p>
+<p>PyshC2 can be installed on most linux based systems that are capable of running Python. We have testing on a variation of Kali and Ubuntu based systems.</p>
+<p>Personally, we would recommend Either Ubuntu or Windows 10 which come with Powershell v5 by default. If you are using Windows Defender or any other host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its sub directories where you will use PoshC2. To install PoshC2, we have generated a simple one liner that can be called from either Powershell or Command prompt.</p>
+<p>To install on Ubuntu from a <strong>Terminal</strong> run the following:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">nettitude</span><span class="o">/</span><span class="n">PyshC2</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">Install</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">bash</span>
+</pre></div>
+</div>
 <p>To install from <strong>Command prompt</strong> run the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">powershell</span> <span class="o">-</span><span class="n">exec</span> <span class="n">bypass</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;IEX (New-Object System.Net.WebClient).DownloadString(&#39;https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1&#39;)&quot;</span>
 </pre></div>
