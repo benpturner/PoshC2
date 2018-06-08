@@ -22,15 +22,15 @@ PyshC2 can be installed on most linux based systems that are capable of running 
 
 Personally, we would recommend Either Ubuntu or Windows 10 which come with Powershell v5 by default. If you are using Windows Defender or any other host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its sub directories where you will use PoshC2. To install PoshC2, we have generated a simple one liner that can be called from either Powershell or Command prompt. 
 
-To install on Ubuntu from a **Terminal** run the following::
+To install PyshC2 on Ubuntu from a **Terminal** run the following::
 
   curl -sSL https://raw.githubusercontent.com/nettitude/PyshC2/master/Install.sh | bash
 
-To install from **Command prompt** run the following::
+To install PoshC2 from **Command prompt** run the following::
 
 	powershell -exec bypass -c "IEX (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1')"
 
-To install from **Powershell** run the following command::
+To install PoshC2 from **Powershell** run the following command::
 
 	IEX (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1')		
 

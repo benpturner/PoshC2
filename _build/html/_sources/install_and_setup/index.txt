@@ -7,6 +7,7 @@
 
    getting_started
    firsttime
+   firsttime2
    updating
    help
    help2

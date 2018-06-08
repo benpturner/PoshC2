@@ -1,6 +1,6 @@
-###################
-  First Time Use
-###################
+###########################
+  First Time Use PoshC2
+###########################
 
 PoshC2 ships as a self-contained folder with the relevant components and subsequent shortcuts to start the server and implant-handler. The C2 server is the Powershell web server component, whereas the implant-handler is where you can interact with your implants.  
 
