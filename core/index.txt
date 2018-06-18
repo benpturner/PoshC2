@@ -253,11 +253,17 @@ Simply enter the path of the folder to download, this will iteratively recurse t
 Upload-File
 #############
 
-Opposite of the above command
+In PoshC2, use the one liner with parameters:
 
 .. code-block:: python
 
  	Upload-File -Source 'C:\Temp\Run.exe' -Destination 'C:\Temp\Test.exe'
+
+In PyshC2, use the questions asked by the Implant Handler:
+
+.. code-block:: python
+
+ 	Upload-File
 
 This is not considered the be Opsec safe for obvious reasons.
 
