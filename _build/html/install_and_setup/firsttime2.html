@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>First Time Use PyshC2 &mdash; PoshC2 Framework  documentation</title>
+  <title>First Time Use PoshC2_Python &mdash; PoshC2 Framework  documentation</title>
   
 
   
@@ -91,7 +91,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation &amp; Setup</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="firsttime.html">First Time Use PoshC2</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">First Time Use PyshC2</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">First Time Use PoshC2_Python</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation-folder">Installation Folder</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#config-file">Config File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#c2-server">C2 Server</a></li>
@@ -163,7 +163,7 @@
         
           <li><a href="index.html">Installation &amp; Setup</a> &raquo;</li>
         
-      <li>First Time Use PyshC2</li>
+      <li>First Time Use PoshC2_Python</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -182,16 +182,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="first-time-use-pyshc2">
-<h1>First Time Use PyshC2<a class="headerlink" href="#first-time-use-pyshc2" title="Permalink to this headline">¶</a></h1>
-<p>PyshC2 ships as a self-contained folder with the relevant components and subsequent shortcuts to start the server and implant-handler. The C2 server is the Powershell web server component, whereas the implant-handler is where you can interact with your implants.</p>
+  <div class="section" id="first-time-use-poshc2-python">
+<h1>First Time Use PoshC2_Python<a class="headerlink" href="#first-time-use-poshc2-python" title="Permalink to this headline">¶</a></h1>
+<p>PoshC2’s Python server ships as a self-contained folder with the relevant components and subsequent shortcuts to start the server and implant-handler. The C2 server is the Powershell web server component, whereas the implant-handler is where you can interact with your implants.</p>
 <p>Run the installer from a <strong>Terminal</strong> run the following:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">nettitude</span><span class="o">/</span><span class="n">PyshC2</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">Install</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">bash</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">sSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">nettitude</span><span class="o">/</span><span class="n">PoshC2_Python</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">Install</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">bash</span>
 </pre></div>
 </div>
 <div class="section" id="installation-folder">
 <h2>Installation Folder<a class="headerlink" href="#installation-folder" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="p">/</span><span class="n">opt</span><span class="p">/</span><span class="n">PyshC2</span><span class="p">/</span>
+<div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="p">/</span><span class="n">opt</span><span class="p">/</span><span class="n">PoshC2_Python</span><span class="p">/</span>
 </pre></div>
 </div>
 </div>
@@ -208,31 +208,31 @@
 <h2>C2 Server<a class="headerlink" href="#c2-server" title="Permalink to this headline">¶</a></h2>
 <p>To start the C2 Server run the command below, this will require root level permissions as it opens a port on 443 when the server starts. The C2 Server is seen to the left of this terminator window below.</p>
 <div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">screen</span> <span class="n">-S</span> <span class="n">C2Server</span>
-<span class="n">python</span> <span class="p">/</span><span class="n">opt</span><span class="p">/</span><span class="n">PyshC2</span><span class="p">/</span><span class="n">C2Server</span><span class="p">.</span><span class="n">py</span>
+<span class="n">python</span> <span class="p">/</span><span class="n">opt</span><span class="p">/</span><span class="n">PoshC2_Python</span><span class="p">/</span><span class="n">C2Server</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../_images/pyshserver.png"><img alt="../_images/pyshserver.png" src="../_images/pyshserver.png" style="width: 600pt;" /></a>
-<p>By default, PyshC2 will configure the implant to use HTTPS but it can be used over plain text HTTP if required. All communications are encrypted within the HTTP content therefore comms are still secure even over HTTP. There is an added benefit to HTTPS, because unless the organisation is perform SSL inspection the communications cannot be checked.</p>
+<p>By default, PoshC2_Python will configure the implant to use HTTPS but it can be used over plain text HTTP if required. All communications are encrypted within the HTTP content therefore comms are still secure even over HTTP. There is an added benefit to HTTPS, because unless the organisation is perform SSL inspection the communications cannot be checked.</p>
 <p>Optional configurations:</p>
 <p><strong>Domain Fronting</strong></p>
-<p>PyshC2 can now use domain fronting for comms. There is a caveat to this; the host must have .NET v4.0.30319 installed and usable to the PowerShell instance. However, if the host does not have this version of the CLR installed it will default back to the underlying CDN hostname, for example cloudfront.net or azureedge.net. The way we perform domain fronting in PyshC2 is by adding the Host header to the web requests.</p>
+<p>PoshC2_Python can now use domain fronting for comms. There is a caveat to this; the host must have .NET v4.0.30319 installed and usable to the PowerShell instance. However, if the host does not have this version of the CLR installed it will default back to the underlying CDN hostname, for example cloudfront.net or azureedge.net. The way we perform domain fronting in PoshC2_Python is by adding the Host header to the web requests.</p>
 <p>This is a much stealthier option for comms as you can utilise hostnames with better reputation without needing to buy new domains and obtain reputation yourself. If you want to use domain fronting, then select Yes here and the next question appears.</p>
 <p><strong>Customize the beacon URLs</strong></p>
-<p>If you want to customize the beacon URLs in PyshC2 you can do so here, this will auto generate your Apache Rewrite configuration as well. To do this type “Yes” and enter the URLs. These can be pasted in too, to finish the URL entry just enter a blank line and this will tell PyshC2 you have finished entering URLs. An example of URLs can be shown below:</p>
+<p>If you want to customize the beacon URLs in PoshC2_Python you can do so here, this will auto generate your Apache Rewrite configuration as well. To do this type “Yes” and enter the URLs. These can be pasted in too, to finish the URL entry just enter a blank line and this will tell PoshC2_Python you have finished entering URLs. An example of URLs can be shown below:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">v1</span><span class="o">/</span><span class="n">site</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">images</span><span class="o">.</span><span class="n">html</span>
 <span class="n">printer</span><span class="o">/</span><span class="n">navigate</span><span class="o">/</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">2018</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span>
 <span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">pl</span>
 </pre></div>
 </div>
 <p><strong>Customize the beacon URLs from the Socks Proxy (SharpSocks)</strong></p>
-<p>If you want to customize the SharpSocks URLs in PyshC2 you can do so here, this will auto generate your Apache Rewrite configuration as well. To do this type “Yes” and enter the URLs. These can be pasted in too, to finish the URL entry just enter a blank line and this will tell PyshC2 you have finished entering URLs. An example of URLs can be shown below:</p>
+<p>If you want to customize the SharpSocks URLs in PoshC2_Python you can do so here, this will auto generate your Apache Rewrite configuration as well. To do this type “Yes” and enter the URLs. These can be pasted in too, to finish the URL entry just enter a blank line and this will tell PoshC2_Python you have finished entering URLs. An example of URLs can be shown below:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">v2</span><span class="o">/</span><span class="n">site</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">images</span><span class="o">.</span><span class="n">html</span>
 <span class="n">sharp</span><span class="o">/</span><span class="n">navigate</span><span class="o">/</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="mi">2018</span><span class="o">/</span><span class="mi">8</span><span class="o">/</span>
 <span class="n">p1</span><span class="o">/</span><span class="n">cgi</span><span class="o">-</span><span class="nb">bin</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">pl</span>
 </pre></div>
 </div>
 <p><strong>Default UserAgent</strong></p>
-<p>PyshC2 will use the following UserAgent: <code class="docutils literal"><span class="pre">Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">6.3;</span> <span class="pre">WOW64;</span> <span class="pre">Trident/7.0;</span> <span class="pre">Touch;</span> <span class="pre">rv:11.0)</span> <span class="pre">like</span> <span class="pre">Gecko</span></code>.</p>
+<p>PoshC2_Python will use the following UserAgent: <code class="docutils literal"><span class="pre">Mozilla/5.0</span> <span class="pre">(Windows</span> <span class="pre">NT</span> <span class="pre">6.3;</span> <span class="pre">WOW64;</span> <span class="pre">Trident/7.0;</span> <span class="pre">Touch;</span> <span class="pre">rv:11.0)</span> <span class="pre">like</span> <span class="pre">Gecko</span></code>.</p>
 <p><strong>Referer header</strong></p>
 <p>By default the referrer header is blank, however, if you prefer to have a referrer header in the comms type.</p>
 <p><strong>Default beacon time of the Posh C2 Server</strong></p>
@@ -242,7 +242,7 @@
 <p><strong>Enable sound</strong></p>
 <p>This option will enable sound, when a new implant arrives it will tell you.</p>
 <p><strong>Do you want to use Clockwork SMS for new payloads</strong></p>
-<p><a class="reference external" href="https://www.clockworksms.com">ClockworkSMS</a> is a SMS service provider that can be used for sending texts. PyshC2 integrates this service to send a text message when a new implant arrives. This is an optional configuration, however, if you want to integrate this, then all you need to do is sign up and add an <code class="docutils literal"><span class="pre">API</span> <span class="pre">key</span></code> and <code class="docutils literal"><span class="pre">Phone</span> <span class="pre">number</span></code> to the initial setup.</p>
+<p><a class="reference external" href="https://www.clockworksms.com">ClockworkSMS</a> is a SMS service provider that can be used for sending texts. PoshC2_Python integrates this service to send a text message when a new implant arrives. This is an optional configuration, however, if you want to integrate this, then all you need to do is sign up and add an <code class="docutils literal"><span class="pre">API</span> <span class="pre">key</span></code> and <code class="docutils literal"><span class="pre">Phone</span> <span class="pre">number</span></code> to the initial setup.</p>
 <p>This will then send you a text message when an implant arrives.</p>
 </div>
 <div class="section" id="implant-handler">
@@ -254,19 +254,19 @@
 <h2>C2Viewer<a class="headerlink" href="#c2viewer" title="Permalink to this headline">¶</a></h2>
 <p>The C2Viewer window is for when you are using a central server to host the C2 Server and would like more than one user to connect to the database and interact with clients. Usually the best way to achieve this is to map the project folder to a share and then pass this to the Team Viewer window when first opened.</p>
 <div class="highlight-powershell"><div class="highlight"><pre><span></span><span class="n">screen</span> <span class="n">-S</span> <span class="n">C2Server</span>
-<span class="n">python</span> <span class="p">/</span><span class="n">opt</span><span class="p">/</span><span class="n">PyshC2</span><span class="p">/</span><span class="n">C2Viewer</span><span class="p">.</span><span class="n">py</span>
+<span class="n">python</span> <span class="p">/</span><span class="n">opt</span><span class="p">/</span><span class="n">PoshC2_Python</span><span class="p">/</span><span class="n">C2Viewer</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="project-folder">
 <h2>Project Folder<a class="headerlink" href="#project-folder" title="Permalink to this headline">¶</a></h2>
-<p>Each project creates a unique folder to store all data and downloads specific to that engagement, including unique encryption keys. This means if you have shellcode pre-configured for one project, this will not connect to another project as the encryption keys will not match, so something to be aware of. This is an in-built safety measure to ensure someone else cannot just accept your connections from any PyshC2 dropper if they were able to replicate the backend for any reason.</p>
+<p>Each project creates a unique folder to store all data and downloads specific to that engagement, including unique encryption keys. This means if you have shellcode pre-configured for one project, this will not connect to another project as the encryption keys will not match, so something to be aware of. This is an in-built safety measure to ensure someone else cannot just accept your connections from any PoshC2_Python dropper if they were able to replicate the backend for any reason.</p>
 </div>
 <div class="section" id="clockwork-sms">
 <h2>Clockwork SMS<a class="headerlink" href="#clockwork-sms" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.clockworksms.com">ClockworkSMS</a> is a SMS service provider that can be used for sending texts. PyshC2 integrates this service to send a text message when a new implant arrives. This is an optional configuration, however, if you want to integrate this then all you need to do is sign up and add an <code class="docutils literal"><span class="pre">API</span> <span class="pre">key</span></code> and <code class="docutils literal"><span class="pre">Phone</span> <span class="pre">number</span></code> to the initial setup.</p>
+<p><a class="reference external" href="https://www.clockworksms.com">ClockworkSMS</a> is a SMS service provider that can be used for sending texts. PoshC2_Python integrates this service to send a text message when a new implant arrives. This is an optional configuration, however, if you want to integrate this then all you need to do is sign up and add an <code class="docutils literal"><span class="pre">API</span> <span class="pre">key</span></code> and <code class="docutils literal"><span class="pre">Phone</span> <span class="pre">number</span></code> to the initial setup.</p>
 <p>This will then send you a text message when an implant arrives.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">From</span><span class="p">:</span> <span class="n">PyshC2</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">From</span><span class="p">:</span> <span class="n">PoshC2_Python</span>
 <span class="n">Message</span><span class="p">:</span> <span class="n">NewImplant</span><span class="p">:</span> <span class="n">Domain</span> \ <span class="n">Username</span>
 </pre></div>
 </div>

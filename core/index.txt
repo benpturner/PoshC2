@@ -259,7 +259,7 @@ In PoshC2, use the one liner with parameters:
 
  	Upload-File -Source 'C:\Temp\Run.exe' -Destination 'C:\Temp\Test.exe'
 
-In PyshC2, use the questions asked by the Implant Handler:
+In PoshC2's Python version, use the questions asked by the Implant Handler:
 
 .. code-block:: python
 
