@@ -1,38 +1,64 @@
 ############
   Overview 
 ############
-PoshC2 is a proxy aware C2 framework written completely in PowerShell to aid penetration testers with red teaming, post-exploitation and lateral movement. The tools and modules were developed off the back of our successful PowerShell sessions and payload types for the Metasploit Framework. PowerShell was chosen as the base language as it provides all of the functionality and rich features required without needing to introduce multiple languages to the framework.
 
-Requires only Powershell v2 on the client.
+PoshC2 is a proxy aware C2 framework used to aid penetration testers with red teaming, post-exploitation and lateral movement.
 
-Windows:
+PoshC2 is primarily written in Python3 and follows a modular format to enable users to add their own modules and tools, allowing an extenable and flexible C2 framework. Out-of-the-box PoshC2 comes with payloads written in PowerShell v2 and v4, C++ and C# source code, executables and DLLs, raw shellcode in addition to a Python3 payload to enable basic C2 functionality on a wide range of other devices and operating systems, such as  *nix and OSX. 
 
-`https://github.com/nettitude/PoshC2/ <https://github.com/nettitude/PoshC2/>`_
+Other notable features of PoshC2 include:
 
-Linux:
+* Highly configurable payloads, including default beacon times, jitter, kill dates, user agents and more.
+* A large number of payloads generated out-of-the-box which are frequently updated and maintained to bypass common Anti-Virus products.
+* Auto-generated Apache Rewrite rules for use in a C2 proxy, protecting your C2 infrastructure and maintaining good operational security.
+* A modular format allowing users to create or edit C#, PowerShell or Python3 modules which can be run in-memory by the Implants.
+* Notifications on receiving a successful Implant, such as via text message or Pushover.
+* A comphrehensive and maintained contextual help and an intelligent prompt with contextual auto-completion, history and suggestions.
+* Fully encrypted communications, protecting the confidentiality and integrity of the C2 traffic even when communicating over HTTP.
+* Client/Server format allowing multiple team members to utilise a single C2 server.
+* Extensive logging. Every action and response is timestamped and stored in a database with all relevant information such as user, host, implant number etc. In addition to this the C2 server output is directly logged to a separate file.
 
+PoshC2 is fully open source and available on GitHub here:
 `https://github.com/nettitude/PoshC2_Python/ <https://github.com/nettitude/PoshC2_Python/>`_
 
 ##################
-  Getting Started 
+ Quick Start 
 ##################
-PoshC2 can be installed on almost any operating system post Windows XP, for example Windows 7, Windows 8, Windows 10, Server 2008, 2012, 2016. 
 
-The Python version can be installed on most linux based systems that are capable of running Python. We have testing on a variation of Kali and Ubuntu based systems. 
+PoshC2 can be installed on any system with Python3 installed, however it is only commonly tested on Debian based Linux distribution, such as Ubuntu and Kali Linux.
+These operating systems are also free and open source and for the most reliable experience it is recommended that PoshC2 in this way, from a VPS or Virtual Machine if required. It has, however, also been tested on Arch Linux and Windows 10.
 
-Personally, we would recommend Either Ubuntu or Windows 10 which come with Powershell v5 by default. If you are using Windows Defender or any other host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its sub directories where you will use PoshC2. To install PoshC2, we have generated a simple one liner that can be called from either Powershell or Command prompt. 
+It is recommended to add an exclusions folder for any host-based Anti-Virus for the PoshC2 install directory and project directory.
 
-To install PoshC2 on Ubuntu from a **Terminal** run the following::
+To install PoshC2 on a Debian based Linux distro run the following from a Terminal:
 
-  curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2_Python/master/Install.sh | bash
+```
+curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2_Python/master/Install.sh | sudo bash
+```
 
-To install PoshC2 from **Command prompt** run the following::
+Once the install script has finished, edit the PoshC2 configuration by issuing the below command:
 
-	powershell -exec bypass -c "IEX (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1')"
+```
+posh-config
+```
+This will open up the PoshC2 configuration file in your $EDITOR of choice, or vim if one is not set.
 
-To install PoshC2 from **Powershell** run the following command::
+The only requirement is to set the **HostnameIP** field to the URL that the target will be connecting to. Payloads will be generated using this URL.
 
-	IEX (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nettitude/PoshC2/master/C2-Installer.ps1')		
+Once this is done open two terminal windows and in one run:
+
+```
+posh-server
+```
+to launch the C2 server.
+
+In the second window run the Implant-Handler:
+
+```
+posh -u <username>
+```
+
+On launch the C2 server will generate various payloads and log their use and locations in the output. Once an Implant has been created, commands can then be issued from the Implant-Handler, and their response will be displayed in the C2 server output.
 
 ##################
   Keep In Touch 
@@ -40,7 +66,7 @@ To install PoshC2 from **Powershell** run the following command::
 
 Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_
 
-Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel		)
+Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel)
 
 Find us on Email - labs@nettitude.com
 
@@ -48,11 +74,11 @@ Find us on Email - labs@nettitude.com
 Key Contribtutors / Authors / Testers
 ########################################
 * Ben Turner - `@benpturner <https://twitter.com/benpturner>`_
+* Rob Bone - `@m0rv4i <https://twitter.com/m0rv4i>`_
 * Rob Maslen - `@rbmaslen <https://twitter.com/rbmaslen>`_
 * Doug McLeod - `@b4ggio_su <https://twitter.com/b4ggio_su>`_
 * Rich Hicks - `@scriptmonkey_ <https://twitter.com/scriptmonkey_>`_
 * Phil Lynch - `@plynch98 <https://twitter.com/plynch98>`_
-* Dave Hardy - `@davehardy20 <https://twitter.com/davehardy20>`_
 
 ######
 Index
