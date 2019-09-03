@@ -32,11 +32,13 @@ It is recommended to add an exclusions folder for any host-based Anti-Virus for 
 To install PoshC2 on a Debian based Linux distribution run the following from a Terminal:
 
 .. code-block:: bash
+
     curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2_Python/master/Install.sh | sudo bash
 
 Once the install script has finished, edit the PoshC2 configuration by issuing the below command:
 
 .. code-block:: bash
+
     posh-config
 
 This will open up the PoshC2 configuration file in your $EDITOR of choice, or vim if one is not set.
@@ -46,13 +48,15 @@ The only requirement is to set the **HostnameIP** field to the URL that the targ
 Once this is done open two terminal windows and in one run:
 
 .. code-block:: bash
+
     posh-server
-    
+
 to launch the C2 server.
 
 In the second window run the Implant-Handler:
 
 .. code-block:: bash
+
     posh -u <username>
 
 On launch the C2 server will generate various payloads and log their use and locations in the output. Once an Implant has been created, commands can then be issued from the Implant-Handler, and their response will be displayed in the C2 server output.
