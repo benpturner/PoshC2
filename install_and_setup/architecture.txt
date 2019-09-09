@@ -5,11 +5,12 @@ Architecture
 PoshC2 consists of a **C2 Server** process that listens for connections from implants and provides a log for task output, new implants, messages and so on, and one or more **Implant-Handler** processes that are used to issue commands to the C2 Server and Implants.
 The files responsible for running PoshC2 are stored in the **POSHDIR**, `/opt/PoshC2_Python` by default, and project specific files such as logs, generated payloads and a local sqlite database are stored in the **ROOTDIR**, `/opt/PoshC2_Project` by default.
 
-This local sqlite database, PowershellC2.SQLite, is used to store and log data and facilitate communications between the two processes. For example, every task that is issued to an implant from an Implant-Handler is stored in this database with a timestamp, the user who ran the command, the implant details and more.
+This local sqlite database, PowershellC2.SQLite, is used to store and log data and facilitates communication between the two processes. For example, every task that is issued to an implant from an Implant-Handler is stored in this database with a timestamp, the user who ran the command, the implant details and more.
 Tasks are then picked up from the database by the C2 Server process and issued to Implants when they check in, ensuring that no tasks go unlogged.
 
 .. image:: ./processes.png
     :width: 435
+    :align: center
 
 The Implant Handler writes tasks to the database which are picked up and updated by the C2 Server.
 
@@ -21,13 +22,13 @@ A typical example could look like this:
 
 .. image:: ./proxy.png
     :width: 777 
+    :align: center
 
 See the Apache page for more details. 
 
 Domain Fronting 
 ###################
-
-PoshC2 can also [Domain Fronting](https://en.wikipedia.org/wiki/Domain_fronting) for C2 communication.
+PoshC2 can also use `Domain Fronting <https://en.wikipedia.org/wiki/Domain_fronting>`_ for C2 communication.
 
 Domain Fronting provides multiple additional benefits, such as:
 
@@ -40,6 +41,7 @@ The way we perform domain fronting in PoshC2 is by adding the Host header to the
 
 .. image:: ./domainfronting.png
     :width: 1256 
+    :align: center
 
 To configure PoshC2 to use Domain Fronting, edit the configuration so that the **HostnameIP** parameter points at the site being initially connected to by the target, i.e. the Domain Frontable site.
 The **DomainFrontHeader** parameter should then have the value of the CDN endpoint that will go in the HTTP Host header. This value should be the domain name only.
