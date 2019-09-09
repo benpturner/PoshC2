@@ -77,9 +77,9 @@ Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to
 
 Find us on Email - labs@nettitude.com
 
-########################################
-Key Contributors / Authors / Testers
-########################################
+#################
+Key Contributors 
+################
 * Ben Turner - `@benpturner <https://twitter.com/benpturner>`_
 * Rob Bone - `@m0rv4i <https://twitter.com/m0rv4i>`_
 * Rob Maslen - `@rbmaslen <https://twitter.com/rbmaslen>`_
