@@ -100,7 +100,6 @@ Index
 
    install_and_setup/index
    core/index
-   persistence/index
    lateral_movement/index
    reporting/index
    license/index
