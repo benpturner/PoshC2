@@ -1,0 +1,52 @@
+#############
+Architecture
+#############
+
+PoshC2 consists of a **C2 Server** process that listens for connections from implants and provides a log for task output, new implants, messages and so on, and one or more **Implant-Handler** processes that are used to issue commands to the C2 Server and Implants.
+The files responsible for running PoshC2 are stored in the **POSHDIR**, `/opt/PoshC2_Python` by default, and project specific files such as logs, generated payloads and a local sqlite database are stored in the **ROOTDIR**, `/opt/PoshC2_Project` by default.
+
+This local sqlite database, PowershellC2.SQLite, is used to store and log data and facilitate communications between the two processes. For example, every task that is issued to an implant from an Implant-Handler is stored in this database with a timestamp, the user who ran the command, the implant details and more.
+Tasks are then picked up from the database by the C2 Server process and issued to Implants when they check in, ensuring that no tasks go unlogged.
+
+.. image:: ./processes.png
+    :width: 435
+
+The Implant Handler writes tasks to the database which are picked up and updated by the C2 Server.
+
+The C2 Server configuration is held in the **Config.py** file in the **POSHDIR** and can be edited by issuing the `posh-config` command. This command will open the configuration file using the editor defined in the `$EDITOR` environment variable, or vim if one is not set. A --nano option exists for those who fear they may never escape vim.
+
+It is recommended to use a C2 Proxy to maintain operational security by proxying all traffic to the C2 Server. A simple VPS running Apache can be stood up and **mod_rewrite** used to silently redirect traffic from the proxy to the C2 Server without the client knowing, allowing the red team to keep their C2 infrastructure hidden and allowing flexibility should the proxy IP be compromised. 
+
+A typical example could look like this:
+
+.. image:: ./proxy.png
+    :width: 777 
+
+See the Apache page for more details. 
+
+Domain Fronting 
+###################
+
+PoshC2 can also [Domain Fronting](https://en.wikipedia.org/wiki/Domain_fronting) for C2 communication.
+
+Domain Fronting provides multiple additional benefits, such as:
+
+* Outbound C2 traffic is in requests made to a legitimate website.
+* That website's domain reputation is what is checked by the target.
+* Domain Fronting cannot feasibly be detected unless SSL Inspection is in place.
+* Additional layers of security are added between the target and the C2 server.
+
+The way we perform domain fronting in PoshC2 is by adding the Host header to the web requests made by the C2 traffic.
+
+.. image:: ./domainfronting.png
+    :width: 1256 
+
+To configure PoshC2 to use Domain Fronting, edit the configuration so that the **HostnameIP** parameter points at the site being initially connected to by the target, i.e. the Domain Frontable site.
+The **DomainFrontHeader** parameter should then have the value of the CDN endpoint that will go in the HTTP Host header. This value should be the domain name only.
+
+.. code-block::  python
+
+    HostnameIP = "https://frontable.com
+    DomainFrontHeader = "endpoint.cdn.com"
+    
+Note that the host must have .NET v4.0.30319 installed and available to the Implant process. If this is not the case, the implant will fall back to a direct connection to the CDN endpoint.

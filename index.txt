@@ -91,10 +91,8 @@ Index
    :maxdepth: 1
 
    install_and_setup/index
-   execution/index
    core/index
    persistence/index
-   modules/index
    lateral_movement/index
    reporting/index
    license/index

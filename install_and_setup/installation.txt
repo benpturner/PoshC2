@@ -1,0 +1,23 @@
+###################
+ Installation
+###################
+
+PoshC2 is written in Python3 and developed and tested on Debian-based Linux distributions. It is recommended to run PoshC2 on one of these distributions, such as Debian, Ubuntu or Kali Linux, to achieve the most stable results.
+
+If you are using a host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its project directory.
+
+To install PoshC2 from a **Terminal** run the following::
+
+  curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2_Python/master/Install.sh | bash
+
+Alternatively, clone the PoshC2_Python repository at https://github.com/nettitude/PoshC2_Python.git and run the `Install.sh` script.
+
+**Create Firewall Rules**
+
+If you are not just running locally, ensure you add a new firewall rule for either HTTP or HTTPS depending on what protocol you are using. 
+
+***Optional - Install Java JDK***
+
+If you want to take full advantage of the Java Applet/Jar payloads for execution, then download and install Java JDK as per the directions from Oracle. Please note, this is only an optional extra and will not stop PoshC2 from generating all other payloads. 
+
+* `Java JDK Downloads <https://www.oracle.com/java/technologies/javase-jsp-downloads.html>`_
