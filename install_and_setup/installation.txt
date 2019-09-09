@@ -24,7 +24,7 @@ If you have installed PoshC2 to a location other than **/opt/PoshC2_Python**, yo
 
 If you are not just running locally, ensure you add a new firewall rule for either HTTP or HTTPS depending on what protocol and port you are using. 
 
-***Optional - Install Java JDK***
+**Optional - Install Java JDK**
 
 If you want to take full advantage of the Java Applet/Jar payloads for execution, then download and install Java JDK as per the directions from Oracle. Please note, this is only an optional extra and will not stop PoshC2 from generating all other payloads. 
 
