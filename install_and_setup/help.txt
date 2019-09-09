@@ -52,6 +52,7 @@ Module Help
 For help on the individual modules in PoshC2, you can check the module source or run Get-Help for PowerShell modules once they have been loaded:
 	
 .. code-block:: powershell
+
     LoadModule Invoke-Mimikatz.ps1
     Get-Help Invoke-Mimikatz
 
@@ -63,7 +64,7 @@ For C# and Python modules, if the module has help it can be loaded and run to di
     run-exe MyHelpfulModuleNamespace.MyHelpfulModuleClassName MyHelpfulModuleAssemblyName --help
 
 
-  Keep In Touch 
+Keep In Touch 
 *****************
 
 For all the latest news and features, or for the latest documentation and support check out the PoshC2 GitHub page or find us below:
