@@ -2,6 +2,10 @@
   Overview 
 ############
 
+.. image:: ./logo.png
+    :width: 3025 
+    :align: center
+
 PoshC2 is a proxy aware C2 framework used to aid penetration testers with red teaming, post-exploitation and lateral movement.
 
 PoshC2 is primarily written in Python3 and follows a modular format to enable users to add their own modules and tools, allowing an extendible and flexible C2 framework. Out-of-the-box PoshC2 comes with payloads written in PowerShell v2 and v4, C++ and C# source code, executables and DLLs, raw shellcode in addition to a Python3 payload to enable basic C2 functionality on a wide range of other devices and operating systems, such as  *nix and OSX. 
