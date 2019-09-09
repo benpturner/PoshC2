@@ -2,10 +2,10 @@
   Updating PoshC2
 ###################
 
-Run the shortcut inside your PoshC2 folder called ``Update-PoshC2.lnk``
+**It is not recommended to update PoshC2 during an engagement. Incoming changes may be incompatible with an existing project and can result in erratic behaviour.**
 
-This code will download the latest "master.zip" from the PoshC2 archive on github:
+PoshC2 can be updated by issuing the following command:
 
-* https://github.com/nettitude/PoshC2/archive/master.zip
+.. code-block:: bash
 
-Once downloaded, it will overwrite the files under your PoshC2 directory to replace with the latest version. 	
+    posh-update

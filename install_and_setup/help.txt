@@ -1,221 +1,85 @@
 ##################
-Pre-Implant Help
+    Help
 ##################
-The help is split out into two main components, "Pre-Implant Help" and "Post-Implant Help". This is basically depending on when you type help, will depend on the help that is provided. 
 
-To obtain the help in either sections type ``Help`` or ``?``.
+PoshC2 has multiple maintained options for receiving help while using the tool.
 
-The "Pre-Implant" help menu allows you to configure various auto-runs, double check the server configuration and make and significant changes to the C2 server. It also allows you to test your configuration by issuing PwnSelf to obtain an implant.
+In the Implant-Handler, the `help` command can always be run to provide a smart list of commands that are relevant to the current context.
+For example, in a PowerShell implant, only PowerShell relevant commands will be shown.
+
+This help can be searched through the use of the `searchhelp` command:
+
+.. code-block:: bash
+
+    PS 1> searchhelp mimikatz                                                                                                                
+    searchhelp mimikatz
+    invoke-mimikatz -command '"sekurlsa::logonpasswords"'
+    invoke-mimikatz -command '"lsadump::sam"'
+    invoke-mimikatz -command '"lsadump::lsa"'
+    invoke-mimikatz -command '"lsadump::cache"'
+    invoke-mimikatz -command '"lsadump::secrets"'
+    invoke-mimikatz -command '"ts::multirdp"'
+    invoke-mimikatz -command '"privilege::debug"'
+    invoke-mimikatz -command '"crypto::capi"'
+    invoke-mimikatz -command '"crypto::certificates /export"'
+    invoke-mimikatz -command '"sekurlsa::pth /user:<user> /domain:<dom> /ntlm:<hash> /run:c:\temp\run.bat"'
+    invoke-mimikatz -command '"lsadump::dcsync /domain:domain.local /user:administrator"'
+
+Auto-completion
+***************
+
+Furthermore, each prompt has an intelligent context sensitive autocompletion menu:
+
+These commands are fuzzy-matched with the current text (for the first word only), so for example **isc** will match **invoke-shellcode** and **wmi** will show all the commands with **wmi** in them.
+
+.. image:: ./autocompletions.png
+    :width: 445
+    :align: center 
+
+Auto-suggestions
+****************
+
+Each prompt maintains a contextual command history and provides auto-suggestions.
+For example, commands issued at a C# implant prompt will have their own history, and when at a C# prompt fish-shell-like suggestions will appear in gray text from that contextual history.
+These suggestions can be completed by pressing the right-arrow key or Ctrl-e.
+
+.. image:: ./autosuggestions.png
+    :width: 1018
+    :align: center 
+
+Module Help
+*****************
+For help on the individual modules in PoshC2, you can check the module source or run Get-Help for PowerShell modules once they have been loaded:
 	
-Other settings that can be altered are C2 default beacon time, Clockwork SMS API key and mobile number for text message alerts of new implants.
+.. code-block:: powershell
+    LoadModule Invoke-Mimikatz.ps1
+    Get-Help Invoke-Mimikatz
+
+For C# and Python modules, if the module has help it can be loaded and run to display the help.
+
+.. code-block:: powershell
+
+    loadmodule MyHelpfulModule.exe
+    run-exe MyHelpfulModuleNamespace.MyHelpfulModuleClassName MyHelpfulModuleAssemblyName --help
 
 
-Main Menu
-###############
-The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows ``1``::
-
-	PS 1>
-
-If you want to select more than one implant, you can provide a comma separated list ``1,2,3,4``::
-
-	PS 1,2,3>
-
-Finally, you can select ALL implants by typing ``ALL``::
-
-	PS ALL>
-
-Auto-Runs
-###############
-We have now implemented the concept of Auto-Runs. This allows the user of PoshC2 to automate various tasks when an implant first comes in. Auto-runs impact all new implants and can be added and deleted at any time. A few use cases of this could be:
-
-* auto migrate from PowerShell
-* capturing a screenshot for situational awareness
-* install persistence
-
-Essentially, any command that can be issued within PoshC2 can be turned into an Auto-Run.
-
-AutoMigrate-FromPowershell (AM)
-*********************************
-The auto migrate from PowerShell feature has been added and by default will start another process in "netsh.exe" unless otherwise stated by the ``-newprocess`` parameter. This utilises unmanaged PowerShell via the C++ Reflective DLL.
-
-.. code-block:: python
-
-	Automigrate-FromPowershell (Alias: AM)
-
-Add-autorun
-***************
-To add a custom autorun use the following command:
-
-.. code-block:: python
-
-	Add-autorun <task>
-
-List-autorun
-***************
-To list the current autorun's configured for all implants use the following command:
-
-.. code-block:: python
-
-	List-autorun (Alias: L)
-
-Del-autorun
-***************
-To delete a custom autorun, you can specify the taskID of the auto-run to be removed. This is limited to one at a time. use the following command:
-
-.. code-block:: python
-
-	Del-autorun <taskID>
-
-Nuke-autorun
-***************
-Nuke all autoruns, removes all autoruns from the database. To nuke all custom autoruns use the following command:
-
-.. code-block:: python
-
-	Nuke-autorun
-
-
-Server Commands:
-####################
-Show-ServerInfo
+  Keep In Touch 
 *****************
-This ``Show-ServerInfo`` command prints out the current C2 configuration, including the following items:
 
-.. code-block:: python
+For all the latest news and features, or for the latest documentation and support check out the PoshC2 GitHub page or find us below:
 
-	Show-ServerInfo
+Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_
 
-* Hostname
-* ServerPort
-* EncKey
-* DefaultSleep
-* KillDate
-* HTTPResponse
-* FolderPath
-* QuickCommand
-* Sounds
-* URLS
-* SocksURLS
-* Insecure
-* UserAgent
+Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel)
 
-History
-*****************
-This lists all previous commands entered into the Implant-Handler.
+Find us on Email - labs@nettitude.com
 
-.. code-block:: python
-
-	History
-
-Output-To-HTML
-*****************
-Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2's timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your adjust the time-zone accordingly to maintain correctly formated log entries.
-
-By default, PoshC2 records every command and all output from each implant that is used and logs this information to the internal SQLite database, complete with a timestamp from the system you're currently running the server from. 
-
-To output the reports from PoshC2 run the ``Output-to-html`` command and this should deliver four HTML reports: 
-
-* C2Server.html
-* Implants.html
-* ImplantTasks.html
-* Creds.html
-
-For more information see reporting in the documentation. 
-
-Set-ClockworkSMSApiKey
-************************
-If you forgot to set up SMS with `ClockworkSMS <https://www.clockworksms.com>`_, then you can sign up and configure the API key here. This will then send a text message when a new implant arrives. 
-
-.. code-block:: python
-
-	Set-ClockworkSMSApiKey df2pwOdLAmdmmdd0d2kKDlOwDD=
-
-Set-ClockworkSMSNumber
-************************
-If you are using `ClockworkSMS <https://www.clockworksms.com>`_, you can change the SMS number that is used when a new implant arrives. 
-
-.. code-block:: python
-
-	Set-ClockworkSMSNumber 447877000000
-
-Set-DefaultBeacon 60
-**************************
-The default beacon time for the initial implants, this is measured in seconds. Note, the server will need to be restarted for this change to take affect. 
-
-.. code-block:: python
-
-	Set-DefaultBeacon 60
-
-ListModules
-**************
-The ``ListModules`` command allows the user to view the Powershell modules that reside in the modules folder, within the PoshC2 folder tree. We have provided quiet a few Powershell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of PoshC2 is the ability for the user to create their own Powershell modules and use them within PoshC2. Simply copy the modules you want into the modules folder and you'll be able to load them into a running implant with the 'LoadModule' command, which is discussed further in this documentation.
-
-.. code-block:: python
-
-	ListModules
-
-PwnSelf / P
-*******************
-The ``PwnSelf`` command or aliased to ``P`` will just execute the default batch file that is created to test comms. 
-
-Creds
-********
-The creds function is a completely separate table within the database that is used to manage credentials throughout the engagement. The idea of this table was to correlate all compromised credentials so that you can supply this information to the client at the end of the engagement. This will allow the client to reset all compromised accounts. 
-
-Credentials will not automatically be added to the table, however, this is something we are looking into for future improvements. Additionally, it would be good to use credentials from the database in various commands, such as lateral movement and runas. 
-
-To add/delete credentials in the database use the following command:
-
-.. code-block:: python
-
-	Creds -Action add/delete -Username <username> -password/-hash
-
-To search for credentials 
-
-.. code-block:: python
-
-	Creds -Action search -username test
-
-To dump all credentials in the database use the dump action:
-
-.. code-block:: python
-
-	Creds -Action dump
-
-CreateProxyPayload
-************************
-The ``CreateProxyPayload`` command was created to allow an implant to traverse an authenticated proxy when the implant is running under the SYSTEM account. Under normal circumstances the SYSTEM account shouldn't be authenticated on a domain level proxy server and pass through, so we created the CreateProxyPayload command to allow the attacker to provide a set of valid proxy credentials within the proxyurl and thus allows an implant to traverse any authenticated proxy server. We would use this technique when attempting lateral movement as well as privilege escalation techniques. 
-
-By default, this will create a new Bat file, standalone executable, service executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed. 
-
-.. code-block:: python
-
-	CreateProxyPayload -user <dom\user> -pass <pass> -proxyurl <http://10.0.0.1:8080>
-
-**Parameters:**
-
-- **-proxyurl** http://10.0.0.1:8080 
-
-**Optional Parameters:**
-
-- **-user** dom\test 
-- **-pass** pass 
-
-CreateNewPayload
-************************
-This ``CreateNewPayload`` payload generates a number of new payloads that are setup to beacon to a different URL. This is used when you are trying to remove attribution on various assets and you want some beaconing to different URL's while still ending up at the same PoshC2 instance. You would need to configure your C2 proxy servers to come back to the same host. 
-
-By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed. 
-
-.. code-block:: python
-
-	CreateNewPayload -hostname https://hostname.com -domainfrontheader <url>
-
-**Parameters:**
-
-- **-hostname** https://www.c2.com 
-
-**Optional Parameters:**
-
-- **-domainfrontheader** blah.cloudfront.com 
-
+########################################
+Key Contributors / Authors / Testers
+########################################
+* Ben Turner - `@benpturner <https://twitter.com/benpturner>`_
+* Rob Bone - `@m0rv4i <https://twitter.com/m0rv4i>`_
+* Rob Maslen - `@rbmaslen <https://twitter.com/rbmaslen>`_
+* Doug McLeod - `@b4ggio_su <https://twitter.com/b4ggio_su>`_
+* Rich Hicks - `@scriptmonkey_ <https://twitter.com/scriptmonkey_>`_
+* Phil Lynch - `@plynch98 <https://twitter.com/plynch98>`_

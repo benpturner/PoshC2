@@ -14,7 +14,13 @@ Tasks are then picked up from the database by the C2 Server process and issued t
 
 The Implant Handler writes tasks to the database which are picked up and updated by the C2 Server.
 
-The C2 Server configuration is held in the **Config.py** file in the **POSHDIR** and can be edited by issuing the `posh-config` command. This command will open the configuration file using the editor defined in the `$EDITOR` environment variable, or vim if one is not set. A --nano option exists for those who fear they may never escape vim.
+The C2 Server configuration is held in the **Config.py** file in the **POSHDIR** and can be edited by issuing the following command:
+
+.. code-block::  bash
+
+    posh-config
+
+This command will open the configuration file using the editor defined in the `$EDITOR` environment variable, or vim if one is not set. A `--nano` option exists for those who fear they may never escape vim.
 
 It is recommended to use a C2 Proxy to maintain operational security by proxying all traffic to the C2 Server. A simple VPS running Apache can be stood up and **mod_rewrite** used to silently redirect traffic from the proxy to the C2 Server without the client knowing, allowing the red team to keep their C2 infrastructure hidden and allowing flexibility should the proxy IP be compromised. 
 

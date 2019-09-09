@@ -83,6 +83,14 @@ Key Contributors / Authors / Testers
 * Rich Hicks - `@scriptmonkey_ <https://twitter.com/scriptmonkey_>`_
 * Phil Lynch - `@plynch98 <https://twitter.com/plynch98>`_
 
+###############
+  Contribute
+###############
+
+We actively encourage the industry to contribute and would want nothing less for PoshC2, be it pull requests, reporting bugs or new ideas. There is no such thing as a stupid question or bad idea. 
+
+The best place to do this is on GitHub or chat in the PoshC2 slack channel.
+
 ######
 Index
 ######

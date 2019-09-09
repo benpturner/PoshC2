@@ -1,8 +1,0 @@
-###############
-  Contribute
-###############
-
-We actively encourage the industry to contribute and would want nothing less for PoshC2, even if its not in code form, it could be in ideas. There is no such thing as a stupid question or bad idea. 
-
-Either submit a "Pull Request" or create a new "Issue" via github or get in touch via any of the comms methods mentioned in the overview. 
-

@@ -2,61 +2,149 @@
   Apache Rewrite Rules
 #########################
 
-When running PoshC2 over the Internet its best practice to use a C2 Proxy server, usually in the shape of a small VPS from any provider. This is so that you can hide behind a web server when the Blue Team are investigating a suspected breach but also to remove the need for your Windows host to be fully connected to the Internet. Using Apache Rewrite rules we can redirect traffic that is intended for the C2 server but also retain a fully functional web site on the same host that does not hit our Rewrite Rules. 
+It is recommended to use a C2 Proxy to maintain operational security by proxying all traffic to the C2 Server. A simple VPS running `Apache <https://httpd.apache.org/>`_ can be stood up and `mod_rewrite <https://httpd.apache.org/docs/current/mod/mod_rewrite.html>`_ used to silently redirect traffic from the proxy to the C2 Server without the client knowing, allowing the red team to keep their C2 infrastructure hidden and allowing flexibility should the proxy IP be compromised. 
 
-To help with this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN. Another alternative would be to use a Windows Cloud server to host all the infrastructure with a perimeter firewall.  
+A typical example could look like this:
+
+.. image:: ./proxy.png
+    :width: 777 
+    :align: center
+
+
+This provides operational security by not exposing the C2 infrastructure to the victim or the internet at large, and allows the red team to pivot onto a different C2 proxy if the existing one is compromised, without the need to change the C2 server itself.
+
+Using Apache Rewrite rules we can redirect traffic that is intended for the C2 server but also retain a fully functional web site on the same host that does not hit our Rewrite Rules, so that if bots, unrelated browsers or the blue-team come a-lookin' they are only served a benign website.
+
+To help explain this Nettitude created a short blog which explains one way of achieving this using a VPS with OpenVPN:
 
 * `https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/ <https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/>`_
 
-Once you've setup the external infrastructure you will need to configure Apache to rewrite your C2 traffic back to the PoshC2 instance. Thee example below details a default C2 server instance. However, when you setup your PoshC2 instance, PoshC2 will generate you a unique Apache2.conf file including any customization options selected. You will need to enable some modules on Apache before running the server::
+Setup
+**************
 
-	apt-get install Apache2
-	a2enmod ssl 
-	a2enmod rewrite 
-	a2enmod proxy
-	a2enmod proxy_http
-	a2enmod headers
+Once you've setup a VPS you will need to configure Apache to rewrite your C2 traffic back to the C2 Server instance. The example below details a typical example:
 
-Then load the following rules (or your custom rules) within your Apache configuration file for each virtual host::
+You will need to install Apache HTTPd and enable some modules before running the webserver:
 
-	<VirtualHost *:80>
-		RewriteEngine On
-		RewriteRule ^/images/static/content/(.*) http://<IP ADDRESS>/images/static/content/$1 [NC,P,L]
-		RewriteRule ^/news/(.*) http://<IP ADDRESS>/news/$1 [NC,P,L]
-		RewriteRule ^/webapp/static/(.*) http://<IP ADDRESS>/webapp/static/$1 [NC,P,L]
-		RewriteRule ^/images/prints/(.*) http://<IP ADDRESS>/images/prints/$1 [NC,P,L]
-		RewriteRule ^/wordpress/site/(.*) http://<IP ADDRESS>/wordpress/site/$1 [NC,P,L]
-		RewriteRule ^/true/images/77/(.*) http://<IP ADDRESS>/true/images/77/$1 [NC,P,L]
-		RewriteRule ^/holdings/office/images/(.*) http://<IP ADDRESS>/holdings/office/images/$1 [NC,P,L]
-		RewriteRule ^/steam(.*) http://<IP ADDRESS>/steam/$1 [NC,P,L]
-		ServerAdmin webmaster@localhost
-		DocumentRoot /var/www/html
-		ErrorLog ${APACHE_LOG_DIR}/error.log
-		CustomLog ${APACHE_LOG_DIR}/access.log combined
-	</VirtualHost>
-	
-	<IfModule mod_ssl.c>
-		<VirtualHost _default_:443>
-			RewriteEngine On
-			SSLProxyEngine On
-			SSLProxyCheckPeerCN Off
-			SSLProxyVerify none
-			SSLProxyCheckPeerName off
-			SSLProxyCheckPeerExpire off
-			RewriteRule ^/images/static/content/(.*) https://<IP ADDRESS>/images/static/content/$1 [NC,P,L]
-			RewriteRule ^/news/(.*) https://<IP ADDRESS>/news/$1 [NC,P,L]
-			RewriteRule ^/webapp/static/(.*) https://<IP ADDRESS>/webapp/static/$1 [NC,P,L]
-			RewriteRule ^/images/prints/(.*) https://<IP ADDRESS>/images/prints/$1 [NC,P,L]
-			RewriteRule ^/wordpress/site/(.*) https://<IP ADDRESS>/wordpress/site/$1 [NC,P,L]
-			RewriteRule ^/true/images/77/(.*) https://<IP ADDRESS>/true/images/77/$1 [NC,P,L]
-			RewriteRule ^/holdings/office/images/(.*) https://<IP ADDRESS>/holdings/office/images/$1 [NC,P,L]
-			RewriteRule ^/steam(.*) https://<IP ADDRESS>/steam/$1 [NC,P,L]
-			ServerAdmin webmaster@localhost
-			DocumentRoot /var/www/html
-			ErrorLog ${APACHE_LOG_DIR}/error.log
-			CustomLog ${APACHE_LOG_DIR}/access.log combined
-			SSLEngine on
-			SSLCertificateFile	/etc/ssl/certs/ssl-cert-snakeoil.pem
-			SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-		</VirtualHost>
-	</IfModule>
+.. code-block::  bash
+
+    apt-get install Apache2
+    a2enmod ssl 
+    a2enmod rewrite 
+    a2enmod proxy
+    a2enmod proxy_http
+    a2enmod headers
+
+As part of the C2 Server's bootstrap process when it first launches for a new project it generates a **rewrite-rules.txt** file with the required rules for that C2 server for the Apache configuration. 
+We then place the rules within your Apache configuration file for relevant virtual hosts:
+
+.. code-block::  bash
+
+    <VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+    </VirtualHost>
+    
+    <IfModule mod_ssl.c>
+        <VirtualHost _default_:443>
+            RewriteEngine On
+            SSLProxyEngine On
+            SSLProxyCheckPeerCN Off
+            SSLProxyVerify none
+            SSLProxyCheckPeerName off
+            SSLProxyCheckPeerExpire off
+            # Change IPs to point at C2 infrastructure below
+            Define PoshC2 10.0.0.1
+            Define SharpSocks 10.0.0.1
+            RewriteRule ^/wpaas/(.*) https://${PoshC2}/wpaas/$1 [NC,L,P]
+            RewriteRule ^/bh/sync/(.*) https://${PoshC2}/bh/sync/$1 [NC,L,P]
+            RewriteRule ^/status/995598521343541248/(.*) https://${PoshC2}/status/995598521343541248/$1 [NC,L,P]
+            RewriteRule ^/adsense/troubleshooter/1631343/(.*) https://${PoshC2}/adsense/troubleshooter/1631343/$1 [NC,L,P]
+            RewriteRule ^/vssf/wppo/site/bgroup/visitor/(.*) https://${PoshC2}/vssf/wppo/site/bgroup/visitor/$1 [NC,L,P]
+            RewriteRule ^/adServingData/PROD/TMClient/6/8736/(.*) https://${PoshC2}/adServingData/PROD/TMClient/6/8736/$1 [NC,L,P]
+            RewriteRule ^/vfe01s/1/(.*) https://${PoshC2}/vfe01s/1/$1 [NC,L,P]
+            RewriteRule ^/GoPro5/black/2018/(.*) https://${PoshC2}/GoPro5/black/2018/$1 [NC,L,P]
+            RewriteRule ^/qqzddddd/2018/(.*) https://${PoshC2}/qqzddddd/2018/$1 [NC,L,P]
+            RewriteRule ^/usersync/tradedesk/(.*) https://${PoshC2}/usersync/tradedesk/$1 [NC,L,P]
+            RewriteRule ^/classroom/sharewidget/(.*) https://${PoshC2}/classroom/sharewidget/$1 [NC,L,P]
+            RewriteRule ^/uasclient/0.1.34/modules/(.*) https://${PoshC2}/uasclient/0.1.34/modules/$1 [NC,L,P]
+            RewriteRule ^/bootstrap/3.1.1/(.*) https://${PoshC2}/bootstrap/3.1.1/$1 [NC,L,P]
+            RewriteRule ^/babel-polyfill/6.3.14/(.*) https://${PoshC2}/babel-polyfill/6.3.14/$1 [NC,L,P]
+            RewriteRule ^/trader-update/(.*) https://${PoshC2}/trader-update/$1 [NC,L,P]
+            RewriteRule ^/work/embedded/(.*) https://${PoshC2}/work/embedded/$1 [NC,L,P]
+            RewriteRule ^/cisben/(.*) https://${PoshC2}/cisben/$1 [NC,L,P]
+            RewriteRule ^/utag/lbg/main/prod/(.*) https://${PoshC2}/utag/lbg/main/prod/$1 [NC,L,P]
+            RewriteRule ^/load/pages/(.*) https://${PoshC2}/load/pages/$1 [NC,L,P]
+            RewriteRule ^/types/translation/v1/articles/(.*) https://${PoshC2}/types/translation/v1/articles/$1 [NC,L,P]
+            RewriteRule ^/async/(.*) https://${PoshC2}/async/$1 [NC,L,P]
+            RewriteRule ^/business/(.*) https://${PoshC2}/business/$1 [NC,L,P]
+            RewriteRule ^/branch-locator/(.*) https://${PoshC2}/branch-locator/$1 [NC,L,P]
+            RewriteRule ^/business/retail-business/(.*) https://${PoshC2}/business/retail-business/$1 [NC,L,P]
+            RewriteRule ^/Philips/v902/(.*) https://${PoshC2}/Philips/v902/$1 [NC,L,P]
+            RewriteRule ^/web/20110920084728/(.*) https://${SharpSocks}/web/20110920084728/$1 [NC,L,P]
+            RewriteRule ^/putil/2018/0/11/(.*) https://${SharpSocks}/putil/2018/0/11/$1 [NC,L,P]
+
+            ServerAdmin webmaster@localhost
+            DocumentRoot /var/www/html
+            ErrorLog ${APACHE_LOG_DIR}/error.log
+            CustomLog ${APACHE_LOG_DIR}/access.log combined
+            SSLEngine on
+            SSLCertificateFile    /etc/ssl/certs/ssl-cert-snakeoil.pem
+            SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+        </VirtualHost>
+    </IfModule>
+
+Any C2 URLs that match these rules will therefore be rewritten to the C2 Server. Any that do not match these URLs will instead be served content from the usual DocumentRoot, in this case **/var/www/html**.
+
+  Apache Whitelist
+********************
+When performing a Red Team engagement, it is imperative that your C2 infrastructure be sufficiently locked down and should only allow implants from the correct IP address range of the Customer. This is known as whitelisting. 
+
+To add a whitelist to the C2 Proxy, create a file with all the IP addresses that are known to be the client. There is a slight nuance with Apache as you have to add the list like this (/etc/apache/whitelist)::
+
+.. code-block:: bash
+
+    10.0.0.1 –
+    10.0.0.2 –
+
+This little Python script will help you convert the IP whitelist into the correct format for Apache::
+
+.. code-block:: python
+
+    #!/usr/bin/python
+    from netaddr import IPNetwork
+    import sys
+
+    for ip in IPNetwork("10.10.0.0/21"):
+        print '%s -' % ip
+
+Once you have the whitelist, you can use a function in the rewrite rules called **RewriteMap** to add the IP address list, to then use in the rewrite conditions. 
+Below is a simple Rewrite Rule which respond to the client with a 404 Not Found response if the requesting IP is not in the whitelist. 
+
+.. code-block:: bash
+
+    RewriteMap IP txt:/etc/apache2/whitelist
+    Define PoshC2 10.0.0.1 
+    RewriteCond ${IP:%{REMOTE_ADDR}|NOT-FOUND} !NOT-FOUND
+    RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]    
+    ...
+
+You have to do this for each rewrite rule you want to apply for each URL. In this case we are applying to the **/images/static/content/** path. 
+
+Whitelists and Domain Fronting
+******************************
+
+Another nuance is that if you are using Domain Fronting then the requesting IP will be that of the CDN provider, as they are making the request.
+They will however, put the originating IP in the **X-Forwarded-For** header, and it is this IP that we also whitelist on:
+
+.. code-block:: bash
+
+    RewriteMap ips txt:/etc/apache2/whitelist.txt
+    RewriteCond ${ips:%{REMOTE_ADDR}|NOT-FOUND} !NOT-FOUND [OR]
+    RewriteCond ${ips:%{HTTP:X-Forwarded-For}|NOT-FOUND} !NOT-FOUND
+    RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]    
+    ...
+
+Please see the Apache HTTPd and mod_rewrite websites for more information.
