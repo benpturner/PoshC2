@@ -11,7 +11,7 @@ A typical example could look like this:
     :align: center
 
 
-This provides operational security by not exposing the C2 infrastructure to the victim or the internet at large, and allows the red team to pivot onto a different C2 proxy if the existing one is compromised, without the need to change the C2 server itself.
+This provides operational security by not exposing the C2 infrastructure to the target or the internet at large, and allows the red team to pivot onto a different C2 proxy if the existing one is compromised, without the need to change the C2 server itself.
 
 Using Apache Rewrite rules we can redirect traffic that is intended for the C2 server but also retain a fully functional web site on the same host that does not hit our Rewrite Rules, so that if bots, unrelated browsers or the blue-team come a-lookin' they are only served a benign website.
 
@@ -98,18 +98,18 @@ We then place the rules within your Apache configuration file for relevant virtu
 
 Any C2 URLs that match these rules will therefore be rewritten to the C2 Server. Any that do not match these URLs will instead be served content from the usual DocumentRoot, in this case **/var/www/html**.
 
-  Apache Whitelist
+Apache Whitelist
 ********************
 When performing a Red Team engagement, it is imperative that your C2 infrastructure be sufficiently locked down and should only allow implants from the correct IP address range of the Customer. This is known as whitelisting. 
 
-To add a whitelist to the C2 Proxy, create a file with all the IP addresses that are known to be the client. There is a slight nuance with Apache as you have to add the list like this (/etc/apache/whitelist)::
+To add a whitelist to the C2 Proxy, create a file with all the IP addresses that are known to be the client. There is a slight nuance with Apache as the file format is the below: 
 
 .. code-block:: bash
 
     10.0.0.1 –
     10.0.0.2 –
 
-This little Python script will help you convert the IP whitelist into the correct format for Apache::
+This Python script will help convert a IP CIDR range into the correct format for Apache::
 
 .. code-block:: python
 
@@ -120,8 +120,8 @@ This little Python script will help you convert the IP whitelist into the correc
     for ip in IPNetwork("10.10.0.0/21"):
         print '%s -' % ip
 
-Once you have the whitelist, you can use a function in the rewrite rules called **RewriteMap** to add the IP address list, to then use in the rewrite conditions. 
-Below is a simple Rewrite Rule which respond to the client with a 404 Not Found response if the requesting IP is not in the whitelist. 
+Once you have the whitelist, you can use the **RewriteMap** function to add the IP address list for use in rewrite conditions. 
+Below is a simple Rewrite Rule which will respond to the client with a 404 Not Found response if the requesting IP is not in the whitelist. 
 
 .. code-block:: bash
 
