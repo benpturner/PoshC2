@@ -23,15 +23,15 @@ If you have installed PoshC2 to a location other than **/opt/PoshC2_Python**, yo
 
 Every line above the `do not change` section is modifiable, however some common options include:
 
-* HostnameIP - This is the URL that you want to use for all C2 communications that the payloads will beacon out to.
-* DomainFrontHeader - If Domain Fronting is being used, this will be the value of the HTTP **Host** header.
-* KillDate - This is the date that all persistence and implants will stop beaconing.
-* Jitter - The beacon period jitter value as a decimal (e.g. 0.2 = 20% = between 4 and 6s if the beacon is 5s.).
-* DefaultSleep - The default beacon period for new implants.
-* EnableNotifications - Enable notifications for when a new implant connections (requires ClockworkSMS or Pushover to be set up).
-* NotificationsProjectName - A prefix for notifications to identify this server.
-* DefaultMigrationProcess - For generated payloads that migrate into a new process, this is the process that is spawned and migrated into.
-* UserAgent - the UserAgent to use for HTTP(S) communications.
+* *HostnameIP* - This is the URL that you want to use for all C2 communications that the payloads will beacon out to.
+* *DomainFrontHeader* - If Domain Fronting is being used, this will be the value of the HTTP **Host** header.
+* *KillDate* - This is the date that all persistence and implants will stop beaconing.
+* *Jitter* - The beacon period jitter value as a decimal (e.g. 0.2 = 20% = between 4 and 6s if the beacon is 5s.).
+* *DefaultSleep* - The default beacon period for new implants.
+* *EnableNotifications* - Enable notifications for when a new implant connections (requires ClockworkSMS or Pushover to be set up).
+* *NotificationsProjectName* - A prefix for notifications to identify this server.
+* *DefaultMigrationProcess* - For generated payloads that migrate into a new process, this is the process that is spawned and migrated into.
+* *UserAgent* - the UserAgent to use for HTTP(S) communications.
 
 By default, PoshC2 will configure the implant to use HTTPS,  however it can be used over plain text HTTP if required by changing the **HostnameIP** protocol to http://.
 Even over HTTP, all communications are encrypted  in order to keep communications secure. The added benefit of HTTPS is that unless the organisation is performing SSL Inspection the communications cannot be checked, and encrypted HTTP traffic could be deemed suspicious.
