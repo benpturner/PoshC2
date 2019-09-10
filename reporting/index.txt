@@ -1,37 +1,16 @@
-############
-  Reporting
-############
-Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures all commands and hosts compromised are logged to the internal SQLite database. It is always worth noting that PoshC2's timezone will work off the local Windows time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly otherwise all log entries time sync will be out when performing log analysis or the debrief. 
+#########
+Reporting
+#########
 
-By default, PoshC2 records every command and all output from each implant that is used and logs this information to the internal SQLite database, complete with a time stamp from the system you're currently running the server from. 
+Reporting and logging is an extremely important part of running a Red Team engagement and PoshC2 ensures that every detail is logged to the internal SQLite database.
+It is always worth noting that PoshC2's time-zone will work off the local server time, so if you are working in multiple countries or another time-zone, it is highly recommended that your time-zone is configured accordingly.
 
-To output the reports from PoshC2 run the ``Output-to-html`` command and this should deliver four HTML reports: 
+By default, PoshC2 records every command and all output from each Implant that is used and logs this information to the internal SQLite database, in addition to all the metadata around that command, such as the issuing user, the hostname and so on.
 
-* C2Server.html
-* Implants.html
-* ImplantTasks.html
-* Creds.html
+While the SQLite database can be interacted with directly, PoshC2 also has a number of reporting commands to aid in the processing of this information.
 
-Here is an example of the output generated, these files can be easily changed to suit your needs and can be edited to fit into any certain format / style with some CSS foo. 
+To output basic HTML reports from Implant-Handler top level prompt run the ``generate-reports`` command, which will generate a number of HTML pages to the `reports` directory in addition to dumping the data as CSV files.
 
-ImplantTasks
-############
-.. image:: ./tasksreport.png
-    :width: 800pt
-
-Implants
-############
-.. image:: ./implantsreport.png
-    :width: 800pt
-
-C2Server
-############
-.. image:: ./c2.png
-    :width: 800pt
-
-Creds
-############
-The "Creds" addition to the reporting element is from the creds credential store. This will by default be produced when enforcing the ``Output-to-html`` function in PoshC2. One feature that will be implemented shortly is ensuring that passwords are obscured in the initial output using CSS, so you can provide this to a client after the engagement and they would have a full, obscured list of credentials they need to reset during their post engagement activities.
-
-.. image:: ./creds.png
-    :width: 280pt
+.. image:: ./tasks-report.png
+    :width: 1281
+    :align: center

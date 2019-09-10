@@ -61,7 +61,6 @@ Once the log reports that the webserver is running, PoshC2 is ready to receive i
 
 If a second user wants to view the C2 Server log they cannot run `posh-server` again as this will attempt to bind to the same port. Instead, the log can be viewed with:
 
-
 .. code-block:: bash
 
     posh-log
