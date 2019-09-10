@@ -1,6 +1,6 @@
-###################
- Installation
-###################
+#############
+Installation
+#############
 
 PoshC2 is written in Python3 and developed and tested on Debian-based Linux distributions. It is recommended to run PoshC2 on one of these distributions, such as Debian, Ubuntu or Kali Linux, to achieve the most stable results.
 

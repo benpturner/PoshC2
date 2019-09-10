@@ -1,6 +1,6 @@
-######################################
-  First Time Running PoshC2_Python
-######################################
+##############################
+Configuring & Starting PoshC2
+##############################
 
 Once you have installed PoshC2 the first step is to edit the configuration file.
 
@@ -59,6 +59,13 @@ The first time the C2 server is run per project, it will create the project fold
 
 Once the log reports that the webserver is running, PoshC2 is ready to receive implants.
 
+If a second user wants to view the C2 Server log they cannot run `posh-server` again as this will attempt to bind to the same port. Instead, the log can be viewed with:
+
+
+.. code-block:: bash
+
+    posh-log
+
 Implant Handler
 ********************
 
@@ -88,3 +95,32 @@ Project Folder
 Each project creates a unique folder to store all data and downloads specific to that engagement, including unique encryption keys. 
 This means if you have shellcode pre-configured for one project, this will not connect to another project as the encryption keys will not match.
 This is an in-built safety measure to ensure that only expected payloads connect to expected servers. 
+
+
+Running as a Service
+***********************
+
+When running on a server, PoshC2 can be setup to run as a service instead of a foreground process.
+
+This means that if the user's session quits then the process will not die, and similarly if the host is rebooted the service will resume automatically.
+
+The C2 server can be installed and started as a service by issuing the following command:
+
+.. code-block:: bash
+
+    posh-service
+
+This will install and launch the service and view the log, however now if the user ctrl-c's the log the C2 service will continue to run in the background.
+If `posh-service` is re-run it will restart the service.
+
+A user can resume viewing the log by entering:
+
+.. code-block:: bash
+
+    posh-log
+
+The service can be stopped by running:
+
+.. code-block:: bash
+
+    posh-stop-service

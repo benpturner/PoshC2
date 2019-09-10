@@ -1,14 +1,12 @@
-########################
-  Installation & Setup
-########################
+#####################
+Installation & Setup
+#####################
 
 .. toctree::
    :maxdepth: 2
 
    architecture
    installation
-   firsttime
-   updating
-   help
    apache
-   
+   config
+   updating
