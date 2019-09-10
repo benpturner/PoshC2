@@ -39,7 +39,7 @@ These modules are invoked through .NET reflection and do not touch disk, and Pos
 
 For example, if the below code was compiled into an executable:
 
-.. code-block:: powershell
+.. code-block:: C#
 
     using System;
 
@@ -67,7 +67,7 @@ The Assembly Name can be found in Visual Studio by right-clicking the project (n
 
 Alternatively it can be found in the Projects **.csproj** file:
 
-.. image:: ./assemblynamei2.png
+.. image:: ./assemblyname2.png
     :width: 1554
     :align: center
 
