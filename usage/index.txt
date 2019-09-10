@@ -5,7 +5,7 @@ Using PoshC2
 .. toctree::
    :maxdepth: 2
 
-    managing-posh
-    getting-an-implant 
-    implant
-    help
+   managing-posh
+   getting-an-implant 
+   implant
+   help
