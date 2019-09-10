@@ -24,3 +24,10 @@ This prompt receives commands such as enabling or disabling notifications, chang
     :align: center
 
 Any none-Implant configuration is performed from this prompt, in addition to selecting Implants to work with.
+
+Quitting PoshC2
+***************
+
+The Implant-Handler traps Ctrl-c Keyboard Interrupts and resets the prompt so that if you typo a large command, for example, the prompt will just reset much like a terminal shell.
+
+To quit PoshC2, you can send an EOF with Ctrl-d (again the same as a terminal shell), or type the ``quit`` command. 

@@ -24,9 +24,9 @@ Other notable features of PoshC2 include:
 
 PoshC2 is fully open source and available on GitHub here: https://github.com/nettitude/PoshC2_Python/
 
-##################
- Quick Start 
-##################
+###########
+Quick Start 
+###########
 
 PoshC2 can be installed on any system with Python3 installed, however it is only commonly tested on Debian based Linux distribution, such as Ubuntu and Kali Linux.
 These operating systems are also free and open source and for the most reliable experience it is recommended that PoshC2 in this way, from a VPS or Virtual Machine if required. It has, however, also been tested on Arch Linux and Windows 10.
@@ -65,9 +65,9 @@ In the second window run the Implant-Handler:
 
 On launch the C2 server will generate various payloads and log their use and locations in the output. Once an Implant has been created, commands can then be issued from the Implant-Handler, and their response will be displayed in the C2 server output.
 
-##################
-  Keep In Touch 
-##################
+#############
+Keep In Touch 
+#############
 
 For all the latest news and features, or for the latest documentation and support check out the PoshC2 GitHub page or find us below:
 
@@ -77,7 +77,7 @@ Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to
 
 Find us on Email - labs@nettitude.com
 
-#################
+################
 Key Contributors 
 ################
 * Ben Turner - `@benpturner <https://twitter.com/benpturner>`_
@@ -87,9 +87,9 @@ Key Contributors
 * Rich Hicks - `@scriptmonkey_ <https://twitter.com/scriptmonkey_>`_
 * Phil Lynch - `@plynch98 <https://twitter.com/plynch98>`_
 
-###############
-  Contribute
-###############
+##########
+Contribute
+##########
 
 We actively encourage the industry to contribute and would want nothing less for PoshC2, be it pull requests, reporting bugs or new ideas. There is no such thing as a stupid question or bad idea. 
 
@@ -104,6 +104,7 @@ Index
 
    install_and_setup/index
    usage/index
+   extending/index
    reporting/index
    license/index
 
