@@ -183,3 +183,6 @@ html_theme_options = {
 
 from pyembed.rst import PyEmbedRst
 PyEmbedRst().register()
+
+def setup(app):
+    app.add_css_file('custom.css')
