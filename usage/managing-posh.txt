@@ -17,3 +17,10 @@ This includes:
 The C2 Server and Implants are interacted with through the **Implant-Handler**.
 
 The Implant-Handler features a top-level prompt when an Implant is not selected for interacting with the C2 Server. This prompt can always be reached by entering the `back` command from an Implant.
+This prompt receives commands such as enabling or disabling notifications, changing the default beacon time, managing captured credentials, creating new payloads for new URLs or for Proxy or Daisy Implants and more.
+
+.. image:: ./implant-handler-top-prompt.png
+    :width: 901 
+    :align: center
+
+Any none-Implant configuration is performed from this prompt, in addition to selecting Implants to work with.
