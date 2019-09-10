@@ -4,12 +4,12 @@ Implants
 
 As previously mentioned, PoshC2 has three types of Implant:
 
-* PowerShell - a PowerShell based Implant that does **not** use `PowerShell.exe` but instead interacts with `System.Management.Automation.dll` directly.
+* **PowerShell** - a PowerShell based Implant that does **not** use `PowerShell.exe` but instead interacts with `System.Management.Automation.dll` directly.
     * This Implant allows the user to load any PowerShell module and execute any PowerShell cmdlets from the Implant prompt.
     * PowerShell version 2 and version 4 payloads exist.
-* Sharp - a C#.NET Implant that does not use any PowerShell related functionality at all and does not interact with any PowerShell components.
+* **Sharp** - a C#.NET Implant that does not use any PowerShell related functionality at all and does not interact with any PowerShell components.
     * This Implant can run C# executables in memory, such as BloodHound and the GhostPack binaries from SpectreOps.
-* Python - a Python3 Implant that requires Python3 on the target in order to execute, but allows the user to run arbitrary Python3 code and load Python3 scripts.
+* **Python** - a Python3 Implant that requires Python3 on the target in order to execute, but allows the user to run arbitrary Python3 code and load Python3 scripts.
 
 Using an Implant
 ####################

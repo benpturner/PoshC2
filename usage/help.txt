@@ -67,7 +67,7 @@ Python Documentation
 ********************
 
 PoshC2 is also fully documented in python3 `here <https://github.com/nettitude/PoshC2_Python.git>`_.
-As PoshC2 is always being updated with the latest tactics and techniques, we recommend that users explore PoshC2's source code to fully understand what is going on under the hood and how to tweak and adjust PoshC2 to match their needs and environment.
+As PoshC2 is ever evolving and is always being updated with the latest tactics and techniques. To that end we recommend that users explore PoshC2's source code to fully understand what is going on under the hood and how to tweak and adjust PoshC2 to match their needs and environment.
 For any help in doing this, see the Keep In Touch section below.
 
 Keep In Touch 
@@ -75,11 +75,9 @@ Keep In Touch
 
 For all the latest news and features, or for the latest documentation and support check out the PoshC2 GitHub page or find us below:
 
-Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_
-
-Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel)
-
-Find us on Email - labs@nettitude.com
+* Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_
+* Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel)
+* Find us on Email - labs@nettitude.com
 
 ################
 Key Contributors
