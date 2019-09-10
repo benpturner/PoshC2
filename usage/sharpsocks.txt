@@ -1,35 +1,22 @@
-#################
-  SharpSocks
-#################
-Mitre ATT&CK - `Standard Application Layer Protocol <https://attack.mitre.org/wiki/Technique/T1071>`_
+##############
+SOCKS Proxying
+##############
 
------------------
-Introduction
------------------
+One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the target environments end. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. 
+This includes being able to RDP to another machine or even to browse the corporate Intranet.
 
-One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the target environments end. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. This includes being able to RDP to another machine or even to browse the corporate Intranet.
+Nettitude have their own Socks proxy called **SharpSocks** by Rob Maslen which is incorporated with PoshC2, see the blog post about it `here <https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks/>`_.
 
-`https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks <https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks/>`_
+SOCKS support is built into most modern browsers and cURL. However, to use tools like rdesktop or nmap, proxychains on Linux can be used to tunnel the traffic.
+On Windows, software such as ProxyCap (http://www.proxycap.com/) can be used.
 
-SOCKS support is built into most modern browsers and cURL. However, to use tools like rdesktop or nmap, proxychains on Linux can be used to tunnel the traffic. In order to simulate ProxyChains when using Windows, software such as ProxyCap (http://www.proxycap.com/) can be used.
+To start sharpsocks, enter the ``sharpsocks`` command into a **PowerShell** Implant, which will provide the user with a command to run on the C2 server that will start the SOCKS server:
 
-Previously, if SOCKS was required then another implant, such as Meterpreter, would have to be deployed in order to provide the ability to tunnel TCP traffic into the internal network. We arrived at the decision that deploying a full implant just for SOCKS support is overkill and while e.g. Meterpreter is very good, it can also can be noisy and is not an appropriate representation of most sophisticated threat actors TTPs. Since PoshC2 is our publicly available C2, we wanted to add this ability for the wider world too, just like we have in our internal tooling.
-
-To deploy SharpSocks use the following command within PoshC2. This also has its own stand-alone module but has been integrated into PoshC2 to work seamlessly. Ensure you have fully configured your C2 proxy to forward traffic back to this host. 
-
-.. embed:: https://www.youtube.com/watch?v=-p_hAgmM90k
-
------------------
-Syntax
------------------
 .. code-block:: powershell
 
-	SharpSocks -Uri "http://www.c2.com:9090" -Beacon 2000 -Insecure
+    PS 1> sharpsocks                                                                                                                         
+    /opt/PoshC2_Python/SharpSocks/SharpSocksServerCore -c=CteIopoCcIfFegXFXsdzyscpt -k=O4QsWRPiEXYbHJobUSs9GfPloh9O8U7VlyV0dxYnWZ8= --verbose -l=http://127.0.0.1:49031
 
------------------
-Parameters
------------------
+    Are you ready to start the SharpSocks in the implant? (Y/n) 
 
-- **-Uri** the IP/hostname of the machine to be targeted 
-- **-Beacon** Default beacon time of the socks server
-- **-Insecure** Allow the use of untrusted SSL certificates
+Once the SharpSocks server is running, press Enter, and the Implant will act as the SOCKS client and tunnel traffic between it and the server, in this case on port 49031.
