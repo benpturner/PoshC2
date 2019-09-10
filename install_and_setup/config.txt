@@ -78,7 +78,7 @@ It can be started by issuing this command:
     posh
 
 This will prompt the user for a username. This is only used for logging purposes.
-You can set the user from the command line through the `-u` or `--user` option:
+You can set the user from the command line through the `-u` option:
 
 .. code-block:: bash
 

@@ -1,0 +1,34 @@
+##################
+Getting an Implant
+##################
+
+Once a payload is successfully executed, an Implant will be check in and a message will be displayed in the C2 Server log:
+
+.. image:: ./new-implant.png
+    :width: 1233   
+    :align: center
+
+This will detail useful information such as the the Implant ID, the Implant type and the environment it is running in.
+
+The Implant Types can be summarised as:
+
+* PS - PowerShell Implant.
+* C# - C# Implant that does not use System.Management.Automation.dll.
+* PY - Python Implant.
+
+These can also have suffixes depending on the Implant sub-type:
+
+* ;D - A Daisy Implant that is achieving C2 communications by daisy-chaining traffic through another implant.
+* ;P - A Proxy Implant with hard-coded Proxy credentials.
+
+Some other notes:
+
+* If the user's username has a * as a suffix then the Implant is running in an elevated context.
+
+The Implant will also be available in the Implant-Handler once it is refreshed by pressing Enter:
+
+.. image:: ./implant-handler-new-implant.png
+    :width: 897
+    :align: center
+
+At this stage, the Implant is ready to receive commands from the user.
