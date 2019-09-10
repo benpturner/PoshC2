@@ -80,7 +80,6 @@ The command then to run the executable and print "PoshC2Rocks" would be:
     run-exe ConsoleApp1.MySuperProgram PwnStuff PoshC2Rocks 
 
 .. image:: ./run-exe.png
-
     :width: 1023 
     :align: center
 
