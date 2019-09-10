@@ -2,7 +2,7 @@
   Overview 
 ############
 
-.. image:: ./logo.png
+.. image:: ./_static/logo.png
     :width: 3025 
     :align: center
 
@@ -103,7 +103,7 @@ Index
    :maxdepth: 1
 
    install_and_setup/index
-   core/index
+   usage/index
    lateral_movement/index
    reporting/index
    license/index

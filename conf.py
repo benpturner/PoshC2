@@ -172,8 +172,12 @@ source_parsers = {
 source_suffix = ['.txt', '.md']
 
 html_theme = "sphinx_rtd_theme"
+html_title = "PoshC2"
+html_logo = "./_static/logo.png"
+html_favicon = "./_static/favicon.ico"
 
 html_theme_options = {
+    "logo" : "logo.png",
     "collapse_navigation" : True
 }
 
