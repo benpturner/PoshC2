@@ -6,6 +6,10 @@ Any red-teamer worth their salt will get familiar with their tooling and customi
 
 In addition to being customisable through the configuration file, such as the UserAgent and HTTP Responses in use, PoshC2 can be easily altered to suit the given situation.
 
+It is recommended to git commit changes locally to PoshC2 if you alter files in the installation directory, as this means that you can still update PoshC2 and have your changes merged on top of incoming changes.
+
+For any changes that would be useful for others, please consider adding a pull request.
+
 Adding Modules
 **************
 
