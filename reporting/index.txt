@@ -17,25 +17,6 @@ To output basic HTML reports from Implant-Handler top level prompt run the ``gen
 
 There is also the ``fpc`` command which can be used to find a PoshC2 command. This command can search through command input and output for search terms, and filter commands by the user that executed them.
 
-.. code-block:: bash
-
-    #> fpc -c PwnStuff
-
-    [*][*][*] Command:
-
-    loadmodule PwnStuff.exe
-
-    [*][*][*] Output:
-
-    Module loaded successfully
-
-    [*][*][*] Command:
-
-    run-exe ConsoleApp1.MySuperProgram PwnStuff PoshC2Rocks
-
-    [*][*][*] Output:
-
-
-    PoshC2Rocks
-
-Run ``fpc -h`` for more information.
+.. image:: ./fpc.png
+    :width: 622 
+    :align: center
