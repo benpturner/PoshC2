@@ -22,7 +22,7 @@ Other notable features of PoshC2 include:
 * Client/Server format allowing multiple team members to utilise a single C2 server.
 * Extensive logging. Every action and response is timestamped and stored in a database with all relevant information such as user, host, implant number etc. In addition to this the C2 server output is directly logged to a separate file.
 
-PoshC2 is fully open source and available on GitHub here: https://github.com/nettitude/PoshC2_Python/
+PoshC2 is fully open source and available on GitHub here: https://github.com/nettitude/PoshC2/
 
 ###########
 Quick Start 
@@ -37,7 +37,7 @@ To install PoshC2 on a Debian based Linux distribution run the following from a 
 
 .. code-block:: bash
 
-    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2_Python/master/Install.sh | sudo bash
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | sudo bash
 
 Once the install script has finished, edit the PoshC2 configuration by issuing the below command:
 

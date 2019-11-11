@@ -15,7 +15,7 @@ To start sharpsocks, enter the ``sharpsocks`` command into a **PowerShell** Impl
 .. code-block:: powershell
 
     PS 1> sharpsocks                                                                                                                         
-    /opt/PoshC2_Python/SharpSocks/SharpSocksServerCore -c=CteIopoCcIfFegXFXsdzyscpt -k=O4QsWRPiEXYbHJobUSs9GfPloh9O8U7VlyV0dxYnWZ8= --verbose -l=http://127.0.0.1:49031
+    /opt/PoshC2/SharpSocks/SharpSocksServerCore -c=CteIopoCcIfFegXFXsdzyscpt -k=O4QsWRPiEXYbHJobUSs9GfPloh9O8U7VlyV0dxYnWZ8= --verbose -l=http://127.0.0.1:49031
 
     Are you ready to start the SharpSocks in the implant? (Y/n) 
 

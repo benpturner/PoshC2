@@ -10,15 +10,15 @@ To install PoshC2, from a terminal run the following:
 
 .. code-block:: bash
 
-    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2_Python/master/Install.sh | bash
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | bash
 
-Alternatively, clone the PoshC2_Python repository at https://github.com/nettitude/PoshC2_Python.git and run the `Install.sh` script.
+Alternatively, clone the PoshC2 repository at https://github.com/nettitude/PoshC2.git and run the `Install.sh` script.
 
 The install script handles the installation of dependencies and the creation of a python3 virtual environment to ensure stability on a platform with many python pip installs.
 A number of helpful scripts are also installed to */usr/bin* that allow the user to use PoshC2 and encapsulates the use of the virtual environment.
 It is recommended to use these scripts to interact with PoshC2.
 
-If you have installed PoshC2 to a location other than **/opt/PoshC2_Python**, you can control where the commands look for Posh by setting the **$POSHC2_DIR** environment variable.
+If you have installed PoshC2 to a location other than **/opt/PoshC2**, you can control where the commands look for Posh by setting the **$POSHC2_DIR** environment variable.
 
 **Create Firewall Rules**
 

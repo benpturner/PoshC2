@@ -2,7 +2,7 @@
 Managing PoshC2
 ###############
 
-Once PoshC2 is setup and running you can find all relevant project data in the **ROOTDIR** project folder, by default `/opt/PoshC2_Python`.
+Once PoshC2 is setup and running you can find all relevant project data in the **ROOTDIR** project folder, by default `/opt/PoshC2`.
 
 This includes:
 

@@ -7,7 +7,7 @@ Once you have installed PoshC2 the first step is to edit the configuration file.
 Configuration 
 ***************
 
-All of PoshC2's configuration is stored in the **Config.py** in the PoshC2_Python directory, by default located at **/opt/PoshC2_Python**.
+All of PoshC2's configuration is stored in the **Config.py** in the PoshC2 directory, by default located at **/opt/PoshC2**.
 
 You can edit this configuration file at any time by issuing the following command:
 
@@ -19,7 +19,7 @@ This will open the configuration file in your local *$EDITOR* of choice. If this
 A `-\\-nano` option exists for users who prefer nano.
 
 If the command is not found, check that you have run the *install.sh* install script, as these script handles the installation of the `posh-*` commands.
-If you have installed PoshC2 to a location other than **/opt/PoshC2_Python**, you can control where the `posh-*` commands look for Posh by setting the **POSHC2_DIR** environment variable.
+If you have installed PoshC2 to a location other than **/opt/PoshC2**, you can control where the `posh-*` commands look for Posh by setting the **POSHC2_DIR** environment variable.
 
 Every line above the `do not change` section is modifiable, however some common options include:
 

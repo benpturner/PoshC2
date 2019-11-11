@@ -3,7 +3,7 @@ Architecture
 #############
 
 PoshC2 consists of a **C2 Server** process that listens for connections from implants and provides a log for task output, new implants, messages and so on, and one or more **Implant-Handler** processes that are used to issue commands to the C2 Server and Implants.
-The files responsible for running PoshC2 are stored in the **POSHDIR**, `/opt/PoshC2_Python` by default, and project specific files such as logs, generated payloads and a local sqlite database are stored in the **ROOTDIR**, `/opt/PoshC2_Project` by default.
+The files responsible for running PoshC2 are stored in the **POSHDIR**, `/opt/PoshC2` by default, and project specific files such as logs, generated payloads and a local sqlite database are stored in the **ROOTDIR**, `/opt/PoshC2_Project` by default.
 
 This local sqlite database, PowershellC2.SQLite, is used to store and log data and facilitates communication between the two processes. For example, every task that is issued to an implant from an Implant-Handler is stored in this database with a timestamp, the user who ran the command, the implant details and more.
 Tasks are then picked up from the database by the C2 Server process and issued to Implants when they check in, ensuring that no tasks go unlogged.
