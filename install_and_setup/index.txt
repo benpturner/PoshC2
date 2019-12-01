@@ -7,6 +7,7 @@ Installation & Setup
 
    architecture
    installation
+   docker
    apache
    config
    updating
