@@ -18,6 +18,12 @@ The install script handles the installation of dependencies and the creation of 
 A number of helpful scripts are also installed to */usr/bin* that allow the user to use PoshC2 and encapsulates the use of the virtual environment.
 It is recommended to use these scripts to interact with PoshC2.
 
+You can have the install script install PoshC2 to a different loctation by passing that location as an argument to the script.
+
+.. code-block:: bash
+
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | bash -s /root/poshc2
+
 If you have installed PoshC2 to a location other than **/opt/PoshC2**, you can control where the commands look for Posh by setting the **$POSHC2_DIR** environment variable.
 
 **Create Firewall Rules**
