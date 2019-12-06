@@ -127,9 +127,13 @@ Below is a simple Rewrite Rule which will respond to the client with a 404 Not F
 
     RewriteMap IP txt:/etc/apache2/whitelist
     Define PoshC2 10.0.0.1 
-    RewriteCond ${IP:%{REMOTE_ADDR}|NOT-FOUND} !NOT-FOUND
+    RewriteCond ${IP:%{REMOTE_ADDR}} - [NC,OR]
+    RewriteCond ${IP:%{HTTP:X-Forwarded-For}} - [NC]
     RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]    
+    # other RewriteRules here....
+    RewriteRule ^ - [R=404]
     ...
+    
 
 You have to do this for each rewrite rule you want to apply for each URL. In this case we are applying to the **/images/static/content/** path. 
 
