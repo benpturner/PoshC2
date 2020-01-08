@@ -21,6 +21,7 @@ Other notable features of PoshC2 include:
 * Fully encrypted communications, protecting the confidentiality and integrity of the C2 traffic even when communicating over HTTP.
 * Client/Server format allowing multiple team members to utilise a single C2 server.
 * Extensive logging. Every action and response is timestamped and stored in a database with all relevant information such as user, host, implant number etc. In addition to this the C2 server output is directly logged to a separate file.
+* Support for Docker, allowing reliable and cross-platform execution
 
 PoshC2 is fully open source and available on GitHub here: https://github.com/nettitude/PoshC2/
 
@@ -65,27 +66,35 @@ In the second window run the Implant-Handler:
 
 On launch the C2 server will generate various payloads and log their use and locations in the output. Once an Implant has been created, commands can then be issued from the Implant-Handler, and their response will be displayed in the C2 server output.
 
+######
+Docker
+######
+
+PoshC2 can also be run using Docker, for more information see the `Docker <./install_and_setup/docker.txt>`_ page.
+
 #############
 Keep In Touch 
 #############
 
 For all the latest news and features, or for the latest documentation and support check out the PoshC2 GitHub page or find us below:
 
-Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_
+Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_.
 
-Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel)
+Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send an email to labs below to be added to slack channel).
 
-Find us on Email - labs@nettitude.com
+Find us on Email - labs@nettitude.com.
 
 ################
 Key Contributors 
 ################
+
 * Ben Turner - `@benpturner <https://twitter.com/benpturner>`_
 * Rob Bone - `@m0rv4i <https://twitter.com/m0rv4i>`_
 * Rob Maslen - `@rbmaslen <https://twitter.com/rbmaslen>`_
 * Doug McLeod - `@b4ggio_su <https://twitter.com/b4ggio_su>`_
 * Rich Hicks - `@scriptmonkey_ <https://twitter.com/scriptmonkey_>`_
 * Phil Lynch - `@plynch98 <https://twitter.com/plynch98>`_
+* Ross Bingham - `@pwndexter <https://twitter.com/pwndexter>`_
 
 ##########
 Contribute

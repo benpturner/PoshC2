@@ -13,7 +13,7 @@ For any changes that would be useful for others, please consider adding a pull r
 Adding Modules
 **************
 
-To add a new module, simply place it in the **Modules** directory in the PoshC2 installation directory.
+To add a new module, simply place it in the **resources/modules** directory in the PoshC2 installation directory.
 
 Any PowerShell script can be loaded by the PowerShell implant and executed in memory:
 
@@ -96,7 +96,7 @@ There is also a ``run-dll`` command which works exactly the same way as ``run-ex
 Adding Aliases
 **************
 
-We fully appreciate that nobody wants to type ``run-exe ConsoleApp1.MySuperProgram PwnStuff PoshC2Rocks`` over and over, and that is why we added aliases in **Alias.py**.
+We fully appreciate that nobody wants to type ``run-exe ConsoleApp1.MySuperProgram PwnStuff PoshC2Rocks`` over and over, and that is why we added aliases in **poshc2/client/Alias.py**.
 
 Aliases can either replace full or part commands, depending on the preference:
 
@@ -136,7 +136,7 @@ Adding Autoloads
 PoshC2 allows certain modules to be loaded automatically when a command is run.
 This is useful for loading a frequently used module without requiring the user to load it manually first, but has the risk of loading modules into memory by mistake if the user runs the wrong command at the wrong time.
 
-To add an autoload, edit **Autoloads.py** and add a line for your command for the Implant type. For example, we can load PwnStuff.exe automatically when the user runs a ``pwnstuff ...`` command.
+To add an autoload, edit **poshc2/server/Autoloads.py** and add a line for your command for the Implant type. For example, we can load PwnStuff.exe automatically when the user runs a ``pwnstuff ...`` command.
 
 .. code-block:: python
 
@@ -162,7 +162,7 @@ To add an autoload, edit **Autoloads.py** and add a line for your command for th
 Adding Auto-completion
 **********************
 
-If you want to add an entry in the autocompletion prompt for your module, or add it to the ``help`` command, then you can add it to **Help.py**.
+If you want to add an entry in the autocompletion prompt for your module, or add it to the ``help`` command, then you can add it to **poshc2/client/Help.py**.
 
 Simply add it to the relevant lists for the different prompt contexts (C# Implant, PS Implant etc) for the autocompletion or to the relevant help text block and restart the Implant-Handler.
 
@@ -182,4 +182,9 @@ Adding Payloads
 
 Payloads are generated when the C2 Server first starts for a new project, or when a new payload is created from the Implant-Handler through **create\*payload** commands, such as ``createnewpayload`` and ``createdaisypayload``.
 
-The generation of these payloads can be altered by editing the templates in the **Files** directory of the installation directory and/or editing **Payloads.py**, which is responsible for the generation of the payloads.
+The generation of these payloads can be altered by editing the templates in the **resources/payload-templates** directory of the installation directory and/or editing **poshc2/server/Payloads.py**, which is responsible for the generation of the payloads.
+
+Opsec
+*****
+
+Operation Security is important, and so to prevent operators from running potentially dangerous commands, anything listed in `poshc2/client/Opsec.py` will require accepting an additional prompt when the command is run.
