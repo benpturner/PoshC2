@@ -49,12 +49,12 @@ The way we perform domain fronting in PoshC2 is by adding the Host header to the
     :width: 1256 
     :align: center
 
-To configure PoshC2 to use Domain Fronting, edit the configuration so that the **HostnameIP** parameter points at the site being initially connected to by the target, i.e. the Domain Frontable site.
+To configure PoshC2 to use Domain Fronting, edit the configuration so that the **PayloadCommsHost** parameter points at the site being initially connected to by the target, i.e. the Domain Frontable site.
 The **DomainFrontHeader** parameter should then have the value of the CDN endpoint that will go in the HTTP Host header. This value should be the domain name only.
 
 .. code-block::  python
 
-    HostnameIP = "https://frontable.com
+    PayloadCommsHost = "https://frontable.com
     DomainFrontHeader = "endpoint.cdn.com"
     
 Note that the host must have .NET v4.0.30319 installed and available to the Implant process. If this is not the case, the implant will fall back to a direct connection to the CDN endpoint.

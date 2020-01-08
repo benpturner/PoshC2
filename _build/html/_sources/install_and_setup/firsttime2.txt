@@ -19,7 +19,7 @@ Config File
 ***************
 Open the Config.py file and start editing your C2 configuration, every line above the do not change section is modifiable, however to get started quickly the following items are considered most important:
 
-* HostnameIP - This is the URL that you want to use for all C2 comms (Multiple URL support coming in later release)
+* PayloadCommsHost - This is the URL that you want to use for all C2 comms (Multiple URL support coming in later release)
 * KillDate - This is the date that all persistence and implants will stop beaconing
 
 .. image:: ./config.png

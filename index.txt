@@ -48,7 +48,7 @@ Once the install script has finished, edit the PoshC2 configuration by issuing t
 
 This will open up the PoshC2 configuration file in your $EDITOR of choice, or vim if one is not set.
 
-The only requirement is to set the **HostnameIP** field to the URL that the target will be connecting to. Payloads will be generated using this URL.
+The only requirement is to set the **PayloadCommsHost** field to the URL that the target will be connecting to. Payloads will be generated using this URL.
 
 Once this is done open two terminal windows and in one run:
 
