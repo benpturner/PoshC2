@@ -75,9 +75,9 @@ Keep In Touch
 
 For all the latest news and features, or for the latest documentation and support check out the PoshC2 GitHub page or find us below:
 
-* Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_
-* Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel)
-* Find us on Email - labs@nettitude.com
+* Find us on Twitter - `@Nettitude_Labs <https://twitter.com/Nettitude_Labs>`_.
+* Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send email to labs below to be added to slack channel).
+* Find us on Email - labs@nettitude.com.
 
 ################
 Key Contributors
@@ -89,3 +89,4 @@ Key Contributors
 * Doug McLeod - `@b4ggio_su <https://twitter.com/b4ggio_su>`_
 * Rich Hicks - `@scriptmonkey_ <https://twitter.com/scriptmonkey_>`_
 * Phil Lynch - `@plynch98 <https://twitter.com/plynch98>`_
+* Ross Bingham - `@pwndexter <https://twitter.com/pwndexter>`_
