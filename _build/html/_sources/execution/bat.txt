@@ -1,8 +1,0 @@
-############
-  Bat File
-############
-Mitre ATT&CK - `Powershell <https://attack.mitre.org/wiki/Technique/T1086>`_
-
-This is essentially a powershell one liner ran from a Windows Batch file::
-
-	powershell -exec bypass -Noninteractive -windowstyle hidden -e <base64 encoded command of core dropper>
