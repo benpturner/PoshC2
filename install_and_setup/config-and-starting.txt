@@ -1,0 +1,199 @@
+##############################
+Configuring & Starting PoshC2
+##############################
+
+Once you have installed PoshC2 the first step is to create a new project abd then edit the configuration file.
+
+*************
+Configuration
+*************
+
+PoshC2's projects are stored in `/var/poshc2/`, project creation, listing and switching is handled by the `posh-project` script:
+
+.. code-block:: bash
+
+    [*] Usage: posh-project -n <new-project-name>
+    [*] Usage: posh-project -s <project-to-switch-to>
+    [*] Usage: posh-project -l (lists projects)
+
+Start by creating a new project:
+
+.. code-block:: bash
+
+    posh-project -n my-project-name
+
+All project data and configuration is then stored in this project directory at `/var/poshc2/my-project-name`.
+
+You can edit the configuration file for your current project by issuing the following command:
+
+.. code-block:: bash
+
+    posh-config
+
+This will open the configuration file in your local *$EDITOR* of choice. If this variable is not set, then the default is vim.
+A `-\\-nano` option exists for users who prefer nano.
+
+Some common options to change include:
+
+* *PayloadCommsHost* - This is the URL list that you want to use for all C2 communications that the payloads will beacon out to.
+* *DomainFrontHeader* - If Domain Fronting is being used, this will be the value of the HTTP **Host** headers.
+* *KillDate* - This is the date that all persistence and implants will stop beaconing.
+* *Jitter* - The beacon period jitter value as a decimal (e.g. 0.2 = 20% = between 4 and 6s if the beacon is 5s.).
+* *DefaultSleep* - The default beacon period for new implants.
+* *EnableNotifications* - Enable notifications for when a new implant connections (requires ClockworkSMS or Pushover to be set up).
+* *NotificationsProjectName* - A prefix for notifications to identify this server.
+* *DefaultMigrationProcess* - For generated payloads that migrate into a new process, this is the process that is spawned and migrated into.
+* *UserAgent* - the UserAgent to use for HTTP(S) communications.
+
+By default, PoshC2 will configure the implant to use HTTPS,  however it can be used over plain text HTTP if required by changing the **PayloadCommsHost** protocol to http://.
+Even over HTTP, all communications are encrypted  in order to keep communications secure. The added benefit of HTTPS is that unless the organisation is performing SSL Inspection the communications cannot be checked, and encrypted HTTP traffic could be deemed suspicious.
+Furthermore, HTTPS traffic encrypts all HTTP headers, allowing the use of Domain Fronting without the Host header being readable, again unless SSL Inspection is being performed.
+
+.. image:: ./config.png
+    :width: 1029
+    :align: center
+
+**************
+Running PoshC2
+**************
+
+C2 Server
+=========
+
+Once PoshC2 has been configured, launch the C2 server by running the following:
+
+.. code-block:: bash
+
+    posh-server
+
+The first time the C2 server is run per project, it will create the project folder structure and database and build all the out-of-the-box payloads for your configuration, in addition to printing some quickstart commands to the server log, such as a PowerShell one liner for quick testing.
+
+.. image:: ./c2server.png
+    :width: 973
+    :align: center
+
+Once the log reports that the webserver is running, PoshC2 is ready to receive implants.
+
+If a second user wants to view the C2 Server log they cannot run `posh-server` again as this will attempt to bind to the same port. Instead, the log can be viewed with:
+
+.. code-block:: bash
+
+    posh-log
+
+Implant Handler
+===============
+
+The Implant-Handler is used to interact with the C2 Server and any Implants.
+It can be started by issuing this command:
+
+.. code-block:: bash
+
+    posh
+
+This will prompt the user for a username. This is only used for logging and tracking purposes.
+You can set the user from the command line through the `-u` option:
+
+.. code-block:: bash
+
+    posh -u crashoverride
+
+.. image:: ./implanthandler.png
+    :width: 723
+    :align: center
+
+Multiple Implant-Handler processes can be run to allow different users or sessions to control the C2 Server.
+
+Docker
+======
+
+If you are using Docker, you can specify a Docker image tag to use by passing the `-t` argument to the C2Server or ImplantHandler:
+
+.. code-block:: bash
+
+    posh -u crashoverride -t latest
+
+
+Additionally, as the C2Server container is not interactive when using Docker, a `posh-stop-server` script exists for stopping this process.
+
+Project Folder
+==============
+Each project creates a unique folder to store all data and downloads specific to that engagement, including unique encryption keys.
+This means if you have shellcode pre-configured for one project, this will not connect to another project as the encryption keys will not match.
+This is an in-built safety measure to ensure that only expected payloads connect to expected servers.
+
+
+********************
+Running as a Service
+********************
+
+When running on a server, PoshC2 can be setup to run as a service instead of a foreground process.
+
+This means that if the user's session quits then the process will not die, and similarly if the host is rebooted the service will resume automatically.
+
+The C2 server can be installed and started as a service by issuing the following command:
+
+.. code-block:: bash
+
+    posh-service
+
+This will install and launch the service and view the log, however now if the user ctrl-c's the log the C2 service will continue to run in the background.
+If `posh-service` is re-run it will restart the service.
+
+A user can resume viewing the log by entering:
+
+.. code-block:: bash
+
+    posh-log
+
+The service can be stopped by running:
+
+.. code-block:: bash
+
+    posh-stop-service
+
+
+***********************
+Communications Failover
+***********************
+
+The communications options in PoshC2 can be configured with an array of URLs and host headers to provide implants with communications failover and rotation options.
+
+When editing the configuration, simply provide a list of **PayloadCommsHost** values and **DomainFrontHeader** values.
+
+.. code-block:: bash
+
+    PayloadCommsHost: "https://domainfrontable.com,https://direct.com"
+    DomainFrontHeader: "dfheader.com,direct.com"
+
+There is a one-to-one mapping of DomainFrontHeaders to PayloadCommsHosts so these arrays must be of equal length, though empty header values are allowed.
+ 
+This configuration will now attempt to get out on the first URL and Header combination, then failover to the second and so on.
+This will stop on the first successful connect and start the loading of the second stage.
+If no connection is made then each URL will be re-attempted several times after an increasing timeout to give operators the opportunity to fix any whitelisting issues etc.
+ 
+***********************
+Communications Rotation
+***********************
+
+Once in the environment communications rotation can be turned on.
+The idea for rotation is to identify a number of URLs that you would like to spread your comms over and then randomly communicate over all of them.
+This has the added benefits of helping blend, while also allowing operators to respond to a client blocking individual C2 URLs. Furthermore, this will help avoid telemetry detections.
+If you are rotating through multiple URLs and one is blocked then the rotation list can be modified on the next successful callback.
+ 
+To assist with identifying URLs that work and can connect back to the C2 server, a PowerShell script is provided that will display the results in the C2 server window.
+
+.. code-block:: bash
+
+    invoke-urlcheck -urls https://ur1.com,https://url2.com -domainfront header1.com,header2.com -uri /en-gb/surface/accessories/
+     
+    27/03/2020 09:30:55: The URL: https://url1.com successfully connected
+    27/03/2020 09:30:56: The URL: https://url2.com successfully connected
+
+Once a list is prepared communications rotation can be enabled using the `enable-rotation` command which will then prompt the user for the values.
+ 
+.. code-block:: bash
+    enable-rotation                                                                                             
+    Domain or URL in array format: "https://www.example.com","https://www.example2.com" "https://direct.com","https://direct2.com”
+    Domain front URL in array format: "header1.com","header2.com" "direct.com","direct2.com"
+ 
+`get-rotation` can be used to see what URLs are being cycling through at any given time when rotation is enabled.

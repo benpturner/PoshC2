@@ -6,8 +6,6 @@ Any red-teamer worth their salt will get familiar with their tooling and customi
 
 In addition to being customisable through the configuration file, such as the UserAgent and HTTP Responses in use, PoshC2 can be easily altered to suit the given situation.
 
-It is recommended to git commit changes locally to PoshC2 if you alter files in the installation directory, as this means that you can still update PoshC2 and have your changes merged on top of incoming changes.
-
 For any changes that would be useful for others, please consider adding a pull request.
 
 Adding Modules
@@ -38,8 +36,8 @@ These modules are invoked through .NET reflection and do not touch disk, and Pos
 
 .. code-block:: powershell
 
-    loadmodule MySharpStuff.exe 
-    run-exe Namespace.Class Assembly <args> 
+    loadmodule MySharpStuff.exe
+    run-exe Namespace.Class Assembly <args>
 
 For example, if the below code was compiled into an executable:
 
@@ -60,13 +58,13 @@ For example, if the below code was compiled into an executable:
             }
         }
     }
- 
+
 Then we can see the namespace is **ConsoleApp1**, and the class is **MySuperProgram**
 
 The Assembly Name can be found in Visual Studio by right-clicking the project (not the solution) and choosing `Properties`
 
 .. image:: ./assemblyname.png
-    :width: 867 
+    :width: 867
     :align: center
 
 Alternatively it can be found in the Projects **.csproj** file:
@@ -81,17 +79,17 @@ The command then to run the executable and print "PoshC2Rocks" would be:
 
 .. code-block:: powershell
 
-    run-exe ConsoleApp1.MySuperProgram PwnStuff PoshC2Rocks 
+    run-exe ConsoleApp1.MySuperProgram PwnStuff PoshC2Rocks
 
 .. image:: ./run-exe.png
-    :width: 1023 
+    :width: 1023
     :align: center
 
 There is also a ``run-dll`` command which works exactly the same way as ``run-exe`` for C#.NET DLLs, however there is one additional argument which specifies the entry point (and the class and namespace must match that of this entrypoint):
 
 .. code-block:: powershell
 
-    run-dll ConsoleApp1.MySuperProgram PwnStuff MyEntryMethod PoshC2Rocks 
+    run-dll ConsoleApp1.MySuperProgram PwnStuff MyEntryMethod PoshC2Rocks
 
 Adding Aliases
 **************
@@ -183,6 +181,16 @@ Adding Payloads
 Payloads are generated when the C2 Server first starts for a new project, or when a new payload is created from the Implant-Handler through **create\*payload** commands, such as ``createnewpayload`` and ``createdaisypayload``.
 
 The generation of these payloads can be altered by editing the templates in the **resources/payload-templates** directory of the installation directory and/or editing **poshc2/server/Payloads.py**, which is responsible for the generation of the payloads.
+
+If you want to add a brand new payload type, a new payload-generator file can be added to **poshc2/server/payloads/**.
+
+Any new Python file in this directory will be imported and the `create_payloads` function executed, passing in the provided Payload details and name.
+
+Operators can extend PoshC2's payload generation functionality in this way. See **poshc2/server/payloads/Macro-Payloads.py** for an example.
+
+.. image:: ./newpayloadmodule.png
+    :width: 1070
+    :align: center
 
 Opsec
 *****

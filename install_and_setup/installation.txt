@@ -2,30 +2,101 @@
 Installation
 #############
 
-PoshC2 is written in Python3 and developed and tested on Debian-based Linux distributions. It is recommended to run PoshC2 on one of these distributions, such as Debian, Ubuntu or Kali Linux, to achieve the most stable results.
+PoshC2 is written in Python3 and developed and tested on Kali Linux. For this reason, it is recommended to run PoshC2 on Kali Linux to achieve the most stable results.
+Alternatively, Docker images are provided which allow PoshC2 to be run on any host that supports Docker.
 
 If you are using a host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its project directory.
 
-To install PoshC2, from a terminal run the following:
+An install script is provided for installing PoshC2:
 
 .. code-block:: bash
 
-    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | bash
+    *** PoshC2 Install script ***
+    Usage:
+    ./Install.sh -b <git branch> -p <Directory to clone PoshC2 to>
 
-Alternatively, clone the PoshC2 repository at https://github.com/nettitude/PoshC2.git and run the `Install.sh` script.
+    Defaults are master branch to /opt/PoshC2
 
-The install script handles the installation of dependencies and the creation of a python3 virtual environment to ensure stability on a platform with many python pip installs.
-A number of helpful scripts are also installed to */usr/bin* that allow the user to use PoshC2 and encapsulates the use of the virtual environment.
-It is recommended to use these scripts to interact with PoshC2.
+Elevated privileges are required as the install script performs `apt` updates and installations.
 
-You can have the install script install PoshC2 to a different loctation by passing that location as an argument to the script.
+A bash one-liner is provided which curls down this script and executes it:
 
 .. code-block:: bash
 
-    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | bash -s /root/poshc2
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | sudo bash
 
-If you have installed PoshC2 to a location other than **/opt/PoshC2**, you can control where the commands look for Posh by setting the **$POSHC2_DIR** environment variable.
+Alternatively the repository can be cloned down and the install script manually run.
 
-**Create Firewall Rules**
+.. code-block:: bash
 
-If you are not just running locally, ensure you add a new firewall rule for either HTTP or HTTPS depending on what protocol and port you are using. 
+    sudo ./Install.sh
+
+You can manually set the PoshC2 installation directory by passing it to the Install.sh script as the `-p` argument. The default is **/opt/PoshC2**:
+
+.. code-block:: bash
+
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | sudo bash -s -- -p /root/PoshC2
+
+
+*********************
+Cutting Edge Features
+*********************
+
+We want to keep the `master` branch stable to ensure that users are able to rely on it when required and for this reason changes can often be feature-complete but not yet present on `master` as they have not been tested completely and signed-off yet.
+
+If you want to look at upcoming features in PoshC2 you can check out the `dev` branch, or any individual feature branches branched off of `dev`.
+
+As features **are** tested before they are merged into `dev` this branch should still be fairly stable and operators can opt in to using this branch or a particular feature branch for their engagement.
+This does trade stablity for new features however so do it at your own discretion.
+
+To use `dev` or a feature branch pass the branch name to the Install.sh script as the `-b` argument:
+
+.. code-block:: bash
+
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/dev/Install.sh | sudo bash -s -- -b dev
+
+
+Note the URL includes the branch name also (here `dev` instead of `master`).
+
+******
+Docker
+******
+
+You can also run PoshC2 using Docker, this allows more stable and running and enables PoshC2 to easily run on other operating systems.
+
+The Docker install does not clone PoshC2 as the PoshC2 images on Docker Hub are used, so only a minimal install of some dependencies and scripts are performed.
+
+To start with, install Docker on the host and then add the PoshC2 projects directory to Docker as a shared directory if required for your OS. By default this is **/var/poshc2** on *nix.
+
+Linux based hosts
+=================
+
+For *nix hosts, an install script is provided:
+
+.. code-block:: bash
+
+    *** PoshC2 Install script for Docker ***
+    Usage:
+    ./Install-for-Docker.sh -b <git branch>
+
+    Default is the master branch
+
+
+Elevated privileges are required as the install script performs script installations.
+
+.. code-block:: bash
+
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install-for-Docker.sh | sudo bash
+
+
+To use the `dev` or feature branches with Docker curl down the `Install-for-Docker.sh` on the appropriate branch and pass the branch name as an argument:
+
+.. code-block:: bash
+
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/BRANCHNAME/Install-for-Docker.sh | sudo bash -s -- -b BRANCHNAME
+
+
+Windows
+=======
+
+On Windows, import the PoshC2.psm1 PowerShell module.

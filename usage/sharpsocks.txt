@@ -2,7 +2,7 @@
 SOCKS Proxying
 ##############
 
-One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the target environments end. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible. 
+One of the most important tools for a Red Teamer is the SOCKS Proxy. This enables the creation of a tunnel between two machines such that any network traffic forwarded through it appears to have originated from the target environments end. Once a foothold has been gained on a machine, a SOCKS proxy can be deployed between the operators machines and the target in order to access subnets, machines and services that would not normally be directly accessible.
 This includes being able to RDP to another machine or even to browse the corporate Intranet.
 
 Nettitude have their own Socks proxy called **SharpSocks** by Rob Maslen which is incorporated with PoshC2, see the blog post about it `here <https://labs.nettitude.com/blog/poshc2-v3-with-socks-proxy-sharpsocks/>`_.
@@ -14,9 +14,10 @@ To start sharpsocks, enter the ``sharpsocks`` command into a **PowerShell** Impl
 
 .. code-block:: powershell
 
-    PS 1> sharpsocks                                                                                                                         
+    PS 1> sharpsocks
     /opt/PoshC2/SharpSocks/SharpSocksServerCore -c=CteIopoCcIfFegXFXsdzyscpt -k=O4QsWRPiEXYbHJobUSs9GfPloh9O8U7VlyV0dxYnWZ8= --verbose -l=http://127.0.0.1:49031
 
-    Are you ready to start the SharpSocks in the implant? (Y/n) 
+    Are you ready to start the SharpSocks in the implant? (Y/n)
 
-Once the SharpSocks server is running, press Enter, and the Implant will act as the SOCKS client and tunnel traffic between it and the server, in this case on port 49031.
+Once the SharpSocks server is running, press Enter, and the Implant will connect to the SharpSocks server.
+The SharpSocks server output will indicate when the implant has successfully connected and the SOCKS proxy has started.

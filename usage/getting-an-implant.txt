@@ -2,7 +2,7 @@
 Getting an Implant
 ##################
 
-Posh has three types of Implant:
+Posh has several types of Implant:
 
 * **PowerShell** - a PowerShell based Implant that does **not** use `PowerShell.exe` but instead interacts with `System.Management.Automation.dll` directly.
     * This Implant allows the user to load any PowerShell module and execute any PowerShell cmdlets from the Implant prompt.
@@ -10,14 +10,15 @@ Posh has three types of Implant:
 * **Sharp** - a C#.NET Implant that does not use any PowerShell related functionality at all and does not interact with any PowerShell components.
     * This Implant can run C# executables in memory, such as BloodHound and the GhostPack binaries from SpectreOps.
 * **Python** - a Python3 Implant that requires Python3 on the target in order to execute, but allows the user to run arbitrary Python3 code and load Python3 scripts.
+* **PBind** - PowerShell and Python Implants that communication using named pipes.
 
 Payloads for all these Implants are generated in the project `payloads` directory, and should be sensibly named with type, architecture and version (in case of PowerShell).
 Raw and Base64 encoded Shellcode files are also created for custom payload creation or in-memory injection.
 
-Once a payload is successfully executed, an Implant will check in and a message will be displayed in the C2 Server log:
+Once a payload is successfully executed, an Implant will check in and a message will be displayed in the C2 Server log, and the second stage will be automatically loaded:
 
 .. image:: ./new-implant.png
-    :width: 1233   
+    :width: 899
     :align: center
 
 This will detail useful information such as the the Implant ID, the Implant type and the environment it is running in.
@@ -27,6 +28,7 @@ The Implant Types can be summarised as:
 * PS - PowerShell Implant.
 * C# - C# Implant that does not use System.Management.Automation.dll.
 * PY - Python Implant.
+* PB - PBind
 
 These can also have suffixes depending on the Implant sub-type:
 
@@ -40,7 +42,7 @@ Some other notes:
 The Implant will also be available in the Implant-Handler once it is refreshed by pressing Enter:
 
 .. image:: ./implant-handler-new-implant.png
-    :width: 897
+    :width: 804
     :align: center
 
 At this stage, the Implant is ready to receive commands from the user.

@@ -2,12 +2,12 @@
   Apache Rewrite Rules
 #########################
 
-It is recommended to use a C2 Proxy to maintain operational security by proxying all traffic to the C2 Server. A simple VPS running `Apache <https://httpd.apache.org/>`_ can be stood up and `mod_rewrite <https://httpd.apache.org/docs/current/mod/mod_rewrite.html>`_ used to silently redirect traffic from the proxy to the C2 Server without the client knowing, allowing the red team to keep their C2 infrastructure hidden and allowing flexibility should the proxy IP be compromised. 
+It is recommended to use a C2 Proxy to maintain operational security by proxying all traffic to the C2 Server. A simple VPS running `Apache <https://httpd.apache.org/>`_ can be stood up and `mod_rewrite <https://httpd.apache.org/docs/current/mod/mod_rewrite.html>`_ used to silently redirect traffic from the proxy to the C2 Server without the client knowing, allowing the red team to keep their C2 infrastructure hidden and allowing flexibility should the proxy IP be compromised.
 
 A typical example could look like this:
 
 .. image:: ./proxy.png
-    :width: 777 
+    :width: 777
     :align: center
 
 
@@ -19,8 +19,9 @@ To help explain this Nettitude created a short blog which explains one way of ac
 
 * `https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/ <https://labs.nettitude.com/blog/making-poshc2-more-accessible-with-a-5-vps/>`_
 
+*****
 Setup
-**************
+*****
 
 Once you've setup a VPS you will need to configure Apache to rewrite your C2 traffic back to the C2 Server instance. The example below details a typical example:
 
@@ -28,14 +29,14 @@ You will need to install Apache HTTPd and enable some modules before running the
 
 .. code-block::  bash
 
-    apt-get install Apache2
-    a2enmod ssl 
-    a2enmod rewrite 
+    apt-get install apache2
+    a2enmod ssl
+    a2enmod rewrite
     a2enmod proxy
     a2enmod proxy_http
     a2enmod headers
 
-As part of the C2 Server's bootstrap process when it first launches for a new project it generates a **rewrite-rules.txt** file with the required rules for that C2 server for the Apache configuration. 
+As part of the C2 Server's bootstrap process when it first launches for a new project it generates a **rewrite-rules.txt** file with the required rules for that C2 server for the Apache configuration.
 We then place the rules within your Apache configuration file for relevant virtual hosts:
 
 .. code-block::  bash
@@ -46,7 +47,7 @@ We then place the rules within your Apache configuration file for relevant virtu
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
     </VirtualHost>
-    
+
     <IfModule mod_ssl.c>
         <VirtualHost _default_:443>
             RewriteEngine On
@@ -98,11 +99,12 @@ We then place the rules within your Apache configuration file for relevant virtu
 
 Any C2 URLs that match these rules will therefore be rewritten to the C2 Server. Any that do not match these URLs will instead be served content from the usual DocumentRoot, in this case **/var/www/html**.
 
+****************
 Apache Whitelist
-********************
-When performing a Red Team engagement, it is imperative that your C2 infrastructure be sufficiently locked down and should only allow implants from the correct IP address range of the Customer. This is known as whitelisting. 
+****************
+When performing a Red Team engagement, it is imperative that your C2 infrastructure be sufficiently locked down and should only allow implants from the correct IP address range of the Customer. This is known as whitelisting.
 
-To add a whitelist to the C2 Proxy, create a file with all the IP addresses that are known to be the client. There is a slight nuance with Apache as the file format is the below: 
+To add a whitelist to the C2 Proxy, create a file with all the IP addresses that are known to be the client. There is a slight nuance with Apache as the file format is the below:
 
 .. code-block:: bash
 
@@ -120,19 +122,20 @@ This Python script will help convert a IP CIDR range into the correct format for
     for ip in IPNetwork("10.10.0.0/21"):
         print '%s -' % ip
 
-Once you have the whitelist, you can use the **RewriteMap** function to add the IP address list for use in rewrite conditions. 
-Below is a simple Rewrite Rule which will respond to the client with a 404 Not Found response if the requesting IP is not in the whitelist. 
+Once you have the whitelist, you can use the **RewriteMap** function to add the IP address list for use in rewrite conditions.
+Below is a simple Rewrite Rule which will respond to the client with a 404 Not Found response if the requesting IP is not in the whitelist.
 
 .. code-block:: bash
 
     RewriteMap IP txt:/etc/apache2/whitelist
-    Define PoshC2 10.0.0.1 
+    Define PoshC2 10.0.0.1
     RewriteCond ${IP:%{REMOTE_ADDR}|NOT-FOUND} !NOT-FOUND
-    RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]    
+    RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]
     ...
 
-You have to do this for each rewrite rule you want to apply for each URL. In this case we are applying to the **/images/static/content/** path. 
+You have to do this for each rewrite rule you want to apply for each URL. In this case we are applying to the **/images/static/content/** path.
 
+******************************
 Whitelists and Domain Fronting
 ******************************
 
@@ -144,7 +147,7 @@ They will however, put the originating IP in the **X-Forwarded-For** header, and
     RewriteMap ips txt:/etc/apache2/whitelist.txt
     RewriteCond ${ips:%{REMOTE_ADDR}|NOT-FOUND} !NOT-FOUND [OR]
     RewriteCond ${ips:%{HTTP:X-Forwarded-For}|NOT-FOUND} !NOT-FOUND
-    RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]    
+    RewriteRule ^/images/static/content/(.*) https://${PoshC2}/images/static/content/$1 [NC,P,L]
     ...
 
 Please see the Apache HTTPd and mod_rewrite websites for more information.

@@ -1,9 +1,9 @@
 ########
-Overview 
+Overview
 ########
 
 .. image:: ./_static/logo.png
-    :width: 3025 
+    :width: 3025
     :align: center
 
 PoshC2 is a proxy aware C2 framework used to aid penetration testers with red teaming, post-exploitation and lateral movement.
@@ -12,6 +12,7 @@ PoshC2 is primarily written in Python3 and follows a modular format to enable us
 
 Other notable features of PoshC2 include:
 
+* Consistent and Cross-Platform support using Docker.
 * Highly configurable payloads, including default beacon times, jitter, kill dates, user agents and more.
 * A large number of payloads generated out-of-the-box which are frequently updated and maintained to bypass common Anti-Virus products.
 * Auto-generated Apache Rewrite rules for use in a C2 proxy, protecting your C2 infrastructure and maintaining good operational security.
@@ -21,59 +22,107 @@ Other notable features of PoshC2 include:
 * Fully encrypted communications, protecting the confidentiality and integrity of the C2 traffic even when communicating over HTTP.
 * Client/Server format allowing multiple team members to utilise a single C2 server.
 * Extensive logging. Every action and response is timestamped and stored in a database with all relevant information such as user, host, implant number etc. In addition to this the C2 server output is directly logged to a separate file.
-* Support for Docker, allowing reliable and cross-platform execution
+* PowerShell-less implants that do not use System.Management.Automation.dll using C# or Python.
+* A free and open-source SOCKS Proxy by integrating with SharpSocks
 
 PoshC2 is fully open source and available on GitHub here: https://github.com/nettitude/PoshC2/
 
-###########
-Quick Start 
-###########
+#######
+Install
+#######
 
 PoshC2 can be installed on any system with Python3 installed, however it is only commonly tested on Debian based Linux distribution, such as Ubuntu and Kali Linux.
-These operating systems are also free and open source and for the most reliable experience it is recommended that PoshC2 in this way, from a VPS or Virtual Machine if required. It has, however, also been tested on Arch Linux and Windows 10.
+These operating systems are also free and open source and for the most reliable experience it is recommended that PoshC2 in this way, from a VPS or Virtual Machine if required.
 
 It is recommended to add an exclusions folder for any host-based Anti-Virus for the PoshC2 install directory and project directory.
 
-To install PoshC2 on a Debian based Linux distribution run the following from a Terminal:
+You can install PoshC2 directly or use the Docker images, instructions for both are below.
+
+.. code-block:: bash
+    *** PoshC2 Install script ***
+    Usage:
+    ./Install.sh -b <git branch> -p <Directory to clone PoshC2 to>
+
+    Defaults are master branch to /opt/PoshC2
+
+Elevated privileges are required as the install script performs `apt` updates and installations.
 
 .. code-block:: bash
 
     curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | sudo bash
 
-Once the install script has finished, edit the PoshC2 configuration by issuing the below command:
+
+You can manually set the PoshC2 installation directory by passing it to the Install.sh script as the `-p` argument. The default is **/opt/PoshC2**:
 
 .. code-block:: bash
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install.sh | sudo bash -s -- -p /root/PoshC2
 
-    posh-config
 
-This will open up the PoshC2 configuration file in your $EDITOR of choice, or vim if one is not set.
+*********************
+Cutting Edge features
+*********************
 
-The only requirement is to set the **PayloadCommsHost** field to the URL that the target will be connecting to. Payloads will be generated using this URL.
+We want to keep the `master` branch stable to ensure that users are able to rely on it when required and for this reason changes can often be feature-complete but not yet present on `master` as they have not been tested completely and signed-off yet.
 
-Once this is done open two terminal windows and in one run:
+If you want to look at upcoming features in PoshC2 you can check out the `dev` branch, or any individual feature branches branched off of `dev`.
+
+As features **are** tested before they are merged into `dev` this branch should still be fairly stable and operators can opt in to using this branch or a particular feature branch for their engagement.
+This does trade stablity for new features however so do it at your own discretion.
+
+To use `dev` or a feature branch pass the branch name to the Install.sh script as the `-b` argument:
 
 .. code-block:: bash
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/dev/Install.sh | sudo bash -s -- -b dev
 
-    posh-server
 
-to launch the C2 server.
+Note the URL includes the branch name also (here `dev` instead of `master`).
 
-In the second window run the Implant-Handler:
+#####################
+Installing for Docker
+#####################
+
+You can also run PoshC2 using Docker, this allows more stable and running and enables PoshC2 to easily run on other operating systems.
+
+This script does not clone PoshC2 as the PoshC2 images on Docker Hub are used, so only a minimal install of some dependencies and scripts are performed.
+
+To start with, install Docker on the host and then add the PoshC2 projects directory to Docker as a shared directory if required for your OS. By default this is **/var/poshc2** on *nix.
+
+****************
+Kali based hosts
+****************
+
+Python3 install script:
 
 .. code-block:: bash
+    *** PoshC2 Install script for Docker ***
+    Usage:
+    ./Install.sh -b <git branch>
 
-    posh -u <username>
+    Default is the master branch
 
-On launch the C2 server will generate various payloads and log their use and locations in the output. Once an Implant has been created, commands can then be issued from the Implant-Handler, and their response will be displayed in the C2 server output.
 
-######
-Docker
-######
+Elevated privileges are required as the install script performs `apt` updates and installations.
 
-PoshC2 can also be run using Docker, for more information see the `Docker <./install_and_setup/docker.txt>`_ page.
+.. code-block:: bash
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/master/Install-for-Docker.sh | sudo bash
+
+
+To use the `dev` or feature branches with Docker curl down the `Install-for-Docker.sh` on the appropriate branch and pass the branch name as an argument:
+
+.. code-block:: bash
+    curl -sSL https://raw.githubusercontent.com/nettitude/PoshC2/BRANCHNAME/Install-for-Docker.sh | sudo bash -s -- -b BRANCHNAME
+
+
+*********
+Other OSs
+*********
+
+On other *nix flavours and MacOS, copy the posh-docker\* commands to your path.
+On Windows, import the PoshC2.psm1 PowerShell module.
+
 
 #############
-Keep In Touch 
+Keep In Touch
 #############
 
 For all the latest news and features, or for the latest documentation and support check out the PoshC2 GitHub page or find us below:
@@ -85,7 +134,7 @@ Find us on Slack - `poshc2.slack.com <https://poshc2.slack.com>`_ (Send an email
 Find us on Email - labs@nettitude.com.
 
 ################
-Key Contributors 
+Key Contributors
 ################
 
 * Ben Turner - `@benpturner <https://twitter.com/benpturner>`_
@@ -100,7 +149,7 @@ Key Contributors
 Contribute
 ##########
 
-We actively encourage the industry to contribute and would want nothing less for PoshC2, be it pull requests, reporting bugs or new ideas. There is no such thing as a stupid question or bad idea. 
+We actively encourage the industry to contribute and would want nothing less for PoshC2, be it pull requests, reporting bugs or new ideas. There is no such thing as a stupid question or bad idea.
 
 The best place to do this is on GitHub or chat in the PoshC2 slack channel.
 

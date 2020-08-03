@@ -10,11 +10,14 @@ As previously mentioned, PoshC2 has three types of Implant:
 * **Sharp** - a C#.NET Implant that does not use any PowerShell related functionality at all and does not interact with any PowerShell components.
     * This Implant can run C# executables in memory, such as BloodHound and the GhostPack binaries from SpectreOps.
 * **Python** - a Python3 Implant that requires Python3 on the target in order to execute, but allows the user to run arbitrary Python3 code and load Python3 scripts.
+* **PBind** - a subset of PowerShell and Sharp implants that uses named pipes to communicate.
 
+
+****************
 Using an Implant
-####################
+****************
 
-The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates. 
+The Implant-Handler window will not refresh the implant check-in times automatically, however, if you hit the [enter] key without any values in the input field it will refresh the implant window and update the last checked in times/dates.
 If you then wish to use one of the implants type the ID value and hit enter and this will put you into a prompt like follows ``1``::
 
 	PS 1>
@@ -34,26 +37,27 @@ The Implant Types can be summarised as:
 * PS - PowerShell Implant.
 * C# - C# Implant that does not use System.Management.Automation.dll.
 * PY - Python Implant.
+* PB - PBind
 
 These can also have suffixes depending on the Implant sub-type:
 
 * ;D - A Daisy Implant that is achieving C2 communications by daisy-chaining traffic through another implant.
 * ;P - A Proxy Implant with hard-coded Proxy credentials.
 
-Once at the Implant prompt, commands that are executed are issued to the Implant(s). 
+Once at the Implant prompt, commands that are executed are issued to the Implant(s).
 Context sensitive help and history is provided to assist in commands. See the Help section for more information.
 
 When a command is issued to an Implant it is issued as a Task with a particular identifier. This identifier can be seen in the C2 server log along with the executing user when a Task is picked up by an Implant.
 When an Implant responds to a particular task, it does so using the same Identifier, allowing command input and output to be correlated directly, and actions attributed to users.
 
 .. image:: ./tasks.png
-    :width: 1026
+    :width: 834
     :align: center
 
 Note that if PowerShell output is truncated then, as in PowerShell directly, the user can pipe the command to `Format-List` or its alias `fl` to retrieve the full output.
 
 .. image:: ./pipe-to-fl.png
-    :width: 1016   
+    :width: 974
     :align: center
 
 Note that any tasks that are run automatically, such as the loading of certain modules, are performed as the **autoruns** user.

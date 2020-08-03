@@ -11,7 +11,7 @@ This help can be searched through the use of the `searchhelp` command:
 
 .. code-block:: bash
 
-    PS 1> searchhelp mimikatz                                                                                                                
+    PS 1> searchhelp mimikatz
     searchhelp mimikatz
     invoke-mimikatz -command '"sekurlsa::logonpasswords"'
     invoke-mimikatz -command '"lsadump::sam"'
@@ -34,7 +34,7 @@ These commands are fuzzy-matched with the current text (for the first word only)
 
 .. image:: ./autocompletions.png
     :width: 445
-    :align: center 
+    :align: center
 
 Auto-suggestions
 ****************
@@ -45,12 +45,12 @@ These suggestions can be completed by pressing the right-arrow key or Ctrl-e.
 
 .. image:: ./autosuggestions.png
     :width: 1018
-    :align: center 
+    :align: center
 
 Module Help
 *****************
 For help on the individual modules in PoshC2, you can check the module source or run Get-Help for PowerShell modules once they have been loaded:
-	
+
 .. code-block:: powershell
 
     LoadModule Invoke-Mimikatz.ps1
@@ -70,7 +70,7 @@ PoshC2 is also fully documented in python3 `here <https://github.com/nettitude/P
 As PoshC2 is ever evolving and is always being updated with the latest tactics and techniques. To that end we recommend that users explore PoshC2's source code to fully understand what is going on under the hood and how to tweak and adjust PoshC2 to match their needs and environment.
 For any help in doing this, see the Keep In Touch section below.
 
-Keep In Touch 
+Keep In Touch
 *****************
 
 For all the latest news and features, or for the latest documentation and support check out the PoshC2 GitHub page or find us below:

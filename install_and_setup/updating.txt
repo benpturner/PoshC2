@@ -4,8 +4,14 @@
 
 **It is not recommended to update PoshC2 during an engagement. Incoming changes may be incompatible with an existing project and can result in erratic behaviour.**
 
-PoshC2 can be updated by issuing the following command:
+When using a git cloned version of PoshC2 you can update your PoshC2 installation using the following command:
 
 .. code-block:: bash
 
-    posh-update
+  *** PoshC2 Update Script ***
+  Usage:
+  posh-update -b <git branch>
+
+  Default is the master branch
+
+Any existing changes are `git stash`ed before updating.
