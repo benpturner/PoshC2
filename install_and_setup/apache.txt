@@ -62,6 +62,13 @@ We then place the rules within your Apache configuration file for relevant virtu
             # If running Apache 2.4.52 or Later
             Proxy100Continue Off
             
+            # If you want 404 cookie information for OPSEC
+            # https://labs.nettitude.com/blog/operational-security-with-poshc2-framework/
+            SecAuditEngine RelevantOnly
+            SecAuditLog /var/log/apache2/sec.log
+            SecAuditLogParts BSecAudit
+            LogRelevantStatus ^(404)
+
             # Change IPs to point at C2 infrastructure below
             Define PoshC2 10.0.0.1
             Define SharpSocks 10.0.0.1
