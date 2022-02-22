@@ -30,6 +30,8 @@ You will need to install Apache HTTPd and enable some modules before running the
 .. code-block::  bash
 
     apt-get install apache2
+    apt install libapache2-mod-security2
+    a2enmod security2
     a2enmod ssl
     a2enmod rewrite
     a2enmod proxy
@@ -56,6 +58,10 @@ We then place the rules within your Apache configuration file for relevant virtu
             SSLProxyVerify none
             SSLProxyCheckPeerName off
             SSLProxyCheckPeerExpire off
+
+            # If running Apache 2.4.52 or Later
+            Proxy100Continue Off
+            
             # Change IPs to point at C2 infrastructure below
             Define PoshC2 10.0.0.1
             Define SharpSocks 10.0.0.1
