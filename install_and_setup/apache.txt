@@ -164,3 +164,15 @@ They will however, put the originating IP in the **X-Forwarded-For** header, and
     ...
 
 Please see the Apache HTTPd and mod_rewrite websites for more information.
+
+
+*********************************************
+Operational Security with PoshC2 Framework
+*********************************************
+
+The following post describes the capability that has been deployed within PoshC2, which is designed to assist with revealing a wider set of target environment variables at the dropper stage, as part of operational security controls.
+
+* `https://labs.nettitude.com/blog/operational-security-with-poshc2-framework/`
+
+Imagine the following scenario. You’ve deployed IP address white-listing on the proxy as above in order to limit implant installation to a specific environment. A connection arrives back from a host that’s not associated with your target environment, so the connection is dropped and PoshC2 never sees the incoming connection attempt. By adding some additional logging on the proxy, and utilising the new CookieDecrypter.py script, you can now reveal specific environment variables about where the dropper was executed. This information allows for better decision making on what to do next in this scenario. It yields greater situational awareness.
+
