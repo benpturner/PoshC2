@@ -45,7 +45,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'PoshC2 Framework'
-copyright = u'2020, Nettitude'
+copyright = u'2024, Nettitude'
 author = u'Ben Turner'
 
 # The version info for the project you're documenting, acts as replacement for
