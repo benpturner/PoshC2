@@ -5,7 +5,7 @@ Installation
 PoshC2 is written in Python3 and developed and tested on Kali Linux. For this reason, it is recommended to run PoshC2 on Kali Linux to achieve the most stable results.
 Alternatively, Docker images are provided which allow PoshC2 to be run on any host that supports Docker.
 
-If you are using a host Anti-Virus it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its project directory.
+If you are using a host Anti-Virus/EDR it is recommended that you add an exclusion on the folder or location of the PoshC2 install and its project directory.
 
 An install script is provided for installing PoshC2:
 
