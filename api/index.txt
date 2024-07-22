@@ -1,0 +1,108 @@
+################
+API Usage
+################
+
+The `posh-api-server` script is part of the PoshC2 install and is used to start the PoshC2 API service. This documentation provides a detailed overview of the API service, its functionality, endpoints, and usage.
+
+Adding Modules
+**************
+
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Endpoints](#endpoints)
+  - [`GET /autocompletecmd/<implant_id>`](#get-autocompletecmdimplant_id)
+  - [`GET /autocompletecmd/<implant_id>/<commandRemote>`](#get-autocompletecmdimplant_idcommandremote)
+  - [`GET /autoruns`](#get-autoruns)
+  - [`GET, POST /autorunsview`](#get-post-autorunsview)
+  - [`GET /autorunsview/del/<autorun_id>`](#get-autorunsviewdelautorun_id)
+  - [`GET /c2messages`](#get-c2messages)
+  - [`GET /c2messagesview`](#get-c2messagesview)
+  - [`GET /c2server`](#get-c2server)
+  - [`GET /c2view`](#get-c2view)
+  - [`GET /c2view/<number_of_rows>`](#get-c2viewnumber_of_rows)
+  - [`GET /commands`](#get-commands)
+  - [`GET /creds`](#get-creds)
+  - [`GET /file/<path:filename>`](#get-filepathfilename)
+  - [`GET /files`](#get-files)
+  - [`GET /files/<int:number_of_files>`](#get-filesintnumber_of_files)
+  - [`GET /hostedfiles`](#get-hostedfiles)
+  - [`GET /implants`](#get-implants)
+  - [`GET /implants/kill/<implant_id>`](#get-implantskillimplant_id)
+  - [`GET /implantview`](#get-implantview)
+  - [`GET /implantview/<number_of_rows>`](#get-implantviewnumber_of_rows)
+  - [`GET /liveimplants`](#get-liveimplants)
+  - [`GET /liveimplantview`](#get-liveimplantview)
+  - [`GET /mitrettps`](#get-mitrettps)
+  - [`GET /newtasks`](#get-newtasks)
+  - [`GET /newtasksview`](#get-newtasksview)
+  - [`GET /newtasksview/<number_of_rows>`](#get-newtasksviewnumber_of_rows)
+  - [`GET /newtasksview/del/<task_id>`](#get-newtasksviewdeltask_id)
+  - [`GET /opsecentrys`](#get-opsecentrys)
+  - [`GET /payload/<path:filename>`](#get-payloadpathfilename)
+  - [`GET /payloads`](#get-payloads)
+  - [`GET /powerstatus`](#get-powerstatus)
+  - [`GET /tasks`](#get-tasks)
+  - [`GET /tasks/<number_of_rows>`](#get-tasksnumber_of_rows)
+  - [`GET /tasks/implant/<implant_id>`](#get-tasksimplantimplant_id)
+  - [`GET /taskview`](#get-taskview)
+  - [`GET /taskview/<number_of_rows>`](#get-taskviewnumber_of_rows)
+  - [`GET /taskview/implant/<implant_id>`](#get-taskviewimplantimplant_id)
+  - [`GET /taskviewwithnew`](#get-taskviewwithnew)
+  - [`GET /taskviewwithnew/<number_of_rows>`](#get-taskviewwithnewnumber_of_rows)
+  - [`GET /taskviewwithnew/implant/<implant_id>`](#get-taskviewwithnewimplantimplant_id)
+  - [`GET /urls`](#get-urls)  
+- [Error Handling](#error-handling)
+- [Logging](#logging)
+- [License](#license)
+
+## Requirements
+
+To run `posh-api-server`, you need to have the following installed:
+
+- Python 3.6 or higher
+- Required Python packages (specified in `requirements.txt`)
+
+## Usage
+
+To start the PoshC2 API service, execute the `posh-api-server` script from the command line or run the posh-service to start both elements:
+
+```sh
+posh-api-server
+
+This will start the API endpoint locally on TCP port 5000 with the following default credentials
+
+* Username: poshc2
+* Password: change_on_install
+
+To ssh into the PoshC2 server and return the local port 5000 back to your machine run the following command:
+
+```sh
+ssh poshc2server -L 5000:127.0.0.1:5000
+
+
+## Configuration
+
+The configuration for the API service can be adjusted in the config.py file. Key configuration parameters include:
+
+HOST: The host address where the API service will run (default: 0.0.0.0).
+PORT: The port number on which the API service will listen (default: 5000).
+DEBUG: Whether to run the server in debug mode (default: True).
+
+Example config.py:
+
+```python
+HOST = '0.0.0.0'
+PORT = 5000
+DEBUG = True
+
+## Endpoints
+
+`GET /autocompletecmd/<implant_id>`
+Returns autocomplete commands for a specific implant.
+
+Example request:
+
+`curl -X GET http://<host>:<port>/autocompletecmd/<implant_id>`

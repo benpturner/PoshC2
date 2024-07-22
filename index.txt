@@ -163,6 +163,6 @@ Index
    install_and_setup/index
    usage/index
    extending/index
+   api/index
    reporting/index
    license/index
-
