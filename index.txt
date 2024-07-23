@@ -2,9 +2,10 @@
 Overview
 ########
 
-.. image:: ./_static/logo.png
+.. image:: ./_static/logo-main.png
     :width: 3025
     :align: center
+
 
 PoshC2 is a proxy aware C2 framework used to aid penetration testers with red teaming, post-exploitation and lateral movement.
 
